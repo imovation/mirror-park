@@ -4,6 +4,8 @@ import * as THREE from 'three'
 import { Box, Plane, Html, Grid, Cylinder, Sphere, MeshReflectorMaterial, Edges, Environment, ContactShadows } from '@react-three/drei'
 import roadFlowVert from '@/shaders/roadFlow.vert?raw'
 import roadFlowFrag from '@/shaders/roadFlow.frag?raw'
+import buildingWindowVert from '@/shaders/buildingWindow.vert?raw'
+import buildingWindowFrag from '@/shaders/buildingWindow.frag?raw'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { ThemeId } from '@/types/theme'
@@ -16,6 +18,32 @@ interface BuildingData {
   color: string
   info: string
   imageUrl?: string
+}
+
+function createWindowMaterial(
+  windowDensity: number,
+  litChance: number,
+  baseColor: string,
+  windowColor: string = '#00e5ff',
+) {
+  return new THREE.ShaderMaterial({
+    uniforms: {
+      uWindowDensity: { value: windowDensity },
+      uLitChance: { value: litChance },
+      uBaseColor: { value: new THREE.Color(baseColor) },
+      uWindowColor: { value: new THREE.Color(windowColor) },
+    },
+    vertexShader: buildingWindowVert,
+    fragmentShader: buildingWindowFrag,
+    transparent: false,
+  })
+}
+
+const WINDOW_MATS = {
+  teaching: createWindowMaterial(5, 0.45, '#06101e'),
+  dorm:      createWindowMaterial(6, 0.55, '#06101e'),
+  gym:       createWindowMaterial(3, 0.35, '#06101e'),
+  tower:     createWindowMaterial(4, 0.40, '#06101e'),
 }
 
 export const BUILDINGS: BuildingData[] = [
@@ -55,14 +83,19 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       }}
     >
       <Box args={building.size} castShadow receiveShadow>
-        <meshStandardMaterial
-          color={isSelected ? "#0c2548" : "#06101e"}
-          transparent={false}
-          roughness={0.2}
-          metalness={0.5}
-          emissive="#00e5ff"
-          emissiveIntensity={isSelected ? 0.4 : (hovered ? 0.2 : 0.05)}
-        />
+        {(() => {
+          let mat: THREE.ShaderMaterial
+          const id = building.id
+          if (id === 'chongde' || id === 'chongzhi' || id === 'chongxin')
+            mat = WINDOW_MATS.teaching
+          else if (id === 'chongya' || id === 'chongsi')
+            mat = WINDOW_MATS.dorm
+          else if (id === 'gymnasium' || id === 'canteen')
+            mat = WINDOW_MATS.gym
+          else
+            mat = WINDOW_MATS.tower
+          return <primitive object={mat} attach="material" />
+        })()}
         <Edges
           linewidth={isSelected ? 3 : 2}
           threshold={15}
