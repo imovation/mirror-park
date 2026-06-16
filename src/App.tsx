@@ -5,6 +5,7 @@ import LeftPanel from '@/components/layout/LeftPanel'
 import RightPanel from '@/components/layout/RightPanel'
 import BottomBar from '@/components/layout/BottomBar'
 import DashboardPanel from '@/components/ui/DashboardPanel'
+import SceneCanvas from '@/components/scene/SceneCanvas'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -51,7 +52,7 @@ function App() {
             </DashboardPanel>
           </LeftPanel>
         }
-        scene={<PlaceholderChild name="3D Scene" />}
+        scene={<SceneCanvas />}
         rightPanel={
           <RightPanel>
             <DashboardPanel title="面板右-1">
