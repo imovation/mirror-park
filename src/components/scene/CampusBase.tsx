@@ -40,10 +40,10 @@ function createWindowMaterial(
 }
 
 const WINDOW_MATS = {
-  teaching: createWindowMaterial(8, 0.6, '#06101e'),
-  dorm:      createWindowMaterial(10, 0.7, '#06101e'),
-  gym:       createWindowMaterial(4, 0.4, '#06101e'),
-  tower:     createWindowMaterial(6, 0.55, '#06101e'),
+  teaching: createWindowMaterial(8, 0.6, '#0c1a2e'),
+  dorm:      createWindowMaterial(10, 0.7, '#0c1a2e'),
+  gym:       createWindowMaterial(4, 0.4, '#0c1a2e'),
+  tower:     createWindowMaterial(6, 0.55, '#0c1a2e'),
 }
 
 export const BUILDINGS: BuildingData[] = [
@@ -243,7 +243,7 @@ function Roads() {
 }
 
 function Courtyards() {
-  const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.15} />
+  const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.22} />
   const edgeMat = <Edges linewidth={1.5} threshold={15} color="#00ffaa" />
   return (
     <group position={[0, 0.15, 0]}>
@@ -270,7 +270,7 @@ function Courtyards() {
 function RunningTrack() {
   return (
     <group position={[-24, 12.1, 0]}>
-      <Box args={[13, 0.1, 17]}><meshStandardMaterial color="#1a2535" /></Box>
+      <Box args={[13, 0.1, 17]}><meshStandardMaterial color="#2a3545" /></Box>
       {Array.from({ length: 6 }, (_, i) => (
         <Box key={`lane-${i}`} args={[12.2 - i * 0.8, 0.12, 16.2 - i * 0.8]} position={[0, 0.02, 0]}>
           <meshBasicMaterial color="#00e5ff" transparent opacity={0.5 + i * 0.08} />
