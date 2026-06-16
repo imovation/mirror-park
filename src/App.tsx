@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useThemeStore } from '@/stores/useThemeStore'
 import ScreenLayout from '@/components/layout/ScreenLayout'
 import TopBar from '@/components/layout/TopBar'
 import LeftPanel from '@/components/layout/LeftPanel'
@@ -6,7 +7,7 @@ import RightPanel from '@/components/layout/RightPanel'
 import BottomBar from '@/components/layout/BottomBar'
 import DashboardPanel from '@/components/ui/DashboardPanel'
 import ErrorBoundary from '@/components/layout/ErrorBoundary'
-import SceneCanvas from '@/components/scene/SceneCanvas'
+import { getThemeEntry } from '@/themes/registry'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +19,9 @@ const queryClient = new QueryClient({
 })
 
 function App() {
+  const currentTheme = useThemeStore((s) => s.currentTheme)
+  const entry = getThemeEntry(currentTheme)
+
   return (
     <QueryClientProvider client={queryClient}>
       <ScreenLayout
@@ -25,15 +29,13 @@ function App() {
         leftPanel={
           <ErrorBoundary name="左侧面板" fallback={<div style={{ color: '#6b7280', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
             <LeftPanel>
-              <DashboardPanel title="面板左-1">
-                <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
-              </DashboardPanel>
-              <DashboardPanel title="面板左-2">
-                <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
-              </DashboardPanel>
-              <DashboardPanel title="面板左-3">
-                <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
-              </DashboardPanel>
+              {entry.panels.left.map((p) => (
+                <DashboardPanel key={p.id} title={p.title}>
+                  <ErrorBoundary name={p.title}>
+                    {entry.renderPanel(p.id)}
+                  </ErrorBoundary>
+                </DashboardPanel>
+              ))}
             </LeftPanel>
           </ErrorBoundary>
         }
@@ -52,21 +54,19 @@ function App() {
               3D 场景不可用
             </div>
           }>
-            <SceneCanvas />
+            {entry.scene()}
           </ErrorBoundary>
         }
         rightPanel={
           <ErrorBoundary name="右侧面板" fallback={<div style={{ color: '#6b7280', textAlign: 'center', padding: 16 }}>右侧面板异常</div>}>
             <RightPanel>
-              <DashboardPanel title="面板右-1">
-                <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
-              </DashboardPanel>
-              <DashboardPanel title="面板右-2">
-                <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
-              </DashboardPanel>
-              <DashboardPanel title="面板右-3">
-                <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
-              </DashboardPanel>
+              {entry.panels.right.map((p) => (
+                <DashboardPanel key={p.id} title={p.title}>
+                  <ErrorBoundary name={p.title}>
+                    {entry.renderPanel(p.id)}
+                  </ErrorBoundary>
+                </DashboardPanel>
+              ))}
             </RightPanel>
           </ErrorBoundary>
         }
