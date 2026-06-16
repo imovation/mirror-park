@@ -27,8 +27,8 @@ const ALERT_LOCATIONS: { id: string; position: [number, number, number]; label: 
 
 function BlinkingSphere({ position, color, size = 0.5 }: { position: [number, number, number]; color: string; size?: number }) {
   const ref = useRef<any>(null)
-  useFrame((_, delta) => {
-    if (!ref.current) return
+  useFrame(() => {
+    if (!ref.current?.material) return
     const t = Date.now() * 0.005
     const s = 1 + Math.sin(t) * 0.4
     ref.current.scale.setScalar(s)
