@@ -57,3 +57,14 @@ html, body, #root {
 .panel-enter {
   animation: fadeInUp 0.35s ease-out;
 }
+
+@keyframes scene-loading-pulse {
+  0%, 100% { border-color: rgba(74, 158, 255, 0.08); }
+  50% { border-color: rgba(74, 158, 255, 0.25); }
+}
+
+.scene-loading {
+  animation: scene-loading-pulse 2s ease-in-out infinite;
+  border: 2px solid rgba(74, 158, 255, 0.15);
+  border-radius: 4px;
+}

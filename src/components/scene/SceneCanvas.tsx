@@ -12,7 +12,7 @@ interface SceneCanvasProps {
 
 export default function SceneCanvas({ children }: SceneCanvasProps) {
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div className="scene-loading" style={{ width: '100%', height: '100%', position: 'relative' }}>
       <Canvas
         camera={{ fov: 50, near: 0.1, far: 1000 }}
         style={{ background: 'linear-gradient(180deg, #0a1628 0%, #16213e 100%)' }}
