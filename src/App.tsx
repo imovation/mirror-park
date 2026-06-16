@@ -1,8 +1,44 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ScreenLayout from '@/components/layout/ScreenLayout'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+})
+
+function PlaceholderChild({ name }: { name: string }) {
+  return (
+    <div style={{
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: '1px solid rgba(74, 158, 255, 0.2)',
+      background: 'rgba(0, 0, 0, 0.3)',
+      color: '#4a9eff',
+      fontSize: '0.875rem',
+    }}>
+      {name}
+    </div>
+  )
+}
+
 function App() {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gray-950 text-blue-400 text-2xl">
-      智慧校园可视化平台
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ScreenLayout
+        topBar={<PlaceholderChild name="TopBar" />}
+        leftPanel={<PlaceholderChild name="LeftPanel" />}
+        scene={<PlaceholderChild name="3D Scene" />}
+        rightPanel={<PlaceholderChild name="RightPanel" />}
+        bottomBar={<PlaceholderChild name="BottomBar" />}
+      />
+    </QueryClientProvider>
   )
 }
 
