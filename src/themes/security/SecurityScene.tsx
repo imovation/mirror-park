@@ -69,14 +69,14 @@ function DeviceMarkers() {
 
 function AlertMarkers() {
   const alertQueue = useUIStore((s) => s.alertQueue)
-  const hasActiveAlerts = alertQueue.length > 0
-
-  if (!hasActiveAlerts) return null
 
   const activeLocations = useMemo(() => {
+    if (alertQueue.length === 0) return []
     const count = Math.min(alertQueue.length, ALERT_LOCATIONS.length)
     return ALERT_LOCATIONS.slice(0, count)
   }, [alertQueue.length])
+
+  if (activeLocations.length === 0) return null
 
   return (
     <group>

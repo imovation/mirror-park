@@ -22,7 +22,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   }
 
   componentDidCatch(error: Error, info: { componentStack: string }) {
-    console.error(`[ErrorBoundary:${this.props.name}]`, error, info)
+    console.error(`[ErrorBoundary:${this.props.name}]`, error.message, error.stack?.split('\n').slice(0, 5).join('\n'))
   }
 
   render() {
@@ -39,10 +39,14 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
               color: 'rgba(255,255,255,0.4)',
               fontSize: 13,
               gap: 8,
+              padding: 20,
             }}
           >
             <span style={{ color: '#ff6d00', fontSize: 24 }}>⚠</span>
             <span>{this.props.name} 加载异常</span>
+            <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)', maxWidth: 300, textAlign: 'center', wordBreak: 'break-all' }}>
+              {this.state.error?.message}
+            </span>
             <button
               onClick={() => this.setState({ hasError: false, error: null })}
               style={{
