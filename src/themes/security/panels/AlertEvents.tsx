@@ -12,16 +12,15 @@ export default function AlertEvents() {
   const addAlert = useUIStore((s) => s.addAlert)
 
   useEffect(() => {
-    const types = ['warning', 'error', 'info'] as const
-    const messages = [
-      '南门异常通行记录', '体育馆区域设备离线', '教学楼A区火警预警',
-      '北围墙周界入侵告警', '宿舍楼门禁异常',
+    const alerts: { type: 'warning' | 'error' | 'info'; message: string }[] = [
+      { type: 'error', message: '南门异常通行记录' },
+      { type: 'warning', message: '体育馆区域设备离线' },
+      { type: 'error', message: '教学楼A区火警预警' },
+      { type: 'error', message: '北围墙周界入侵告警' },
+      { type: 'warning', message: '宿舍楼门禁异常' },
     ]
     const timer = setInterval(() => {
-      addAlert({
-        type: types[Math.floor(Math.random() * types.length)],
-        message: messages[Math.floor(Math.random() * messages.length)],
-      })
+      addAlert(alerts[Math.floor(Math.random() * alerts.length)])
     }, 15000)
     return () => clearInterval(timer)
   }, [addAlert])

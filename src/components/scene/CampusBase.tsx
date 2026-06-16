@@ -19,57 +19,146 @@ export const BUILDINGS: BuildingData[] = [
   { id: 'chongzhi', label: '崇智楼', position: [0, 5.5, 10], size: [14, 11, 7], color: '#a0522d', info: '初二年级教学楼 · 正对校门' },
   { id: 'chongxin', label: '崇信楼', position: [12, 5.5, 6], size: [10, 11, 7], color: '#a0522d', info: '初三年级教学楼' },
   /* Bell Tower ── landmark in the courtyard ── */
-  { id: 'bell-tower', label: '钟楼', position: [0, 14, 8], size: [3, 8, 3], color: '#b5651d', info: '镇远中学标志性钟楼 · 雅典学派风格' },
+  { id: 'bell-tower', label: '钟楼', position: [0, 14, 8], size: [3, 8, 3], color: '#a0522d', info: '镇远中学标志性钟楼 · 雅典学派风格' },
   /* Gymnasium ── west side of teaching zone, track on roof ── */
-  { id: 'gymnasium', label: '体育馆', position: [-24, 5, 0], size: [14, 10, 18], color: '#d2b48c', info: '多功能体育馆 · 楼顶400m跑道+真草球场' },
+  { id: 'gymnasium', label: '体育馆', position: [-24, 5, 0], size: [14, 10, 18], color: '#f0f4f8', info: '多功能体育馆 · 楼顶400m跑道+真草球场' },
   /* Library ── down garden paths north of sports field ── */
-  { id: 'chongwen', label: '崇文楼', position: [-10, 4.5, -7], size: [12, 9, 7], color: '#8b4513', info: '开放式图书馆 · 2层 · 藏书10万余册' },
+  { id: 'chongwen', label: '崇文楼', position: [-10, 4.5, -7], size: [12, 9, 7], color: '#a0522d', info: '开放式图书馆 · 2层 · 藏书10万余册' },
   /* Cafeteria ── further north along axis ── */
-  { id: 'canteen', label: '食堂', position: [-10, 3.5, -13], size: [10, 7, 8], color: '#deb887', info: '16个窗口 · 370+张餐桌 · 1500人同时就餐' },
+  { id: 'canteen', label: '食堂', position: [-10, 3.5, -13], size: [10, 7, 8], color: '#a0522d', info: '16个窗口 · 370+张餐桌 · 1500人同时就餐' },
   /* Dormitories ── tallest buildings, flanking cafeteria ── */
-  { id: 'chongya', label: '崇雅楼', position: [-22, 11, -14], size: [7, 22, 7], color: '#cd853f', info: '师生宿舍 · 22层 · 校园最高建筑' },
-  { id: 'chongsi', label: '崇思楼', position: [2, 7.5, -14], size: [7, 15, 7], color: '#cd853f', info: '师生宿舍 · 15层' },
+  { id: 'chongya', label: '崇雅楼', position: [-22, 11, -14], size: [7, 22, 7], color: '#a0522d', info: '师生宿舍 · 22层 · 校园最高建筑' },
+  { id: 'chongsi', label: '崇思楼', position: [2, 7.5, -14], size: [7, 15, 7], color: '#a0522d', info: '师生宿舍 · 15层' },
 ]
 
 function BuildingMesh({ building }: { building: BuildingData }) {
   const [hovered, setHovered] = useState(false)
   const selectedId = useSceneStore((s) => s.selectedObjectId)
   const selectObject = useSceneStore((s) => s.selectObject)
+  const requestFlyTo = useSceneStore((s) => s.requestFlyTo)
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const isSelected = selectedId === building.id
   const isOverview = currentTheme === ThemeId.OVERVIEW
 
+  const isTallDorm = building.id === 'chongya' || building.id === 'chongsi'
+  const isGym = building.id === 'gymnasium'
+  const isBellTower = building.id === 'bell-tower'
+
   return (
-    <group>
+    <group
+      position={building.position}
+      onClick={(e) => {
+        e.stopPropagation()
+        if (!isOverview) return
+        if (isSelected) {
+          selectObject(null)
+        } else {
+          selectObject(building.id)
+          const camPos: [number, number, number] = [
+            building.position[0] + 15,
+            building.position[1] + 8,
+            building.position[2] + 15,
+          ]
+          const lookAt: [number, number, number] = [
+            building.position[0],
+            building.position[1],
+            building.position[2],
+          ]
+          requestFlyTo(camPos, lookAt)
+        }
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation()
+        if (isOverview) { setHovered(true); document.body.style.cursor = 'pointer' }
+      }}
+      onPointerOut={(e) => {
+        e.stopPropagation()
+        if (isOverview) { setHovered(false); document.body.style.cursor = 'default' }
+      }}
+    >
+      {/* 建筑主体 - 红砖 */}
       <Box
         args={building.size}
-        position={building.position}
         castShadow
         receiveShadow
-        onClick={(e) => {
-          e.stopPropagation()
-          if (isOverview) selectObject(isSelected ? null : building.id)
-        }}
-        onPointerOver={(e) => {
-          e.stopPropagation()
-          if (isOverview) { setHovered(true); document.body.style.cursor = 'pointer' }
-        }}
-        onPointerOut={(e) => {
-          e.stopPropagation()
-          if (isOverview) { setHovered(false); document.body.style.cursor = 'default' }
-        }}
       >
         <meshStandardMaterial
           color={building.color}
           transparent
-          opacity={hovered || isSelected ? 1 : 0.85}
+          opacity={hovered || isSelected ? 1 : 0.9}
           emissive={isSelected ? '#4a9eff' : hovered ? '#ffffff' : '#000000'}
           emissiveIntensity={isSelected ? 0.4 : hovered ? 0.15 : 0}
         />
       </Box>
 
+      {/* 顶部白墙装饰带 (屋檐/天面) */}
+      {!isGym && !isBellTower && (
+        <Box
+          args={[building.size[0] + 0.4, 0.6, building.size[2] + 0.4]}
+          position={[0, building.size[1] / 2 + 0.01, 0]}
+          castShadow
+        >
+          <meshStandardMaterial
+            color="#f0f4f8"
+            polygonOffset
+            polygonOffsetFactor={1}
+            polygonOffsetUnits={1}
+          />
+        </Box>
+      )}
+
+      {/* 底部白墙基座 */}
+      {!isGym && !isBellTower && (
+        <Box
+          args={[building.size[0] + 0.2, 1.2, building.size[2] + 0.2]}
+          position={[0, -building.size[1] / 2 - 0.01, 0]}
+          castShadow
+        >
+          <meshStandardMaterial
+            color="#e2e8f0"
+            polygonOffset
+            polygonOffsetFactor={1}
+            polygonOffsetUnits={1}
+          />
+        </Box>
+      )}
+
+      {/* 如果是宿舍高楼，增加垂直的白色线条装饰 */}
+      {isTallDorm && (
+        <>
+          <Box args={[0.8, building.size[1], building.size[2] + 0.5]} position={[0, 0, 0]}>
+            <meshStandardMaterial
+              color="#f0f4f8"
+              polygonOffset
+              polygonOffsetFactor={1}
+              polygonOffsetUnits={1}
+            />
+          </Box>
+          <Box args={[building.size[0] + 0.5, building.size[1], 0.8]} position={[0, 0, 0]}>
+            <meshStandardMaterial
+              color="#f0f4f8"
+              polygonOffset
+              polygonOffsetFactor={1}
+              polygonOffsetUnits={1}
+            />
+          </Box>
+        </>
+      )}
+
+      {/* 钟楼专属白墙装饰 */}
+      {isBellTower && (
+        <>
+          <Box args={[3.4, 1, 3.4]} position={[0, 3, 0]}>
+             <meshStandardMaterial color="#f0f4f8" />
+          </Box>
+          <Box args={[3.2, 0.5, 3.2]} position={[0, -3.5, 0]}>
+             <meshStandardMaterial color="#f0f4f8" />
+          </Box>
+        </>
+      )}
+
       <Html
-        position={[building.position[0], building.position[1] + building.size[1] / 2 + 1.5, building.position[2]]}
+        position={[0, building.size[1] / 2 + 1.5, 0]}
         center distanceFactor={40} style={{ pointerEvents: 'none' }}
       >
         <div style={{
@@ -91,24 +180,24 @@ function Archways() {
     <group>
       {/* Main entrance archway at south */}
       <Box args={[6, 6, 2]} position={[0, 3, 16]}>
-        <meshStandardMaterial color="#c4a882" />
+        <meshStandardMaterial color="#f0f4f8" /> {/* 白墙 */}
       </Box>
       <Box args={[7, 0.6, 3]} position={[0, 6.3, 16]}>
-        <meshStandardMaterial color="#b89b72" />
+        <meshStandardMaterial color="#a0522d" /> {/* 红砖顶 */}
       </Box>
       {/* West archway: 崇德楼 ↔ 崇智楼 */}
       <Box args={[2, 5, 2]} position={[-7, 2.5, 8]}>
-        <meshStandardMaterial color="#c4a882" />
+        <meshStandardMaterial color="#f0f4f8" />
       </Box>
       <Box args={[2.5, 0.5, 3]} position={[-7, 5.2, 8]}>
-        <meshStandardMaterial color="#b89b72" />
+        <meshStandardMaterial color="#a0522d" />
       </Box>
       {/* East archway: 崇智楼 ↔ 崇信楼 */}
       <Box args={[2, 5, 2]} position={[7, 2.5, 8]}>
-        <meshStandardMaterial color="#c4a882" />
+        <meshStandardMaterial color="#f0f4f8" />
       </Box>
       <Box args={[2.5, 0.5, 3]} position={[7, 5.2, 8]}>
-        <meshStandardMaterial color="#b89b72" />
+        <meshStandardMaterial color="#a0522d" />
       </Box>
     </group>
   )
@@ -279,7 +368,12 @@ export default function CampusBase() {
   return (
     <group>
       <Plane args={[120, 120]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
-        <meshStandardMaterial color="#1a5c2a" />
+        <meshStandardMaterial
+          color="#1a5c2a"
+          polygonOffset
+          polygonOffsetFactor={1}
+          polygonOffsetUnits={1}
+        />
       </Plane>
 
       <Grid args={[120, 120]} position={[0, 0.01, 0]} cellSize={2} cellThickness={0.5}
