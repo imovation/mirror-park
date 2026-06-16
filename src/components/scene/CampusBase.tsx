@@ -36,9 +36,6 @@ function createWindowMaterial(
     vertexShader: buildingWindowVert,
     fragmentShader: buildingWindowFrag,
     transparent: false,
-    polygonOffset: true,
-    polygonOffsetFactor: -1,
-    polygonOffsetUnits: -1,
   })
 }
 
@@ -229,7 +226,7 @@ function Roads() {
   })
 
   return (
-    <group position={[0, 0.02, 0]}>
+    <group position={[0, 0.06, 0]}>
       <mesh position={[0, 0, 19]}><boxGeometry args={[6, 0.04, 6]} /><primitive object={materials.orangeZ} attach="material" /></mesh>
       <mesh position={[0, 0, 14]}><boxGeometry args={[6, 0.04, 4]} /><primitive object={materials.orangeZ} attach="material" /></mesh>
       <mesh position={[0, 0, 6]}><boxGeometry args={[14, 0.04, 6]} /><primitive object={materials.cyanX} attach="material" /></mesh>
@@ -245,40 +242,11 @@ function Roads() {
   )
 }
 
-function GroundZones() {
-  const roadZoneMat = <meshBasicMaterial color="#2a3040" transparent opacity={0.6} />
-  const parkZoneMat = <meshBasicMaterial color="#0a4a3a" transparent opacity={0.4} />
-  const buildingBaseMat = <meshBasicMaterial color="#0a1525" transparent opacity={0.7} />
-  
-  return (
-    <group position={[0, 0.02, 0]}>
-      {/* 道路区域 - 灰色 */}
-      <Box args={[8, 0.01, 40]} position={[0, 0, 0]}>{roadZoneMat}</Box>
-      <Box args={[40, 0.01, 8]} position={[0, 0, 0]}>{roadZoneMat}</Box>
-      <Box args={[6, 0.01, 30]} position={[-20, 0, -5]}>{roadZoneMat}</Box>
-      <Box args={[6, 0.01, 30]} position={[20, 0, -5]}>{roadZoneMat}</Box>
-      
-      {/* 公园绿地区域 - 青绿色 */}
-      <Box args={[25, 0.01, 20]} position={[0, 0, 15]}>{parkZoneMat}</Box>
-      <Box args={[20, 0.01, 25]} position={[-15, 0, -15]}>{parkZoneMat}</Box>
-      <Box args={[20, 0.01, 25]} position={[15, 0, -15]}>{parkZoneMat}</Box>
-      <Box args={[30, 0.01, 15]} position={[0, 0, -30]}>{parkZoneMat}</Box>
-      
-      {/* 建筑底座区域 - 深蓝色 */}
-      <Box args={[12, 0.01, 12]} position={[-12, 0, -8]}>{buildingBaseMat}</Box>
-      <Box args={[12, 0.01, 12]} position={[12, 0, -8]}>{buildingBaseMat}</Box>
-      <Box args={[12, 0.01, 12]} position={[-12, 0, 8]}>{buildingBaseMat}</Box>
-      <Box args={[12, 0.01, 12]} position={[12, 0, 8]}>{buildingBaseMat}</Box>
-      <Box args={[15, 0.01, 15]} position={[0, 0, 0]}>{buildingBaseMat}</Box>
-    </group>
-  )
-}
-
 function Courtyards() {
   const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.15} />
   const edgeMat = <Edges linewidth={1.5} threshold={15} color="#00ffaa" />
   return (
-    <group position={[0, 0.035, 0]}>
+    <group position={[0, 0.12, 0]}>
       {/* 中央大草坪 */}
       <Box args={[20, 0.05, 15]} position={[0, 0, 10]}>{yardMat}{edgeMat}</Box>
       
@@ -540,7 +508,6 @@ export default function CampusBase() {
       </Plane>
 
       <CityContext />
-      <GroundZones />
       <Roads />
       <Archways />
       <Courtyards />
