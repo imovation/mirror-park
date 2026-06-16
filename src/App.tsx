@@ -1,6 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import ScreenLayout from '@/components/layout/ScreenLayout'
 import TopBar from '@/components/layout/TopBar'
+import LeftPanel from '@/components/layout/LeftPanel'
+import RightPanel from '@/components/layout/RightPanel'
+import DashboardPanel from '@/components/ui/DashboardPanel'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,9 +37,33 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ScreenLayout
         topBar={<TopBar />}
-        leftPanel={<PlaceholderChild name="LeftPanel" />}
+        leftPanel={
+          <LeftPanel>
+            <DashboardPanel title="面板左-1">
+              <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
+            </DashboardPanel>
+            <DashboardPanel title="面板左-2">
+              <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
+            </DashboardPanel>
+            <DashboardPanel title="面板左-3">
+              <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
+            </DashboardPanel>
+          </LeftPanel>
+        }
         scene={<PlaceholderChild name="3D Scene" />}
-        rightPanel={<PlaceholderChild name="RightPanel" />}
+        rightPanel={
+          <RightPanel>
+            <DashboardPanel title="面板右-1">
+              <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
+            </DashboardPanel>
+            <DashboardPanel title="面板右-2">
+              <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
+            </DashboardPanel>
+            <DashboardPanel title="面板右-3">
+              <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>数据面板内容</span>
+            </DashboardPanel>
+          </RightPanel>
+        }
         bottomBar={<PlaceholderChild name="BottomBar" />}
       />
     </QueryClientProvider>
