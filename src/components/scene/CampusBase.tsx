@@ -371,6 +371,11 @@ export default function CampusBase() {
         cellColor="#1a3a5c" sectionSize={10} sectionThickness={1} sectionColor="#0a1628"
         fadeDistance={200} fadeStrength={1} infiniteGrid />
 
+      {/* 悬浮全息投影网格 */}
+      <Grid args={[400, 400]} position={[0, 1.5, 0]} cellSize={2} cellThickness={0.3}
+        cellColor="#00e5ff" sectionSize={10} sectionThickness={0.8} sectionColor="#0d2847"
+        fadeDistance={200} fadeStrength={1} infiniteGrid />
+
       <CityContext />
       <Roads />
       <Archways />
