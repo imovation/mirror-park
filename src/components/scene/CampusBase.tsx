@@ -36,6 +36,9 @@ function createWindowMaterial(
     vertexShader: buildingWindowVert,
     fragmentShader: buildingWindowFrag,
     transparent: false,
+    polygonOffset: true,
+    polygonOffsetFactor: -1,
+    polygonOffsetUnits: -1,
   })
 }
 
@@ -62,16 +65,33 @@ function BuildingMesh({ building }: { building: BuildingData }) {
   const [hovered, setHovered] = useState(false)
   const selectedId = useSceneStore((s) => s.selectedObjectId)
   const selectObject = useSceneStore((s) => s.selectObject)
+  const requestFlyTo = useSceneStore((s) => s.requestFlyTo)
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const isSelected = selectedId === building.id
   const isOverview = currentTheme === ThemeId.OVERVIEW
+
+  const handleClick = () => {
+    const id = building.id
+    const centerY = building.size[1] / 2
+    const lookAt: [number, number, number] = [building.position[0], centerY, building.position[2]]
+    // 根据建筑尺寸动态计算最佳观察距离
+    const dist = 25 + Math.max(building.size[0], building.size[2]) * 0.5
+    if (isOverview) {
+      if (isSelected) {
+        selectObject(null)
+      } else {
+        selectObject(id)
+        requestFlyTo([lookAt[0] + dist * 0.5, centerY + dist * 0.4, lookAt[2] + dist * 0.6], lookAt)
+      }
+    }
+  }
 
   return (
     <group
       position={building.position}
       onClick={(e) => {
         e.stopPropagation()
-        if (isOverview) selectObject(isSelected ? null : building.id)
+        handleClick()
       }}
       onPointerOver={(e) => {
         e.stopPropagation()
@@ -150,27 +170,6 @@ function BuildingMesh({ building }: { building: BuildingData }) {
             <div style={{ fontSize: 11, fontWeight: 'normal', textAlign: 'center', opacity: 0.85, lineHeight: 1.4 }}>
               {building.info}
             </div>
-          )}
-          {isSelected && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                const dist = Math.max(building.size[0], building.size[2]) * 1.5 + 15
-                useSceneStore.getState().requestFlyTo(
-                  [building.position[0], building.position[1] + dist * 0.4, building.position[2] + dist],
-                  [building.position[0], building.position[1], building.position[2]]
-                )
-              }}
-              style={{
-                marginTop: 4, background: 'rgba(0,229,255,0.15)', border: '1px solid rgba(0,229,255,0.4)',
-                color: '#00e5ff', fontSize: 11, cursor: 'pointer', padding: '3px 14px', borderRadius: 4,
-                lineHeight: 1.4, pointerEvents: 'auto', letterSpacing: 1,
-              }}
-              onPointerOver={(e) => e.stopPropagation()}
-              onPointerOut={(e) => e.stopPropagation()}
-            >
-              飞向
-            </button>
           )}
         </div>
       </Html>
@@ -302,7 +301,7 @@ function Courtyards() {
 
 function RunningTrack() {
   return (
-        <group position={[-24, 10, 0]}>
+    <group position={[-24, 12, 0]}>
       <Box args={[13, 0.1, 17]}><meshStandardMaterial color="#1a2535" /></Box>
       {Array.from({ length: 6 }, (_, i) => (
         <Box key={`lane-${i}`} args={[12.2 - i * 0.8, 0.12, 16.2 - i * 0.8]} position={[0, 0.02, 0]}>
