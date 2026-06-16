@@ -55,21 +55,24 @@ export default function CameraController() {
 
   useFrame((_, delta) => {
     if (!isAnimating.current) return
-    camera.position.lerp(targetPos.current, delta * 1.2)
-    camera.lookAt(targetLook.current)
-    if (camera.position.distanceTo(targetPos.current) < 0.5) {
+    const dist = camera.position.distanceTo(targetPos.current)
+    if (dist < 0.3) {
+      camera.position.copy(targetPos.current)
       isAnimating.current = false
       finishTransition()
+      return
     }
+    camera.position.lerp(targetPos.current, Math.min(delta * 3, 0.1))
+    camera.lookAt(targetLook.current)
   })
 
   return (
     <OrbitControls
       ref={controlsRef}
       enableDamping
-      dampingFactor={0.08}
+      dampingFactor={0.15}
       autoRotate
-      autoRotateSpeed={0.2}
+      autoRotateSpeed={0.12}
       minDistance={10}
       maxDistance={120}
       maxPolarAngle={Math.PI / 2.2}
