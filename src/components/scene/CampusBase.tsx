@@ -338,11 +338,25 @@ function Trees() {
     <group>
       {positions.map((pos, i) => (
         <group key={`tree-${i}`} position={pos}>
-          <Cylinder args={[0.12, 0.18, 2.5, 6]} position={[0, 1.25, 0]}>
-            <meshStandardMaterial color="#4a3020" />
+          {/* 树干 */}
+          <Cylinder args={[0.1, 0.15, 2.5, 6]} position={[0, 1.25, 0]}>
+            <meshStandardMaterial color="#3a2518" />
           </Cylinder>
-          <Sphere args={[1.3, 8, 6]} position={[0, 3, 0]}>
-            <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.4} />
+          {/* 多层树冠 - 更自然的形状 */}
+          <Sphere args={[0.9, 8, 6]} position={[0, 3.2, 0]}>
+            <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.3} />
+          </Sphere>
+          <Sphere args={[0.7, 8, 6]} position={[0.5, 2.8, 0.3]}>
+            <meshStandardMaterial color="#1e5e35" emissive="#0a3a1a" emissiveIntensity={0.3} />
+          </Sphere>
+          <Sphere args={[0.7, 8, 6]} position={[-0.4, 2.9, -0.3]}>
+            <meshStandardMaterial color="#185528" emissive="#0a3a1a" emissiveIntensity={0.3} />
+          </Sphere>
+          <Sphere args={[0.6, 8, 6]} position={[0.3, 3.5, -0.4]}>
+            <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.3} />
+          </Sphere>
+          <Sphere args={[0.6, 8, 6]} position={[-0.3, 3.4, 0.4]}>
+            <meshStandardMaterial color="#1e5e35" emissive="#0a3a1a" emissiveIntensity={0.3} />
           </Sphere>
         </group>
       ))}
@@ -495,15 +509,6 @@ export default function CampusBase() {
         <meshStandardMaterial color="#050a14" polygonOffset polygonOffsetFactor={1} polygonOffsetUnits={1} />
       </Plane>
 
-      <Grid args={[400, 400]} position={[0, 0.01, 0]} cellSize={2} cellThickness={0.5}
-        cellColor="#1a3a5c" sectionSize={10} sectionThickness={1} sectionColor="#0a1628"
-        fadeDistance={200} fadeStrength={1} infiniteGrid />
-
-      {/* 悬浮全息投影网格 */}
-      <Grid args={[400, 400]} position={[0, 1.5, 0]} cellSize={2} cellThickness={0.3}
-        cellColor="#00e5ff" sectionSize={10} sectionThickness={0.8} sectionColor="#0d2847"
-        fadeDistance={200} fadeStrength={1} infiniteGrid />
-
       <CityContext />
       <GroundZones />
       <Roads />
@@ -514,15 +519,6 @@ export default function CampusBase() {
       <Reservoir />
       <DataRings />
       <GroundDecorations />
-      {/* 校园边界光环 */}
-      <mesh position={[0, 0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[44, 44.3, 80]} />
-        <meshBasicMaterial color="#00e5ff" transparent opacity={0.35} side={THREE.DoubleSide} />
-      </mesh>
-      <mesh position={[0, 0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[57, 57.3, 80]} />
-        <meshBasicMaterial color="#00e5ff" transparent opacity={0.2} side={THREE.DoubleSide} />
-      </mesh>
 
       {BUILDINGS.map((b) => (
         <BuildingMesh key={b.id} building={b} />
