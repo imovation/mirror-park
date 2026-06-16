@@ -228,10 +228,10 @@ function Roads() {
 function Courtyards() {
   return (
     <group position={[0, 0.03, 0]}>
-      <Box args={[14, 0.05, 5]} position={[0, 0, 6]}><meshStandardMaterial color="#0b2a26" /></Box>
-      <Box args={[8, 0.05, 4]} position={[-10, 0, -4]}><meshStandardMaterial color="#0b2a26" /></Box>
-      <Box args={[6, 0.05, 4]} position={[-10, 0, -10]}><meshStandardMaterial color="#0b2a26" /></Box>
-      <Box args={[12, 0.05, 6]} position={[-6, 0, -13]}><meshStandardMaterial color="#0b2a26" /></Box>
+      <Box args={[14, 0.05, 5]} position={[0, 0, 6]}><meshStandardMaterial color="#0e4a35" /></Box>
+      <Box args={[8, 0.05, 4]} position={[-10, 0, -4]}><meshStandardMaterial color="#0e4a35" /></Box>
+      <Box args={[6, 0.05, 4]} position={[-10, 0, -10]}><meshStandardMaterial color="#0e4a35" /></Box>
+      <Box args={[12, 0.05, 6]} position={[-6, 0, -13]}><meshStandardMaterial color="#0e4a35" /></Box>
     </group>
   )
 }
@@ -371,6 +371,15 @@ export default function CampusBase() {
       <Trees />
       <Reservoir />
       <DataRings />
+      {/* 校园边界光环 */}
+      <mesh position={[0, 0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[44, 44.3, 80]} />
+        <meshBasicMaterial color="#00e5ff" transparent opacity={0.35} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[0, 0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[57, 57.3, 80]} />
+        <meshBasicMaterial color="#00e5ff" transparent opacity={0.2} side={THREE.DoubleSide} />
+      </mesh>
 
       {BUILDINGS.map((b) => (
         <BuildingMesh key={b.id} building={b} />

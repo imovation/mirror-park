@@ -19,7 +19,7 @@ void main() {
   float centerDist = abs(acrossCoord - 0.5);
   float centerLine = 1.0 - smoothstep(0.0, 0.03, centerDist);
 
-  vec3 base = vec3(0.02, 0.02, 0.06);
+  vec3 base = vec3(0.10, 0.11, 0.13);
   vec3 color = mix(base, uColor, core * 0.85);
   color = mix(color, uColor, glow * 0.15);
   color = mix(color, uColor, centerLine * 0.5);
