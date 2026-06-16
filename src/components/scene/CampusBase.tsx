@@ -47,15 +47,15 @@ const WINDOW_MATS = {
 }
 
 export const BUILDINGS: BuildingData[] = [
-  { id: 'chongde', label: '崇德楼', position: [-12, 5.5, 6], size: [10, 11, 7], color: '#06101e', info: '初一年级教学楼' },
-  { id: 'chongzhi', label: '崇智楼', position: [0, 5.5, 10], size: [14, 11, 7], color: '#06101e', info: '初二年级教学楼 · 正对校门' },
-  { id: 'chongxin', label: '崇信楼', position: [12, 5.5, 6], size: [10, 11, 7], color: '#06101e', info: '初三年级教学楼' },
-  { id: 'bell-tower', label: '钟楼', position: [0, 14, 8], size: [3, 8, 3], color: '#06101e', info: '镇远中学标志性钟楼 · 雅典学派风格' },
-  { id: 'gymnasium', label: '体育馆', position: [-24, 5, 0], size: [14, 10, 18], color: '#06101e', info: '多功能体育馆 · 楼顶400m跑道+真草球场' },
-  { id: 'chongwen', label: '崇文楼', position: [-10, 4.5, -7], size: [12, 9, 7], color: '#06101e', info: '开放式图书馆 · 2层 · 藏书10万余册' },
-  { id: 'canteen', label: '食堂', position: [-10, 3.5, -13], size: [10, 7, 8], color: '#06101e', info: '16个窗口 · 370+张餐桌 · 1500人同时就餐' },
-  { id: 'chongya', label: '崇雅楼', position: [-22, 11, -14], size: [7, 22, 7], color: '#06101e', info: '师生宿舍 · 22层 · 校园最高建筑' },
-  { id: 'chongsi', label: '崇思楼', position: [2, 7.5, -14], size: [7, 15, 7], color: '#06101e', info: '师生宿舍 · 15层' },
+  { id: 'chongde', label: '崇德楼', position: [-12, 5.6, 6], size: [10, 11, 7], color: '#06101e', info: '初一年级教学楼' },
+  { id: 'chongzhi', label: '崇智楼', position: [0, 5.6, 10], size: [14, 11, 7], color: '#06101e', info: '初二年级教学楼 · 正对校门' },
+  { id: 'chongxin', label: '崇信楼', position: [12, 5.6, 6], size: [10, 11, 7], color: '#06101e', info: '初三年级教学楼' },
+  { id: 'bell-tower', label: '钟楼', position: [0, 14.1, 8], size: [3, 8, 3], color: '#06101e', info: '镇远中学标志性钟楼 · 雅典学派风格' },
+  { id: 'gymnasium', label: '体育馆', position: [-24, 5.1, 0], size: [14, 10, 18], color: '#06101e', info: '多功能体育馆 · 楼顶400m跑道+真草球场' },
+  { id: 'chongwen', label: '崇文楼', position: [-10, 4.6, -7], size: [12, 9, 7], color: '#06101e', info: '开放式图书馆 · 2层 · 藏书10万余册' },
+  { id: 'canteen', label: '食堂', position: [-10, 3.6, -13], size: [10, 7, 8], color: '#06101e', info: '16个窗口 · 370+张餐桌 · 1500人同时就餐' },
+  { id: 'chongya', label: '崇雅楼', position: [-22, 11.1, -14], size: [7, 22, 7], color: '#06101e', info: '师生宿舍 · 22层 · 校园最高建筑' },
+  { id: 'chongsi', label: '崇思楼', position: [2, 7.6, -14], size: [7, 15, 7], color: '#06101e', info: '师生宿舍 · 15层' },
 ]
 
 function BuildingMesh({ building }: { building: BuildingData }) {
@@ -246,7 +246,7 @@ function Courtyards() {
   const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.15} />
   const edgeMat = <Edges linewidth={1.5} threshold={15} color="#00ffaa" />
   return (
-    <group position={[0, 0.12, 0]}>
+    <group position={[0, 0.15, 0]}>
       {/* 中央大草坪 */}
       <Box args={[20, 0.05, 15]} position={[0, 0, 10]}>{yardMat}{edgeMat}</Box>
       
@@ -269,7 +269,7 @@ function Courtyards() {
 
 function RunningTrack() {
   return (
-    <group position={[-24, 12, 0]}>
+    <group position={[-24, 12.1, 0]}>
       <Box args={[13, 0.1, 17]}><meshStandardMaterial color="#1a2535" /></Box>
       {Array.from({ length: 6 }, (_, i) => (
         <Box key={`lane-${i}`} args={[12.2 - i * 0.8, 0.12, 16.2 - i * 0.8]} position={[0, 0.02, 0]}>
