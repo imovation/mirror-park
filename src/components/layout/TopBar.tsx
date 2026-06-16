@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useThemeStore } from '@/stores/useThemeStore'
-import { ThemeId, THEMES } from '@/types/theme'
+import { THEMES } from '@/types/theme'
 
 export default function TopBar() {
   const currentTheme = useThemeStore((s) => s.currentTheme)

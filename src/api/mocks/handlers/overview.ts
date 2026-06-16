@@ -70,28 +70,4 @@ export const overviewHandlers = [
       values: [120, 2600, 3800, 3500, 3000, 2800, 1600, 2200, 3300, 3200, 2800, 2200, 1900, 700],
     })
   }),
-
-  http.get(`${BASE}/overview/facilities`, () => {
-    return HttpResponse.json({
-      buildings: [
-        { name: '崇德楼', floors: 5, area: 6200, type: '教学' },
-        { name: '崇智楼', floors: 5, area: 5800, type: '教学' },
-        { name: '崇信楼', floors: 5, area: 5600, type: '教学' },
-        { name: '崇文楼', floors: 3, area: 3200, type: '图书' },
-        { name: '崇雅楼', floors: 6, area: 4500, type: '宿舍' },
-        { name: '崇思楼', floors: 6, area: 4500, type: '宿舍' },
-        { name: '钟楼', floors: 8, area: 800, type: '标志' },
-        { name: '体育馆', floors: 2, area: 3800, type: '体育' },
-        { name: '食堂', floors: 2, area: 3500, type: '餐饮' },
-      ],
-      sports: [
-        { name: '标准田径场(400m)', count: 1 },
-        { name: '篮球场', count: 4 },
-        { name: '排球场', count: 2 },
-        { name: '游泳池', count: 1 },
-        { name: '羽毛球场', count: 4 },
-        { name: '乒乓球台', count: 16 },
-      ],
-    })
-  }),
 ]

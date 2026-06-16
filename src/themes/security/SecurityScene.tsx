@@ -27,16 +27,18 @@ const ALERT_LOCATIONS: { id: string; position: [number, number, number]; label: 
 
 function BlinkingSphere({ position, color, size = 0.5 }: { position: [number, number, number]; color: string; size?: number }) {
   const ref = useRef<any>(null)
+  const opacityRef = useRef(0.8)
   useFrame(() => {
     if (!ref.current?.material) return
     const t = Date.now() * 0.005
     const s = 1 + Math.sin(t) * 0.4
     ref.current.scale.setScalar(s)
-    ref.current.material.opacity = 0.5 + Math.sin(t) * 0.5
+    opacityRef.current = 0.5 + Math.sin(t) * 0.5
+    ref.current.material.opacity = opacityRef.current
   })
   return (
     <Sphere ref={ref} args={[size, 16, 16]} position={position}>
-      <meshStandardMaterial color={color} transparent opacity={0.8} emissive={color} emissiveIntensity={0.6} />
+      <meshStandardMaterial color={color} transparent emissive={color} emissiveIntensity={0.6} />
     </Sphere>
   )
 }

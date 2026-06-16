@@ -52,7 +52,10 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         }}
         onPointerOut={(e) => {
           e.stopPropagation()
-          setHovered(false); document.body.style.cursor = 'default'
+          if (isOverview) {
+            setHovered(false)
+            document.body.style.cursor = 'default'
+          }
         }}
       >
         <meshStandardMaterial

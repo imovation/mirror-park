@@ -41,7 +41,7 @@ export default function AlertEvents() {
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>处理状态</div>
           <RingChart
-            data={[{ name: '已处理', value: Math.round(data.handledRatio * 100) }, { name: '未处理', value: Math.round(data.unhandledRatio * 100) || Math.round((1 - data.handledRatio) * 100) }]}
+            data={[{ name: '已处理', value: Math.round(data.handledRatio * 100) }, { name: '未处理', value: 100 - Math.round(data.handledRatio * 100) }]}
             colors={['#00c853','#ff1744']}
             centerLabel={`${Math.round(data.handledRatio * 100)}%`}
             height={130}

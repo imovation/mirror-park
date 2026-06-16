@@ -1,8 +1,4 @@
-import { useSceneStore } from '@/stores/useSceneStore'
-
 export default function SceneInfo() {
-  const selectedId = useSceneStore((s) => s.selectedObjectId)
-
   return (
     <div style={{
       position: 'absolute',
