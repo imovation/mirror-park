@@ -24,8 +24,8 @@ export default function ScreenLayout({
           "left    scene   right"
           "bottombar bottombar bottombar"
         `,
-        gridTemplateRows: '56px 1fr 32px',
-        gridTemplateColumns: '260px 1fr 260px',
+        gridTemplateRows: 'minmax(48px, 4vh) 1fr minmax(28px, 2.5vh)',
+        gridTemplateColumns: 'minmax(240px, 18vw) 1fr minmax(240px, 18vw)',
         width: '100vw',
         height: '100vh',
         overflow: 'hidden',
