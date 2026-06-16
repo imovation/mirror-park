@@ -70,9 +70,9 @@ export default function CameraController() {
     <OrbitControls
       ref={controlsRef}
       enableDamping
-      dampingFactor={0.15}
+      dampingFactor={0.3}
       autoRotate
-      autoRotateSpeed={0.12}
+      autoRotateSpeed={0.08}
       minDistance={10}
       maxDistance={120}
       maxPolarAngle={Math.PI / 2.2}
