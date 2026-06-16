@@ -346,19 +346,6 @@ function DataRings() {
   )
 }
 
-function LightPillar() {
-  const materialRef = useRef<THREE.MeshBasicMaterial>(null)
-  useFrame(({ clock }) => {
-    if (materialRef.current) materialRef.current.opacity = 0.2 + Math.sin(clock.elapsedTime * 2) * 0.1
-  })
-  return (
-    <group position={[0, 14, 8]}>
-      <Cylinder args={[3, 3, 40, 16, 1, true]} position={[0, 20, 0]}>
-        <meshBasicMaterial ref={materialRef} color="#00e5ff" transparent opacity={0.3} depthWrite={false} side={THREE.DoubleSide} blending={THREE.AdditiveBlending} />
-      </Cylinder>
-    </group>
-  )
-}
 
 export default function CampusBase() {
   return (
@@ -384,7 +371,6 @@ export default function CampusBase() {
       <Trees />
       <Reservoir />
       <DataRings />
-      <LightPillar />
 
       {BUILDINGS.map((b) => (
         <BuildingMesh key={b.id} building={b} />
