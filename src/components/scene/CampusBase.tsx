@@ -40,10 +40,10 @@ function createWindowMaterial(
 }
 
 const WINDOW_MATS = {
-  teaching: createWindowMaterial(5, 0.45, '#06101e'),
-  dorm:      createWindowMaterial(6, 0.55, '#06101e'),
-  gym:       createWindowMaterial(3, 0.35, '#06101e'),
-  tower:     createWindowMaterial(4, 0.40, '#06101e'),
+  teaching: createWindowMaterial(8, 0.6, '#06101e'),
+  dorm:      createWindowMaterial(10, 0.7, '#06101e'),
+  gym:       createWindowMaterial(4, 0.4, '#06101e'),
+  tower:     createWindowMaterial(6, 0.55, '#06101e'),
 }
 
 export const BUILDINGS: BuildingData[] = [
