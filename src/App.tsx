@@ -3,6 +3,7 @@ import ScreenLayout from '@/components/layout/ScreenLayout'
 import TopBar from '@/components/layout/TopBar'
 import LeftPanel from '@/components/layout/LeftPanel'
 import RightPanel from '@/components/layout/RightPanel'
+import BottomBar from '@/components/layout/BottomBar'
 import DashboardPanel from '@/components/ui/DashboardPanel'
 
 const queryClient = new QueryClient({
@@ -64,7 +65,7 @@ function App() {
             </DashboardPanel>
           </RightPanel>
         }
-        bottomBar={<PlaceholderChild name="BottomBar" />}
+        bottomBar={<BottomBar />}
       />
     </QueryClientProvider>
   )
