@@ -1,0 +1,26 @@
+import { useLibraryVisitors } from '@/api/queries/library'
+import NumberFlip from '@/components/ui/NumberFlip'
+import BarChart from '@/components/charts/BarChart'
+
+export default function VisitorStats() {
+  const { data, isLoading, error } = useLibraryVisitors()
+  if (isLoading) return <div style={{ color: '#6b7280', fontSize: '0.75rem' }}>加载中...</div>
+  if (error) return <div style={{ color: '#ef4444', fontSize: '0.75rem' }}>数据加载失败</div>
+  if (!data) return null
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+        <NumberFlip label="今日入馆" value={data.todayVisitors} unit="人" color="#00c853" />
+        <NumberFlip label="实时在馆" value={data.currentVisitors} unit="人" color="#4a9eff" />
+      </div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>入馆时段分布</div>
+        <BarChart
+          data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
+          height={130}
+          horizontal={false}
+        />
+      </div>
+    </div>
+  )
+}
