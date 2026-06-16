@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import { Box, Plane, Html, Grid, Cylinder, Sphere, MeshReflectorMaterial, Edges, Environment, ContactShadows } from '@react-three/drei'
+import { Box, Plane, Html, Cylinder, Sphere, MeshReflectorMaterial, Edges, Environment, ContactShadows } from '@react-three/drei'
 import roadFlowVert from '@/shaders/roadFlow.vert?raw'
 import roadFlowFrag from '@/shaders/roadFlow.frag?raw'
 import buildingWindowVert from '@/shaders/buildingWindow.vert?raw'
@@ -439,31 +439,6 @@ function CityContext() {
           <meshStandardMaterial color="#080c14" transparent={false} roughness={0.9} />
         </Box>
       ))}
-    </group>
-  )
-}
-
-function DataRings() {
-  const ringsRef = useRef<THREE.Group>(null)
-  useFrame((_, delta) => {
-    if (ringsRef.current) ringsRef.current.rotation.z += delta * 0.1
-  })
-  return (
-    <group position={[0, 0.1, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <group ref={ringsRef}>
-        <mesh>
-          <ringGeometry args={[48, 48.2, 64]} />
-          <meshBasicMaterial color="#00e5ff" transparent opacity={0.3} side={THREE.DoubleSide} />
-        </mesh>
-        <mesh>
-          <ringGeometry args={[42, 42.5, 64, 1, 0, Math.PI * 1.5]} />
-          <meshBasicMaterial color="#00e5ff" transparent opacity={0.5} side={THREE.DoubleSide} />
-        </mesh>
-        <mesh rotation={[0, 0, Math.PI]}>
-          <ringGeometry args={[35, 35.1, 64, 1, 0, Math.PI]} />
-          <meshBasicMaterial color="#ffffff" transparent opacity={0.2} side={THREE.DoubleSide} />
-        </mesh>
-      </group>
     </group>
   )
 }
