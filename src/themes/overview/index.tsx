@@ -1,6 +1,10 @@
 import type { PanelConfig } from '@/types/panel'
 import OverviewScene from './OverviewScene'
 import SchoolInfo from './panels/SchoolInfo'
+import PersonnelComposition from './panels/PersonnelComposition'
+import TeacherDistribution from './panels/TeacherDistribution'
+import StudentInfo from './panels/StudentInfo'
+import ActivityHeatmap from './panels/ActivityHeatmap'
 
 export const overviewScene = () => <OverviewScene />
 
@@ -22,6 +26,14 @@ export function renderOverviewPanel(panelId: string) {
   switch (panelId) {
     case 'overview-school-info':
       return <SchoolInfo />
+    case 'overview-personnel':
+      return <PersonnelComposition />
+    case 'overview-teacher-dist':
+      return <TeacherDistribution />
+    case 'overview-student-info':
+      return <StudentInfo />
+    case 'overview-activity':
+      return <ActivityHeatmap />
     default:
       return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
   }
