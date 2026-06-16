@@ -1,5 +1,6 @@
 import { useResearchProjects } from '@/api/queries/teachingResearch'
 import CardCarousel from '@/components/ui/CardCarousel'
+import StatusPanel from '@/components/ui/StatusPanel'
 
 const statusColors: Record<string, string> = {
   '在研': '#4a9eff',
@@ -9,8 +10,8 @@ const statusColors: Record<string, string> = {
 
 export default function ResearchProjectsList() {
   const { data, isLoading, error } = useResearchProjects()
-  if (isLoading) return <div style={{ color: '#6b7280', fontSize: '0.75rem' }}>加载中...</div>
-  if (error) return <div style={{ color: '#ef4444', fontSize: '0.75rem' }}>数据加载失败</div>
+  if (isLoading) return <StatusPanel type="loading" />
+  if (error) return <StatusPanel type="error" />
   if (!data) return null
   return (
     <CardCarousel

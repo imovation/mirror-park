@@ -1,5 +1,6 @@
 import { useCalendarData } from '@/api/queries/admin'
 import ScrollList from '@/components/ui/ScrollList'
+import StatusPanel from '@/components/ui/StatusPanel'
 
 const TYPE_COLORS: Record<string, string> = {
   '会议': '#4a9eff',
@@ -9,8 +10,8 @@ const TYPE_COLORS: Record<string, string> = {
 
 export default function SchoolCalendar() {
   const { data, isLoading, error } = useCalendarData()
-  if (isLoading) return <div style={{ color: '#6b7280', fontSize: '0.75rem' }}>加载中...</div>
-  if (error) return <div style={{ color: '#ef4444', fontSize: '0.75rem' }}>数据加载失败</div>
+  if (isLoading) return <StatusPanel type="loading" />
+  if (error) return <StatusPanel type="error" />
   if (!data) return null
 
   const allItems = [

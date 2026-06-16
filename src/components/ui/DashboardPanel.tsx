@@ -8,6 +8,7 @@ interface DashboardPanelProps {
 export default function DashboardPanel({ title, children }: DashboardPanelProps) {
   return (
     <div
+      className="panel-enter"
       style={{
         margin: '6px 8px',
         background: 'rgba(0, 0, 0, 0.35)',

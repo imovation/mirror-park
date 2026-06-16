@@ -2,11 +2,12 @@ import { useHotBooks } from '@/api/queries/library'
 import BarChart from '@/components/charts/BarChart'
 import PieChart from '@/components/charts/PieChart'
 import CardCarousel from '@/components/ui/CardCarousel'
+import StatusPanel from '@/components/ui/StatusPanel'
 
 export default function HotBooks() {
   const { data, isLoading, error } = useHotBooks()
-  if (isLoading) return <div style={{ color: '#6b7280', fontSize: '0.75rem' }}>加载中...</div>
-  if (error) return <div style={{ color: '#ef4444', fontSize: '0.75rem' }}>数据加载失败</div>
+  if (isLoading) return <StatusPanel type="loading" />
+  if (error) return <StatusPanel type="error" />
   if (!data) return null
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

@@ -5,6 +5,7 @@ import NumberFlip from '@/components/ui/NumberFlip'
 import PieChart from '@/components/charts/PieChart'
 import RingChart from '@/components/charts/RingChart'
 import ScrollList from '@/components/ui/ScrollList'
+import StatusPanel from '@/components/ui/StatusPanel'
 
 export default function AlertEvents() {
   const { data, isLoading, error } = useAlertData()
@@ -25,8 +26,8 @@ export default function AlertEvents() {
     return () => clearInterval(timer)
   }, [addAlert])
 
-  if (isLoading) return <div style={{ color: '#6b7280', fontSize: '0.75rem' }}>加载中...</div>
-  if (error) return <div style={{ color: '#ef4444', fontSize: '0.75rem' }}>数据加载失败</div>
+  if (isLoading) return <StatusPanel type="loading" />
+  if (error) return <StatusPanel type="error" />
   if (!data) return null
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
