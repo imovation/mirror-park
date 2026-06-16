@@ -226,12 +226,14 @@ function Roads() {
 }
 
 function Courtyards() {
+  const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.18} />
+  const edgeMat = <Edges linewidth={1.5} threshold={15} color="#00ffaa" />
   return (
     <group position={[0, 0.03, 0]}>
-      <Box args={[14, 0.05, 5]} position={[0, 0, 6]}><meshStandardMaterial color="#0e4a35" /></Box>
-      <Box args={[8, 0.05, 4]} position={[-10, 0, -4]}><meshStandardMaterial color="#0e4a35" /></Box>
-      <Box args={[6, 0.05, 4]} position={[-10, 0, -10]}><meshStandardMaterial color="#0e4a35" /></Box>
-      <Box args={[12, 0.05, 6]} position={[-6, 0, -13]}><meshStandardMaterial color="#0e4a35" /></Box>
+      <Box args={[14, 0.05, 5]} position={[0, 0, 6]}>{yardMat}{edgeMat}</Box>
+      <Box args={[8, 0.05, 4]} position={[-10, 0, -4]}>{yardMat}{edgeMat}</Box>
+      <Box args={[6, 0.05, 4]} position={[-10, 0, -10]}>{yardMat}{edgeMat}</Box>
+      <Box args={[12, 0.05, 6]} position={[-6, 0, -13]}>{yardMat}{edgeMat}</Box>
     </group>
   )
 }
