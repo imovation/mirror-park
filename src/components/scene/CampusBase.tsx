@@ -225,15 +225,56 @@ function Roads() {
   )
 }
 
+function GroundZones() {
+  const roadZoneMat = <meshBasicMaterial color="#2a3040" transparent opacity={0.6} />
+  const parkZoneMat = <meshBasicMaterial color="#0a4a3a" transparent opacity={0.4} />
+  const buildingBaseMat = <meshBasicMaterial color="#0a1525" transparent opacity={0.7} />
+  
+  return (
+    <group position={[0, 0.02, 0]}>
+      {/* 道路区域 - 灰色 */}
+      <Box args={[8, 0.01, 40]} position={[0, 0, 0]}>{roadZoneMat}</Box>
+      <Box args={[40, 0.01, 8]} position={[0, 0, 0]}>{roadZoneMat}</Box>
+      <Box args={[6, 0.01, 30]} position={[-20, 0, -5]}>{roadZoneMat}</Box>
+      <Box args={[6, 0.01, 30]} position={[20, 0, -5]}>{roadZoneMat}</Box>
+      
+      {/* 公园绿地区域 - 青绿色 */}
+      <Box args={[25, 0.01, 20]} position={[0, 0, 15]}>{parkZoneMat}</Box>
+      <Box args={[20, 0.01, 25]} position={[-15, 0, -15]}>{parkZoneMat}</Box>
+      <Box args={[20, 0.01, 25]} position={[15, 0, -15]}>{parkZoneMat}</Box>
+      <Box args={[30, 0.01, 15]} position={[0, 0, -30]}>{parkZoneMat}</Box>
+      
+      {/* 建筑底座区域 - 深蓝色 */}
+      <Box args={[12, 0.01, 12]} position={[-12, 0, -8]}>{buildingBaseMat}</Box>
+      <Box args={[12, 0.01, 12]} position={[12, 0, -8]}>{buildingBaseMat}</Box>
+      <Box args={[12, 0.01, 12]} position={[-12, 0, 8]}>{buildingBaseMat}</Box>
+      <Box args={[12, 0.01, 12]} position={[12, 0, 8]}>{buildingBaseMat}</Box>
+      <Box args={[15, 0.01, 15]} position={[0, 0, 0]}>{buildingBaseMat}</Box>
+    </group>
+  )
+}
+
 function Courtyards() {
-  const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.12} />
+  const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.15} />
   const edgeMat = <Edges linewidth={1.5} threshold={15} color="#00ffaa" />
   return (
-    <group position={[0, 0.03, 0]}>
-      <Box args={[14, 0.05, 5]} position={[0, 0, 6]}>{yardMat}{edgeMat}</Box>
-      <Box args={[8, 0.05, 4]} position={[-10, 0, -4]}>{yardMat}{edgeMat}</Box>
-      <Box args={[6, 0.05, 4]} position={[-10, 0, -10]}>{yardMat}{edgeMat}</Box>
-      <Box args={[12, 0.05, 6]} position={[-6, 0, -13]}>{yardMat}{edgeMat}</Box>
+    <group position={[0, 0.035, 0]}>
+      {/* 中央大草坪 */}
+      <Box args={[20, 0.05, 15]} position={[0, 0, 10]}>{yardMat}{edgeMat}</Box>
+      
+      {/* 教学楼间绿地 */}
+      <Box args={[15, 0.05, 12]} position={[-12, 0, 0]}>{yardMat}{edgeMat}</Box>
+      <Box args={[15, 0.05, 12]} position={[12, 0, 0]}>{yardMat}{edgeMat}</Box>
+      
+      {/* 图书馆周边绿地 */}
+      <Box args={[18, 0.05, 10]} position={[0, 0, -15]}>{yardMat}{edgeMat}</Box>
+      
+      {/* 宿舍区绿地 */}
+      <Box args={[12, 0.05, 15]} position={[-20, 0, -20]}>{yardMat}{edgeMat}</Box>
+      <Box args={[12, 0.05, 15]} position={[20, 0, -20]}>{yardMat}{edgeMat}</Box>
+      
+      {/* 运动场周边绿地 */}
+      <Box args={[25, 0.05, 8]} position={[0, 0, -28]}>{yardMat}{edgeMat}</Box>
     </group>
   )
 }
@@ -254,24 +295,54 @@ function RunningTrack() {
 
 function Trees() {
   const positions: [number, number, number][] = [
-    [-5, 0, 18], [5, 0, 18], [-6, 0, 16], [6, 0, 16],
-    [-16, 0, 6], [16, 0, 6], [-16, 0, 12], [16, 0, 12],
-    [-4, 0, -2], [4, 0, -2], [-20, 0, -7], [0, 0, -7],
-    [-18, 0, -13], [-4, 0, -13], [8, 0, -13],
-    [20, 0, -14], [-28, 0, -10],
-    [22, 0, 4], [24, 0, 10], [22, 0, -4], [24, 0, -10], [26, 0, 0], [26, 0, 8], [26, 0, -8],
-    [-30, 0, 4], [-32, 0, 10], [-30, 0, -4], [-32, 0, -10], [-34, 0, 0], [-34, 0, 8], [-34, 0, -8],
-    [-5, 0, 22], [5, 0, 22], [-6, 0, 26], [6, 0, 26], [-8, 0, 24], [8, 0, 24], [-3, 0, 30], [3, 0, 30],
+    // 主干道两侧林荫 (南北向)
+    [-4, 0, 20], [4, 0, 20], [-4, 0, 24], [4, 0, 24],
+    [-4, 0, 28], [4, 0, 28], [-4, 0, 32], [4, 0, 32],
+    [-4, 0, 36], [4, 0, 36], [-4, 0, 40], [4, 0, 40],
+    
+    // 东西向道路林荫
+    [-20, 0, -4], [-16, 0, -4], [-12, 0, -4], [-8, 0, -4],
+    [8, 0, -4], [12, 0, -4], [16, 0, -4], [20, 0, -4],
+    [-20, 0, 4], [-16, 0, 4], [-12, 0, 4], [-8, 0, 4],
+    [8, 0, 4], [12, 0, 4], [16, 0, 4], [20, 0, 4],
+    
+    // 教学楼周边
+    [-18, 0, -8], [-18, 0, -12], [-18, 0, -16],
+    [18, 0, -8], [18, 0, -12], [18, 0, -16],
+    [-6, 0, -8], [6, 0, -8],
+    
+    // 中央草坪区
+    [-8, 0, 8], [8, 0, 8], [-8, 0, 12], [8, 0, 12],
+    [-6, 0, 16], [6, 0, 16], [0, 0, 18],
+    
+    // 图书馆周边
+    [-10, 0, -14], [10, 0, -14], [-10, 0, -18], [10, 0, -18],
+    [0, 0, -20], [-5, 0, -22], [5, 0, -22],
+    
+    // 宿舍区周边
+    [-24, 0, -18], [-24, 0, -22], [-24, 0, -26],
+    [24, 0, -18], [24, 0, -22], [24, 0, -26],
+    [-16, 0, -24], [16, 0, -24],
+    
+    // 运动场周边
+    [-12, 0, -30], [12, 0, -30], [-8, 0, -32], [8, 0, -32],
+    [0, 0, -34], [-16, 0, -32], [16, 0, -32],
+    
+    // 外围绿化带
+    [-30, 0, 0], [-30, 0, 8], [-30, 0, 16], [-30, 0, 24],
+    [30, 0, 0], [30, 0, 8], [30, 0, 16], [30, 0, 24],
+    [-30, 0, -8], [-30, 0, -16], [-30, 0, -24],
+    [30, 0, -8], [30, 0, -16], [30, 0, -24],
   ]
   return (
     <group>
       {positions.map((pos, i) => (
         <group key={`tree-${i}`} position={pos}>
-          <Cylinder args={[0.1, 0.15, 2, 6]} position={[0, 1, 0]}>
+          <Cylinder args={[0.12, 0.18, 2.5, 6]} position={[0, 1.25, 0]}>
             <meshStandardMaterial color="#4a3020" />
           </Cylinder>
-          <Sphere args={[1.1, 8, 6]} position={[0, 2.5, 0]}>
-            <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.3} />
+          <Sphere args={[1.3, 8, 6]} position={[0, 3, 0]}>
+            <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.4} />
           </Sphere>
         </group>
       ))}
@@ -348,6 +419,74 @@ function DataRings() {
   )
 }
 
+function GroundDecorations() {
+  // POI 标注点位置 (建筑入口、路口等关键位置)
+  const poiPoints: [number, number, number][] = [
+    [0, 0.5, 20],      // 主入口
+    [0, 0.5, 0],       // 中央广场
+    [-12, 0.5, -8],    // 教学楼A入口
+    [12, 0.5, -8],     // 教学楼B入口
+    [0, 0.5, -15],     // 图书馆入口
+    [-20, 0.5, -20],   // 宿舍A入口
+    [20, 0.5, -20],    // 宿舍B入口
+    [0, 0.5, -28],     // 运动场入口
+  ]
+  
+  // 建筑间数据连线
+  const connections: [[number, number, number], [number, number, number]][] = [
+    [[0, 0.3, 0], [-12, 0.3, -8]],    // 中央 → 教学楼A
+    [[0, 0.3, 0], [12, 0.3, -8]],     // 中央 → 教学楼B
+    [[0, 0.3, 0], [0, 0.3, -15]],     // 中央 → 图书馆
+    [[-12, 0.3, -8], [-20, 0.3, -20]], // 教学楼A → 宿舍A
+    [[12, 0.3, -8], [20, 0.3, -20]],  // 教学楼B → 宿舍B
+    [[0, 0.3, -15], [0, 0.3, -28]],   // 图书馆 → 运动场
+  ]
+  
+  return (
+    <group>
+      {/* POI 发光点 */}
+      {poiPoints.map((pos, i) => (
+        <group key={`poi-${i}`} position={pos}>
+          {/* 底部发光圆环 */}
+          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[0.8, 1.2, 32]} />
+            <meshBasicMaterial color="#00e5ff" transparent opacity={0.6} side={THREE.DoubleSide} />
+          </mesh>
+          {/* 中心发光点 */}
+          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+            <circleGeometry args={[0.5, 32]} />
+            <meshBasicMaterial color="#ffffff" transparent opacity={0.8} side={THREE.DoubleSide} />
+          </mesh>
+          {/* 垂直光柱 */}
+          <Cylinder args={[0.05, 0.05, 2, 8]} position={[0, 1, 0]}>
+            <meshBasicMaterial color="#00e5ff" transparent opacity={0.4} />
+          </Cylinder>
+        </group>
+      ))}
+      
+      {/* 建筑间数据连线 */}
+      {connections.map(([start, end], i) => {
+        const dx = end[0] - start[0]
+        const dy = end[1] - start[1]
+        const dz = end[2] - start[2]
+        const length = Math.sqrt(dx * dx + dy * dy + dz * dz)
+        const midX = (start[0] + end[0]) / 2
+        const midY = (start[1] + end[1]) / 2
+        const midZ = (start[2] + end[2]) / 2
+        
+        return (
+          <group key={`conn-${i}`} position={[midX, midY, midZ]}>
+            <mesh rotation={[0, Math.atan2(dx, dz), 0]}>
+              <boxGeometry args={[0.08, 0.08, length]} />
+              <meshBasicMaterial color="#00e5ff" transparent opacity={0.5} />
+            </mesh>
+          </group>
+        )
+      })}
+    </group>
+  )
+}
+
 
 export default function CampusBase() {
   return (
@@ -366,6 +505,7 @@ export default function CampusBase() {
         fadeDistance={200} fadeStrength={1} infiniteGrid />
 
       <CityContext />
+      <GroundZones />
       <Roads />
       <Archways />
       <Courtyards />
@@ -373,6 +513,7 @@ export default function CampusBase() {
       <Trees />
       <Reservoir />
       <DataRings />
+      <GroundDecorations />
       {/* 校园边界光环 */}
       <mesh position={[0, 0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[44, 44.3, 80]} />
