@@ -293,69 +293,104 @@ function RunningTrack() {
   )
 }
 
-function Trees() {
-  const positions: [number, number, number][] = [
-    // 主干道两侧林荫 (南北向)
-    [-4, 0, 20], [4, 0, 20], [-4, 0, 24], [4, 0, 24],
-    [-4, 0, 28], [4, 0, 28], [-4, 0, 32], [4, 0, 32],
-    [-4, 0, 36], [4, 0, 36], [-4, 0, 40], [4, 0, 40],
-    
-    // 东西向道路林荫
-    [-20, 0, -4], [-16, 0, -4], [-12, 0, -4], [-8, 0, -4],
-    [8, 0, -4], [12, 0, -4], [16, 0, -4], [20, 0, -4],
-    [-20, 0, 4], [-16, 0, 4], [-12, 0, 4], [-8, 0, 4],
-    [8, 0, 4], [12, 0, 4], [16, 0, 4], [20, 0, 4],
-    
-    // 教学楼周边
-    [-18, 0, -8], [-18, 0, -12], [-18, 0, -16],
-    [18, 0, -8], [18, 0, -12], [18, 0, -16],
-    [-6, 0, -8], [6, 0, -8],
-    
-    // 中央草坪区
-    [-8, 0, 8], [8, 0, 8], [-8, 0, 12], [8, 0, 12],
-    [-6, 0, 16], [6, 0, 16], [0, 0, 18],
-    
-    // 图书馆周边
-    [-10, 0, -14], [10, 0, -14], [-10, 0, -18], [10, 0, -18],
-    [0, 0, -20], [-5, 0, -22], [5, 0, -22],
-    
-    // 宿舍区周边
-    [-24, 0, -18], [-24, 0, -22], [-24, 0, -26],
-    [24, 0, -18], [24, 0, -22], [24, 0, -26],
-    [-16, 0, -24], [16, 0, -24],
-    
-    // 运动场周边
-    [-12, 0, -30], [12, 0, -30], [-8, 0, -32], [8, 0, -32],
-    [0, 0, -34], [-16, 0, -32], [16, 0, -32],
-    
-    // 外围绿化带
-    [-30, 0, 0], [-30, 0, 8], [-30, 0, 16], [-30, 0, 24],
-    [30, 0, 0], [30, 0, 8], [30, 0, 16], [30, 0, 24],
-    [-30, 0, -8], [-30, 0, -16], [-30, 0, -24],
-    [30, 0, -8], [30, 0, -16], [30, 0, -24],
+function Landscape() {
+  // 绿篱 - 沿道路的低矮灌木
+  const hedges: { pos: [number, number, number]; size: [number, number, number] }[] = [
+    { pos: [-3, 0.4, 18], size: [0.8, 0.8, 8] },
+    { pos: [3, 0.4, 18], size: [0.8, 0.8, 8] },
+    { pos: [-8, 0.4, 6], size: [0.8, 0.8, 12] },
+    { pos: [8, 0.4, 6], size: [0.8, 0.8, 12] },
+    { pos: [-15, 0.4, -15], size: [0.8, 0.8, 10] },
+    { pos: [15, 0.4, -15], size: [0.8, 0.8, 10] },
+    { pos: [-25, 0.4, -20], size: [0.8, 0.8, 15] },
+    { pos: [25, 0.4, -20], size: [0.8, 0.8, 15] },
   ]
+
+  // 花坛 - 彩色植物区
+  const flowerBeds: { pos: [number, number, number]; size: [number, number, number]; color: string }[] = [
+    { pos: [0, 0.15, 20], size: [6, 0.3, 4], color: '#ff6b9d' },
+    { pos: [-12, 0.15, 10], size: [4, 0.3, 3], color: '#ffd93d' },
+    { pos: [12, 0.15, 10], size: [4, 0.3, 3], color: '#6bcf7f' },
+    { pos: [0, 0.15, -10], size: [5, 0.3, 3], color: '#4d96ff' },
+    { pos: [-20, 0.15, -10], size: [3, 0.3, 4], color: '#ff6b9d' },
+    { pos: [20, 0.15, -10], size: [3, 0.3, 4], color: '#ffd93d' },
+  ]
+
+  // 大树 - 不同大小和位置
+  const largeTrees: { pos: [number, number, number]; scale: number }[] = [
+    { pos: [-10, 0, 22], scale: 1.2 },
+    { pos: [10, 0, 22], scale: 1.2 },
+    { pos: [-18, 0, 15], scale: 1.0 },
+    { pos: [18, 0, 15], scale: 1.0 },
+    { pos: [-25, 0, 5], scale: 1.3 },
+    { pos: [25, 0, 5], scale: 1.3 },
+    { pos: [-30, 0, -15], scale: 1.1 },
+    { pos: [30, 0, -15], scale: 1.1 },
+    { pos: [0, 0, -25], scale: 1.4 },
+    { pos: [-15, 0, -28], scale: 1.0 },
+    { pos: [15, 0, -28], scale: 1.0 },
+  ]
+
+  // 小树 - 点缀用
+  const smallTrees: { pos: [number, number, number]; scale: number }[] = [
+    { pos: [-6, 0, 14], scale: 0.6 },
+    { pos: [6, 0, 14], scale: 0.6 },
+    { pos: [-14, 0, 8], scale: 0.7 },
+    { pos: [14, 0, 8], scale: 0.7 },
+    { pos: [-22, 0, -5], scale: 0.65 },
+    { pos: [22, 0, -5], scale: 0.65 },
+    { pos: [-8, 0, -18], scale: 0.7 },
+    { pos: [8, 0, -18], scale: 0.7 },
+    { pos: [-18, 0, -25], scale: 0.6 },
+    { pos: [18, 0, -25], scale: 0.6 },
+  ]
+
   return (
     <group>
-      {positions.map((pos, i) => (
-        <group key={`tree-${i}`} position={pos}>
-          {/* 树干 */}
-          <Cylinder args={[0.1, 0.15, 2.5, 6]} position={[0, 1.25, 0]}>
+      {/* 绿篱 */}
+      {hedges.map((h, i) => (
+        <mesh key={`hedge-${i}`} position={h.pos}>
+          <boxGeometry args={h.size} />
+          <meshStandardMaterial color="#2d5a3d" roughness={0.8} />
+        </mesh>
+      ))}
+
+      {/* 花坛 */}
+      {flowerBeds.map((f, i) => (
+        <mesh key={`flower-${i}`} position={f.pos}>
+          <boxGeometry args={f.size} />
+          <meshStandardMaterial color={f.color} emissive={f.color} emissiveIntensity={0.2} />
+        </mesh>
+      ))}
+
+      {/* 大树 */}
+      {largeTrees.map((t, i) => (
+        <group key={`large-tree-${i}`} position={t.pos} scale={t.scale}>
+          <Cylinder args={[0.15, 0.2, 3, 8]} position={[0, 1.5, 0]}>
             <meshStandardMaterial color="#3a2518" />
           </Cylinder>
-          {/* 多层树冠 - 更自然的形状 */}
-          <Sphere args={[0.9, 8, 6]} position={[0, 3.2, 0]}>
+          <Sphere args={[1.2, 8, 6]} position={[0, 3.5, 0]}>
             <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.3} />
           </Sphere>
-          <Sphere args={[0.7, 8, 6]} position={[0.5, 2.8, 0.3]}>
+          <Sphere args={[0.9, 8, 6]} position={[0.6, 3.2, 0.4]}>
             <meshStandardMaterial color="#1e5e35" emissive="#0a3a1a" emissiveIntensity={0.3} />
           </Sphere>
-          <Sphere args={[0.7, 8, 6]} position={[-0.4, 2.9, -0.3]}>
+          <Sphere args={[0.9, 8, 6]} position={[-0.5, 3.3, -0.3]}>
             <meshStandardMaterial color="#185528" emissive="#0a3a1a" emissiveIntensity={0.3} />
           </Sphere>
-          <Sphere args={[0.6, 8, 6]} position={[0.3, 3.5, -0.4]}>
+        </group>
+      ))}
+
+      {/* 小树 */}
+      {smallTrees.map((t, i) => (
+        <group key={`small-tree-${i}`} position={t.pos} scale={t.scale}>
+          <Cylinder args={[0.1, 0.15, 2, 6]} position={[0, 1, 0]}>
+            <meshStandardMaterial color="#3a2518" />
+          </Cylinder>
+          <Sphere args={[0.8, 8, 6]} position={[0, 2.3, 0]}>
             <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.3} />
           </Sphere>
-          <Sphere args={[0.6, 8, 6]} position={[-0.3, 3.4, 0.4]}>
+          <Sphere args={[0.6, 8, 6]} position={[0.4, 2.1, 0.3]}>
             <meshStandardMaterial color="#1e5e35" emissive="#0a3a1a" emissiveIntensity={0.3} />
           </Sphere>
         </group>
@@ -515,9 +550,8 @@ export default function CampusBase() {
       <Archways />
       <Courtyards />
       <RunningTrack />
-      <Trees />
+      <Landscape />
       <Reservoir />
-      <DataRings />
       <GroundDecorations />
 
       {BUILDINGS.map((b) => (
