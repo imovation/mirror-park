@@ -8,7 +8,7 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 118 |
+| 源文件 | 111 |
 | 测试 | 31/31 通过 |
 | 构建 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
@@ -49,12 +49,10 @@ src/
 │   ├── layout/      # ScreenLayout(CSS Grid 5区), TopBar, LeftPanel, RightPanel, BottomBar, ErrorBoundary
 │   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, ParticleBg, SceneInfo
 │   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow
-├── hooks/           # useSceneClick (目前很少使用)
 ├── stores/
 │   ├── useThemeStore.ts   # currentTheme, switchTheme(), finishTransition()
 │   ├── useSceneStore.ts   # selectedObjectId, selectObject(), requestFlyTo(), flyToRequest
-│   ├── useUIStore.ts      # alertQueue, addAlert(), dismissAlert(), modalStack
-│   └── themes/            # 6 个专题 store (当前是空骨架，未被使用)
+│   └── useUIStore.ts      # alertQueue, addAlert(), dismissAlert(), modalStack
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
 │   ├── overview/                # 综合态势 (5 左面板 + 2 右面板)
@@ -156,5 +154,4 @@ export default function SomePanel() {
 
 - 使用 `@/` 路径别名 (指向 `src/`)
 - 构建有 chunk size 警告是正常的 (ECharts + Three.js 体积大)，已通过 React.lazy 做了 6 个专题场景的代码分割
-- 专题 store 文件 (stores/themes/) 存在但未被使用，是骨架
 - Mock 数据基于镇远中学真实资料：73亩/8.8万m²/60班/2800学生/初一至初三

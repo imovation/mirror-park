@@ -5,3 +5,4 @@ dist/
 pnpm-lock.yaml
 tsconfig.tsbuildinfo
 pnpm-workspace.yaml
+tsconfig.tsbuildinfo
