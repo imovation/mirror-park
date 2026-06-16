@@ -151,6 +151,27 @@ function BuildingMesh({ building }: { building: BuildingData }) {
               {building.info}
             </div>
           )}
+          {isSelected && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                const dist = Math.max(building.size[0], building.size[2]) * 1.5 + 15
+                useSceneStore.getState().requestFlyTo(
+                  [building.position[0], building.position[1] + dist * 0.4, building.position[2] + dist],
+                  [building.position[0], building.position[1], building.position[2]]
+                )
+              }}
+              style={{
+                marginTop: 4, background: 'rgba(0,229,255,0.15)', border: '1px solid rgba(0,229,255,0.4)',
+                color: '#00e5ff', fontSize: 11, cursor: 'pointer', padding: '3px 14px', borderRadius: 4,
+                lineHeight: 1.4, pointerEvents: 'auto', letterSpacing: 1,
+              }}
+              onPointerOver={(e) => e.stopPropagation()}
+              onPointerOut={(e) => e.stopPropagation()}
+            >
+              飞向
+            </button>
+          )}
         </div>
       </Html>
     </group>
@@ -281,7 +302,7 @@ function Courtyards() {
 
 function RunningTrack() {
   return (
-    <group position={[-24, 10.1, 0]}>
+        <group position={[-24, 10, 0]}>
       <Box args={[13, 0.1, 17]}><meshStandardMaterial color="#1a2535" /></Box>
       {Array.from({ length: 6 }, (_, i) => (
         <Box key={`lane-${i}`} args={[12.2 - i * 0.8, 0.12, 16.2 - i * 0.8]} position={[0, 0.02, 0]}>
