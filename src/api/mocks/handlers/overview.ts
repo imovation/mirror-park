@@ -6,24 +6,24 @@ const BASE = '/api'
 export const overviewHandlers = [
   http.get(`${BASE}/overview/school-info`, () => {
     return HttpResponse.json({
-      landArea: 86700,
-      buildingArea: 52000,
-      classCount: 62,
+      landArea: 48700,
+      buildingArea: 88000,
+      classCount: 60,
       buildingCount: 9,
     })
   }),
 
   http.get(`${BASE}/overview/personnel`, () => {
     return HttpResponse.json({
-      totalTeachers: 348,
-      maleCount: 146,
-      femaleCount: 202,
-      maleRatio: 146 / 348,
-      femaleRatio: 202 / 348,
+      totalTeachers: 196,
+      maleCount: 82,
+      femaleCount: 114,
+      maleRatio: 82 / 196,
+      femaleRatio: 114 / 196,
       education: [
-        { name: '硕士', value: 86 },
-        { name: '本科', value: 252 },
-        { name: '博士', value: 6 },
+        { name: '硕士', value: 52 },
+        { name: '本科', value: 138 },
+        { name: '博士', value: 2 },
         { name: '其他', value: 4 },
       ],
     })
@@ -32,20 +32,20 @@ export const overviewHandlers = [
   http.get(`${BASE}/overview/teacher-distribution`, () => {
     return HttpResponse.json({
       subjects: [
-        { name: '语文', value: 48 }, { name: '数学', value: 46 }, { name: '英语', value: 44 },
-        { name: '物理', value: 32 }, { name: '化学', value: 28 }, { name: '生物', value: 22 },
-        { name: '政治', value: 20 }, { name: '历史', value: 20 }, { name: '地理', value: 18 },
-        { name: '体育', value: 16 }, { name: '信息技术', value: 10 }, { name: '艺术', value: 12 },
+        { name: '语文', value: 26 }, { name: '数学', value: 26 }, { name: '英语', value: 26 },
+        { name: '物理', value: 14 }, { name: '化学', value: 10 }, { name: '生物', value: 12 },
+        { name: '道德与法治', value: 14 }, { name: '历史', value: 14 }, { name: '地理', value: 12 },
+        { name: '体育', value: 14 }, { name: '信息技术', value: 10 }, { name: '音乐', value: 8 }, { name: '美术', value: 8 },
       ],
       titles: [
-        { name: '正高级', value: 8 }, { name: '高级', value: 72 },
-        { name: '一级', value: 138 }, { name: '二级', value: 106 }, { name: '三级及未定', value: 24 },
+        { name: '正高级', value: 3 }, { name: '高级', value: 42 },
+        { name: '一级', value: 78 }, { name: '二级', value: 55 }, { name: '三级及未定', value: 18 },
       ],
       ageDistribution: [
-        { name: '30岁以下', value: 62 },
-        { name: '30-39岁', value: 128 },
-        { name: '40-49岁', value: 106 },
-        { name: '50岁及以上', value: 52 },
+        { name: '30岁以下', value: 40 },
+        { name: '30-39岁', value: 85 },
+        { name: '40-49岁', value: 50 },
+        { name: '50岁及以上', value: 21 },
       ],
     })
   }),
@@ -53,13 +53,13 @@ export const overviewHandlers = [
   http.get(`${BASE}/overview/student-info`, () => {
     return HttpResponse.json({
       grades: [
-        { name: '高一', male: 710, female: 660, total: 1370 },
-        { name: '高二', male: 690, female: 650, total: 1340 },
-        { name: '高三', male: 680, female: 640, total: 1320 },
+        { name: '初一', male: 480, female: 450, total: 930 },
+        { name: '初二', male: 470, female: 460, total: 930 },
+        { name: '初三', male: 460, female: 480, total: 940 },
       ],
-      totalStudents: 4030,
-      maleRatio: 2080 / 4030,
-      femaleRatio: 1950 / 4030,
+      totalStudents: 2800,
+      maleRatio: 1410 / 2800,
+      femaleRatio: 1390 / 2800,
     })
   }),
 
@@ -67,30 +67,30 @@ export const overviewHandlers = [
     const hours = ['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00']
     return HttpResponse.json({
       hours,
-      values: [120, 2800, 4100, 3800, 3200, 2900, 1800, 2200, 3600, 3500, 3000, 2400, 2100, 800],
+      values: [120, 2600, 3800, 3500, 3000, 2800, 1600, 2200, 3300, 3200, 2800, 2200, 1900, 700],
     })
   }),
 
   http.get(`${BASE}/overview/facilities`, () => {
     return HttpResponse.json({
       buildings: [
-        { name: '教学楼A栋', floors: 5, area: 6200, type: '教学' },
-        { name: '教学楼B栋', floors: 5, area: 5800, type: '教学' },
-        { name: '教学楼C栋', floors: 5, area: 5600, type: '教学' },
-        { name: '行政综合楼', floors: 6, area: 4800, type: '行政' },
-        { name: '图书馆', floors: 3, area: 3200, type: '图书' },
-        { name: '实验楼', floors: 4, area: 4500, type: '实验' },
+        { name: '崇德楼', floors: 5, area: 6200, type: '教学' },
+        { name: '崇智楼', floors: 5, area: 5800, type: '教学' },
+        { name: '崇信楼', floors: 5, area: 5600, type: '教学' },
+        { name: '崇文楼', floors: 3, area: 3200, type: '图书' },
+        { name: '崇雅楼', floors: 6, area: 4500, type: '宿舍' },
+        { name: '崇思楼', floors: 6, area: 4500, type: '宿舍' },
+        { name: '钟楼', floors: 8, area: 800, type: '标志' },
         { name: '体育馆', floors: 2, area: 3800, type: '体育' },
-        { name: '食堂', floors: 2, area: 2800, type: '餐饮' },
-        { name: '学生宿舍', floors: 6, area: 8200, type: '宿舍' },
+        { name: '食堂', floors: 2, area: 3500, type: '餐饮' },
       ],
       sports: [
-        { name: '标准田径场', count: 1 },
-        { name: '篮球场', count: 8 },
-        { name: '排球场', count: 4 },
-        { name: '羽毛球场', count: 6 },
-        { name: '乒乓球台', count: 20 },
-        { name: '网球场', count: 2 },
+        { name: '标准田径场(400m)', count: 1 },
+        { name: '篮球场', count: 4 },
+        { name: '排球场', count: 2 },
+        { name: '游泳池', count: 1 },
+        { name: '羽毛球场', count: 4 },
+        { name: '乒乓球台', count: 16 },
       ],
     })
   }),

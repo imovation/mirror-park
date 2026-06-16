@@ -6,51 +6,51 @@ const BASE = '/api'
 export const securityHandlers = [
   http.get(`${BASE}/security/overview`, () => {
     return HttpResponse.json({
-      cameraCount: 328,
-      accessDeviceCount: 48,
+      cameraCount: 256,
+      accessDeviceCount: 36,
       todayAlerts: 3,
-      todayVisitors: 42,
+      todayVisitors: 32,
     })
   }),
 
   http.get(`${BASE}/security/monitor`, () => {
     return HttpResponse.json({
-      total: 328,
-      online: 315,
-      offline: 8,
+      total: 256,
+      online: 245,
+      offline: 6,
       faulty: 5,
       regionDistribution: [
-        { name: '教学区', value: 160 },
-        { name: '行政区', value: 35 },
-        { name: '宿舍区', value: 50 },
-        { name: '运动区', value: 25 },
-        { name: '食堂区', value: 18 },
-        { name: '校园周边', value: 40 },
+        { name: '教学区', value: 120 },
+        { name: '行政区', value: 28 },
+        { name: '宿舍区', value: 40 },
+        { name: '运动区', value: 20 },
+        { name: '食堂区', value: 16 },
+        { name: '校园周边', value: 32 },
       ],
-      coverage: 0.92,
+      coverage: 0.91,
     })
   }),
 
   http.get(`${BASE}/security/access`, () => {
     const hours = Array.from({ length: 14 }, (_, i) => `${i + 6}:00`)
     return HttpResponse.json({
-      todayTotal: 6240,
+      todayTotal: 5280,
       points: [
-        { name: '南门', value: 1850 },
-        { name: '北门', value: 1420 },
-        { name: '西门', value: 860 },
-        { name: '行政楼', value: 520 },
-        { name: '教学楼', value: 1680 },
-        { name: '图书馆', value: 910 },
+        { name: '南门', value: 1580 },
+        { name: '北门', value: 1180 },
+        { name: '西门', value: 720 },
+        { name: '崇德楼', value: 480 },
+        { name: '崇智楼', value: 520 },
+        { name: '崇文楼', value: 800 },
       ],
       hourlyDistribution: {
         hours,
-        values: [420, 1250, 480, 210, 180, 220, 480, 560, 310, 280, 350, 480, 680, 340],
+        values: [360, 1100, 420, 180, 160, 200, 420, 480, 260, 240, 300, 420, 580, 290],
       },
       abnormalRecords: [
         { id: 'abn-1', time: '07:35', location: '南门', type: '未授权通行', status: '已处理' },
-        { id: 'abn-2', time: '09:12', location: '行政楼', type: '重复刷卡', status: '已处理' },
-        { id: 'abn-3', time: '11:48', location: '教学楼', type: '超时逗留', status: '处理中' },
+        { id: 'abn-2', time: '09:12', location: '崇德楼', type: '重复刷卡', status: '已处理' },
+        { id: 'abn-3', time: '11:48', location: '崇智楼', type: '超时逗留', status: '处理中' },
         { id: 'abn-4', time: '14:20', location: '北门', type: '无效卡号', status: '已处理' },
         { id: 'abn-5', time: '16:55', location: '南门', type: '重复刷卡', status: '已处理' },
         { id: 'abn-6', time: '18:30', location: '西门', type: '未授权通行', status: '处理中' },
@@ -60,40 +60,40 @@ export const securityHandlers = [
 
   http.get(`${BASE}/security/leave`, () => {
     return HttpResponse.json({
-      todayTotal: 28,
+      todayTotal: 22,
       typeDistribution: [
-        { name: '事假', value: 16 },
-        { name: '病假', value: 10 },
+        { name: '事假', value: 12 },
+        { name: '病假', value: 8 },
         { name: '其他', value: 2 },
       ],
       gradeDistribution: [
-        { name: '高一', value: 12 },
-        { name: '高二', value: 9 },
-        { name: '高三', value: 7 },
+        { name: '初一', value: 9 },
+        { name: '初二', value: 7 },
+        { name: '初三', value: 6 },
       ],
       records: [
-        { id: 'leave-1', name: '张明轩', className: '高一(3)班', type: '事假', time: '08:15' },
-        { id: 'leave-2', name: '李思雨', className: '高二(8)班', type: '病假', time: '09:30' },
-        { id: 'leave-3', name: '王子涵', className: '高三(5)班', type: '事假', time: '10:00' },
-        { id: 'leave-4', name: '陈雨桐', className: '高一(15)班', type: '病假', time: '11:20' },
-        { id: 'leave-5', name: '刘浩宇', className: '高二(12)班', type: '事假', time: '13:45' },
-        { id: 'leave-6', name: '赵文静', className: '高三(8)班', type: '事假', time: '14:30' },
-        { id: 'leave-7', name: '孙博文', className: '高一(6)班', type: '病假', time: '15:10' },
-        { id: 'leave-8', name: '周思远', className: '高二(1)班', type: '其他', time: '16:00' },
+        { id: 'leave-1', name: '张明轩', className: '初一(3)班', type: '事假', time: '08:15' },
+        { id: 'leave-2', name: '李思雨', className: '初二(8)班', type: '病假', time: '09:30' },
+        { id: 'leave-3', name: '王子涵', className: '初三(5)班', type: '事假', time: '10:00' },
+        { id: 'leave-4', name: '陈雨桐', className: '初一(15)班', type: '病假', time: '11:20' },
+        { id: 'leave-5', name: '刘浩宇', className: '初二(12)班', type: '事假', time: '13:45' },
+        { id: 'leave-6', name: '赵文静', className: '初三(8)班', type: '事假', time: '14:30' },
+        { id: 'leave-7', name: '孙博文', className: '初一(6)班', type: '病假', time: '15:10' },
+        { id: 'leave-8', name: '周思远', className: '初二(1)班', type: '其他', time: '16:00' },
       ],
     })
   }),
 
   http.get(`${BASE}/security/visitor`, () => {
     return HttpResponse.json({
-      todayVisitors: 42,
-      currentVisitors: 8,
+      todayVisitors: 32,
+      currentVisitors: 6,
       purposeDistribution: [
-        { name: '办事', value: 18 },
-        { name: '参观交流', value: 8 },
-        { name: '会议', value: 6 },
-        { name: '家长来访', value: 7 },
-        { name: '其他', value: 3 },
+        { name: '办事', value: 14 },
+        { name: '参观交流', value: 6 },
+        { name: '会议', value: 4 },
+        { name: '家长来访', value: 6 },
+        { name: '其他', value: 2 },
       ],
       records: [
         { id: 'vis-1', name: '黄建国', time: '08:30', purpose: '办事', idNumber: '441900198012154***' },
@@ -122,19 +122,19 @@ export const securityHandlers = [
       unhandledRatio: unhandled / total,
       records: [
         { id: 'alert-1', time: '07:35', type: '门禁告警', location: '南门', status: '已处理' },
-        { id: 'alert-2', time: '11:48', type: '门禁告警', location: '教学楼A区', status: '处理中' },
-        { id: 'alert-3', time: '15:22', type: '设备异常', location: '宿舍楼1单元', status: '已处理' },
+        { id: 'alert-2', time: '11:48', type: '门禁告警', location: '崇德楼', status: '处理中' },
+        { id: 'alert-3', time: '15:22', type: '设备异常', location: '崇思楼', status: '已处理' },
       ],
     })
   }),
 
   http.get(`${BASE}/security/canteen`, () => {
     return HttpResponse.json({
-      todayTotal: 4820,
+      todayTotal: 3520,
       meals: [
-        { name: '早餐', value: 1450 },
-        { name: '午餐', value: 2380 },
-        { name: '晚餐', value: 990 },
+        { name: '早餐', value: 1100 },
+        { name: '午餐', value: 1680 },
+        { name: '晚餐', value: 740 },
       ],
       safetyRecords: [
         { id: 'safe-1', date: '2026/6/15', item: '食材抽检', result: '合格' },
