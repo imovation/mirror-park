@@ -6,6 +6,7 @@ import TeacherDistribution from './panels/TeacherDistribution'
 import StudentInfo from './panels/StudentInfo'
 import ActivityHeatmap from './panels/ActivityHeatmap'
 import RecentActivity from './panels/RecentActivity'
+import BuildingDetail from './panels/BuildingDetail'
 
 export const overviewScene = () => <OverviewScene />
 
@@ -18,6 +19,7 @@ export const overviewPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
     { id: 'overview-activity', title: '活跃度统计' },
   ],
   right: [
+    { id: 'overview-building-detail', title: '建筑详情' },
     { id: 'overview-recent-activity', title: '实时动态' },
   ],
 }
@@ -34,6 +36,8 @@ export function renderOverviewPanel(panelId: string) {
       return <StudentInfo />
     case 'overview-activity':
       return <ActivityHeatmap />
+    case 'overview-building-detail':
+      return <BuildingDetail />
     case 'overview-recent-activity':
       return <RecentActivity />
     default:

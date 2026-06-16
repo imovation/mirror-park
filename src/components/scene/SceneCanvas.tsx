@@ -2,11 +2,12 @@ import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import CampusBase from './CampusBase'
 import CameraController from './CameraController'
+import SceneInfo from './SceneInfo'
 import { SCENE } from '@/utils/constants'
 
 export default function SceneCanvas() {
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <Canvas
         camera={{ fov: 50, near: 0.1, far: 1000 }}
         style={{ background: 'linear-gradient(180deg, #0a1628 0%, #16213e 100%)' }}
@@ -17,6 +18,7 @@ export default function SceneCanvas() {
           <CameraController />
         </Suspense>
       </Canvas>
+      <SceneInfo />
     </div>
   )
 }
