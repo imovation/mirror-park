@@ -6,29 +6,25 @@ const BASE = '/api'
 export const overviewHandlers = [
   http.get(`${BASE}/overview/school-info`, () => {
     return HttpResponse.json({
-      landArea: faker.number.int({ min: 50000, max: 200000 }),
-      buildingArea: faker.number.int({ min: 30000, max: 100000 }),
+      landArea: 86700,
+      buildingArea: 52000,
       classCount: 62,
       buildingCount: 9,
     })
   }),
 
   http.get(`${BASE}/overview/personnel`, () => {
-    const maleCount = faker.number.int({ min: 100, max: 200 })
-    const femaleCount = faker.number.int({ min: 100, max: 200 })
-    const total = maleCount + femaleCount
-
     return HttpResponse.json({
-      totalTeachers: total,
-      maleCount,
-      femaleCount,
-      maleRatio: maleCount / total,
-      femaleRatio: femaleCount / total,
+      totalTeachers: 348,
+      maleCount: 146,
+      femaleCount: 202,
+      maleRatio: 146 / 348,
+      femaleRatio: 202 / 348,
       education: [
-        { name: '博士', value: faker.number.int({ min: 5, max: 20 }) },
-        { name: '硕士', value: faker.number.int({ min: 50, max: 100 }) },
-        { name: '本科', value: faker.number.int({ min: 150, max: 250 }) },
-        { name: '其他', value: faker.number.int({ min: 5, max: 30 }) },
+        { name: '硕士', value: 86 },
+        { name: '本科', value: 252 },
+        { name: '博士', value: 6 },
+        { name: '其他', value: 4 },
       ],
     })
   }),
@@ -36,48 +32,66 @@ export const overviewHandlers = [
   http.get(`${BASE}/overview/teacher-distribution`, () => {
     return HttpResponse.json({
       subjects: [
-        { name: '语文', value: faker.number.int({ min: 30, max: 60 }) },
-        { name: '数学', value: faker.number.int({ min: 30, max: 60 }) },
-        { name: '英语', value: faker.number.int({ min: 30, max: 60 }) },
-        { name: '物理', value: faker.number.int({ min: 20, max: 40 }) },
-        { name: '化学', value: faker.number.int({ min: 15, max: 35 }) },
-        { name: '生物', value: faker.number.int({ min: 10, max: 30 }) },
-        { name: '政治', value: faker.number.int({ min: 10, max: 30 }) },
-        { name: '历史', value: faker.number.int({ min: 10, max: 30 }) },
-        { name: '地理', value: faker.number.int({ min: 10, max: 30 }) },
-        { name: '体育', value: faker.number.int({ min: 5, max: 20 }) },
-        { name: '信息技术', value: faker.number.int({ min: 5, max: 15 }) },
+        { name: '语文', value: 48 }, { name: '数学', value: 46 }, { name: '英语', value: 44 },
+        { name: '物理', value: 32 }, { name: '化学', value: 28 }, { name: '生物', value: 22 },
+        { name: '政治', value: 20 }, { name: '历史', value: 20 }, { name: '地理', value: 18 },
+        { name: '体育', value: 16 }, { name: '信息技术', value: 10 }, { name: '艺术', value: 12 },
       ],
       titles: [
-        { name: '正高级', value: faker.number.int({ min: 3, max: 10 }) },
-        { name: '高级', value: faker.number.int({ min: 40, max: 80 }) },
-        { name: '一级', value: faker.number.int({ min: 80, max: 150 }) },
-        { name: '二级', value: faker.number.int({ min: 50, max: 100 }) },
-        { name: '三级及未定', value: faker.number.int({ min: 10, max: 30 }) },
+        { name: '正高级', value: 8 }, { name: '高级', value: 72 },
+        { name: '一级', value: 138 }, { name: '二级', value: 106 }, { name: '三级及未定', value: 24 },
+      ],
+      ageDistribution: [
+        { name: '30岁以下', value: 62 },
+        { name: '30-39岁', value: 128 },
+        { name: '40-49岁', value: 106 },
+        { name: '50岁及以上', value: 52 },
       ],
     })
   }),
 
   http.get(`${BASE}/overview/student-info`, () => {
-    const grades = ['高一', '高二', '高三']
-    const male = grades.map(() => faker.number.int({ min: 600, max: 800 }))
-    const female = grades.map(() => faker.number.int({ min: 500, max: 700 }))
-
     return HttpResponse.json({
-      grades: grades.map((name, i) => ({
-        name,
-        male: male[i],
-        female: female[i],
-        total: male[i] + female[i],
-      })),
+      grades: [
+        { name: '高一', male: 710, female: 660, total: 1370 },
+        { name: '高二', male: 690, female: 650, total: 1340 },
+        { name: '高三', male: 680, female: 640, total: 1320 },
+      ],
+      totalStudents: 4030,
+      maleRatio: 2080 / 4030,
+      femaleRatio: 1950 / 4030,
     })
   }),
 
   http.get(`${BASE}/overview/activity`, () => {
-    const hours = Array.from({ length: 14 }, (_, i) => `${i + 6}:00`)
+    const hours = ['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00']
     return HttpResponse.json({
       hours,
-      values: hours.map(() => faker.number.int({ min: 0, max: 5000 })),
+      values: [120, 2800, 4100, 3800, 3200, 2900, 1800, 2200, 3600, 3500, 3000, 2400, 2100, 800],
+    })
+  }),
+
+  http.get(`${BASE}/overview/facilities`, () => {
+    return HttpResponse.json({
+      buildings: [
+        { name: '教学楼A栋', floors: 5, area: 6200, type: '教学' },
+        { name: '教学楼B栋', floors: 5, area: 5800, type: '教学' },
+        { name: '教学楼C栋', floors: 5, area: 5600, type: '教学' },
+        { name: '行政综合楼', floors: 6, area: 4800, type: '行政' },
+        { name: '图书馆', floors: 3, area: 3200, type: '图书' },
+        { name: '实验楼', floors: 4, area: 4500, type: '实验' },
+        { name: '体育馆', floors: 2, area: 3800, type: '体育' },
+        { name: '食堂', floors: 2, area: 2800, type: '餐饮' },
+        { name: '学生宿舍', floors: 6, area: 8200, type: '宿舍' },
+      ],
+      sports: [
+        { name: '标准田径场', count: 1 },
+        { name: '篮球场', count: 8 },
+        { name: '排球场', count: 4 },
+        { name: '羽毛球场', count: 6 },
+        { name: '乒乓球台', count: 20 },
+        { name: '网球场', count: 2 },
+      ],
     })
   }),
 ]
