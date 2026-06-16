@@ -3,6 +3,7 @@ import { useThree, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import { useThemeStore } from '@/stores/useThemeStore'
+import { useSceneStore } from '@/stores/useSceneStore'
 import { SCENE } from '@/utils/constants'
 
 export default function CameraController() {
@@ -10,6 +11,7 @@ export default function CameraController() {
   const { camera } = useThree()
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const finishTransition = useThemeStore((s) => s.finishTransition)
+  const flyToRequest = useSceneStore((s) => s.flyToRequest)
   const targetPos = useRef(new THREE.Vector3())
   const targetLook = useRef(new THREE.Vector3())
   const isAnimating = useRef(false)
@@ -38,6 +40,18 @@ export default function CameraController() {
     }, 2000)
     return () => clearTimeout(timer)
   }, [currentTheme, finishTransition])
+
+  useEffect(() => {
+    if (!flyToRequest) return
+    targetPos.current.set(...flyToRequest.position)
+    targetLook.current.set(...flyToRequest.lookAt)
+    isAnimating.current = true
+
+    if (controlsRef.current) {
+      controlsRef.current.target.copy(targetLook.current)
+      controlsRef.current.update()
+    }
+  }, [flyToRequest])
 
   useFrame((_, delta) => {
     if (!isAnimating.current) return
