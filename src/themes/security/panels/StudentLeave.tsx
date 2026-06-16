@@ -1,0 +1,33 @@
+import { useLeaveData } from '@/api/queries/security'
+import NumberFlip from '@/components/ui/NumberFlip'
+import PieChart from '@/components/charts/PieChart'
+import BarChart from '@/components/charts/BarChart'
+import ScrollList from '@/components/ui/ScrollList'
+
+export default function StudentLeave() {
+  const { data, isLoading, error } = useLeaveData()
+  if (isLoading) return <div style={{ color: '#6b7280', fontSize: '0.75rem' }}>加载中...</div>
+  if (error) return <div style={{ color: '#ef4444', fontSize: '0.75rem' }}>数据加载失败</div>
+  if (!data) return null
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div style={{ textAlign: 'center' }}>
+        <NumberFlip label="今日请假人数" value={data.todayTotal} unit="人" color="#ff6d00" />
+      </div>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>请假类型</div>
+          <PieChart data={data.typeDistribution} height={120} />
+        </div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>各年级请假</div>
+          <BarChart data={data.gradeDistribution} height={120} horizontal={false} />
+        </div>
+      </div>
+      <div>
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>离校记录</div>
+        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name} · {r.className}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.type}</span><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.time}</span></span></div> }))} maxHeight={90} />
+      </div>
+    </div>
+  )
+}
