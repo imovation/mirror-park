@@ -1,5 +1,11 @@
 import type { PanelConfig } from '@/types/panel'
 import AdminScene from './AdminScene'
+import AdminOverview from './panels/AdminOverview'
+import NoticeBoard from './panels/NoticeBoard'
+import DutySchedule from './panels/DutySchedule'
+import SchoolCalendar from './panels/SchoolCalendar'
+import StaffAttendance from './panels/StaffAttendance'
+import MeetingManagement from './panels/MeetingManagement'
 
 export const adminScene = () => <AdminScene />
 
@@ -16,6 +22,14 @@ export const adminPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   ],
 }
 
-export function renderAdminPanel(_panelId: string) {
-  return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
+export function renderAdminPanel(panelId: string) {
+  switch (panelId) {
+    case 'admin-overview': return <AdminOverview />
+    case 'admin-notices': return <NoticeBoard />
+    case 'admin-duty': return <DutySchedule />
+    case 'admin-calendar': return <SchoolCalendar />
+    case 'admin-attendance': return <StaffAttendance />
+    case 'admin-meetings': return <MeetingManagement />
+    default: return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
+  }
 }
