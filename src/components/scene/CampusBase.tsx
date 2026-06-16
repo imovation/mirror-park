@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Plane, Html, Grid } from '@react-three/drei'
+import { Box, Plane, Html, Grid, Cylinder, Sphere } from '@react-three/drei'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { ThemeId } from '@/types/theme'
@@ -18,8 +18,8 @@ export const BUILDINGS: BuildingData[] = [
   { id: 'chongzhi', label: '崇智楼', position: [-6, 5.5, 4], size: [10, 11, 7], color: '#a0522d', info: '初二年级教学楼' },
   { id: 'chongxin', label: '崇信楼', position: [6, 5.5, 4], size: [10, 11, 7], color: '#a0522d', info: '初三年级教学楼' },
   { id: 'chongwen', label: '崇文楼', position: [-10, 4, -10], size: [8, 8, 6], color: '#8b4513', info: '开放式图书馆 · 藏书10万余册' },
-  { id: 'chongya', label: '崇雅楼', position: [16, 5, -8], size: [7, 10, 6], color: '#cd853f', info: '师生宿舍 · 22层' },
-  { id: 'chongsi', label: '崇思楼', position: [22, 5, -2], size: [7, 10, 6], color: '#cd853f', info: '师生宿舍 · 15层' },
+  { id: 'chongya', label: '崇雅楼', position: [16, 5, -10], size: [7, 10, 6], color: '#cd853f', info: '师生宿舍 · 22层' },
+  { id: 'chongsi', label: '崇思楼', position: [22, 5, -4], size: [7, 10, 6], color: '#cd853f', info: '师生宿舍 · 15层' },
   { id: 'bell-tower', label: '钟楼', position: [0, 10, -12], size: [3, 20, 3], color: '#b5651d', info: '镇远中学标志性建筑' },
   { id: 'gymnasium', label: '体育馆', position: [-22, 4, -8], size: [8, 8, 10], color: '#d2b48c', info: '室内体育馆 · 游泳馆 · 报告厅' },
   { id: 'canteen', label: '食堂', position: [-14, 3.5, -16], size: [8, 7, 6], color: '#deb887', info: '16个窗口 · 可容纳1500人同时就餐' },
@@ -42,9 +42,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         receiveShadow
         onClick={(e) => {
           e.stopPropagation()
-          if (isOverview) {
-            selectObject(isSelected ? null : building.id)
-          }
+          if (isOverview) selectObject(isSelected ? null : building.id)
         }}
         onPointerOver={(e) => {
           e.stopPropagation()
@@ -52,10 +50,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         }}
         onPointerOut={(e) => {
           e.stopPropagation()
-          if (isOverview) {
-            setHovered(false)
-            document.body.style.cursor = 'default'
-          }
+          if (isOverview) { setHovered(false); document.body.style.cursor = 'default' }
         }}
       >
         <meshStandardMaterial
@@ -69,18 +64,12 @@ function BuildingMesh({ building }: { building: BuildingData }) {
 
       <Html
         position={[building.position[0], building.position[1] + building.size[1] / 2 + 1.5, building.position[2]]}
-        center
-        distanceFactor={40}
-        style={{ pointerEvents: 'none' }}
+        center distanceFactor={40} style={{ pointerEvents: 'none' }}
       >
         <div style={{
           background: isSelected ? 'rgba(74,158,255,0.9)' : 'rgba(0,0,0,0.7)',
-          color: '#fff',
-          padding: '3px 10px',
-          borderRadius: 4,
-          fontSize: 12,
-          fontWeight: 'bold',
-          whiteSpace: 'nowrap',
+          color: '#fff', padding: '3px 10px', borderRadius: 4, fontSize: 12,
+          fontWeight: 'bold', whiteSpace: 'nowrap',
           border: isSelected ? '2px solid #fff' : '1px solid rgba(255,255,255,0.2)',
           transition: 'all 0.3s',
         }}>
@@ -94,14 +83,105 @@ function BuildingMesh({ building }: { building: BuildingData }) {
 function Roads() {
   return (
     <group position={[0, 0.02, 0]}>
-      <Box args={[50, 0.05, 2]} position={[0, 0, 4]}>
-        <meshStandardMaterial color="#333" />
+      <Box args={[60, 0.05, 2.5]} position={[0, 0, 4]}>
+        <meshStandardMaterial color="#3a3a3a" />
       </Box>
-      <Box args={[2, 0.05, 20]} position={[-10, 0, -2]}>
-        <meshStandardMaterial color="#333" />
+      <Box args={[2.5, 0.05, 28]} position={[-10, 0, -4]}>
+        <meshStandardMaterial color="#3a3a3a" />
       </Box>
-      <Box args={[15, 0.05, 10]} position={[-6, 0, 0]}>
+      <Box args={[18, 0.05, 2.5]} position={[-18, 0, -6]}>
+        <meshStandardMaterial color="#3a3a3a" />
+      </Box>
+      <Box args={[18, 0.05, 2.5]} position={[-18, 0, -10]}>
+        <meshStandardMaterial color="#3a3a3a" />
+      </Box>
+      <Box args={[20, 0.05, 12]} position={[-6, 0, 0.5]}>
         <meshStandardMaterial color="#2a2a2a" />
+      </Box>
+    </group>
+  )
+}
+
+function RunningTrack() {
+  return (
+    <group position={[-22, 8.1, -8]}>
+      <Box args={[24, 0.1, 28]}>
+        <meshStandardMaterial color="#c44" />
+      </Box>
+      {Array.from({ length: 6 }, (_, i) => (
+        <Box key={`lane-${i}`} args={[23.2 - i * 0.8, 0.12, 26.8 - i * 0.8]} position={[0, 0.02, 0]}>
+          <meshStandardMaterial color="#c44" transparent opacity={0.5 + i * 0.08} />
+        </Box>
+      ))}
+      <Box args={[8, 0.15, 4]} position={[0, 0.08, 12]}>
+        <meshStandardMaterial color="#2d5a1e" />
+      </Box>
+      <Box args={[8, 0.15, 4]} position={[0, 0.08, -12]}>
+        <meshStandardMaterial color="#2d5a1e" />
+      </Box>
+    </group>
+  )
+}
+
+function Trees() {
+  const positions: [number, number, number][] = [
+    [-25, 0, 10], [25, 0, 10], [-25, 0, -20], [25, 0, -20],
+    [-20, 0, -18], [20, 0, -18], [30, 0, 0], [-30, 0, 0],
+    [-24, 0, 12], [24, 0, 12], [0, 0, -18], [-16, 0, -18],
+    [-15, 0, -8], [-5, 0, -8], [5, 0, -8], [15, 0, -8],
+  ]
+  return (
+    <group>
+      {positions.map((pos, i) => (
+        <group key={`tree-${i}`} position={pos}>
+          <Cylinder args={[0.08, 0.12, 1.5, 6]} position={[0, 0.75, 0]}>
+            <meshStandardMaterial color="#5c3a1e" />
+          </Cylinder>
+          <Sphere args={[0.8, 8, 6]} position={[0, 1.8, 0]}>
+            <meshStandardMaterial color="#2d5a1e" />
+          </Sphere>
+          <Sphere args={[0.6, 8, 6]} position={[0.3, 1.5, 0.3]}>
+            <meshStandardMaterial color="#1e4a15" />
+          </Sphere>
+          <Sphere args={[0.55, 8, 6]} position={[-0.25, 1.6, -0.25]}>
+            <meshStandardMaterial color="#25631a" />
+          </Sphere>
+        </group>
+      ))}
+    </group>
+  )
+}
+
+function Courtyards() {
+  return (
+    <group position={[0, 0.03, 0]}>
+      <Box args={[8, 0.05, 3]} position={[-12, 0, 4]}>
+        <meshStandardMaterial color="#2a4a2a" />
+      </Box>
+      <Box args={[8, 0.05, 3]} position={[0, 0, 4]}>
+        <meshStandardMaterial color="#2a4a2a" />
+      </Box>
+      <Box args={[8, 0.05, 3]} position={[12, 0, 4]}>
+        <meshStandardMaterial color="#2a4a2a" />
+      </Box>
+      <Box args={[6, 0.05, 4]} position={[-10, 0, -8]}>
+        <meshStandardMaterial color="#2a4a2a" />
+      </Box>
+    </group>
+  )
+}
+
+function Hillside() {
+  return (
+    <group>
+      <Box args={[40, 3, 15]} position={[0, -1, -24]} rotation={[0, 0, 0]}>
+        <meshStandardMaterial color="#1a3a1a" />
+      </Box>
+      <Box args={[50, 2, 20]} position={[0, -1.5, -30]} rotation={[0.05, 0, 0]}>
+        <meshStandardMaterial color="#153015" />
+      </Box>
+      <Box args={[60, 1.5, 25]} position={[0, -2, -36]} rotation={[0.08, 0, 0]}>
+        <meshStandardMaterial color="#0f250f" />
       </Box>
     </group>
   )
@@ -114,21 +194,15 @@ export default function CampusBase() {
         <meshStandardMaterial color="#1a5c2a" />
       </Plane>
 
-      <Grid
-        args={[100, 100]}
-        position={[0, 0.01, 0]}
-        cellSize={2}
-        cellThickness={0.5}
-        cellColor="#4a9eff"
-        sectionSize={10}
-        sectionThickness={1}
-        sectionColor="#1a3a5c"
-        fadeDistance={80}
-        fadeStrength={1}
-        infiniteGrid
-      />
+      <Grid args={[100, 100]} position={[0, 0.01, 0]} cellSize={2} cellThickness={0.5}
+        cellColor="#4a9eff" sectionSize={10} sectionThickness={1} sectionColor="#1a3a5c"
+        fadeDistance={80} fadeStrength={1} infiniteGrid />
 
       <Roads />
+      <Courtyards />
+      <RunningTrack />
+      <Trees />
+      <Hillside />
 
       {BUILDINGS.map((b) => (
         <BuildingMesh key={b.id} building={b} />
