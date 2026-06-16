@@ -1,12 +1,16 @@
+import type { ReactNode } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import CampusBase from './CampusBase'
 import ParticleBg from './ParticleBg'
 import CameraController from './CameraController'
 import SceneInfo from './SceneInfo'
 import { SCENE } from '@/utils/constants'
 
-export default function SceneCanvas() {
+interface SceneCanvasProps {
+  children: ReactNode
+}
+
+export default function SceneCanvas({ children }: SceneCanvasProps) {
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <Canvas
@@ -15,7 +19,7 @@ export default function SceneCanvas() {
       >
         <fog attach="fog" args={[SCENE.FOG_COLOR, SCENE.FOG_NEAR, SCENE.FOG_FAR]} />
         <Suspense fallback={null}>
-          <CampusBase />
+          {children}
           <ParticleBg />
           <CameraController />
         </Suspense>

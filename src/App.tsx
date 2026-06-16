@@ -8,6 +8,7 @@ import BottomBar from '@/components/layout/BottomBar'
 import DashboardPanel from '@/components/ui/DashboardPanel'
 import AlertPopup from '@/components/ui/AlertPopup'
 import ErrorBoundary from '@/components/layout/ErrorBoundary'
+import SceneCanvas from '@/components/scene/SceneCanvas'
 import { getThemeEntry } from '@/themes/registry'
 
 const queryClient = new QueryClient({
@@ -55,7 +56,7 @@ function App() {
               3D 场景不可用
             </div>
           }>
-            {entry.scene()}
+            <SceneCanvas>{entry.scene()}</SceneCanvas>
           </ErrorBoundary>
         }
         rightPanel={
