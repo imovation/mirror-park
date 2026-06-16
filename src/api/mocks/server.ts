@@ -4,6 +4,6 @@ import { libraryHandlers } from './handlers/library'
 import { securityHandlers } from './handlers/security'
 import { academicsHandlers } from './handlers/academics'
 import { adminHandlers } from './handlers/admin'
-import { teachingResearchHandlers } from './handlers/teaching-research'
+import { teachingResearchHandlers } from './handlers/teachingResearch'
 
 export const worker = setupWorker(...overviewHandlers, ...libraryHandlers, ...securityHandlers, ...academicsHandlers, ...adminHandlers, ...teachingResearchHandlers)
