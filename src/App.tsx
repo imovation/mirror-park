@@ -6,6 +6,7 @@ import LeftPanel from '@/components/layout/LeftPanel'
 import RightPanel from '@/components/layout/RightPanel'
 import BottomBar from '@/components/layout/BottomBar'
 import DashboardPanel from '@/components/ui/DashboardPanel'
+import AlertPopup from '@/components/ui/AlertPopup'
 import ErrorBoundary from '@/components/layout/ErrorBoundary'
 import { getThemeEntry } from '@/themes/registry'
 
@@ -72,6 +73,7 @@ function App() {
         }
         bottomBar={<BottomBar />}
       />
+      <AlertPopup />
     </QueryClientProvider>
   )
 }

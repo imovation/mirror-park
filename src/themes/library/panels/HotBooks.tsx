@@ -1,6 +1,7 @@
 import { useHotBooks } from '@/api/queries/library'
 import BarChart from '@/components/charts/BarChart'
 import PieChart from '@/components/charts/PieChart'
+import CardCarousel from '@/components/ui/CardCarousel'
 
 export default function HotBooks() {
   const { data, isLoading, error } = useHotBooks()
@@ -16,6 +17,17 @@ export default function HotBooks() {
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>各类别借阅占比</div>
         <PieChart data={data.categoryRatio} height={150} />
+      </div>
+      <div>
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>推荐图书</div>
+        <CardCarousel
+          items={data.recommendBooks.map((b, i) => ({
+            id: `rec-${i}`,
+            title: b.name,
+            subtitle: `作者: ${b.author}`,
+          }))}
+          maxHeight={120}
+        />
       </div>
     </div>
   )

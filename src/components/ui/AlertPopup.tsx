@@ -1,0 +1,73 @@
+import { useEffect, useState } from 'react'
+import { useUIStore } from '@/stores/useUIStore'
+import { useSceneStore } from '@/stores/useSceneStore'
+
+export default function AlertPopup() {
+  const alerts = useUIStore((s) => s.alertQueue)
+  const dismissAlert = useUIStore((s) => s.dismissAlert)
+  const selectObject = useSceneStore((s) => s.selectObject)
+
+  const [visibleAlerts, setVisibleAlerts] = useState<typeof alerts>([])
+
+  useEffect(() => {
+    if (alerts.length > 0) {
+      setVisibleAlerts(alerts.slice(0, 3))
+    } else {
+      setVisibleAlerts([])
+    }
+  }, [alerts])
+
+  if (visibleAlerts.length === 0) return null
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 70,
+      right: 20,
+      zIndex: 900,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 8,
+      maxWidth: 320,
+    }}>
+      {visibleAlerts.map((alert) => (
+        <div
+          key={alert.id}
+          style={{
+            background: alert.type === 'error' ? 'rgba(255,23,68,0.9)' : alert.type === 'warning' ? 'rgba(255,109,0,0.9)' : 'rgba(74,158,255,0.9)',
+            borderRadius: 8,
+            padding: '12px 16px',
+            color: '#fff',
+            fontSize: 13,
+            boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+            animation: 'slideInRight 0.4s ease-out',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 8,
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            selectObject(alert.id)
+            dismissAlert(alert.id)
+          }}
+        >
+          <div>
+            <div style={{ fontWeight: 600, marginBottom: 2 }}>
+              {alert.type === 'error' ? '🚨' : alert.type === 'warning' ? '⚠️' : 'ℹ️'} {alert.message}
+            </div>
+            <div style={{ fontSize: 10, opacity: 0.7 }}>
+              {alert.timestamp.toLocaleTimeString('zh-CN', { hour12: false })}
+            </div>
+          </div>
+          <button
+            onClick={(e) => { e.stopPropagation(); dismissAlert(alert.id) }}
+            style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 16, opacity: 0.6 }}
+          >
+            ✕
+          </button>
+        </div>
+      ))}
+    </div>
+  )
+}

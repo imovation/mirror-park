@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { useAlertData } from '@/api/queries/security'
+import { useUIStore } from '@/stores/useUIStore'
 import NumberFlip from '@/components/ui/NumberFlip'
 import PieChart from '@/components/charts/PieChart'
 import RingChart from '@/components/charts/RingChart'
@@ -6,6 +8,23 @@ import ScrollList from '@/components/ui/ScrollList'
 
 export default function AlertEvents() {
   const { data, isLoading, error } = useAlertData()
+  const addAlert = useUIStore((s) => s.addAlert)
+
+  useEffect(() => {
+    const types = ['warning', 'error', 'info'] as const
+    const messages = [
+      '南门异常通行记录', '体育馆区域设备离线', '教学楼A区火警预警',
+      '北围墙周界入侵告警', '宿舍楼门禁异常',
+    ]
+    const timer = setInterval(() => {
+      addAlert({
+        type: types[Math.floor(Math.random() * types.length)],
+        message: messages[Math.floor(Math.random() * messages.length)],
+      })
+    }, 15000)
+    return () => clearInterval(timer)
+  }, [addAlert])
+
   if (isLoading) return <div style={{ color: '#6b7280', fontSize: '0.75rem' }}>加载中...</div>
   if (error) return <div style={{ color: '#ef4444', fontSize: '0.75rem' }}>数据加载失败</div>
   if (!data) return null
