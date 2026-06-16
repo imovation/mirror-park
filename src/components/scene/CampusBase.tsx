@@ -226,7 +226,7 @@ function Roads() {
 }
 
 function Courtyards() {
-  const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.18} />
+  const yardMat = <meshBasicMaterial color="#00ffaa" transparent opacity={0.12} />
   const edgeMat = <Edges linewidth={1.5} threshold={15} color="#00ffaa" />
   return (
     <group position={[0, 0.03, 0]}>
@@ -244,10 +244,10 @@ function RunningTrack() {
       <Box args={[13, 0.1, 17]}><meshStandardMaterial color="#1a2535" /></Box>
       {Array.from({ length: 6 }, (_, i) => (
         <Box key={`lane-${i}`} args={[12.2 - i * 0.8, 0.12, 16.2 - i * 0.8]} position={[0, 0.02, 0]}>
-          <meshStandardMaterial color="#00e5ff" transparent opacity={0.3 + i * 0.05} />
+          <meshBasicMaterial color="#00e5ff" transparent opacity={0.5 + i * 0.08} />
         </Box>
       ))}
-      <Box args={[4, 0.15, 8]} position={[0, 0.08, 0]}><meshStandardMaterial color="#0b2a26" /></Box>
+      <Box args={[4, 0.15, 8]} position={[0, 0.08, 0]}><meshBasicMaterial color="#0e4a35" /></Box>
     </group>
   )
 }
@@ -267,11 +267,11 @@ function Trees() {
     <group>
       {positions.map((pos, i) => (
         <group key={`tree-${i}`} position={pos}>
-          <Cylinder args={[0.08, 0.12, 1.5, 6]} position={[0, 0.75, 0]}>
-            <meshStandardMaterial color="#2d1b11" />
+          <Cylinder args={[0.1, 0.15, 2, 6]} position={[0, 1, 0]}>
+            <meshStandardMaterial color="#4a3020" />
           </Cylinder>
-          <Sphere args={[0.8, 8, 6]} position={[0, 1.8, 0]}>
-            <meshStandardMaterial color="#0c3a20" />
+          <Sphere args={[1.1, 8, 6]} position={[0, 2.5, 0]}>
+            <meshStandardMaterial color="#1a5a30" emissive="#0a3a1a" emissiveIntensity={0.3} />
           </Sphere>
         </group>
       ))}
