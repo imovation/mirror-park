@@ -24,7 +24,7 @@ export const SCENE = {
     'teaching-research': { position: [-10, 25, 20] as [number, number, number], target: [-10, 5, 4] as [number, number, number] },
     admin: { position: [-15, 20, 15] as [number, number, number], target: [-5, 5, -8] as [number, number, number] },
     library: { position: [-5, 15, 2] as [number, number, number], target: [-10, 4, -10] as [number, number, number] },
-    academics: { position: [-12, 30, 25] as [number, number, number], target: [-6, 5, 4] as [number, number, number] },
+    academics: { position: [-6, 15, 25] as [number, number, number], target: [-6, 8, 4] as [number, number, number] },
     security: { position: [0, 60, 35] as [number, number, number], target: [0, 0, 0] as [number, number, number] },
   } as Record<string, { position: [number, number, number]; target: [number, number, number] }>,
 } as const
