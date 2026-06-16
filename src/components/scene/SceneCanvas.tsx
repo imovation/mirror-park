@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import CampusBase from './CampusBase'
+import ParticleBg from './ParticleBg'
 import CameraController from './CameraController'
 import SceneInfo from './SceneInfo'
 import { SCENE } from '@/utils/constants'
@@ -15,6 +16,7 @@ export default function SceneCanvas() {
         <fog attach="fog" args={[SCENE.FOG_COLOR, SCENE.FOG_NEAR, SCENE.FOG_FAR]} />
         <Suspense fallback={null}>
           <CampusBase />
+          <ParticleBg />
           <CameraController />
         </Suspense>
       </Canvas>

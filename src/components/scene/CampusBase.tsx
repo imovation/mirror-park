@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Plane, Html } from '@react-three/drei'
+import { Box, Plane, Html, Grid } from '@react-three/drei'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { ThemeId } from '@/types/theme'
@@ -88,12 +88,44 @@ function BuildingMesh({ building }: { building: BuildingData }) {
   )
 }
 
+function Roads() {
+  return (
+    <group position={[0, 0.02, 0]}>
+      <Box args={[50, 0.05, 2]} position={[0, 0, 4]}>
+        <meshStandardMaterial color="#333" />
+      </Box>
+      <Box args={[2, 0.05, 20]} position={[-10, 0, -2]}>
+        <meshStandardMaterial color="#333" />
+      </Box>
+      <Box args={[15, 0.05, 10]} position={[-6, 0, 0]}>
+        <meshStandardMaterial color="#2a2a2a" />
+      </Box>
+    </group>
+  )
+}
+
 export default function CampusBase() {
   return (
     <group>
       <Plane args={[100, 100]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
         <meshStandardMaterial color="#1a5c2a" />
       </Plane>
+
+      <Grid
+        args={[100, 100]}
+        position={[0, 0.01, 0]}
+        cellSize={2}
+        cellThickness={0.5}
+        cellColor="#4a9eff"
+        sectionSize={10}
+        sectionThickness={1}
+        sectionColor="#1a3a5c"
+        fadeDistance={80}
+        fadeStrength={1}
+        infiniteGrid
+      />
+
+      <Roads />
 
       {BUILDINGS.map((b) => (
         <BuildingMesh key={b.id} building={b} />
