@@ -32,7 +32,7 @@ export default function RingChart({ data, height = 200, colors = DEFAULT_COLORS,
             top: 'center',
             style: {
               text: centerLabel,
-              textAlign: 'center',
+              align: 'center',
               fill: '#4a9eff',
               fontSize: 14,
               fontWeight: 'bold',

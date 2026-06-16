@@ -2,10 +2,9 @@ import { useRef, useEffect } from 'react'
 import { useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { SCENE } from '@/utils/constants'
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 
 export default function CameraController() {
-  const controlsRef = useRef<OrbitControlsImpl>(null)
+  const controlsRef = useRef<any>(null)
   const { camera } = useThree()
 
   useEffect(() => {

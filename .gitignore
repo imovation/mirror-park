@@ -1,1 +1,7 @@
-.superpowers/\nnode_modules/\ndist/\n*.local
+.superpowers/
+node_modules/
+dist/
+*.local
+pnpm-lock.yaml
+tsconfig.tsbuildinfo
+pnpm-workspace.yaml
