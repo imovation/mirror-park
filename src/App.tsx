@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import ScreenLayout from '@/components/layout/ScreenLayout'
+import TopBar from '@/components/layout/TopBar'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +33,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ScreenLayout
-        topBar={<PlaceholderChild name="TopBar" />}
+        topBar={<TopBar />}
         leftPanel={<PlaceholderChild name="LeftPanel" />}
         scene={<PlaceholderChild name="3D Scene" />}
         rightPanel={<PlaceholderChild name="RightPanel" />}
