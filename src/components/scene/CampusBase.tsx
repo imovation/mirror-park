@@ -230,12 +230,12 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       {/* 钟楼装饰：钟面 + 金字塔顶 + 校名 */}
       {building.id === 'bell-tower' && (
         <group>
-          <mesh position={[0, 1.5, d / 2 + 0.05]}>
-            <cylinderGeometry args={[1.1, 1.1, 0.08, 32]} />
+          <mesh position={[0, 3, d / 2 + 0.05]} rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[0.8, 0.8, 0.05, 32]} />
             <meshStandardMaterial color="#f0e6c8" />
           </mesh>
-          <mesh position={[0, 1.5, d / 2 + 0.05]}>
-            <ringGeometry args={[1.1, 1.25, 32]} />
+          <mesh position={[0, 3, d / 2 + 0.06]} rotation={[Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[0.8, 0.95, 32]} />
             <meshStandardMaterial color="#8B7355" side={THREE.DoubleSide} />
           </mesh>
           <mesh position={[0, h / 2 + 0.6, 0]}>
@@ -243,12 +243,12 @@ function BuildingMesh({ building }: { building: BuildingData }) {
             <meshStandardMaterial color={cfg.building.facadeColor} />
           </mesh>
           <Html
-            position={[0, 2.5, -d / 2 - 0.5]}
+            position={[0, 0.5, d / 2 + 0.1]}
             center distanceFactor={40} style={{ pointerEvents: 'none' }}
           >
             <div style={{
               writingMode: 'vertical-rl',
-              color: timeMode === 'day' ? '#1a1a1a' : '#888888',
+              color: '#000000',
               fontSize: 16,
               fontWeight: 'bold',
               letterSpacing: 4,
@@ -258,6 +258,24 @@ function BuildingMesh({ building }: { building: BuildingData }) {
               镇远中学
             </div>
           </Html>
+        </group>
+      )}
+
+      {/* 崇智楼中央校门（拱门结构） */}
+      {building.id === 'chongzhi' && (
+        <group position={[0, 0, d / 2]}>
+          <Box args={[2.0, 3.0, 0.1]} position={[0, -h / 2 + 1.5, 0.05]}>
+            <meshStandardMaterial color={timeMode === 'day' ? '#1a1a1a' : '#000000'} />
+          </Box>
+          <Box args={[0.4, 3.0, 0.2]} position={[-1.2, -h / 2 + 1.5, 0.1]}>
+            <meshStandardMaterial color={cfg.building.facadeColor} />
+          </Box>
+          <Box args={[0.4, 3.0, 0.2]} position={[1.2, -h / 2 + 1.5, 0.1]}>
+            <meshStandardMaterial color={cfg.building.facadeColor} />
+          </Box>
+          <Box args={[2.8, 0.4, 0.2]} position={[0, -h / 2 + 3.2, 0.1]}>
+            <meshStandardMaterial color={cfg.building.facadeColor} />
+          </Box>
         </group>
       )}
 
