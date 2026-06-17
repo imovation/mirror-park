@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --page-bg: #0a1628;
+  --panel-bg: rgba(0, 0, 0, 0.35);
+  --panel-bg-solid: rgba(10, 22, 40, 0.95);
+  --topbar-bg: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+  --bottombar-bg: rgba(0, 0, 0, 0.4);
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --text-primary: rgba(255, 255, 255, 0.85);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --text-muted: rgba(255, 255, 255, 0.3);
+  --border: rgba(74, 158, 255, 0.12);
+  --border-light: rgba(74, 158, 255, 0.06);
+  --border-strong: rgba(74, 158, 255, 0.3);
+  --accent: #4a9eff;
+  --color-success: #00c853;
+  --color-warning: #ff6d00;
+  --color-danger: #ff1744;
+  --color-pending: #ffc107;
+  --scrollbar-thumb: rgba(74, 158, 255, 0.3);
+  --nav-arrow-bg: rgba(0, 0, 0, 0.5);
+  --card-carousel-bg: rgba(74, 158, 255, 0.08);
+  --card-carousel-border: rgba(74, 158, 255, 0.15);
+  --card-carousel-dot-inactive: rgba(255, 255, 255, 0.15);
+}
+
+[data-ui-theme="light"] {
+  --page-bg: #eef1f5;
+  --panel-bg: rgba(255, 255, 255, 0.85);
+  --panel-bg-solid: rgba(255, 255, 255, 0.98);
+  --topbar-bg: rgba(255, 255, 255, 0.9);
+  --bottombar-bg: rgba(0, 0, 0, 0.05);
+  --overlay-bg: rgba(0, 0, 0, 0.3);
+  --text-primary: rgba(0, 0, 0, 0.85);
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --text-tertiary: rgba(0, 0, 0, 0.5);
+  --text-muted: rgba(0, 0, 0, 0.3);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.04);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+  --nav-arrow-bg: rgba(0, 0, 0, 0.15);
+  --card-carousel-bg: rgba(255, 255, 255, 0.8);
+  --card-carousel-border: rgba(0, 0, 0, 0.08);
+  --card-carousel-dot-inactive: rgba(0, 0, 0, 0.15);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +60,7 @@ html, body, #root {
   height: 100vh;
   overflow: hidden;
   font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
-  background: #0a1628;
+  background: var(--page-bg);
   font-size: calc(12px + 0.25vw);
 }
 
@@ -30,7 +77,7 @@ html, body, #root {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(74, 158, 255, 0.3);
+  background: var(--scrollbar-thumb);
   border-radius: 2px;
 }
 

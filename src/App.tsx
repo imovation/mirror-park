@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useThemeStore } from '@/stores/useThemeStore'
+import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import ScreenLayout from '@/components/layout/ScreenLayout'
 import TopBar from '@/components/layout/TopBar'
 import LeftPanel from '@/components/layout/LeftPanel'
@@ -22,7 +24,12 @@ const queryClient = new QueryClient({
 
 function App() {
   const currentTheme = useThemeStore((s) => s.currentTheme)
+  const uiTheme = useUIThemeStore((s) => s.uiTheme)
   const entry = getThemeEntry(currentTheme)
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-ui-theme', uiTheme)
+  }, [uiTheme])
 
   return (
     <QueryClientProvider client={queryClient}>
