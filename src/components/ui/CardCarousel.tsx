@@ -25,7 +25,7 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
     return () => clearInterval(timer)
   }, [autoPlay, isPaused, interval, next, items.length])
 
-  if (items.length === 0) return <div style={{ color: '#6b7280', fontSize: '0.75rem', textAlign: 'center' }}>暂无数据</div>
+  if (items.length === 0) return <div style={{ color: 'var(--text-tertiary)', fontSize: '0.75rem', textAlign: 'center' }}>暂无数据</div>
 
   const item = items[current]
 
@@ -37,22 +37,22 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
     >
       <div
         style={{
-          background: 'rgba(74,158,255,0.08)',
-          border: '1px solid rgba(74,158,255,0.15)',
+          background: 'var(--card-carousel-bg)',
+          border: '1px solid var(--card-carousel-border)',
           borderRadius: 8,
           padding: '14px 16px',
           transition: 'all 0.4s',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-          <div style={{ fontSize: 14, fontWeight: 600, color: '#4a9eff', flex: 1 }}>{item.title}</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--accent)', flex: 1 }}>{item.title}</div>
           {item.tag && (
             <span style={{
               padding: '2px 8px',
               borderRadius: 3,
               fontSize: 10,
-              background: item.tagColor || 'rgba(74,158,255,0.15)',
-              color: item.tagColor || '#4a9eff',
+              background: item.tagColor || 'rgba(var(--accent-rgb), 0.15)',
+              color: item.tagColor || 'var(--accent)',
               whiteSpace: 'nowrap',
             }}>
               {item.tag}
@@ -60,7 +60,7 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
           )}
         </div>
         {item.subtitle && (
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>{item.subtitle}</div>
+          <div style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>{item.subtitle}</div>
         )}
       </div>
 
@@ -73,7 +73,7 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
               width: i === current ? 18 : 6,
               height: 6,
               borderRadius: 3,
-              background: i === current ? '#4a9eff' : 'rgba(255,255,255,0.15)',
+              background: i === current ? 'var(--accent)' : 'var(--card-carousel-dot-inactive)',
               cursor: 'pointer',
               transition: 'all 0.3s',
             }}
@@ -82,8 +82,8 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', position: 'absolute', top: '50%', left: -8, right: -8, transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-        <button onClick={prev} style={{ pointerEvents: 'auto', background: 'rgba(0,0,0,0.5)', border: 'none', color: '#fff', width: 24, height: 24, borderRadius: '50%', cursor: 'pointer', fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
-        <button onClick={next} style={{ pointerEvents: 'auto', background: 'rgba(0,0,0,0.5)', border: 'none', color: '#fff', width: 24, height: 24, borderRadius: '50%', cursor: 'pointer', fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
+        <button onClick={prev} style={{ pointerEvents: 'auto', background: 'var(--nav-arrow-bg)', border: 'none', color: 'var(--text-primary)', width: 24, height: 24, borderRadius: '50%', cursor: 'pointer', fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
+        <button onClick={next} style={{ pointerEvents: 'auto', background: 'var(--nav-arrow-bg)', border: 'none', color: 'var(--text-primary)', width: 24, height: 24, borderRadius: '50%', cursor: 'pointer', fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
       </div>
     </div>
   )

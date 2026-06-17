@@ -37,7 +37,7 @@ export default function ScrollList({ items, speed = 2000, maxHeight = 150 }: Scr
       onMouseLeave={() => setIsPaused(false)}
     >
       {items.map((item) => (
-        <div key={item.id} style={{ padding: '4px 0', borderBottom: '1px solid rgba(74,158,255,0.06)', fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>
+        <div key={item.id} style={{ padding: '4px 0', borderBottom: '1px solid var(--border-light)', fontSize: 12, color: 'var(--text-secondary)' }}>
           {item.content}
         </div>
       ))}
