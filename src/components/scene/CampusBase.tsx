@@ -231,11 +231,11 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       {building.id === 'bell-tower' && (
         <group>
           <mesh position={[0, h / 2 + 0.75, 0]}>
-            <coneGeometry args={[1.25, 1.5, 4]} />
-            <meshStandardMaterial color={cfg.building.facadeColor} />
+            <coneGeometry args={[1.77, 1.5, 4]} />
+            <meshStandardMaterial color={timeMode === 'day' ? '#b84c30' : '#0c1a28'} />
           </mesh>
           <Html
-            position={[0, 0.5, d / 2]} occlude
+            position={[0, 0.5, d / 2 + 0.15]}
             center distanceFactor={40} style={{ pointerEvents: 'none' }}
           >
             <div style={{
