@@ -167,6 +167,22 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         <meshStandardMaterial color={cfg.building.facadeColor} />
       </Box>
 
+      {/* 5. 中央拱门（仅 chongzhi） */}
+      {building.id === 'chongzhi' && (
+        <group position={[0, 0, d / 2]}>
+          {/* 拱门洞（深色 Box 模拟） */}
+          <Box args={[2.5, 3, 0.6]} position={[0, -h / 2 + 1.5, 0.3]}>
+            <meshStandardMaterial
+              color={timeMode === 'day' ? '#1a1a1a' : '#000000'}
+            />
+          </Box>
+          {/* 拱门顶部装饰条 */}
+          <Box args={[3, 0.4, 0.8]} position={[0, -h / 2 + 3.2, 0.3]}>
+            <meshStandardMaterial color={cfg.building.facadeColor} />
+          </Box>
+        </group>
+      )}
+
       <Html
         position={[0, building.size[1] / 2 + (isSelected ? 3 : 2), 0]}
         center distanceFactor={40} style={{ pointerEvents: 'none', zIndex: isSelected ? 10 : 1 }}
