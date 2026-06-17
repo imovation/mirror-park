@@ -13,16 +13,18 @@
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 
-**已完成**：平台框架、6 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局 / **Tron 暗黑赛博风格**）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局、代码分割。
+**已完成**：平台框架、6 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局、代码分割。
 
-**Tron 3D 场景特性**：
-- WebGL 自定义 Shader：建筑立面窗户发光（`buildingWindow.glsl`）、道路数据光流动画（`roadFlow.glsl`）
-- 后处理特效：Bloom 辉光（@react-three/postprocessing v2.19.1，注意不可升级 v3）
+**已完成（Day/Night 模式统一）**：Classic 和 Tron 两套场景已合并为统一 `CampusBase`，通过 `useTimeModeStore` 切换白天/夜间模式，所有视觉参数集中在 `src/config/dayNightTheme.ts`。
+
+**3D 场景特性**：
+- **Day/Night 模式**：白天（红砖暖光 + 绿地 + 米白窗户）、夜间（暗黑赛博 + 青色窗户发光 + 道路光流）
+- WebGL 自定义 Shader：建筑立面窗户发光（`buildingWindow.glsl`）、道路数据光流动画（`roadFlow.glsl`，仅夜间）
+- 后处理特效：Bloom 辉光（@react-three/postprocessing v2.19.1，不可升级 v3；白天 0.3 / 夜间 0.6）
 - 景观系统：绿篱、花坛、大小树（`Landscape`）、POI 标注点 + 建筑间数据连线（`GroundDecorations`）
-- 环境：镜面反射水库（`MeshReflectorMaterial`）、HDRI 环境光（`Environment preset="city"`）、接触阴影（`ContactShadows`）
+- 环境：镜面反射水库（`MeshReflectorMaterial`，仅夜间）、HDRI 环境光（`Environment`）、接触阴影（`ContactShadows`）
 - 已知问题：`autoRotate` 旋转在暗色表面产生微抖动（设 speed=0.08, damping=0.3 缓解）
-- **双风格切换**：底部/顶部按钮可在 Classic（经典红砖）和 Tron（暗黑赛博）间实时切换，由 `useStyleStore` 控制
-- 已移除组件：DataRings、LightPillar、Grid、Hillside、MountainSilhouette、GroundZones（历史重构遗留，Classic 版本中保留）
+- 已移除组件：Hillside、Grid（两模式均已移除）
 
 **待完成（需外部资源）**：真实 CAD 三维模型、真实 API 对接（诺图/大华 ICC/OA/教务）、室内场景建模、监控视频流。
 
@@ -64,7 +66,7 @@ src/
 │   ├── useThemeStore.ts   # currentTheme, switchTheme(), finishTransition()
 │   ├── useSceneStore.ts   # selectedObjectId, selectObject(), requestFlyTo(), flyToRequest
 │   ├── useUIStore.ts      # alertQueue, addAlert(), dismissAlert(), modalStack
-│   ├── useStyleStore.ts   # visualStyle (classic/tron), toggleStyle()
+│   ├── useTimeModeStore.ts   # timeMode (day/night), toggleMode()
 │   └── themes/            # 6 个专题 store (当前是空骨架，未被使用)
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
