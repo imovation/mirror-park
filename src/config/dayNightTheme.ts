@@ -96,7 +96,7 @@ export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
       standardColor: '#4a8ac4',
       mirrorColor: '#0d1a2d',
     },
-    cityContext: { color: '#3a404a' },
+    cityContext: { color: '#c4c4bc' },
     landscape: {
       hedgeColor: '#3a6b3a',
       treeTrunkColor: '#5c3a1e',

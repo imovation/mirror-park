@@ -607,11 +607,15 @@ function CityContext() {
         if (Math.abs(x) < 80 && Math.abs(z) < 80) continue
         if (z < -30 && Math.abs(x) < 40) continue
         if (z > 20 && Math.abs(x) < 20) continue
-        const h = 2 + Math.abs(Math.sin(x * 12.3 + z * 4.5)) * 6
-        const w = 20 + Math.abs(Math.cos(x * 3.2)) * 15
-        const d = 20 + Math.abs(Math.sin(z * 8.1)) * 15
-        const offsetX = Math.sin(x * z) * 8
-        const offsetZ = Math.cos(x * z) * 8
+        // 多层正弦叠加，形成错落有致的山际线
+        const h1 = Math.abs(Math.sin(x * 0.07 + z * 0.05)) * 12
+        const h2 = Math.abs(Math.cos(x * 0.03 - z * 0.06)) * 6
+        const h3 = Math.sin(x * 0.12) * Math.cos(z * 0.09) > 0.3 ? 6 : 0
+        const h = 2 + h1 + h2 + h3
+        const w = 15 + Math.abs(Math.cos(x * 0.04 + z * 0.03)) * 22
+        const d = 15 + Math.abs(Math.sin(z * 0.04 - x * 0.03)) * 22
+        const offsetX = Math.sin(x * 0.015 + z * 0.01) * 14
+        const offsetZ = Math.cos(x * 0.01 - z * 0.015) * 14
         data.push({ position: [x + offsetX, h / 2, z + offsetZ] as [number, number, number], size: [w, h, d] as [number, number, number] })
       }
     }
