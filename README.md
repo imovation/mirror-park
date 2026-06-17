@@ -1,6 +1,8 @@
 # 智慧校园可视化平台
 
-东莞滨海湾镇远中学数字孪生大屏展示系统。采用 Three.js (R3F) + React + ECharts 构建，将校园物理空间与业务数据融合，在大屏端集中呈现校园运行状态。支持 **Classic 经典红砖** 和 **Tron 暗黑赛博** 两种视觉风格，右上角一键切换。
+东莞滨海湾镇远中学数字孪生大屏展示系统。采用 Three.js (R3F) + React + ECharts 构建，将校园物理空间与业务数据融合，在大屏端集中呈现校园运行状态。支持 **白天** 和 **夜间** 两种视觉模式，右上角一键切换。
+
+建筑模型采用学校风格重构：红砖主体 + 白色楼板带/外走廊/女儿墙，教学三栋楼由连廊连接，崇智楼中央拱门式校门，独立钟楼展示校名。
 
 ## 技术栈
 
@@ -30,7 +32,7 @@ pnpm test       # 运行测试
 
 | 专题 | 面板数 | 3D 场景 |
 |------|--------|---------|
-| 综合态势 | 6 | 校园全景鸟瞰 (Tron 赛博风格) |
+| 综合态势 | 6 | 校园全景鸟瞰 (白天/夜间模式) |
 | 教学研究 | 6 | 教学楼近景 |
 | 行政办公 | 6 | 行政区域 |
 | 智慧图书 | 6 | 崇文楼图书馆 |
@@ -62,4 +64,6 @@ src/
 - 原实现计划：[docs/superpowers/plans/2026-06-16-platform-framework.md](docs/superpowers/plans/2026-06-16-platform-framework.md)
 - Tron 风格技术设计：[docs/superpowers/specs/2026-06-16-tron-style-redesign.md](docs/superpowers/specs/2026-06-16-tron-style-redesign.md)
 - Tron 风格实现计划：[docs/superpowers/plans/2026-06-16-tron-style-redesign.md](docs/superpowers/plans/2026-06-16-tron-style-redesign.md)
+- Day/Night 模式设计：[docs/superpowers/specs/2025-06-17-day-night-mode-design.md](docs/superpowers/specs/2025-06-17-day-night-mode-design.md)
+- 建筑模型优化设计：[docs/superpowers/specs/2025-06-17-building-refactor-design.md](docs/superpowers/specs/2025-06-17-building-refactor-design.md)
 - 项目状态：[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)
