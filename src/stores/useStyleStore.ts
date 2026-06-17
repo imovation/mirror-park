@@ -1,16 +1,15 @@
 import { create } from 'zustand'
+import type { TimeMode } from '@/config/dayNightTheme'
 
-export type VisualStyle = 'classic' | 'tron'
-
-interface StyleState {
-  visualStyle: VisualStyle
-  toggleStyle: () => void
-  setStyle: (style: VisualStyle) => void
+interface TimeModeState {
+  timeMode: TimeMode
+  toggleMode: () => void
+  setMode: (mode: TimeMode) => void
 }
 
-export const useStyleStore = create<StyleState>((set) => ({
-  visualStyle: 'tron',
-  toggleStyle: () =>
-    set((s) => ({ visualStyle: s.visualStyle === 'classic' ? 'tron' : 'classic' })),
-  setStyle: (style) => set({ visualStyle: style }),
+export const useTimeModeStore = create<TimeModeState>((set) => ({
+  timeMode: 'day',
+  toggleMode: () =>
+    set((s) => ({ timeMode: s.timeMode === 'day' ? 'night' : 'day' })),
+  setMode: (mode) => set({ timeMode: mode }),
 }))
