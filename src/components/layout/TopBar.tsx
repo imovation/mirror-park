@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { useThemeStore } from '@/stores/useThemeStore'
-import { useStyleStore } from '@/stores/useStyleStore'
+import { useTimeModeStore } from '@/stores/useStyleStore'
 import { THEMES } from '@/types/theme'
 
 export default function TopBar() {
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const switchTheme = useThemeStore((s) => s.switchTheme)
-  const visualStyle = useStyleStore((s) => s.visualStyle)
-  const toggleStyle = useStyleStore((s) => s.toggleStyle)
+  const timeMode = useTimeModeStore((s) => s.timeMode)
+  const toggleMode = useTimeModeStore((s) => s.toggleMode)
   const [time, setTime] = useState(new Date())
   const [playing, setPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -80,19 +80,19 @@ export default function TopBar() {
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
         <button
-          onClick={toggleStyle}
+          onClick={toggleMode}
           style={{
-            background: visualStyle === 'tron' ? 'rgba(0,229,255,0.15)' : 'rgba(160,82,45,0.15)',
-            border: visualStyle === 'tron' ? '1px solid rgba(0,229,255,0.4)' : '1px solid rgba(160,82,45,0.4)',
+            background: timeMode === 'night' ? 'rgba(0,229,255,0.15)' : 'rgba(255,180,60,0.15)',
+            border: timeMode === 'night' ? '1px solid rgba(0,229,255,0.4)' : '1px solid rgba(255,180,60,0.4)',
             borderRadius: 4,
-            color: visualStyle === 'tron' ? '#00e5ff' : '#a0522d',
+            color: timeMode === 'night' ? '#00e5ff' : '#ffb83c',
             cursor: 'pointer',
             fontSize: 12,
             padding: '4px 12px',
             fontWeight: 600,
           }}
         >
-          {visualStyle === 'classic' ? '🧱 经典' : '💠 Tron'}
+          {timeMode === 'day' ? '☀️ 白天' : '🌙 夜间'}
         </button>
         <button
           onClick={toggleMusic}
