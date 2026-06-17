@@ -227,23 +227,15 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         </Box>
       )}
 
-      {/* 钟楼装饰：钟面 + 金字塔顶 + 校名 */}
+      {/* 钟楼装饰：金字塔顶 + 竖向校名 */}
       {building.id === 'bell-tower' && (
         <group>
-          <mesh position={[0, 3, d / 2 + 0.05]} rotation={[Math.PI / 2, 0, 0]}>
-            <cylinderGeometry args={[0.8, 0.8, 0.05, 32]} />
-            <meshStandardMaterial color="#f0e6c8" />
-          </mesh>
-          <mesh position={[0, 3, d / 2 + 0.06]} rotation={[Math.PI / 2, 0, 0]}>
-            <ringGeometry args={[0.8, 0.95, 32]} />
-            <meshStandardMaterial color="#8B7355" side={THREE.DoubleSide} />
-          </mesh>
-          <mesh position={[0, h / 2 + 0.6, 0]}>
-            <coneGeometry args={[1.2, 1.2, 4]} />
+          <mesh position={[0, h / 2 + 1.35, 0]}>
+            <coneGeometry args={[1.25, 1.5, 4]} />
             <meshStandardMaterial color={cfg.building.facadeColor} />
           </mesh>
           <Html
-            position={[0, 0.5, d / 2 + 0.1]}
+            position={[0, 0.5, d / 2]}
             center distanceFactor={40} style={{ pointerEvents: 'none' }}
           >
             <div style={{
