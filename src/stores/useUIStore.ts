@@ -27,7 +27,7 @@ export const useUIStore = create<UIState>((set) => ({
     set((s) => ({
       alertQueue: [
         ...s.alertQueue,
-        { ...alert, id: crypto.randomUUID(), timestamp: new Date() },
+        { ...alert, id: `alert-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`, timestamp: new Date() },
       ],
     })),
   dismissAlert: (id) =>
