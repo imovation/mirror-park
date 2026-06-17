@@ -101,6 +101,13 @@ function BuildingMesh({ building }: { building: BuildingData }) {
   }
 
   const edgeColor = timeMode === 'night' ? '#00e5ff' : '#8B7355'
+  const [w, h, d] = building.size
+
+  const floorBandCount = h >= 14 ? 7 : h >= 8 ? 5 : h >= 5 ? 3 : 1
+  const floorBandYs = Array.from({ length: floorBandCount }, (_, i) =>
+    -h / 2 + (i + 1) * (h / (floorBandCount + 1))
+  )
+
   return (
     <group
       position={building.position}
@@ -117,6 +124,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         if (isOverview) { setHovered(false); document.body.style.cursor = 'default' }
       }}
     >
+      {/* 1. 主体（红砖+窗户shader） */}
       <Box args={building.size} castShadow receiveShadow>
         <primitive object={mat} attach="material" />
         <Edges
@@ -126,8 +134,41 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         />
       </Box>
 
+      {/* 2. 楼板带（白色水平条带） */}
+      {floorBandYs.map((y, i) => (
+        <Box
+          key={`band-${i}`}
+          args={[w + 0.3, 0.3, d + 0.3]}
+          position={[0, y, 0]}
+          castShadow
+        >
+          <meshStandardMaterial color={cfg.building.facadeColor} />
+        </Box>
+      ))}
+
+      {/* 3. 外走廊（正面凸出条带） */}
+      {floorBandYs.map((y, i) => (
+        <Box
+          key={`balcony-${i}`}
+          args={[w * 0.8, 0.5, 0.6]}
+          position={[0, y - 0.4, d / 2 + 0.3]}
+          castShadow
+        >
+          <meshStandardMaterial color={cfg.building.facadeColor} />
+        </Box>
+      ))}
+
+      {/* 4. 顶部女儿墙 */}
+      <Box
+        args={[w + 0.4, 0.6, d + 0.4]}
+        position={[0, h / 2 + 0.3, 0]}
+        castShadow
+      >
+        <meshStandardMaterial color={cfg.building.facadeColor} />
+      </Box>
+
       <Html
-        position={[0, building.size[1] / 2 + (isSelected ? 2.5 : 1.5), 0]}
+        position={[0, building.size[1] / 2 + (isSelected ? 3 : 2), 0]}
         center distanceFactor={40} style={{ pointerEvents: 'none', zIndex: isSelected ? 10 : 1 }}
       >
         <div style={{
