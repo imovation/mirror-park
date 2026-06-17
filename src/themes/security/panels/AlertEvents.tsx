@@ -19,6 +19,7 @@ export default function AlertEvents() {
       { type: 'error', message: '北围墙周界入侵告警' },
       { type: 'warning', message: '宿舍楼门禁异常' },
     ]
+    addAlert(alerts[Math.floor(Math.random() * alerts.length)])
     const timer = setInterval(() => {
       addAlert(alerts[Math.floor(Math.random() * alerts.length)])
     }, 15000)
