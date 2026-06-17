@@ -21,7 +21,8 @@
 - 景观系统：绿篱、花坛、大小树（`Landscape`）、POI 标注点 + 建筑间数据连线（`GroundDecorations`）
 - 环境：镜面反射水库（`MeshReflectorMaterial`）、HDRI 环境光（`Environment preset="city"`）、接触阴影（`ContactShadows`）
 - 已知问题：`autoRotate` 旋转在暗色表面产生微抖动（设 speed=0.08, damping=0.3 缓解）
-- 已移除组件：DataRings、LightPillar、Grid、Hillside、MountainSilhouette、GroundZones（历史重构遗留）
+- **双风格切换**：底部/顶部按钮可在 Classic（经典红砖）和 Tron（暗黑赛博）间实时切换，由 `useStyleStore` 控制
+- 已移除组件：DataRings、LightPillar、Grid、Hillside、MountainSilhouette、GroundZones（历史重构遗留，Classic 版本中保留）
 
 **待完成（需外部资源）**：真实 CAD 三维模型、真实 API 对接（诺图/大华 ICC/OA/教务）、室内场景建模、监控视频流。
 
@@ -63,6 +64,7 @@ src/
 │   ├── useThemeStore.ts   # currentTheme, switchTheme(), finishTransition()
 │   ├── useSceneStore.ts   # selectedObjectId, selectObject(), requestFlyTo(), flyToRequest
 │   ├── useUIStore.ts      # alertQueue, addAlert(), dismissAlert(), modalStack
+│   ├── useStyleStore.ts   # visualStyle (classic/tron), toggleStyle()
 │   └── themes/            # 6 个专题 store (当前是空骨架，未被使用)
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
