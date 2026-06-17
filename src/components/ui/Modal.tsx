@@ -20,7 +20,7 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'rgba(0,0,0,0.6)',
+        background: 'var(--overlay-bg)',
         backdropFilter: 'blur(4px)',
       }}
       onClick={onClose}
@@ -29,8 +29,8 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
         style={{
           width,
           maxHeight: '80vh',
-          background: 'rgba(10, 22, 40, 0.95)',
-          border: '1px solid rgba(74, 158, 255, 0.3)',
+          background: 'var(--panel-bg-solid)',
+          border: '1px solid var(--border-strong)',
           borderRadius: 8,
           overflow: 'hidden',
           boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
@@ -43,8 +43,8 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: '12px 20px',
-            borderBottom: '1px solid rgba(74,158,255,0.15)',
-            color: '#4a9eff',
+            borderBottom: '1px solid var(--border-light)',
+            color: 'var(--accent)',
             fontSize: 15,
             fontWeight: 600,
           }}
@@ -55,7 +55,7 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
             style={{
               background: 'none',
               border: 'none',
-              color: 'rgba(255,255,255,0.5)',
+              color: 'var(--text-tertiary)',
               cursor: 'pointer',
               fontSize: 18,
             }}
@@ -63,7 +63,7 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
             ✕
           </button>
         </div>
-        <div style={{ padding: 20, color: 'rgba(255,255,255,0.8)', fontSize: 13 }}>
+        <div style={{ padding: 20, color: 'var(--text-secondary)', fontSize: 13 }}>
           {children}
         </div>
       </div>

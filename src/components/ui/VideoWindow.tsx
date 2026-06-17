@@ -15,8 +15,8 @@ export default function VideoWindow({ visible, title, onClose }: VideoWindowProp
         right: 30,
         width: 400,
         zIndex: 800,
-        background: 'rgba(10,22,40,0.95)',
-        border: '1px solid rgba(74,158,255,0.3)',
+        background: 'var(--panel-bg-solid)',
+        border: '1px solid var(--border-strong)',
         borderRadius: 8,
         overflow: 'hidden',
         boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
@@ -28,8 +28,8 @@ export default function VideoWindow({ visible, title, onClose }: VideoWindowProp
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: '8px 14px',
-          borderBottom: '1px solid rgba(74,158,255,0.15)',
-          color: '#4a9eff',
+          borderBottom: '1px solid var(--border-light)',
+          color: 'var(--accent)',
           fontSize: 13,
           fontWeight: 600,
         }}
@@ -40,7 +40,7 @@ export default function VideoWindow({ visible, title, onClose }: VideoWindowProp
           style={{
             background: 'none',
             border: 'none',
-            color: 'rgba(255,255,255,0.5)',
+            color: 'var(--text-tertiary)',
             cursor: 'pointer',
             fontSize: 16,
           }}
@@ -55,7 +55,7 @@ export default function VideoWindow({ visible, title, onClose }: VideoWindowProp
           alignItems: 'center',
           justifyContent: 'center',
           background: '#000',
-          color: 'rgba(255,255,255,0.3)',
+          color: 'var(--text-muted)',
           fontSize: 13,
         }}
       >

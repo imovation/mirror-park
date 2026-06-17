@@ -11,8 +11,8 @@ export default function DashboardPanel({ title, children }: DashboardPanelProps)
       className="panel-enter"
       style={{
         margin: '6px 8px',
-        background: 'rgba(0, 0, 0, 0.35)',
-        border: '1px solid rgba(74, 158, 255, 0.12)',
+        background: 'var(--panel-bg)',
+        border: '1px solid var(--border)',
         borderRadius: 6,
         overflow: 'hidden',
         display: 'flex',
@@ -25,8 +25,8 @@ export default function DashboardPanel({ title, children }: DashboardPanelProps)
           padding: '8px 14px',
           fontSize: 13,
           fontWeight: 600,
-          color: '#4a9eff',
-          borderBottom: '1px solid rgba(74, 158, 255, 0.1)',
+          color: 'var(--accent)',
+          borderBottom: '1px solid var(--border-light)',
           flexShrink: 0,
         }}
       >
