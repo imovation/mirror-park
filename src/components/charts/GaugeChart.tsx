@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface GaugeChartProps {
   value: number
@@ -9,6 +10,7 @@ interface GaugeChartProps {
 }
 
 export default function GaugeChart({ value, max = 100, name = '', height = 180 }: GaugeChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     series: [
       {
@@ -30,9 +32,9 @@ export default function GaugeChart({ value, max = 100, name = '', height = 180 }
           },
         },
         pointer: { length: '60%', width: 4, itemStyle: { color: '#4a9eff' } },
-        axisTick: { distance: -12, length: 6, lineStyle: { color: '#fff', width: 1 } },
-        splitLine: { distance: -18, length: 14, lineStyle: { color: '#fff', width: 2 } },
-        axisLabel: { color: 'rgba(255,255,255,0.4)', fontSize: 10, distance: 25 },
+        axisTick: { distance: -12, length: 6, lineStyle: { color: t.gaugeAxis, width: 1 } },
+        splitLine: { distance: -18, length: 14, lineStyle: { color: t.gaugeAxis, width: 2 } },
+        axisLabel: { color: t.axisLabel, fontSize: 10, distance: 25 },
         detail: {
           valueAnimation: true,
           formatter: '{value}%',
@@ -42,7 +44,7 @@ export default function GaugeChart({ value, max = 100, name = '', height = 180 }
         },
         title: {
           offsetCenter: [0, '85%'],
-          color: 'rgba(255,255,255,0.5)',
+          color: t.title,
           fontSize: 11,
         },
         data: [{ value, name }],

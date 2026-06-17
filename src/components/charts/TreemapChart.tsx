@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface TreemapNode {
   name: string
@@ -14,6 +15,7 @@ interface TreemapChartProps {
 }
 
 export default function TreemapChart({ data, height = 220, title }: TreemapChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {
       formatter: (params: any) => {
@@ -44,14 +46,14 @@ export default function TreemapChart({ data, height = 220, title }: TreemapChart
           backgroundColor: 'rgba(0,0,0,0.3)',
         },
         itemStyle: {
-          borderColor: '#0a1628',
+          borderColor: t.borderColor,
           borderWidth: 2,
           gapWidth: 2,
         },
         levels: [
           {
             colorMappingBy: 'value',
-            itemStyle: { gapWidth: 2, borderWidth: 2, borderColor: '#0a1628' },
+            itemStyle: { gapWidth: 2, borderWidth: 2, borderColor: t.borderColor },
           },
           {
             colorMappingBy: 'value',
@@ -65,7 +67,7 @@ export default function TreemapChart({ data, height = 220, title }: TreemapChart
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }

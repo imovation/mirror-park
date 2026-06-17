@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface BarChartProps {
   data: { name: string; value: number }[]
@@ -9,20 +10,21 @@ interface BarChartProps {
 }
 
 export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff' }: BarChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
     grid: { left: 10, right: 20, top: 5, bottom: 5, containLabel: true },
     [horizontal ? 'yAxis' : 'xAxis']: {
       type: 'category',
       data: data.map((d) => d.name),
-      axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 11 },
+      axisLabel: { color: t.axisLabel, fontSize: 11 },
       axisLine: { show: false },
       axisTick: { show: false },
     },
     [horizontal ? 'xAxis' : 'yAxis']: {
       type: 'value',
-      splitLine: { lineStyle: { color: 'rgba(74,158,255,0.08)' } },
-      axisLabel: { color: 'rgba(255,255,255,0.4)', fontSize: 10 },
+      splitLine: { lineStyle: { color: t.splitLine } },
+      axisLabel: { color: t.axisLabel, fontSize: 10 },
     },
     series: [
       {

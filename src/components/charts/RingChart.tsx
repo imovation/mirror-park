@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface RingChartProps {
   data: { name: string; value: number }[]
@@ -11,6 +12,7 @@ interface RingChartProps {
 const DEFAULT_COLORS = ['#4a9eff', '#ff6d00', '#00c853', '#aa00ff', '#ffc107']
 
 export default function RingChart({ data, height = 200, colors = DEFAULT_COLORS, centerLabel }: RingChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'item' },
     color: colors,

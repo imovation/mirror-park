@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface LineChartProps {
   xData: string[]
@@ -10,23 +11,24 @@ interface LineChartProps {
 }
 
 export default function LineChart({ xData, series, height = 200, smooth = true, area = true }: LineChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
     legend: {
       bottom: 0,
-      textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 },
+      textStyle: { color: t.legendText, fontSize: 10 },
     },
     grid: { left: 10, right: 20, top: 5, bottom: 30, containLabel: true },
     xAxis: {
       type: 'category',
       data: xData,
-      axisLabel: { color: 'rgba(255,255,255,0.4)', fontSize: 10 },
-      axisLine: { lineStyle: { color: 'rgba(74,158,255,0.15)' } },
+      axisLabel: { color: t.axisLabel, fontSize: 10 },
+      axisLine: { lineStyle: { color: t.axisLine } },
     },
     yAxis: {
       type: 'value',
-      splitLine: { lineStyle: { color: 'rgba(74,158,255,0.08)' } },
-      axisLabel: { color: 'rgba(255,255,255,0.4)', fontSize: 10 },
+      splitLine: { lineStyle: { color: t.splitLine } },
+      axisLabel: { color: t.axisLabel, fontSize: 10 },
     },
     series: series.map((s) => ({
       name: s.name,

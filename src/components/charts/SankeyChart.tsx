@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface SankeyLink {
   source: string
@@ -15,6 +16,7 @@ interface SankeyChartProps {
 }
 
 export default function SankeyChart({ data, categories, height = 240, title }: SankeyChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {
       trigger: 'item',
@@ -30,7 +32,7 @@ export default function SankeyChart({ data, categories, height = 240, title }: S
         layoutIterations: 32,
         emphasis: { focus: 'adjacency' },
         lineStyle: { color: 'gradient', opacity: 0.4 },
-        label: { color: 'rgba(255,255,255,0.7)', fontSize: 11 },
+        label: { color: t.label, fontSize: 11 },
         data: categories.map((name) => ({ name })),
         links: data,
       } as any,
@@ -40,7 +42,7 @@ export default function SankeyChart({ data, categories, height = 240, title }: S
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }

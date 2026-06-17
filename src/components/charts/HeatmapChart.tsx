@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface HeatmapChartProps {
   xLabels: string[]
@@ -9,19 +10,20 @@ interface HeatmapChartProps {
 }
 
 export default function HeatmapChart({ xLabels, yLabels, data, height = 200 }: HeatmapChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { position: 'top' },
     grid: { left: 60, right: 20, top: 5, bottom: 30 },
     xAxis: {
       type: 'category',
       data: xLabels,
-      axisLabel: { color: 'rgba(255,255,255,0.4)', fontSize: 10 },
+      axisLabel: { color: t.axisLabel, fontSize: 10 },
       splitArea: { show: true },
     },
     yAxis: {
       type: 'category',
       data: yLabels,
-      axisLabel: { color: 'rgba(255,255,255,0.4)', fontSize: 10 },
+      axisLabel: { color: t.axisLabel, fontSize: 10 },
       splitArea: { show: true },
     },
     visualMap: {

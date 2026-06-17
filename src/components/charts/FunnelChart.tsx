@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface FunnelChartProps {
   data: { name: string; value: number }[]
@@ -11,6 +12,7 @@ interface FunnelChartProps {
 const DEFAULT_COLORS = ['#4a9eff', '#00c853', '#ffd600', '#ff6d00', '#aa00ff']
 
 export default function FunnelChart({ data, height = 260, title, color = DEFAULT_COLORS }: FunnelChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {
       trigger: 'item',
@@ -29,12 +31,12 @@ export default function FunnelChart({ data, height = 260, title, color = DEFAULT
         label: {
           show: true,
           position: 'inside',
-          color: '#fff',
+          color: t.label,
           fontSize: 12,
           formatter: '{b}: {c}',
         },
         labelLine: { show: false },
-        itemStyle: { borderColor: '#0a1628', borderWidth: 2 },
+        itemStyle: { borderColor: t.borderColor, borderWidth: 2 },
         emphasis: {
           label: { fontSize: 14, fontWeight: 'bold' },
         },
@@ -46,7 +48,7 @@ export default function FunnelChart({ data, height = 260, title, color = DEFAULT
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }

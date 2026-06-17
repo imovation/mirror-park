@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface PieChartProps {
   data: { name: string; value: number }[]
@@ -10,6 +11,7 @@ interface PieChartProps {
 const DEFAULT_COLORS = ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffc107', '#00bcd4']
 
 export default function PieChart({ data, height = 200, colors = DEFAULT_COLORS }: PieChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
     color: colors,
@@ -20,11 +22,11 @@ export default function PieChart({ data, height = 200, colors = DEFAULT_COLORS }
         center: ['50%', '50%'],
         data,
         label: {
-          color: 'rgba(255,255,255,0.6)',
+          color: t.label,
           fontSize: 10,
         },
         emphasis: {
-          itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.5)' },
+          itemStyle: { shadowBlur: 10, shadowColor: t.shadowColor },
         },
       },
     ],

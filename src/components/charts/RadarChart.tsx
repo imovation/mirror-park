@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface RadarIndicator {
   name: string
@@ -22,6 +23,7 @@ interface RadarChartProps {
 const SERIES_COLORS = ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffd600']
 
 export default function RadarChart({ indicator, series, height = 260, title }: RadarChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {
       trigger: 'item',
@@ -36,7 +38,7 @@ export default function RadarChart({ indicator, series, height = 260, title }: R
       splitNumber: 4,
       shape: 'polygon',
       axisName: {
-        color: 'rgba(255,255,255,0.6)',
+        color: t.label,
         fontSize: 11,
       },
       splitArea: {
@@ -45,10 +47,10 @@ export default function RadarChart({ indicator, series, height = 260, title }: R
         },
       },
       splitLine: {
-        lineStyle: { color: 'rgba(74,158,255,0.15)' },
+        lineStyle: { color: t.axisLine },
       },
       axisLine: {
-        lineStyle: { color: 'rgba(74,158,255,0.15)' },
+        lineStyle: { color: t.axisLine },
       },
     },
     series: [
@@ -71,7 +73,7 @@ export default function RadarChart({ indicator, series, height = 260, title }: R
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }

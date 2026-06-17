@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
+import { useChartTheme } from '@/config/chartTheme'
 
 interface SunburstNode {
   name: string
@@ -14,6 +15,7 @@ interface SunburstChartProps {
 }
 
 export default function SunburstChart({ data, height = 260, title }: SunburstChartProps) {
+  const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {
       formatter: (params: any) => {
@@ -30,12 +32,12 @@ export default function SunburstChart({ data, height = 260, title }: SunburstCha
         emphasis: { focus: 'descendant' },
         label: {
           rotate: 'radial',
-          color: '#fff',
+          color: t.label,
           fontSize: 11,
         },
         itemStyle: {
           borderRadius: 4,
-          borderColor: '#0a1628',
+          borderColor: t.borderColor,
           borderWidth: 2,
         },
         levels: [
@@ -56,7 +58,7 @@ export default function SunburstChart({ data, height = 260, title }: SunburstCha
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }
