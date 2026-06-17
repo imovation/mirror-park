@@ -16,11 +16,11 @@ export const SCENE = {
   FOG_NEAR: 50,
   FOG_FAR: 500,
   DEFAULT_CAMERA: {
-    position: [0, 80, 40] as [number, number, number],
+    position: [0, 60, 30] as [number, number, number],
     target: [0, 0, 0] as [number, number, number],
   },
   THEME_CAMERAS: {
-    overview: { position: [25, 50, 50] as [number, number, number], target: [0, 2, -5] as [number, number, number] },
+    overview: { position: [20, 35, 35] as [number, number, number], target: [0, 2, -5] as [number, number, number] },
     'teaching-research': { position: [-10, 25, 20] as [number, number, number], target: [-10, 5, 4] as [number, number, number] },
     admin: { position: [-15, 20, 15] as [number, number, number], target: [-5, 5, -8] as [number, number, number] },
     library: { position: [-5, 15, 2] as [number, number, number], target: [-10, 4, -10] as [number, number, number] },
