@@ -25,7 +25,7 @@ export const BUILDINGS: BuildingData[] = [
   { id: 'chongde', label: '崇德楼', position: [-13, 3, 6], size: [8, 6, 6], info: '初一年级教学楼 · 4层副楼' },
   { id: 'chongzhi', label: '崇智楼', position: [0, 4.5, 10], size: [14, 9, 7], info: '初二年级教学楼 · 6层主楼 · 正对校门 · 含中央拱门' },
   { id: 'chongxin', label: '崇信楼', position: [13, 3, 6], size: [8, 6, 6], info: '初三年级教学楼 · 4层副楼' },
-  { id: 'bell-tower', label: '钟楼', position: [0, 16, 16], size: [2.5, 10, 2.5], info: '镇远中学标志性钟楼 · 展示校名 · 置于校门入口后侧' },
+  { id: 'bell-tower', label: '钟楼', position: [8, 5, 14], size: [2.5, 10, 2.5], info: '镇远中学标志性钟楼 · 展示校名 · 拱门右前方' },
 
   // 独立中型楼
   { id: 'chongwen', label: '崇文楼', position: [-10, 2, -7], size: [12, 4, 7], info: '开放式图书馆 · 2层 · 藏书10万余册' },
@@ -300,6 +300,29 @@ function BuildingMesh({ building }: { building: BuildingData }) {
           )}
         </div>
       </Html>
+
+      {/* 钟楼竖向校名 */}
+      {building.id === 'bell-tower' && (
+        <Html
+          position={[0, h / 2 + 1.5, -d / 2 - 0.5]}
+          center distanceFactor={40} style={{ pointerEvents: 'none' }}
+        >
+          <div style={{
+            writingMode: 'vertical-rl',
+            color: timeMode === 'day' ? '#a0522d' : '#00e5ff',
+            fontSize: 16,
+            fontWeight: 'bold',
+            letterSpacing: 4,
+            textOrientation: 'upright',
+            textShadow: timeMode === 'day'
+              ? '0 1px 4px rgba(0,0,0,0.3)'
+              : '0 0 12px rgba(0,229,255,0.5)',
+            fontFamily: '"Noto Serif SC", "SimSun", serif',
+          }}>
+            镇远中学
+          </div>
+        </Html>
+      )}
     </group>
   )
 }
@@ -315,34 +338,6 @@ function Archways() {
 
   return (
     <group>
-      {/* 主校门入口 — 双柱 + 横梁 + 拱门 */}
-      {/* 左柱 */}
-      <Box args={[0.8, 9, 0.8]} position={[-3.5, 4.5, 20]}>{pillarMat}{edgeComp}</Box>
-      {/* 右柱 */}
-      <Box args={[0.8, 9, 0.8]} position={[3.5, 4.5, 20]}>{pillarMat}{edgeComp}</Box>
-      {/* 横梁 */}
-      <Box args={[8.2, 0.8, 1.2]} position={[0, 9, 20]}>{pillarMat}{edgeComp}</Box>
-      {/* 拱门主体 */}
-      <Box args={[6, 6, 2]} position={[0, 3, 20]}>{archMat}{edgeComp}</Box>
-      {/* 拱门顶部装饰 */}
-      <Box args={[7, 0.6, 2.5]} position={[0, 6.3, 20]}>{archMat}{edgeComp}</Box>
-
-      {/* 横梁上的校名字牌 */}
-      <Html position={[0, 9.5, 20]} center distanceFactor={40} style={{ pointerEvents: 'none' }}>
-        <div style={{
-          color: timeMode === 'day' ? '#a0522d' : '#00e5ff',
-          fontSize: 14,
-          fontWeight: 'bold',
-          letterSpacing: 6,
-          textShadow: timeMode === 'day'
-            ? '0 1px 3px rgba(0,0,0,0.3)'
-            : '0 0 10px rgba(0,229,255,0.5)',
-          whiteSpace: 'nowrap',
-        }}>
-          镇远中学
-        </div>
-      </Html>
-
       {/* 两侧连廊拱门（崇德楼↔崇智楼、崇智楼↔崇信楼） */}
       <Box args={[2, 5, 2]} position={[-7, 2.5, 8]}>{pillarMat}{edgeComp}</Box>
       <Box args={[2.5, 0.5, 3]} position={[-7, 5.2, 8]}>{archMat}{edgeComp}</Box>
