@@ -1,6 +1,6 @@
 # 智慧校园可视化平台
 
-东莞滨海湾镇远中学数字孪生大屏展示系统。采用 Three.js (R3F) + React + ECharts 构建，将校园物理空间与业务数据融合，在大屏端集中呈现校园运行状态。
+东莞滨海湾镇远中学数字孪生大屏展示系统。采用 Three.js (R3F) + React + ECharts 构建，将校园物理空间与业务数据融合，在大屏端集中呈现校园运行状态。3D 场景采用 **Tron 暗黑赛博风格**，使用自定义 WebGL Shader 实现建筑窗户发光和道路光流动画。
 
 ## 技术栈
 
@@ -9,6 +9,7 @@
 | 框架 | React 18 + TypeScript |
 | 构建 | Vite 5 + pnpm |
 | 3D 引擎 | Three.js via @react-three/fiber (R3F) + @react-three/drei |
+| 后处理 | @react-three/postprocessing (Bloom 辉光) |
 | 数据可视化 | ECharts 5 |
 | 状态管理 | Zustand |
 | 数据请求 | TanStack Query v5 |
@@ -29,7 +30,7 @@ pnpm test       # 运行测试
 
 | 专题 | 面板数 | 3D 场景 |
 |------|--------|---------|
-| 综合态势 | 6 | 校园全景鸟瞰 |
+| 综合态势 | 6 | 校园全景鸟瞰 (Tron 赛博风格) |
 | 教学研究 | 6 | 教学楼近景 |
 | 行政办公 | 6 | 行政区域 |
 | 智慧图书 | 6 | 崇文楼图书馆 |
@@ -44,9 +45,10 @@ src/
 ├── components/
 │   ├── charts/     # ECharts 封装 (Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap)
 │   ├── layout/     # ScreenLayout, TopBar, Panels, ErrorBoundary
-│   ├── scene/      # R3F 3D 场景 (CampusBase, Camera, Particles)
+│   ├── scene/      # R3F 3D 场景 (CampusBase, Camera, Particles, Landscape, GroundDecorations)
 │   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup
 ├── hooks/          # useSceneClick, useAutoScroll
+├── shaders/        # WebGL GLSL (buildingWindow窗户发光, roadFlow道路光流)
 ├── stores/         # Zustand (useThemeStore, useSceneStore, useUIStore + theme stubs)
 ├── themes/         # 6 个专题 (panels + scene + registry)
 ├── types/          # TypeScript 类型定义
@@ -56,6 +58,6 @@ src/
 ## 设计文档
 
 - 需求规格：[docs/智慧校园可视化平台项目需求规格书.md](docs/智慧校园可视化平台项目需求规格书.md)
-- 技术设计：[docs/superpowers/specs/2026-06-16-smart-campus-visualization-design.md](docs/superpowers/specs/2026-06-16-smart-campus-visualization-design.md)
-- 实现计划：[docs/superpowers/plans/2026-06-16-platform-framework.md](docs/superpowers/plans/2026-06-16-platform-framework.md)
+- 技术设计：[docs/superpowers/specs/2026-06-16-tron-style-redesign.md](docs/superpowers/specs/2026-06-16-tron-style-redesign.md)
+- 实现计划：[docs/superpowers/plans/2026-06-16-tron-style-redesign.md](docs/superpowers/plans/2026-06-16-tron-style-redesign.md)
 - 项目状态：[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)
