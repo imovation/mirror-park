@@ -58,6 +58,8 @@ src/
 ## 设计文档
 
 - 需求规格：[docs/智慧校园可视化平台项目需求规格书.md](docs/智慧校园可视化平台项目需求规格书.md)
-- 技术设计：[docs/superpowers/specs/2026-06-16-tron-style-redesign.md](docs/superpowers/specs/2026-06-16-tron-style-redesign.md)
-- 实现计划：[docs/superpowers/plans/2026-06-16-tron-style-redesign.md](docs/superpowers/plans/2026-06-16-tron-style-redesign.md)
+- 原技术设计：[docs/superpowers/specs/2026-06-16-smart-campus-visualization-design.md](docs/superpowers/specs/2026-06-16-smart-campus-visualization-design.md)
+- 原实现计划：[docs/superpowers/plans/2026-06-16-platform-framework.md](docs/superpowers/plans/2026-06-16-platform-framework.md)
+- Tron 风格技术设计：[docs/superpowers/specs/2026-06-16-tron-style-redesign.md](docs/superpowers/specs/2026-06-16-tron-style-redesign.md)
+- Tron 风格实现计划：[docs/superpowers/plans/2026-06-16-tron-style-redesign.md](docs/superpowers/plans/2026-06-16-tron-style-redesign.md)
 - 项目状态：[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)
