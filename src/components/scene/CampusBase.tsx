@@ -25,7 +25,7 @@ export const BUILDINGS: BuildingData[] = [
   { id: 'chongde', label: '崇德楼', position: [-13, 3, 6], size: [8, 6, 6], info: '初一年级教学楼 · 4层副楼' },
   { id: 'chongzhi', label: '崇智楼', position: [0, 4.5, 10], size: [14, 9, 7], info: '初二年级教学楼 · 6层主楼 · 正对校门 · 含中央拱门' },
   { id: 'chongxin', label: '崇信楼', position: [13, 3, 6], size: [8, 6, 6], info: '初三年级教学楼 · 4层副楼' },
-  { id: 'bell-tower', label: '钟楼', position: [0, 11, 12.5], size: [2, 5, 2], info: '镇远中学标志性钟楼 · 雅典学派风格 · 置于崇智楼顶部' },
+  { id: 'bell-tower', label: '钟楼', position: [0, 16, 16], size: [2.5, 10, 2.5], info: '镇远中学标志性钟楼 · 展示校名 · 置于校门入口后侧' },
 
   // 独立中型楼
   { id: 'chongwen', label: '崇文楼', position: [-10, 2, -7], size: [12, 4, 7], info: '开放式图书馆 · 2层 · 藏书10万余册' },
@@ -192,8 +192,8 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         />
       </Box>
 
-      {/* 2. 楼板带（白色水平条带） */}
-      {floorBandYs.map((y, i) => (
+      {/* 2. 楼板带（白色水平条带，钟楼是独立塔楼不画） */}
+      {building.id !== 'bell-tower' && floorBandYs.map((y, i) => (
         <Box
           key={`band-${i}`}
           args={[w + 0.3, 0.3, d + 0.3]}
@@ -204,8 +204,8 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         </Box>
       ))}
 
-      {/* 3. 外走廊（正面凸出条带） */}
-      {floorBandYs.map((y, i) => (
+      {/* 3. 外走廊（正面凸出条带，钟楼不画） */}
+      {building.id !== 'bell-tower' && floorBandYs.map((y, i) => (
         <Box
           key={`balcony-${i}`}
           args={[w * 0.8, 0.5, 0.6]}
@@ -307,20 +307,47 @@ function BuildingMesh({ building }: { building: BuildingData }) {
 function Archways() {
   const timeMode = useTimeModeStore((s) => s.timeMode)
   const cfg = DAY_NIGHT[timeMode]
-  const archMat = <meshStandardMaterial color={cfg.archway.bodyColor} transparent={false} />
+  const pillarMat = <meshStandardMaterial color={cfg.archway.bodyColor} transparent={false} />
+  const archMat = <meshStandardMaterial color={cfg.archway.topColor} transparent={false} />
   const edgeComp = cfg.archway.showEdges
     ? <Edges linewidth={2} threshold={15} color={cfg.archway.edgeColor} />
     : null
-  const topMat = <meshStandardMaterial color={cfg.archway.topColor} transparent={false} />
 
   return (
     <group>
-      <Box args={[6, 6, 2]} position={[0, 3, 16]}>{archMat}{edgeComp}</Box>
-      <Box args={[7, 0.6, 3]} position={[0, 6.3, 16]}>{topMat}{edgeComp}</Box>
-      <Box args={[2, 5, 2]} position={[-7, 2.5, 8]}>{archMat}{edgeComp}</Box>
-      <Box args={[2.5, 0.5, 3]} position={[-7, 5.2, 8]}>{topMat}{edgeComp}</Box>
-      <Box args={[2, 5, 2]} position={[7, 2.5, 8]}>{archMat}{edgeComp}</Box>
-      <Box args={[2.5, 0.5, 3]} position={[7, 5.2, 8]}>{topMat}{edgeComp}</Box>
+      {/* 主校门入口 — 双柱 + 横梁 + 拱门 */}
+      {/* 左柱 */}
+      <Box args={[0.8, 9, 0.8]} position={[-3.5, 4.5, 20]}>{pillarMat}{edgeComp}</Box>
+      {/* 右柱 */}
+      <Box args={[0.8, 9, 0.8]} position={[3.5, 4.5, 20]}>{pillarMat}{edgeComp}</Box>
+      {/* 横梁 */}
+      <Box args={[8.2, 0.8, 1.2]} position={[0, 9, 20]}>{pillarMat}{edgeComp}</Box>
+      {/* 拱门主体 */}
+      <Box args={[6, 6, 2]} position={[0, 3, 20]}>{archMat}{edgeComp}</Box>
+      {/* 拱门顶部装饰 */}
+      <Box args={[7, 0.6, 2.5]} position={[0, 6.3, 20]}>{archMat}{edgeComp}</Box>
+
+      {/* 横梁上的校名字牌 */}
+      <Html position={[0, 9.5, 20]} center distanceFactor={40} style={{ pointerEvents: 'none' }}>
+        <div style={{
+          color: timeMode === 'day' ? '#a0522d' : '#00e5ff',
+          fontSize: 14,
+          fontWeight: 'bold',
+          letterSpacing: 6,
+          textShadow: timeMode === 'day'
+            ? '0 1px 3px rgba(0,0,0,0.3)'
+            : '0 0 10px rgba(0,229,255,0.5)',
+          whiteSpace: 'nowrap',
+        }}>
+          镇远中学
+        </div>
+      </Html>
+
+      {/* 两侧连廊拱门（崇德楼↔崇智楼、崇智楼↔崇信楼） */}
+      <Box args={[2, 5, 2]} position={[-7, 2.5, 8]}>{pillarMat}{edgeComp}</Box>
+      <Box args={[2.5, 0.5, 3]} position={[-7, 5.2, 8]}>{archMat}{edgeComp}</Box>
+      <Box args={[2, 5, 2]} position={[7, 2.5, 8]}>{pillarMat}{edgeComp}</Box>
+      <Box args={[2.5, 0.5, 3]} position={[7, 5.2, 8]}>{archMat}{edgeComp}</Box>
     </group>
   )
 }
