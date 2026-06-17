@@ -39,6 +39,64 @@ export const BUILDINGS: BuildingData[] = [
   { id: 'gymnasium', label: '体育馆', position: [-24, 5.1, 0], size: [14, 10, 18], info: '多功能体育馆 · 楼顶400m跑道+真草球场' },
 ]
 
+function ConnectingCorridors() {
+  const timeMode = useTimeModeStore((s) => s.timeMode)
+  const cfg = DAY_NIGHT[timeMode]
+
+  // 崇德楼中心 (-13, 3, 6), size [8, 6, 6]
+  // 崇智楼中心 (0, 4.5, 10), size [14, 9, 7]
+  // 崇信楼中心 (13, 3, 6), size [8, 6, 6]
+
+  const corridorColor = cfg.building.facadeColor
+
+  // 连廊 1：崇德楼 → 崇智楼（连接左翼到主楼）
+  const c1Start: [number, number, number] = [-9, 2.5, 6]
+  const c1End: [number, number, number] = [-7, 2.5, 10]
+  const c1Mid: [number, number, number] = [
+    (c1Start[0] + c1End[0]) / 2,
+    (c1Start[1] + c1End[1]) / 2,
+    (c1Start[2] + c1End[2]) / 2,
+  ]
+  const c1Dx = c1End[0] - c1Start[0]
+  const c1Dz = c1End[2] - c1Start[2]
+  const c1Length = Math.sqrt(c1Dx * c1Dx + c1Dz * c1Dz)
+  const c1RotY = Math.atan2(c1Dx, c1Dz)
+
+  // 连廊 2：崇智楼 → 崇信楼（连接主楼到右翼）
+  const c2Start: [number, number, number] = [7, 2.5, 10]
+  const c2End: [number, number, number] = [9, 2.5, 6]
+  const c2Mid: [number, number, number] = [
+    (c2Start[0] + c2End[0]) / 2,
+    (c2Start[1] + c2End[1]) / 2,
+    (c2Start[2] + c2End[2]) / 2,
+  ]
+  const c2Dx = c2End[0] - c2Start[0]
+  const c2Dz = c2End[2] - c2Start[2]
+  const c2Length = Math.sqrt(c2Dx * c2Dx + c2Dz * c2Dz)
+  const c2RotY = Math.atan2(c2Dx, c2Dz)
+
+  return (
+    <group>
+      <Box
+        args={[c1Length, 1.5, 1.5]}
+        position={c1Mid}
+        rotation={[0, c1RotY, 0]}
+        castShadow
+      >
+        <meshStandardMaterial color={corridorColor} />
+      </Box>
+      <Box
+        args={[c2Length, 1.5, 1.5]}
+        position={c2Mid}
+        rotation={[0, c2RotY, 0]}
+        castShadow
+      >
+        <meshStandardMaterial color={corridorColor} />
+      </Box>
+    </group>
+  )
+}
+
 function createWindowMaterial(
   cfg: DayNightTheme['building'],
   windowDensity: number,
@@ -653,6 +711,7 @@ export default function CampusBase() {
       <Landscape />
       <Reservoir />
       <GroundDecorations />
+      <ConnectingCorridors />
 
       {BUILDINGS.map((b) => (
         <BuildingMesh key={b.id} building={b} />
