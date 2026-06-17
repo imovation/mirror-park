@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { useTimeModeStore } from '@/stores/useTimeModeStore'
+import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import { THEMES } from '@/types/theme'
 
 export default function TopBar() {
@@ -8,6 +9,8 @@ export default function TopBar() {
   const switchTheme = useThemeStore((s) => s.switchTheme)
   const timeMode = useTimeModeStore((s) => s.timeMode)
   const toggleMode = useTimeModeStore((s) => s.toggleMode)
+  const uiTheme = useUIThemeStore((s) => s.uiTheme)
+  const toggleUITheme = useUIThemeStore((s) => s.toggleUITheme)
   const [time, setTime] = useState(new Date())
   const [playing, setPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -47,12 +50,12 @@ export default function TopBar() {
         justifyContent: 'space-between',
         height: '100%',
         padding: '0 24px',
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%)',
-        borderBottom: '1px solid rgba(74, 158, 255, 0.15)',
+        background: 'var(--topbar-bg)',
+        borderBottom: '1px solid var(--border-light)',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span style={{ fontSize: 20, fontWeight: 'bold', color: '#4a9eff', letterSpacing: 2 }}>
+        <span style={{ fontSize: 20, fontWeight: 'bold', color: 'var(--accent)', letterSpacing: 2 }}>
           智慧校园可视化平台
         </span>
       </div>
@@ -66,8 +69,8 @@ export default function TopBar() {
               padding: '6px 16px',
               border: 'none',
               borderRadius: 4,
-              background: currentTheme === t.id ? 'rgba(74,158,255,0.2)' : 'transparent',
-              color: currentTheme === t.id ? '#4a9eff' : 'rgba(255,255,255,0.5)',
+              background: currentTheme === t.id ? 'rgba(var(--accent-rgb), 0.2)' : 'transparent',
+              color: currentTheme === t.id ? 'var(--accent)' : 'var(--text-tertiary)',
               fontSize: 13,
               cursor: 'pointer',
               transition: 'all 0.3s',
@@ -78,7 +81,22 @@ export default function TopBar() {
         ))}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 13, color: 'var(--text-tertiary)' }}>
+        <button
+          onClick={toggleUITheme}
+          style={{
+            background: uiTheme === 'light' ? 'rgba(var(--accent-rgb), 0.15)' : 'transparent',
+            border: '1px solid var(--border-light)',
+            borderRadius: 4,
+            color: 'var(--accent)',
+            cursor: 'pointer',
+            fontSize: 12,
+            padding: '4px 10px',
+            fontWeight: 600,
+          }}
+        >
+          {uiTheme === 'dark' ? '☀️ 亮色' : '🌙 暗色'}
+        </button>
         <button
           onClick={toggleMode}
           style={{
@@ -97,10 +115,10 @@ export default function TopBar() {
         <button
           onClick={toggleMusic}
           style={{
-            background: playing ? 'rgba(74,158,255,0.15)' : 'transparent',
-            border: '1px solid rgba(74,158,255,0.2)',
+            background: playing ? 'rgba(var(--accent-rgb), 0.15)' : 'transparent',
+            border: '1px solid var(--border-light)',
             borderRadius: 4,
-            color: playing ? '#4a9eff' : 'rgba(255,255,255,0.25)',
+            color: playing ? 'var(--accent)' : 'var(--text-muted)',
             cursor: 'pointer',
             fontSize: 12,
             padding: '4px 8px',
@@ -109,7 +127,7 @@ export default function TopBar() {
           {playing ? '🔊' : '🔇'}
         </button>
         <span>{dateStr}</span>
-        <span style={{ fontSize: 16, color: '#4a9eff', fontFamily: 'monospace' }}>{timeStr}</span>
+        <span style={{ fontSize: 16, color: 'var(--accent)', fontFamily: 'monospace' }}>{timeStr}</span>
       </div>
     </div>
   )

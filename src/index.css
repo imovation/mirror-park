@@ -17,6 +17,7 @@
   --border-light: rgba(74, 158, 255, 0.06);
   --border-strong: rgba(74, 158, 255, 0.3);
   --accent: #4a9eff;
+  --accent-rgb: 74, 158, 255;
   --color-success: #00c853;
   --color-warning: #ff6d00;
   --color-danger: #ff1744;

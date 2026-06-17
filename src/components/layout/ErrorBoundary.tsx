@@ -36,25 +36,25 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
               alignItems: 'center',
               justifyContent: 'center',
               height: '100%',
-              color: 'rgba(255,255,255,0.4)',
+              color: 'var(--text-tertiary)',
               fontSize: 13,
               gap: 8,
               padding: 20,
             }}
           >
-            <span style={{ color: '#ff6d00', fontSize: 24 }}>⚠</span>
+            <span style={{ color: 'var(--color-warning)', fontSize: 24 }}>⚠</span>
             <span>{this.props.name} 加载异常</span>
-            <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)', maxWidth: 300, textAlign: 'center', wordBreak: 'break-all' }}>
+            <span style={{ fontSize: 10, color: 'var(--text-muted)', maxWidth: 300, textAlign: 'center', wordBreak: 'break-all' }}>
               {this.state.error?.message}
             </span>
             <button
               onClick={() => this.setState({ hasError: false, error: null })}
               style={{
                 padding: '4px 16px',
-                border: '1px solid rgba(74,158,255,0.3)',
+                border: '1px solid var(--border-strong)',
                 borderRadius: 4,
                 background: 'transparent',
-                color: '#4a9eff',
+                color: 'var(--accent)',
                 cursor: 'pointer',
                 fontSize: 12,
               }}

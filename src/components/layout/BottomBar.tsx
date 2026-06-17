@@ -19,10 +19,10 @@ export default function BottomBar() {
         justifyContent: 'space-between',
         height: '100%',
         padding: '0 16px',
-        background: 'rgba(0,0,0,0.4)',
-        borderTop: '1px solid rgba(74, 158, 255, 0.1)',
+        background: 'var(--bottombar-bg)',
+        borderTop: '1px solid var(--border-light)',
         fontSize: '0.7em',
-        color: 'rgba(255,255,255,0.3)',
+        color: 'var(--text-muted)',
       }}
     >
       <span>智慧校园可视化平台 v0.2.0 | 数据更新: {currentTime}</span>
