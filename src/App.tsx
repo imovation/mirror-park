@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useSSE } from '@/api/useSSEQuery'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import ScreenLayout from '@/components/layout/ScreenLayout'
@@ -25,11 +26,16 @@ const queryClient = new QueryClient({
 function App() {
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const uiTheme = useUIThemeStore((s) => s.uiTheme)
+  const { status: sseStatus } = useSSE()
   const entry = getThemeEntry(currentTheme)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-ui-theme', uiTheme)
   }, [uiTheme])
+
+  useEffect(() => {
+    console.log(`[SSE] ${sseStatus}`)
+  }, [sseStatus])
 
   return (
     <QueryClientProvider client={queryClient}>
