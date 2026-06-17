@@ -1,9 +1,13 @@
 import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import { useTimeModeStore } from '@/stores/useStyleStore'
+import { DAY_NIGHT } from '@/config/dayNightTheme'
 
 export default function ParticleBg({ count = 200 }: { count?: number }) {
   const mesh = useRef<THREE.Points>(null)
+  const timeMode = useTimeModeStore((s) => s.timeMode)
+  const particleCfg = DAY_NIGHT[timeMode].particle
 
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3)
@@ -32,9 +36,9 @@ export default function ParticleBg({ count = 200 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.15}
-        color="#4a9eff"
+        color={particleCfg.color}
         transparent
-        opacity={0.4}
+        opacity={particleCfg.opacity}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
