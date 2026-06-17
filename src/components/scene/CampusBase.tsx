@@ -130,6 +130,7 @@ function getWindowDensity(buildingId: string): number {
 
 function BuildingMesh({ building }: { building: BuildingData }) {
   const [hovered, setHovered] = useState(false)
+  const bodyRef = useRef<THREE.Mesh>(null!)
   const selectedId = useSceneStore((s) => s.selectedObjectId)
   const selectObject = useSceneStore((s) => s.selectObject)
   const requestFlyTo = useSceneStore((s) => s.requestFlyTo)
@@ -183,7 +184,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       }}
     >
       {/* 1. 主体（红砖+窗户shader） */}
-      <Box args={building.size} castShadow receiveShadow>
+      <Box ref={bodyRef} args={building.size} castShadow receiveShadow>
         <primitive object={mat} attach="material" />
         <Edges
           linewidth={isSelected ? 3 : 2}
@@ -230,17 +231,17 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       {/* 钟楼装饰：金字塔顶 + 竖向校名 */}
       {building.id === 'bell-tower' && (
         <group>
-          <mesh position={[0, h / 2 + 0.75, 0]}>
+          <mesh position={[0, h / 2 + 0.75, 0]} rotation={[0, Math.PI / 4, 0]}>
             <coneGeometry args={[1.77, 1.5, 4]} />
             <meshStandardMaterial color={timeMode === 'day' ? '#b84c30' : '#0c1a28'} />
           </mesh>
           <Html
-            position={[0, 0.5, d / 2 + 0.15]}
+            occlude={[bodyRef]} position={[0, 0.5, d / 2 + 0.15]}
             center distanceFactor={40} style={{ pointerEvents: 'none' }}
           >
             <div style={{
               writingMode: 'vertical-rl',
-              color: '#000000',
+              color: timeMode === 'day' ? '#000000' : '#00e5ff',
               fontSize: 16,
               fontWeight: 'bold',
               letterSpacing: 4,
