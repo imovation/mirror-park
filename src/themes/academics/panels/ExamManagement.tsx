@@ -1,5 +1,6 @@
 import { useExamData } from '@/api/queries/academics'
 import BarChart from '@/components/charts/BarChart'
+import FunnelChart from '@/components/charts/FunnelChart'
 import NumberFlip from '@/components/ui/NumberFlip'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
@@ -36,7 +37,7 @@ export default function ExamManagement() {
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>成绩分布</div>
-          <BarChart data={data.scoreDistribution} height={100} />
+          <FunnelChart data={data.scoreDistribution} height={200} />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { usePersonnelComposition } from '@/api/queries/overview'
 import NumberFlip from '@/components/ui/NumberFlip'
-import RingChart from '@/components/charts/RingChart'
+import SunburstChart from '@/components/charts/SunburstChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 export default function PersonnelComposition() {
@@ -10,31 +10,33 @@ export default function PersonnelComposition() {
   if (error) return <StatusPanel type="error" />
   if (!data) return null
 
+  const sunburstData = [
+    {
+      name: '教职工',
+      children: [
+        {
+          name: '男',
+          value: data.maleCount,
+        },
+        {
+          name: '女',
+          value: data.femaleCount,
+        }
+      ]
+    },
+    {
+      name: '学历',
+      children: data.education.map(e => ({ name: e.name, value: e.value }))
+    }
+  ]
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, justifyContent: 'center' }}>
         <NumberFlip label="教师总数" value={data.totalTeachers} unit="人" />
       </div>
-      <div style={{ display: 'flex', gap: 8 }}>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 4 }}>男女比例</div>
-          <RingChart
-            data={[
-              { name: '男', value: data.maleCount },
-              { name: '女', value: data.femaleCount },
-            ]}
-            colors={['#4a9eff', '#ff6d00']}
-            centerLabel={`${data.maleCount}:${data.femaleCount}`}
-            height={160}
-          />
-        </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 4 }}>学历分布</div>
-          <RingChart
-            data={data.education}
-            height={160}
-          />
-        </div>
+      <div style={{ flex: 1 }}>
+        <SunburstChart data={sunburstData} height={200} />
       </div>
     </div>
   )
