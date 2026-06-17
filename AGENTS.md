@@ -9,15 +9,22 @@
 | 指标 | 数值 |
 |------|------|
 | 源文件 | 133 |
-| 测试 | 35/35 通过 |
+| 测试 | 35/35 单元测试 + 8/8 E2E 测试 |
+| Git 提交 | 144 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 
-**已完成**：平台框架、6 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局、代码分割。
+**已完成**：平台框架、6 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割。
 
 **已完成（Day/Night 模式统一）**：Classic 和 Tron 两套场景已合并为统一 `CampusBase`，通过 `useTimeModeStore` 切换白天/夜间模式，所有视觉参数集中在 `src/config/dayNightTheme.ts`。
 
 **已完成（建筑模型重构）**：BuildingMesh 从单一 Box 重构为 4 层结构（主体+楼板带+外走廊+女儿墙）；校门改为崇智楼中央拱门式入口；钟楼独立矗立在拱门左前方（带金字塔顶 + 竖向校名 "镇远中学"）；教学三栋楼由连廊连接；周边城市背景错落有致。
+
+**已完成（UI 主题与图表）**：深色/浅色 UI 主题切换（CSS 变量 + `useUIThemeStore`，TopBar 一键切换）；ECharts 亮色主题自动适配（`useChartTheme()` hook）；新增 4 种图表类型（Sankey/Sunburst/Funnel/Radar）并集成到业务面板。
+
+**已完成（SSE 实时推送）**：SSE 客户端（`src/api/sse.ts`，指数退避重连）+ `useSSE()` hook 自动注入 QueryClient；Dev 模式 Mock SSE 客户端（`src/api/sse.mock.ts`，`setInterval` 推送 6 种事件类型）；BottomBar SSE 连接状态指示灯。
+
+**已完成（测试）**：Playwright E2E 测试（8 用例，覆盖加载/主题切换/专题导航/建筑交互）；Vitest 单元/集成测试 35 用例。
 
 **3D 场景特性**：
 - **Day/Night 模式**：白天（红砖暖光 + 绿地 + 米白窗户）、夜间（暗黑赛博 + 青色窗户发光 + 道路光流）
@@ -30,13 +37,11 @@
 
 **待完成（需外部资源）**：真实 CAD 三维模型、真实 API 对接（诺图/大华 ICC/OA/教务）、室内场景建模、监控视频流。
 
-**待完成（纯前端可推进）**：桑基图/旭日图/雷达图等更多图表类型、Playwright E2E 测试、WebSocket 实时推送基础设施。
-
 详细清单见 `docs/PROJECT_STATUS.md`，需求详见 `docs/智慧校园可视化平台项目需求规格书.md`。
 
 ## 技术栈
 
-React 18 + TypeScript, Vite 5, pnpm, Three.js (@react-three/fiber + drei), ECharts 5, Zustand, TanStack Query v5, MSW + faker, TailwindCSS, Vitest
+React 18 + TypeScript, Vite 5, pnpm, Three.js (@react-three/fiber + drei), ECharts 5, Zustand, TanStack Query v5, MSW + faker, TailwindCSS, Vitest, Playwright
 
 ## 常用命令
 
@@ -53,23 +58,30 @@ pnpm test -- -t "test name"  # 运行特定测试
 src/
 ├── api/
 │   ├── client.ts                  # fetchApi<T>() — BASE_URL = '/api'
+│   ├── sse.ts                     # SSE 客户端 (指数退避重连，DEV 自动切换 Mock)
+│   ├── sse.mock.ts                # Dev 模式 Mock SSE (setInterval 推送 6 种事件)
+│   ├── useSSEQuery.ts             # useSSE() hook — SSE 事件 → queryClient.setQueryData
 │   ├── queries/                   # TanStack Query hooks (一个主题一个文件)
 │   └── mocks/
 │       ├── server.ts              # MSW setup (import 所有 handlers)
 │       └── handlers/              # MSW handlers (一个主题一个文件)
+├── config/
+│   ├── chartTheme.ts              # useChartTheme() — ECharts 深色/浅色主题 token
+│   └── dayNightTheme.ts           # 3D 场景 Day/Night 视觉参数
 ├── components/
-│   ├── charts/      # ECharts: Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap
+│   ├── charts/      # ECharts: Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap/Sankey/Sunburst/Funnel/Radar
 │   ├── layout/      # ScreenLayout(CSS Grid 5区), TopBar, LeftPanel, RightPanel, BottomBar, ErrorBoundary
 │   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, ParticleBg, SceneInfo
 │   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow
 ├── hooks/           # useSceneClick (目前很少使用)
 ├── shaders/         # WebGL GLSL: buildingWindow (建筑窗户发光), roadFlow (道路光流动画)
 ├── stores/
-│   ├── useThemeStore.ts   # currentTheme, switchTheme(), finishTransition()
-│   ├── useSceneStore.ts   # selectedObjectId, selectObject(), requestFlyTo(), flyToRequest
-│   ├── useUIStore.ts      # alertQueue, addAlert(), dismissAlert(), modalStack
+│   ├── useThemeStore.ts      # currentTheme, switchTheme(), finishTransition()
+│   ├── useSceneStore.ts      # selectedObjectId, selectObject(), requestFlyTo(), flyToRequest
+│   ├── useUIStore.ts         # alertQueue, addAlert(), dismissAlert(), modalStack
+│   ├── useUIThemeStore.ts    # uiTheme (dark/light), toggleUITheme()
 │   ├── useTimeModeStore.ts   # timeMode (day/night), toggleMode()
-│   └── themes/            # 6 个专题 store (当前是空骨架，未被使用)
+│   └── themes/               # 6 个专题 store (当前是空骨架，未被使用)
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
 │   ├── overview/                # 综合态势 (5 左面板 + 2 右面板)
@@ -80,6 +92,7 @@ src/
 │   └── security/                # 智慧安防 (3 左 + 4 右 + 3D 设备/告警标注)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts
 └── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等)
+e2e/                 # Playwright E2E 测试 (8 用例: 加载/主题切换/专题导航/建筑交互)
 ```
 
 ## 关键架构约定
@@ -159,6 +172,8 @@ export default function SomePanel() {
 | useThemeStore | currentTheme, switchTheme, finishTransition | TopBar, CameraController, CampusBase |
 | useSceneStore | selectedObjectId, selectObject, requestFlyTo, flyToRequest | CampusBase, CameraController, BuildingDetail, AlertPopup |
 | useUIStore | alertQueue, addAlert, dismissAlert | AlertPopup, AlertEvents(安防面板), SecurityScene |
+| useUIThemeStore | uiTheme (dark/light), toggleUITheme | TopBar, App.tsx, 各图表组件(通过 useChartTheme) |
+| useTimeModeStore | timeMode (day/night), toggleMode | TopBar, CampusBase, dayNightTheme |
 
 ## 常见问题
 
