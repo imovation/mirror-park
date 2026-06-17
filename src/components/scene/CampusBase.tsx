@@ -25,7 +25,7 @@ export const BUILDINGS: BuildingData[] = [
   { id: 'chongde', label: '崇德楼', position: [-13, 3, 6], size: [8, 6, 6], info: '初一年级教学楼 · 4层副楼' },
   { id: 'chongzhi', label: '崇智楼', position: [0, 4.5, 10], size: [14, 9, 7], info: '初二年级教学楼 · 6层主楼 · 正对校门' },
   { id: 'chongxin', label: '崇信楼', position: [13, 3, 6], size: [8, 6, 6], info: '初三年级教学楼 · 4层副楼' },
-  { id: 'bell-tower', label: '钟楼', position: [-8, 5, 14], size: [2.5, 10, 2.5], info: '镇远中学标志性钟楼 · 展示校名 · 拱门左前方' },
+  { id: 'bell-tower', label: '钟楼', position: [-12, 5, 18], size: [2.5, 10, 2.5], info: '镇远中学标志性钟楼 · 展示校名 · 拱门左前方' },
 
   // 独立中型楼
   { id: 'chongwen', label: '崇文楼', position: [-10, 2, -7], size: [12, 4, 7], info: '开放式图书馆 · 2层 · 藏书10万余册' },
@@ -217,7 +217,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         </Box>
       ))}
 
-      {/* 4. 顶部女儿墙（gymnasium 有楼顶体育场，不画女儿墙） */}
+      {/* 4. 顶部女儿墙 + 屋顶边缘线（gymnasium 有楼顶体育场，bell-tower 是独立塔楼，均不画） */}
       {building.id !== 'gymnasium' && building.id !== 'bell-tower' && (
         <Box
           args={[w + 0.4, 0.6, d + 0.4]}
@@ -225,6 +225,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
           castShadow
         >
           <meshStandardMaterial color={cfg.building.facadeColor} />
+          <Edges linewidth={2} threshold={15} color={edgeColor} />
         </Box>
       )}
 
@@ -236,7 +237,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
             <meshStandardMaterial color={timeMode === 'day' ? '#b84c30' : '#0c1a28'} />
           </mesh>
           <Html
-            occlude={[bodyRef]} position={[0, 0.5, d / 2 + 0.15]}
+            occlude={[bodyRef]} position={[0, 2.0, d / 2 + 0.15]}
             center distanceFactor={40} style={{ pointerEvents: 'none' }}
           >
             <div style={{
@@ -571,32 +572,41 @@ function Landscape() {
 
       {largeTrees.map((t, i) => (
         <group key={`large-tree-${i}`} position={t.pos} scale={t.scale}>
-          <Cylinder args={[0.15, 0.2, 3, 8]} position={[0, 1.5, 0]}>
-            <meshStandardMaterial color={cfg.landscape.treeTrunkColor} />
+          <Cylinder args={[0.08, 0.14, 3, 6]} position={[0, 1.5, 0]}>
+            <meshStandardMaterial color={cfg.landscape.treeTrunkColor} roughness={0.9} />
           </Cylinder>
-          <Sphere args={[1.2, 8, 6]} position={[0, 3.5, 0]}>
-            <meshStandardMaterial color={cfg.landscape.treeLeafColor} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
-          </Sphere>
-          <Sphere args={[0.9, 8, 6]} position={[0.6, 3.2, 0.4]}>
-            <meshStandardMaterial color={cfg.landscape.treeLeafColor} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
-          </Sphere>
-          <Sphere args={[0.9, 8, 6]} position={[-0.5, 3.3, -0.3]}>
-            <meshStandardMaterial color={cfg.landscape.treeLeafColor} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
-          </Sphere>
+          <mesh position={[0, 3.8, 0]}>
+            <cylinderGeometry args={[0.3, 2.0, 2.4, 7]} />
+            <meshStandardMaterial color={cfg.landscape.treeLeafColor} roughness={0.85} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
+          </mesh>
+          <mesh position={[0.9, 3.2, 0.5]} rotation={[0.1, 0, -0.15]}>
+            <cylinderGeometry args={[0.2, 1.2, 1.4, 6]} />
+            <meshStandardMaterial color={cfg.landscape.treeLeafColor} roughness={0.85} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
+          </mesh>
+          <mesh position={[-0.8, 3.4, -0.4]} rotation={[-0.1, 0, 0.15]}>
+            <cylinderGeometry args={[0.2, 1.0, 1.2, 6]} />
+            <meshStandardMaterial color={cfg.landscape.treeLeafColor} roughness={0.85} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
+          </mesh>
         </group>
       ))}
 
       {smallTrees.map((t, i) => (
         <group key={`small-tree-${i}`} position={t.pos} scale={t.scale}>
-          <Cylinder args={[0.1, 0.15, 2, 6]} position={[0, 1, 0]}>
-            <meshStandardMaterial color={cfg.landscape.treeTrunkColor} />
+          <Cylinder args={[0.06, 0.1, 2.2, 6]} position={[0, 1.1, 0]}>
+            <meshStandardMaterial color={cfg.landscape.treeTrunkColor} roughness={0.9} />
           </Cylinder>
-          <Sphere args={[0.8, 8, 6]} position={[0, 2.3, 0]}>
-            <meshStandardMaterial color={cfg.landscape.treeLeafColor} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
-          </Sphere>
-          <Sphere args={[0.6, 8, 6]} position={[0.4, 2.1, 0.3]}>
-            <meshStandardMaterial color={cfg.landscape.treeLeafColor} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
-          </Sphere>
+          <mesh position={[0, 2.7, 0]}>
+            <cylinderGeometry args={[0.2, 1.3, 1.6, 7]} />
+            <meshStandardMaterial color={cfg.landscape.treeLeafColor} roughness={0.85} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
+          </mesh>
+          <mesh position={[0.6, 2.3, 0.3]} rotation={[0.1, 0, -0.15]}>
+            <cylinderGeometry args={[0.15, 0.8, 1.0, 6]} />
+            <meshStandardMaterial color={cfg.landscape.treeLeafColor} roughness={0.85} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
+          </mesh>
+          <mesh position={[-0.5, 2.5, -0.2]} rotation={[-0.1, 0, 0.15]}>
+            <cylinderGeometry args={[0.15, 0.7, 0.9, 6]} />
+            <meshStandardMaterial color={cfg.landscape.treeLeafColor} roughness={0.85} emissive={cfg.landscape.treeLeafEmissive} emissiveIntensity={cfg.landscape.treeLeafEmissiveIntensity} />
+          </mesh>
         </group>
       ))}
     </group>

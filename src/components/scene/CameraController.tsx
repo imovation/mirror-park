@@ -6,6 +6,12 @@ import { useThemeStore } from '@/stores/useThemeStore'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { SCENE } from '@/utils/constants'
 
+function setControlsEnabled(ref: React.MutableRefObject<any>, enabled: boolean) {
+  if (ref.current) {
+    ref.current.enabled = enabled
+  }
+}
+
 export default function CameraController() {
   const controlsRef = useRef<any>(null)
   const { camera } = useThree()
@@ -26,6 +32,7 @@ export default function CameraController() {
     targetPos.current.set(...preset.position)
     targetLook.current.set(...preset.target)
     isAnimating.current = true
+    setControlsEnabled(controlsRef, false)
 
     if (controlsRef.current) {
       controlsRef.current.target.copy(targetLook.current)
@@ -35,10 +42,15 @@ export default function CameraController() {
     const timer = setTimeout(() => {
       if (isAnimating.current) {
         isAnimating.current = false
+        setControlsEnabled(controlsRef, true)
+        if (controlsRef.current) controlsRef.current.update()
         finishTransition()
       }
     }, 2000)
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      setControlsEnabled(controlsRef, true)
+    }
   }, [currentTheme, finishTransition])
 
   useEffect(() => {
@@ -46,6 +58,7 @@ export default function CameraController() {
     targetPos.current.set(...flyToRequest.position)
     targetLook.current.set(...flyToRequest.lookAt)
     isAnimating.current = true
+    setControlsEnabled(controlsRef, false)
 
     if (controlsRef.current) {
       controlsRef.current.target.copy(targetLook.current)
@@ -59,6 +72,8 @@ export default function CameraController() {
     if (dist < 0.3) {
       camera.position.copy(targetPos.current)
       isAnimating.current = false
+      setControlsEnabled(controlsRef, true)
+      if (controlsRef.current) controlsRef.current.update()
       finishTransition()
       return
     }

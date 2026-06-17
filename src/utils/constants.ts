@@ -20,7 +20,7 @@ export const SCENE = {
     target: [0, 0, 0] as [number, number, number],
   },
   THEME_CAMERAS: {
-    overview: { position: [20, 35, 35] as [number, number, number], target: [0, 2, -5] as [number, number, number] },
+    overview: { position: [0, 6, 48] as [number, number, number], target: [0, 3, 13.5] as [number, number, number] },
     'teaching-research': { position: [-10, 25, 20] as [number, number, number], target: [-10, 5, 4] as [number, number, number] },
     admin: { position: [-15, 20, 15] as [number, number, number], target: [-5, 5, -8] as [number, number, number] },
     library: { position: [-5, 15, 2] as [number, number, number], target: [-10, 4, -10] as [number, number, number] },
