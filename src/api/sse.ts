@@ -6,9 +6,15 @@ interface SSEClientOptions {
   onStatusChange: (status: SSEStatus) => void
 }
 
+import { createMockSSEClient } from './sse.mock'
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+const USE_MOCK = import.meta.env.DEV && !import.meta.env.VITE_DISABLE_MOCK_SSE
 
 export function createSSEClient(options: SSEClientOptions) {
+  if (USE_MOCK) {
+    return createMockSSEClient(options)
+  }
   const { url = `${BASE_URL}/sse`, onMessage, onStatusChange } = options
   let eventSource: EventSource | null = null
   let retryDelay = 1000
