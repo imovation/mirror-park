@@ -25,7 +25,7 @@ export const BUILDINGS: BuildingData[] = [
   { id: 'chongde', label: '崇德楼', position: [-13, 3, 6], size: [8, 6, 6], info: '初一年级教学楼 · 4层副楼' },
   { id: 'chongzhi', label: '崇智楼', position: [0, 4.5, 10], size: [14, 9, 7], info: '初二年级教学楼 · 6层主楼 · 正对校门 · 含中央拱门' },
   { id: 'chongxin', label: '崇信楼', position: [13, 3, 6], size: [8, 6, 6], info: '初三年级教学楼 · 4层副楼' },
-  { id: 'bell-tower', label: '钟楼', position: [0, 9.5, 10], size: [2, 4, 2], info: '镇远中学标志性钟楼 · 雅典学派风格 · 置于崇智楼顶部' },
+  { id: 'bell-tower', label: '钟楼', position: [0, 11, 12.5], size: [2, 5, 2], info: '镇远中学标志性钟楼 · 雅典学派风格 · 置于崇智楼顶部' },
 
   // 独立中型楼
   { id: 'chongwen', label: '崇文楼', position: [-10, 2, -7], size: [12, 4, 7], info: '开放式图书馆 · 2层 · 藏书10万余册' },
