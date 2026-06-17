@@ -43,6 +43,7 @@
   --border: rgba(0, 0, 0, 0.08);
   --border-light: rgba(0, 0, 0, 0.04);
   --border-strong: rgba(0, 0, 0, 0.15);
+  --accent-rgb: 74, 158, 255;
   --scrollbar-thumb: rgba(0, 0, 0, 0.15);
   --nav-arrow-bg: rgba(0, 0, 0, 0.15);
   --card-carousel-bg: rgba(255, 255, 255, 0.8);

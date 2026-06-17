@@ -36,7 +36,7 @@ function App() {
       <ScreenLayout
         topBar={<ErrorBoundary name="顶部导航"><TopBar /></ErrorBoundary>}
         leftPanel={
-          <ErrorBoundary name="左侧面板" fallback={<div style={{ color: '#6b7280', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
+          <ErrorBoundary name="左侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
             <LeftPanel>
               {entry.panels.left.map((p) => (
                 <DashboardPanel key={p.id} title={p.title}>
@@ -56,8 +56,8 @@ function App() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: '#0a1628',
-              color: '#6b7280',
+              background: 'var(--page-bg)',
+              color: 'var(--text-tertiary)',
               fontSize: '0.875rem',
             }}>
               3D 场景不可用
@@ -67,7 +67,7 @@ function App() {
           </ErrorBoundary>
         }
         rightPanel={
-          <ErrorBoundary name="右侧面板" fallback={<div style={{ color: '#6b7280', textAlign: 'center', padding: 16 }}>右侧面板异常</div>}>
+          <ErrorBoundary name="右侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>右侧面板异常</div>}>
             <RightPanel>
               {entry.panels.right.map((p) => (
                 <DashboardPanel key={p.id} title={p.title}>
