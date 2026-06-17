@@ -84,7 +84,7 @@ function AppContent() {
           </RightPanel>
         </ErrorBoundary>
       }
-      bottomBar={<BottomBar />}
+      bottomBar={<BottomBar status={sseStatus} />}
     />
   )
 }
