@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useThemeStore } from '@/stores/useThemeStore'
+import { useStyleStore } from '@/stores/useStyleStore'
 import { THEMES } from '@/types/theme'
 
 export default function TopBar() {
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const switchTheme = useThemeStore((s) => s.switchTheme)
+  const visualStyle = useStyleStore((s) => s.visualStyle)
+  const toggleStyle = useStyleStore((s) => s.toggleStyle)
   const [time, setTime] = useState(new Date())
+  const [playing, setPlaying] = useState(false)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000)
@@ -19,6 +24,20 @@ export default function TopBar() {
     day: '2-digit',
     weekday: 'short',
   })
+
+  const toggleMusic = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio()
+      audioRef.current.loop = true
+      audioRef.current.volume = 0.3
+    }
+    if (playing) {
+      audioRef.current.pause()
+    } else {
+      audioRef.current.play().catch(() => {})
+    }
+    setPlaying(!playing)
+  }
 
   return (
     <div
@@ -60,6 +79,35 @@ export default function TopBar() {
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
+        <button
+          onClick={toggleStyle}
+          style={{
+            background: visualStyle === 'tron' ? 'rgba(0,229,255,0.15)' : 'rgba(160,82,45,0.15)',
+            border: visualStyle === 'tron' ? '1px solid rgba(0,229,255,0.4)' : '1px solid rgba(160,82,45,0.4)',
+            borderRadius: 4,
+            color: visualStyle === 'tron' ? '#00e5ff' : '#a0522d',
+            cursor: 'pointer',
+            fontSize: 12,
+            padding: '4px 12px',
+            fontWeight: 600,
+          }}
+        >
+          {visualStyle === 'classic' ? '🧱 经典' : '💠 Tron'}
+        </button>
+        <button
+          onClick={toggleMusic}
+          style={{
+            background: playing ? 'rgba(74,158,255,0.15)' : 'transparent',
+            border: '1px solid rgba(74,158,255,0.2)',
+            borderRadius: 4,
+            color: playing ? '#4a9eff' : 'rgba(255,255,255,0.25)',
+            cursor: 'pointer',
+            fontSize: 12,
+            padding: '4px 8px',
+          }}
+        >
+          {playing ? '🔊' : '🔇'}
+        </button>
         <span>{dateStr}</span>
         <span style={{ fontSize: 16, color: '#4a9eff', fontFamily: 'monospace' }}>{timeStr}</span>
       </div>
