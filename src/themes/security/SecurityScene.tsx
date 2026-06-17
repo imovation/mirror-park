@@ -1,10 +1,8 @@
 import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Sphere, Html } from '@react-three/drei'
-import CampusBaseClassic from '@/components/scene/CampusBaseClassic'
-import CampusBaseTron from '@/components/scene/CampusBaseTron'
+import CampusBase from '@/components/scene/CampusBase'
 import { useUIStore } from '@/stores/useUIStore'
-import { useStyleStore } from '@/stores/useStyleStore'
 
 const DEVICES: { id: string; type: 'camera' | 'access'; position: [number, number, number]; label: string }[] = [
   { id: 'cam-1', type: 'camera' as const, position: [-18, 8, 7.5], label: '崇德楼摄像头' },
@@ -103,11 +101,9 @@ function AlertMarkers() {
 }
 
 export default function SecurityScene() {
-  const style = useStyleStore((s) => s.visualStyle)
-  const Base = style === 'classic' ? CampusBaseClassic : CampusBaseTron
   return (
     <>
-      <Base />
+      <CampusBase />
       <DeviceMarkers />
       <AlertMarkers />
     </>

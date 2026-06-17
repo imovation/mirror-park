@@ -1,9 +1,5 @@
-import CampusBaseClassic from '@/components/scene/CampusBaseClassic'
-import CampusBaseTron from '@/components/scene/CampusBaseTron'
-import { useStyleStore } from '@/stores/useStyleStore'
+import CampusBase from '@/components/scene/CampusBase'
 
 export default function LibraryScene() {
-  const style = useStyleStore((s) => s.visualStyle)
-  const Base = style === 'classic' ? CampusBaseClassic : CampusBaseTron
-  return <Base />
+  return <CampusBase />
 }

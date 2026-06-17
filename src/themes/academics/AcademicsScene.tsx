@@ -1,6 +1,4 @@
-import CampusBaseClassic from '@/components/scene/CampusBaseClassic'
-import CampusBaseTron from '@/components/scene/CampusBaseTron'
-import { useStyleStore } from '@/stores/useStyleStore'
+import CampusBase from '@/components/scene/CampusBase'
 import { Box } from '@react-three/drei'
 
 const FLOOR_HEAT = [
@@ -46,11 +44,9 @@ function ClassroomHeatmap() {
 }
 
 export default function AcademicsScene() {
-  const style = useStyleStore((s) => s.visualStyle)
-  const Base = style === 'classic' ? CampusBaseClassic : CampusBaseTron
   return (
     <>
-      <Base />
+      <CampusBase />
       <ClassroomHeatmap />
     </>
   )
