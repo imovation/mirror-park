@@ -217,7 +217,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       ))}
 
       {/* 4. 顶部女儿墙（gymnasium 有楼顶体育场，不画女儿墙） */}
-      {building.id !== 'gymnasium' && (
+      {building.id !== 'gymnasium' && building.id !== 'bell-tower' && (
         <Box
           args={[w + 0.4, 0.6, d + 0.4]}
           position={[0, h / 2 + 0.3, 0]}
@@ -230,12 +230,12 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       {/* 钟楼装饰：金字塔顶 + 竖向校名 */}
       {building.id === 'bell-tower' && (
         <group>
-          <mesh position={[0, h / 2 + 1.35, 0]}>
+          <mesh position={[0, h / 2 + 0.75, 0]}>
             <coneGeometry args={[1.25, 1.5, 4]} />
             <meshStandardMaterial color={cfg.building.facadeColor} />
           </mesh>
           <Html
-            position={[0, 0.5, d / 2]}
+            position={[0, 0.5, d / 2]} occlude
             center distanceFactor={40} style={{ pointerEvents: 'none' }}
           >
             <div style={{
