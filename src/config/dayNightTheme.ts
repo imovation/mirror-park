@@ -5,6 +5,7 @@ export interface DayNightTheme {
     baseColor: string
     windowColor: string
     litChance: number
+    facadeColor: string
   }
   road: {
     staticColor: string
@@ -66,6 +67,7 @@ export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
       baseColor: '#a0522d',
       windowColor: '#f5f0e8',
       litChance: 0.6,
+      facadeColor: '#f0f4f8',
     },
     road: {
       staticColor: '#3a3a3a',
@@ -122,6 +124,7 @@ export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
       baseColor: '#06101e',
       windowColor: '#00e5ff',
       litChance: 0.6,
+      facadeColor: '#1a2a3a',
     },
     road: {
       staticColor: '#3a3a3a',
