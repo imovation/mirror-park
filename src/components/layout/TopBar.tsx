@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useThemeStore } from '@/stores/useThemeStore'
-import { useTimeModeStore } from '@/stores/useStyleStore'
+import { useTimeModeStore } from '@/stores/useTimeModeStore'
 import { THEMES } from '@/types/theme'
 
 export default function TopBar() {

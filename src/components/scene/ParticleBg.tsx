@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import { useTimeModeStore } from '@/stores/useStyleStore'
+import { useTimeModeStore } from '@/stores/useTimeModeStore'
 import { DAY_NIGHT } from '@/config/dayNightTheme'
 
 export default function ParticleBg({ count = 200 }: { count?: number }) {

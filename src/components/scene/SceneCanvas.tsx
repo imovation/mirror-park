@@ -5,7 +5,7 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import ParticleBg from './ParticleBg'
 import CameraController from './CameraController'
 import SceneInfo from './SceneInfo'
-import { useTimeModeStore } from '@/stores/useStyleStore'
+import { useTimeModeStore } from '@/stores/useTimeModeStore'
 import { DAY_NIGHT } from '@/config/dayNightTheme'
 import { SCENE } from '@/utils/constants'
 

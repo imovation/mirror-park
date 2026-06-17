@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Box, Plane, Html, Cylinder, Sphere, MeshReflectorMaterial, Edges, Environment, ContactShadows } from '@react-three/drei'
@@ -8,7 +8,7 @@ import buildingWindowVert from '@/shaders/buildingWindow.vert?raw'
 import buildingWindowFrag from '@/shaders/buildingWindow.frag?raw'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { useThemeStore } from '@/stores/useThemeStore'
-import { useTimeModeStore } from '@/stores/useStyleStore'
+import { useTimeModeStore } from '@/stores/useTimeModeStore'
 import { DAY_NIGHT, type DayNightTheme } from '@/config/dayNightTheme'
 import { ThemeId } from '@/types/theme'
 
@@ -240,6 +240,13 @@ function Roads() {
     if (!cfg.road.flowEnabled) return
     for (const m of matRefs.current) m.uniforms.uTime.value += delta
   })
+
+  useEffect(() => {
+    return () => {
+      for (const m of matRefs.current) m.dispose()
+      matRefs.current = []
+    }
+  }, [cfg.road.flowEnabled])
 
   const staticMat = useMemo(
     () => <meshStandardMaterial color={cfg.road.staticColor} />,
