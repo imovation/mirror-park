@@ -216,14 +216,16 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         </Box>
       ))}
 
-      {/* 4. 顶部女儿墙 */}
-      <Box
-        args={[w + 0.4, 0.6, d + 0.4]}
-        position={[0, h / 2 + 0.3, 0]}
-        castShadow
-      >
-        <meshStandardMaterial color={cfg.building.facadeColor} />
-      </Box>
+      {/* 4. 顶部女儿墙（gymnasium 有楼顶体育场，不画女儿墙） */}
+      {building.id !== 'gymnasium' && (
+        <Box
+          args={[w + 0.4, 0.6, d + 0.4]}
+          position={[0, h / 2 + 0.3, 0]}
+          castShadow
+        >
+          <meshStandardMaterial color={cfg.building.facadeColor} />
+        </Box>
+      )}
 
       {/* 5. 中央拱门（仅 chongzhi） */}
       {building.id === 'chongzhi' && (
