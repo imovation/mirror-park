@@ -241,7 +241,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
           >
             <div style={{
               writingMode: 'vertical-rl',
-              color: timeMode === 'day' ? '#000000' : '#00e5ff',
+              color: timeMode === 'day' ? '#000000' : '#ffffff',
               fontSize: 16,
               fontWeight: 'bold',
               letterSpacing: 4,
