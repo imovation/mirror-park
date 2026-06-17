@@ -8,12 +8,20 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 118 |
+| 源文件 | 121 |
 | 测试 | 31/31 通过 |
-| 构建 | ✅ `pnpm build` 通过 |
+| 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 
-**已完成**：平台框架、6 专题全部 38 个数据面板（Mock 数据）、3D 校园场景 (按真实镇远中学布局)、建筑点击联动、告警弹窗、设备/告警 3D 标注、卡片轮播、镜头动画、响应式布局、代码分割。
+**已完成**：平台框架、6 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局 / **Tron 暗黑赛博风格**）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局、代码分割。
+
+**Tron 3D 场景特性**：
+- WebGL 自定义 Shader：建筑立面窗户发光（`buildingWindow.glsl`）、道路数据光流动画（`roadFlow.glsl`）
+- 后处理特效：Bloom 辉光（@react-three/postprocessing v2.19.1，注意不可升级 v3）
+- 景观系统：绿篱、花坛、大小树（`Landscape`）、POI 标注点 + 建筑间数据连线（`GroundDecorations`）
+- 环境：镜面反射水库（`MeshReflectorMaterial`）、HDRI 环境光（`Environment preset="city"`）、接触阴影（`ContactShadows`）
+- 已知问题：`autoRotate` 旋转在暗色表面产生微抖动（设 speed=0.08, damping=0.3 缓解）
+- 已移除组件：DataRings、LightPillar、Grid、Hillside、MountainSilhouette、GroundZones（历史重构遗留）
 
 **待完成（需外部资源）**：真实 CAD 三维模型、真实 API 对接（诺图/大华 ICC/OA/教务）、室内场景建模、监控视频流。
 
@@ -50,6 +58,7 @@ src/
 │   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, ParticleBg, SceneInfo
 │   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow
 ├── hooks/           # useSceneClick (目前很少使用)
+├── shaders/         # WebGL GLSL: buildingWindow (建筑窗户发光), roadFlow (道路光流动画)
 ├── stores/
 │   ├── useThemeStore.ts   # currentTheme, switchTheme(), finishTransition()
 │   ├── useSceneStore.ts   # selectedObjectId, selectObject(), requestFlyTo(), flyToRequest
@@ -76,8 +85,8 @@ App.tsx
   └── ScreenLayout (CSS Grid)
         └── scene slot:
               └── ErrorBoundary
-                    └── SceneCanvas  ← 提供 Canvas + fog + ParticleBg + CameraController
-                          └── children = entry.scene()  ← 主题专属 3D 内容
+                     └── SceneCanvas  ← Canvas + fog + ParticleBg + CameraController + EffectComposer(Bloom)
+                           └── children = entry.scene()  ← 主题专属 3D 内容
 ```
 
 **严禁**将 R3F 元素 (Box/Sphere/Plane/Html 等) 放在 `<Canvas>` 之外。SceneCanvas 是唯一的 Canvas 包装器，主题 scene 函数返回 Canvas 内部的内容。
@@ -127,8 +136,15 @@ export default function SomePanel() {
 
 ### 5. 场景-数据双向联动
 
-- **场景→数据**：CampusBase 中 BuildingMesh 的 onClick → `useSceneStore.selectObject(id)` → BuildingDetail 面板通过 `useSceneStore.selectedObjectId` 响应
+- **场景→数据**：CampusBase 中 BuildingMesh 的 onClick → `useSceneStore.selectObject(id)` + `requestFlyTo()` → 镜头飞向建筑 + 数据面板联动
 - **数据→场景**：BuildingDetail 的"飞向"按钮 → `useSceneStore.requestFlyTo(pos, lookAt)` → CameraController 监听 `flyToRequest` 执行 lerp 动画
+
+### 6. 自定义 Shader 系统
+
+- **建筑窗户Shader**：`src/shaders/buildingWindow.vert/frag` — 通过 `WINDOW_MATS` 为不同建筑类型提供不同窗格密度
+- **道路光流Shader**：`src/shaders/roadFlow.vert/frag` — 橙色主路/青色支路的光流动画，通过 `Roads` 组件中的 `ShaderMaterial` 驱动
+- Shader 源文件通过 Vite `?raw` 导入，用 `THREE.ShaderMaterial` 搭载到 R3F `<mesh>` 上
+- 建筑Shader 通过 `vNormal` 屏蔽屋顶/底面窗户（`if (abs(vNormal.y) > 0.5)`）以避免顶部发光
 
 ## Zustand Store 速查
 
@@ -158,3 +174,6 @@ export default function SomePanel() {
 - 构建有 chunk size 警告是正常的 (ECharts + Three.js 体积大)，已通过 React.lazy 做了 6 个专题场景的代码分割
 - 专题 store 文件 (stores/themes/) 存在但未被使用，是骨架
 - Mock 数据基于镇远中学真实资料：73亩/8.8万m²/60班/2800学生/初一至初三
+- **依赖约束**：`@react-three/postprocessing` 不可升级到 v3（要求 `fiber@^9.0`，项目使用 v8），当前锁定 v2.19.1
+- **兼容性**：`useUIStore.addAlert` 已用 `Date.now()+Math.random` 替代 `crypto.randomUUID`（旧浏览器不兼容）
+- **Shader 修改后**：需重启 `pnpm dev`（Vite HMR 不会热更新 `.vert`/`.frag` 文件）
