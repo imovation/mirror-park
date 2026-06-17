@@ -21,15 +21,22 @@ interface BuildingData {
 }
 
 export const BUILDINGS: BuildingData[] = [
-  { id: 'chongde', label: '崇德楼', position: [-12, 5.6, 6], size: [10, 11, 7], info: '初一年级教学楼' },
-  { id: 'chongzhi', label: '崇智楼', position: [0, 5.6, 10], size: [14, 11, 7], info: '初二年级教学楼 · 正对校门' },
-  { id: 'chongxin', label: '崇信楼', position: [12, 5.6, 6], size: [10, 11, 7], info: '初三年级教学楼' },
-  { id: 'bell-tower', label: '钟楼', position: [0, 14.1, 8], size: [3, 8, 3], info: '镇远中学标志性钟楼 · 雅典学派风格' },
+  // 教学复合体：崇德/崇智/崇信 三栋楼 + 钟楼置于崇智楼顶部
+  { id: 'chongde', label: '崇德楼', position: [-13, 3, 6], size: [8, 6, 6], info: '初一年级教学楼 · 4层副楼' },
+  { id: 'chongzhi', label: '崇智楼', position: [0, 4.5, 10], size: [14, 9, 7], info: '初二年级教学楼 · 6层主楼 · 正对校门 · 含中央拱门' },
+  { id: 'chongxin', label: '崇信楼', position: [13, 3, 6], size: [8, 6, 6], info: '初三年级教学楼 · 4层副楼' },
+  { id: 'bell-tower', label: '钟楼', position: [0, 9.5, 10], size: [2, 4, 2], info: '镇远中学标志性钟楼 · 雅典学派风格 · 置于崇智楼顶部' },
+
+  // 独立中型楼
+  { id: 'chongwen', label: '崇文楼', position: [-10, 2, -7], size: [12, 4, 7], info: '开放式图书馆 · 2层 · 藏书10万余册' },
+  { id: 'canteen', label: '食堂', position: [-10, 2, -13], size: [10, 4, 8], info: '16个窗口 · 370+张餐桌 · 1500人同时就餐' },
+
+  // 高层建筑
+  { id: 'chongya', label: '崇雅楼', position: [-22, 8, -14], size: [7, 16, 7], info: '师生宿舍 · 22层 · 校园最高建筑' },
+  { id: 'chongsi', label: '崇思楼', position: [2, 6, -14], size: [7, 12, 7], info: '师生宿舍 · 15层' },
+
+  // 体育馆
   { id: 'gymnasium', label: '体育馆', position: [-24, 5.1, 0], size: [14, 10, 18], info: '多功能体育馆 · 楼顶400m跑道+真草球场' },
-  { id: 'chongwen', label: '崇文楼', position: [-10, 4.6, -7], size: [12, 9, 7], info: '开放式图书馆 · 2层 · 藏书10万余册' },
-  { id: 'canteen', label: '食堂', position: [-10, 3.6, -13], size: [10, 7, 8], info: '16个窗口 · 370+张餐桌 · 1500人同时就餐' },
-  { id: 'chongya', label: '崇雅楼', position: [-22, 11.1, -14], size: [7, 22, 7], info: '师生宿舍 · 22层 · 校园最高建筑' },
-  { id: 'chongsi', label: '崇思楼', position: [2, 7.6, -14], size: [7, 15, 7], info: '师生宿舍 · 15层' },
 ]
 
 function createWindowMaterial(
