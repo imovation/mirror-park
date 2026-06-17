@@ -23,9 +23,9 @@ interface BuildingData {
 export const BUILDINGS: BuildingData[] = [
   // 教学复合体：崇德/崇智/崇信 三栋楼 + 钟楼置于崇智楼顶部
   { id: 'chongde', label: '崇德楼', position: [-13, 3, 6], size: [8, 6, 6], info: '初一年级教学楼 · 4层副楼' },
-  { id: 'chongzhi', label: '崇智楼', position: [0, 4.5, 10], size: [14, 9, 7], info: '初二年级教学楼 · 6层主楼 · 正对校门 · 含中央拱门' },
+  { id: 'chongzhi', label: '崇智楼', position: [0, 4.5, 10], size: [14, 9, 7], info: '初二年级教学楼 · 6层主楼 · 正对校门' },
   { id: 'chongxin', label: '崇信楼', position: [13, 3, 6], size: [8, 6, 6], info: '初三年级教学楼 · 4层副楼' },
-  { id: 'bell-tower', label: '钟楼', position: [8, 5, 14], size: [2.5, 10, 2.5], info: '镇远中学标志性钟楼 · 展示校名 · 拱门右前方' },
+  { id: 'bell-tower', label: '钟楼', position: [-8, 5, 14], size: [2.5, 10, 2.5], info: '镇远中学标志性钟楼 · 展示校名 · 拱门左前方' },
 
   // 独立中型楼
   { id: 'chongwen', label: '崇文楼', position: [-10, 2, -7], size: [12, 4, 7], info: '开放式图书馆 · 2层 · 藏书10万余册' },
@@ -227,19 +227,37 @@ function BuildingMesh({ building }: { building: BuildingData }) {
         </Box>
       )}
 
-      {/* 5. 中央拱门（仅 chongzhi） */}
-      {building.id === 'chongzhi' && (
-        <group position={[0, 0, d / 2]}>
-          {/* 拱门洞（深色 Box 模拟） */}
-          <Box args={[2.5, 3, 0.6]} position={[0, -h / 2 + 1.5, 0.3]}>
-            <meshStandardMaterial
-              color={timeMode === 'day' ? '#1a1a1a' : '#000000'}
-            />
-          </Box>
-          {/* 拱门顶部装饰条 */}
-          <Box args={[3, 0.4, 0.8]} position={[0, -h / 2 + 3.2, 0.3]}>
+      {/* 钟楼装饰：钟面 + 金字塔顶 + 校名 */}
+      {building.id === 'bell-tower' && (
+        <group>
+          <mesh position={[0, 1.5, d / 2 + 0.05]}>
+            <cylinderGeometry args={[1.1, 1.1, 0.08, 32]} />
+            <meshStandardMaterial color="#f0e6c8" />
+          </mesh>
+          <mesh position={[0, 1.5, d / 2 + 0.05]}>
+            <ringGeometry args={[1.1, 1.25, 32]} />
+            <meshStandardMaterial color="#8B7355" side={THREE.DoubleSide} />
+          </mesh>
+          <mesh position={[0, h / 2 + 0.6, 0]}>
+            <coneGeometry args={[1.2, 1.2, 4]} />
             <meshStandardMaterial color={cfg.building.facadeColor} />
-          </Box>
+          </mesh>
+          <Html
+            position={[0, 2.5, -d / 2 - 0.5]}
+            center distanceFactor={40} style={{ pointerEvents: 'none' }}
+          >
+            <div style={{
+              writingMode: 'vertical-rl',
+              color: timeMode === 'day' ? '#1a1a1a' : '#888888',
+              fontSize: 16,
+              fontWeight: 'bold',
+              letterSpacing: 4,
+              textOrientation: 'upright',
+              fontFamily: '"Noto Serif SC", "SimSun", serif',
+            }}>
+              镇远中学
+            </div>
+          </Html>
         </group>
       )}
 
@@ -300,29 +318,6 @@ function BuildingMesh({ building }: { building: BuildingData }) {
           )}
         </div>
       </Html>
-
-      {/* 钟楼竖向校名 */}
-      {building.id === 'bell-tower' && (
-        <Html
-          position={[0, h / 2 + 1.5, -d / 2 - 0.5]}
-          center distanceFactor={40} style={{ pointerEvents: 'none' }}
-        >
-          <div style={{
-            writingMode: 'vertical-rl',
-            color: timeMode === 'day' ? '#a0522d' : '#00e5ff',
-            fontSize: 16,
-            fontWeight: 'bold',
-            letterSpacing: 4,
-            textOrientation: 'upright',
-            textShadow: timeMode === 'day'
-              ? '0 1px 4px rgba(0,0,0,0.3)'
-              : '0 0 12px rgba(0,229,255,0.5)',
-            fontFamily: '"Noto Serif SC", "SimSun", serif',
-          }}>
-            镇远中学
-          </div>
-        </Html>
-      )}
     </group>
   )
 }
