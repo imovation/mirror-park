@@ -318,7 +318,7 @@ function RunningTrack() {
   const cfg = DAY_NIGHT[timeMode]
   const laneCount = 6
   return (
-    <group position={[-24, 12.1, 0]}>
+    <group position={[-24, 10.2, 0]}>
       <Box args={[13, 0.1, 17]}>
         <meshStandardMaterial color={cfg.track.baseColor} depthWrite />
       </Box>
