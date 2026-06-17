@@ -32,9 +32,9 @@ export default function ScreenLayout({
       }}
     >
       <div style={{ gridArea: 'topbar' }}>{topBar}</div>
-      <div style={{ gridArea: 'left', overflow: 'auto' }}>{leftPanel}</div>
+      <div style={{ gridArea: 'left', overflow: 'auto', maxWidth: 420 }}>{leftPanel}</div>
       <div style={{ gridArea: 'scene', position: 'relative', overflow: 'hidden' }}>{scene}</div>
-      <div style={{ gridArea: 'right', overflow: 'auto' }}>{rightPanel}</div>
+      <div style={{ gridArea: 'right', overflow: 'auto', maxWidth: 420 }}>{rightPanel}</div>
       <div style={{ gridArea: 'bottombar' }}>{bottomBar}</div>
     </div>
   )

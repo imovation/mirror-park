@@ -1,10 +1,3 @@
-export const LAYOUT = {
-  LEFT_PANEL_WIDTH: '20%',
-  RIGHT_PANEL_WIDTH: '20%',
-  TOP_BAR_HEIGHT: '56px',
-  BOTTOM_BAR_HEIGHT: '32px',
-} as const
-
 export const REFRESH_INTERVALS = {
   REALTIME: 5000,
   NEAR_REALTIME: 5 * 60 * 1000,
