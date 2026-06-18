@@ -52,7 +52,7 @@ src/
 │   ├── charts/     # ECharts 封装 (11 种图表类型)
 │   ├── layout/     # ScreenLayout, TopBar, Panels, BottomBar, ErrorBoundary
 │   ├── scene/      # R3F 3D 场景 (CampusBase, Camera, Particles, Landscape, GroundDecorations)
-│   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel
+│   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, ChartLabel
 ├── hooks/          # useSceneClick
 ├── shaders/        # WebGL GLSL (buildingWindow 窗户发光, roadFlow 道路光流)
 ├── stores/         # Zustand (Theme, Scene, UI, UITheme, TimeMode)
@@ -81,4 +81,7 @@ e2e/                # Playwright E2E 测试 (8 用例)
 - Tron 风格实现计划：[docs/superpowers/plans/2026-06-16-tron-style-redesign.md](docs/superpowers/plans/2026-06-16-tron-style-redesign.md)
 - Day/Night 模式设计：[docs/superpowers/specs/2025-06-17-day-night-mode-design.md](docs/superpowers/specs/2025-06-17-day-night-mode-design.md)
 - 建筑模型优化设计：[docs/superpowers/specs/2025-06-17-building-refactor-design.md](docs/superpowers/specs/2025-06-17-building-refactor-design.md)
+- 数据面板审查设计：[docs/superpowers/specs/2026-06-18-panel-review-design.md](docs/superpowers/specs/2026-06-18-panel-review-design.md)
+- 数据面板审查实现：[docs/superpowers/plans/2026-06-18-panel-review.md](docs/superpowers/plans/2026-06-18-panel-review.md)
+- 数据面板审查报告：[docs/superpowers/specs/panel-review-report.md](docs/superpowers/specs/panel-review-report.md)
 - 项目状态：[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)

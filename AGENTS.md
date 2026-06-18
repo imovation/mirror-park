@@ -8,9 +8,9 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 132 |
+| 源文件 | 128 |
 | 测试 | 35/35 单元测试 + 8/8 E2E 测试 |
-| Git 提交 | 146 |
+| Git 提交 | 177 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 
@@ -29,6 +29,8 @@
 **已完成（SSE 实时推送）**：SSE 客户端（`src/api/sse.ts`，指数退避重连）+ `useSSE()` hook 自动注入 QueryClient；Dev 模式 Mock SSE 客户端（`src/api/sse.mock.ts`，`setInterval` 推送 6 种事件类型）；BottomBar SSE 连接状态指示灯。
 
 **已完成（测试）**：Playwright E2E 测试（8 用例，覆盖加载/主题切换/专题导航/建筑交互）；Vitest 单元/集成测试 35 用例。
+
+**已完成（数据面板审查与优化）**：全面审查 6 专题 39 数据面板，修复 87 处硬编码颜色 → CSS 变量（浅色/深色主题兼容）、新增 ChartLabel 组件（复用 46 处）、统一 37 面板空数据状态为 StatusPanel empty、修复 4 处 Mock 数据不一致、优化 8 面板视觉填充率、4 共享图表组件颜色兼容；`pnpm build` + 35/35 测试通过。
 
 **3D 场景特性**：
 - **Day/Night 模式**：白天（红砖暖光 + 绿地 + 米白窗户）、夜间（暗黑赛博 + 青色窗户发光 + 道路光流）
@@ -76,7 +78,7 @@ src/
 │   ├── charts/      # ECharts: Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap/Sankey/Sunburst/Funnel/Radar
 │   ├── layout/      # ScreenLayout(CSS Grid 覆盖层), TopBar, SidePanel, BottomBar, ErrorBoundary
 │   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, ParticleBg, SceneInfo
-│   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow
+│   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow, ChartLabel
 ├── hooks/           # useSceneClick (目前很少使用)
 ├── shaders/         # WebGL GLSL: buildingWindow (建筑窗户发光), roadFlow (道路光流动画)
 ├── stores/
@@ -153,6 +155,15 @@ export default function SomePanel() {
   if (!data) return <StatusPanel type="empty" />
   return <div>{/* 渲染数据 */}</div>
 }
+```
+
+图表副标题使用 `ChartLabel` 组件代替内联 div（自动适配深色/浅色主题）：
+```tsx
+import ChartLabel from '@/components/ui/ChartLabel'
+// 左对齐（默认）：
+<ChartLabel>各学科教师数量</ChartLabel>
+// 居中：
+<ChartLabel align="center">今日出勤率</ChartLabel>
 ```
 
 ### 4. TanStack Query + MSW Mock 模式
