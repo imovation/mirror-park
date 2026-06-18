@@ -8,7 +8,7 @@ export default function AdminOverview() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <NumberFlip label="部门数量" value={data.departmentCount} unit="个" />
       <NumberFlip label="教职工总数" value={data.staffCount} unit="人" color="#00c853" />
       <NumberFlip label="今日出勤率" value={Math.round(data.attendanceRate * 100)} unit="%" color="#4a9eff" />

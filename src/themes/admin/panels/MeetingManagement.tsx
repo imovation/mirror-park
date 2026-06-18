@@ -10,7 +10,7 @@ export default function MeetingManagement() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="今日会议" value={data.todayCount} unit="场" color="#4a9eff" />
         <NumberFlip label="本周会议" value={data.weekCount} unit="场" color="#00c853" />
@@ -52,7 +52,7 @@ export default function MeetingManagement() {
               </div>
             ),
           }))}
-          maxHeight={80}
+        
         />
       </div>
     </div>

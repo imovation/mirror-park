@@ -49,8 +49,8 @@ export default function SchoolCalendar() {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <ScrollList items={allItems} maxHeight={200} />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0, overflow: 'auto' }}>
+      <ScrollList items={allItems} />
     </div>
   )
 }

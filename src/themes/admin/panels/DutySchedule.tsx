@@ -14,7 +14,7 @@ export default function DutySchedule() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       {data.staffs.map(s => (
         <div
           key={s.role}
