@@ -81,7 +81,7 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
         ))}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', position: 'absolute', top: '50%', left: -8, right: -8, transform: 'translateY(-50%)', pointerEvents: 'none' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', position: 'absolute', top: 'calc(50% - 10px)', left: -8, right: -8, transform: 'translateY(-50%)', pointerEvents: 'none' }}>
         <button onClick={prev} style={{ pointerEvents: 'auto', background: 'var(--nav-arrow-bg)', border: 'none', color: 'var(--text-primary)', width: 24, height: 24, borderRadius: '50%', cursor: 'pointer', fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
         <button onClick={next} style={{ pointerEvents: 'auto', background: 'var(--nav-arrow-bg)', border: 'none', color: 'var(--text-primary)', width: 24, height: 24, borderRadius: '50%', cursor: 'pointer', fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
       </div>

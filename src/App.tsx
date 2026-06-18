@@ -5,8 +5,7 @@ import { useThemeStore } from '@/stores/useThemeStore'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import ScreenLayout from '@/components/layout/ScreenLayout'
 import TopBar from '@/components/layout/TopBar'
-import LeftPanel from '@/components/layout/LeftPanel'
-import RightPanel from '@/components/layout/RightPanel'
+import SidePanel from '@/components/layout/SidePanel'
 import BottomBar from '@/components/layout/BottomBar'
 import DashboardPanel from '@/components/ui/DashboardPanel'
 import AlertPopup from '@/components/ui/AlertPopup'
@@ -57,7 +56,7 @@ function AppContent() {
           topBar={<ErrorBoundary name="顶部导航"><TopBar /></ErrorBoundary>}
           leftPanel={
             <ErrorBoundary name="左侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
-              <LeftPanel>
+              <SidePanel>
                 {entry.panels.left.map((p) => (
                   <DashboardPanel key={p.id} title={p.title}>
                     <ErrorBoundary name={p.title}>
@@ -65,12 +64,12 @@ function AppContent() {
                     </ErrorBoundary>
                   </DashboardPanel>
                 ))}
-              </LeftPanel>
+              </SidePanel>
             </ErrorBoundary>
           }
           rightPanel={
             <ErrorBoundary name="右侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>右侧面板异常</div>}>
-              <RightPanel>
+              <SidePanel>
                 {entry.panels.right.map((p) => (
                   <DashboardPanel key={p.id} title={p.title}>
                     <ErrorBoundary name={p.title}>
@@ -78,7 +77,7 @@ function AppContent() {
                     </ErrorBoundary>
                   </DashboardPanel>
                 ))}
-              </RightPanel>
+              </SidePanel>
             </ErrorBoundary>
           }
           bottomBar={<BottomBar status={sseStatus} />}

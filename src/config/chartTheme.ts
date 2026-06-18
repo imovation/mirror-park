@@ -20,7 +20,7 @@ const DARK: ChartTheme = {
   label: 'rgba(255,255,255,0.6)',
   title: 'rgba(255,255,255,0.5)',
   legendText: 'rgba(255,255,255,0.5)',
-  borderColor: '#0a1628',
+  borderColor: 'rgba(10,22,40,1)',
   gaugeAxis: '#fff',
   shadowColor: 'rgba(0,0,0,0.5)',
 }

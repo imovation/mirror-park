@@ -55,7 +55,7 @@ export default function TopBar() {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span style={{ fontSize: 20, fontWeight: 'bold', color: 'var(--accent)', letterSpacing: 2 }}>
+        <span style={{ fontSize: 'var(--font-size-xl)', fontWeight: 'bold', color: 'var(--accent)', letterSpacing: 2 }}>
           智慧校园可视化平台
         </span>
       </div>
@@ -71,7 +71,7 @@ export default function TopBar() {
               borderRadius: 4,
               background: currentTheme === t.id ? 'rgba(var(--accent-rgb), 0.2)' : 'transparent',
               color: currentTheme === t.id ? 'var(--accent)' : 'var(--text-tertiary)',
-              fontSize: 13,
+              fontSize: 'var(--font-size-md)',
               cursor: 'pointer',
               transition: 'all 0.3s',
             }}
@@ -81,7 +81,7 @@ export default function TopBar() {
         ))}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 13, color: 'var(--text-tertiary)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 'var(--font-size-md)', color: 'var(--text-tertiary)' }}>
         <button
           onClick={toggleUITheme}
           style={{
@@ -90,7 +90,8 @@ export default function TopBar() {
             borderRadius: 4,
             color: 'var(--accent)',
             cursor: 'pointer',
-            fontSize: 12,
+            transition: 'var(--transition-fast)',
+            fontSize: 'var(--font-size-sm)',
             padding: '4px 10px',
             fontWeight: 600,
           }}
@@ -105,8 +106,9 @@ export default function TopBar() {
             borderRadius: 4,
             color: timeMode === 'night' ? '#00e5ff' : '#ffb83c',
             cursor: 'pointer',
-            fontSize: 12,
-            padding: '4px 12px',
+            transition: 'var(--transition-fast)',
+            fontSize: 'var(--font-size-sm)',
+            padding: '4px 10px',
             fontWeight: 600,
           }}
         >
@@ -120,14 +122,15 @@ export default function TopBar() {
             borderRadius: 4,
             color: playing ? 'var(--accent)' : 'var(--text-muted)',
             cursor: 'pointer',
-            fontSize: 12,
-            padding: '4px 8px',
+            transition: 'var(--transition-fast)',
+            fontSize: 'var(--font-size-sm)',
+            padding: '4px 10px',
           }}
         >
           {playing ? '🔊' : '🔇'}
         </button>
         <span>{dateStr}</span>
-        <span style={{ fontSize: 16, color: 'var(--accent)', fontFamily: 'monospace' }}>{timeStr}</span>
+        <span style={{ fontSize: 'var(--font-size-lg)', color: 'var(--accent)', fontFamily: 'monospace' }}>{timeStr}</span>
       </div>
     </div>
   )

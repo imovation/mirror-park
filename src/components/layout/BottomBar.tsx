@@ -32,13 +32,13 @@ export default function BottomBar({ status = 'disconnected' }: BottomBarProps) {
         padding: '0 16px',
         background: 'var(--bottombar-bg)',
         borderTop: '1px solid var(--border-light)',
-        fontSize: '0.7em',
+        fontSize: 'var(--font-size-xs)',
         color: 'var(--text-muted)',
       }}
     >
       <span>智慧校园可视化平台 v0.2.0 | 数据更新: {currentTime}</span>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: currentStatus.color }}>
-        <span style={{ fontSize: '0.9em' }}>{currentStatus.icon}</span>
+        <span style={{ fontSize: 'var(--font-size-sm)' }}>{currentStatus.icon}</span>
         <span>{currentStatus.text}</span>
       </div>
     </div>

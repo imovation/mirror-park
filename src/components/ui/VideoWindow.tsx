@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 interface VideoWindowProps {
   visible: boolean
   title: string
@@ -5,7 +7,24 @@ interface VideoWindowProps {
 }
 
 export default function VideoWindow({ visible, title, onClose }: VideoWindowProps) {
-  if (!visible) return null
+  const [show, setShow] = useState(false)
+  const [closing, setClosing] = useState(false)
+
+  useEffect(() => {
+    if (visible) {
+      setShow(true)
+      setClosing(false)
+    } else if (show) {
+      setClosing(true)
+      const timer = setTimeout(() => {
+        setShow(false)
+        setClosing(false)
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [visible, show])
+
+  if (!show) return null
 
   return (
     <div
@@ -19,7 +38,8 @@ export default function VideoWindow({ visible, title, onClose }: VideoWindowProp
         border: '1px solid var(--border-strong)',
         borderRadius: 8,
         overflow: 'hidden',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+        boxShadow: 'var(--shadow-modal)',
+        animation: closing ? 'slideOutRight 0.3s ease-out forwards' : 'slideInRight 0.3s ease-out',
       }}
     >
       <div
@@ -30,7 +50,7 @@ export default function VideoWindow({ visible, title, onClose }: VideoWindowProp
           padding: '8px 14px',
           borderBottom: '1px solid var(--border-light)',
           color: 'var(--accent)',
-          fontSize: 13,
+          fontSize: 'var(--font-size-md)',
           fontWeight: 600,
         }}
       >
@@ -54,9 +74,9 @@ export default function VideoWindow({ visible, title, onClose }: VideoWindowProp
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#000',
+          background: 'var(--panel-bg-solid)',
           color: 'var(--text-muted)',
-          fontSize: 13,
+          fontSize: 'var(--font-size-md)',
         }}
       >
         <div style={{ textAlign: 'center' }}>

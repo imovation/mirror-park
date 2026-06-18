@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { type ReactNode, useState, useEffect } from 'react'
 
 interface ModalProps {
   visible: boolean
@@ -9,7 +9,24 @@ interface ModalProps {
 }
 
 export default function Modal({ visible, title, onClose, children, width = 600 }: ModalProps) {
-  if (!visible) return null
+  const [show, setShow] = useState(false)
+  const [closing, setClosing] = useState(false)
+
+  useEffect(() => {
+    if (visible) {
+      setShow(true)
+      setClosing(false)
+    } else if (show) {
+      setClosing(true)
+      const timer = setTimeout(() => {
+        setShow(false)
+        setClosing(false)
+      }, 200)
+      return () => clearTimeout(timer)
+    }
+  }, [visible, show])
+
+  if (!show) return null
 
   return (
     <div
@@ -22,10 +39,13 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
         justifyContent: 'center',
         background: 'var(--overlay-bg)',
         backdropFilter: 'blur(4px)',
+        opacity: closing ? 0 : 1,
+        transition: 'opacity 0.2s ease',
       }}
       onClick={onClose}
     >
       <div
+        className="panel-enter"
         style={{
           width,
           maxHeight: '80vh',
@@ -33,7 +53,7 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
           border: '1px solid var(--border-strong)',
           borderRadius: 8,
           overflow: 'hidden',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+          boxShadow: 'var(--shadow-modal)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -45,7 +65,7 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
             padding: '12px 20px',
             borderBottom: '1px solid var(--border-light)',
             color: 'var(--accent)',
-            fontSize: 15,
+            fontSize: 'var(--font-size-md)',
             fontWeight: 600,
           }}
         >
@@ -63,7 +83,7 @@ export default function Modal({ visible, title, onClose, children, width = 600 }
             ✕
           </button>
         </div>
-        <div style={{ padding: 20, color: 'var(--text-secondary)', fontSize: 13 }}>
+        <div style={{ padding: 20, color: 'var(--text-secondary)', fontSize: 'var(--font-size-md)' }}>
           {children}
         </div>
       </div>

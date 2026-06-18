@@ -19,6 +19,7 @@ export default function StatusPanel({ type, message }: StatusPanelProps) {
       padding: 32,
       gap: 8,
       minHeight: 80,
+      animation: type !== 'loading' ? 'fadeInUp 0.35s ease-out' : undefined,
     }}>
       <span style={{
         fontSize: 24,
@@ -27,7 +28,7 @@ export default function StatusPanel({ type, message }: StatusPanelProps) {
       }}>
         {config.icon}
       </span>
-      <span style={{ fontSize: '0.75rem', color: config.color }}>
+      <span style={{ fontSize: 'var(--font-size-sm)', color: config.color }}>
         {message || config.text}
       </span>
     </div>

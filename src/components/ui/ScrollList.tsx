@@ -11,23 +11,33 @@ interface ScrollListProps {
   maxHeight?: number
 }
 
-export default function ScrollList({ items, speed = 2000, maxHeight = 150 }: ScrollListProps) {
+export default function ScrollList({ items, speed = 30, maxHeight = 150 }: ScrollListProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isPaused, setIsPaused] = useState(false)
-  const scrollRef = useRef<number>(0)
-
   useEffect(() => {
-    if (isPaused || items.length <= 3) return
-    const interval = setInterval(() => {
-      if (!containerRef.current) return
-      scrollRef.current += 1
-      containerRef.current.scrollTop = scrollRef.current
-      if (scrollRef.current >= containerRef.current.scrollHeight - containerRef.current.clientHeight) {
-        scrollRef.current = 0
+    if (items.length <= 3) return
+
+    let lastTime = performance.now()
+    let scrollPos = 0
+    let rafId: number
+
+    const animate = (now: number) => {
+      const dt = (now - lastTime) / 1000
+      lastTime = now
+
+      if (!isPaused && containerRef.current) {
+        scrollPos += speed * dt
+        const maxScroll = containerRef.current.scrollHeight - containerRef.current.clientHeight
+        if (scrollPos >= maxScroll) scrollPos = 0
+        containerRef.current.scrollTop = scrollPos
       }
-    }, 50)
-    return () => clearInterval(interval)
-  }, [isPaused, items.length])
+
+      rafId = requestAnimationFrame(animate)
+    }
+
+    rafId = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(rafId)
+  }, [isPaused, speed, items.length])
 
   return (
     <div
@@ -37,7 +47,7 @@ export default function ScrollList({ items, speed = 2000, maxHeight = 150 }: Scr
       onMouseLeave={() => setIsPaused(false)}
     >
       {items.map((item) => (
-        <div key={item.id} style={{ padding: '4px 0', borderBottom: '1px solid var(--border-light)', fontSize: 12, color: 'var(--text-secondary)' }}>
+        <div key={item.id} style={{ padding: '4px 0', borderBottom: '1px solid var(--border-light)', fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
           {item.content}
         </div>
       ))}

@@ -10,7 +10,7 @@ export default function DashboardPanel({ title, children }: DashboardPanelProps)
     <div
       className="panel-enter"
       style={{
-        margin: '6px 8px',
+        marginBottom: 6,
         background: 'var(--panel-bg)',
         border: '1px solid var(--border)',
         borderRadius: 6,
@@ -18,13 +18,11 @@ export default function DashboardPanel({ title, children }: DashboardPanelProps)
         display: 'flex',
         flexDirection: 'column',
         minHeight: 120,
-        backdropFilter: 'blur(6px)',
-        WebkitBackdropFilter: 'blur(6px)',
       }}
     >
       <div
         style={{
-          padding: '8px 14px',
+          padding: 'var(--panel-padding-y) var(--panel-padding-x)',
           fontSize: 13,
           fontWeight: 600,
           color: 'var(--accent)',
@@ -34,7 +32,7 @@ export default function DashboardPanel({ title, children }: DashboardPanelProps)
       >
         {title}
       </div>
-      <div style={{ padding: 10, flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ padding: 'var(--panel-padding-y) var(--panel-padding-x)', flex: 1, display: 'flex', flexDirection: 'column' }}>
         {children}
       </div>
     </div>

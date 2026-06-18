@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react'
 
-interface RightPanelProps {
+interface SidePanelProps {
   children: ReactNode
 }
 
-export default function RightPanel({ children }: RightPanelProps) {
+export default function SidePanel({ children }: SidePanelProps) {
   return (
     <div style={{
       display: 'flex',

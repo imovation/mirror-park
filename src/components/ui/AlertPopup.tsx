@@ -34,12 +34,12 @@ export default function AlertPopup() {
         <div
           key={alert.id}
           style={{
-            background: alert.type === 'error' ? 'rgba(255,23,68,0.9)' : alert.type === 'warning' ? 'rgba(255,109,0,0.9)' : 'rgba(74,158,255,0.9)',
+            background: alert.type === 'error' ? 'rgba(var(--color-danger-rgb), 0.9)' : alert.type === 'warning' ? 'rgba(var(--color-warning-rgb), 0.9)' : 'rgba(var(--accent-rgb), 0.9)',
             borderRadius: 8,
             padding: '12px 16px',
-            color: '#fff',
+            color: 'var(--text-primary)',
             fontSize: 13,
-            boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+            boxShadow: 'var(--shadow-toast)',
             animation: 'slideInRight 0.4s ease-out',
             display: 'flex',
             justifyContent: 'space-between',
@@ -62,7 +62,7 @@ export default function AlertPopup() {
           </div>
           <button
             onClick={(e) => { e.stopPropagation(); dismissAlert(alert.id) }}
-            style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 16, opacity: 0.6 }}
+            style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', fontSize: 16, opacity: 0.6 }}
           >
             ✕
           </button>
