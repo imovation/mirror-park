@@ -13,10 +13,10 @@ export default function ActivityTimeStats() {
   const chartData = data.hours.map((h, i) => ({ name: h, value: data.values[i] }))
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflow: 'auto' }}>
       <ChartLabel>各时段活跃度</ChartLabel>
-      <div style={{ flex: 1 }}>
-        <BarChart data={chartData} horizontal={false} color="#ff6d00" />
+      <div style={{ flex: 1, minHeight: 0 }}>
+        <BarChart data={chartData} height={180} horizontal={false} color="#ff6d00" />
       </div>
     </div>
   )

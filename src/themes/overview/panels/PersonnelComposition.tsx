@@ -17,16 +17,16 @@ export default function PersonnelComposition() {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <NumberFlip label="教师总数" value={data.totalTeachers} unit="人" />
-      <div style={{ display: 'flex', gap: 12 }}>
-        <div style={{ flex: 1 }}>
+      <div style={{ display: 'flex', gap: 12, flex: 1, minHeight: 0 }}>
+        <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">性别分布</ChartLabel>
-          <RingChart data={genderData} />
+          <RingChart data={genderData} height={140} />
         </div>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">学历分布</ChartLabel>
-          <RingChart data={data.education} colors={['#00c853', '#4a9eff', '#ff6d00', '#aa00ff']} />
+          <RingChart data={data.education} height={140} colors={['#00c853', '#4a9eff', '#ff6d00', '#aa00ff']} />
         </div>
       </div>
     </div>

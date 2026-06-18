@@ -31,5 +31,5 @@ export default function RecentActivity() {
     ),
   }))
 
-  return <ScrollList items={items} maxHeight={200} />
+  return <ScrollList items={items} />
 }

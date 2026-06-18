@@ -11,12 +11,13 @@ export default function ActivityHeatmap() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflow: 'auto' }}>
       <ChartLabel>各时段校园人流变化</ChartLabel>
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <LineChart
           xData={data.hours}
           series={[{ name: '人流量', data: data.values, color: '#00c853' }]}
+          height={180}
           area
           smooth
         />

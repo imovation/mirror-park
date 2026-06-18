@@ -10,7 +10,7 @@ export default function SchoolInfo() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <NumberFlip label="占地面积" value={data.landArea} unit="m²" />
       <NumberFlip label="建筑面积" value={data.buildingArea} unit="m²" />
       <NumberFlip label="班级数量" value={data.classCount} unit="个" />

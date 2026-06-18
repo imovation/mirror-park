@@ -11,8 +11,8 @@ export default function StudentInfo() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <div style={{ display: 'flex', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
+      <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
         {data.grades.map((g) => (
           <div
             key={g.name}
@@ -34,7 +34,7 @@ export default function StudentInfo() {
           </div>
         ))}
       </div>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>年级人数对比</ChartLabel>
         <BarChart
           data={data.grades.map((g) => ({ name: g.name, value: g.total }))}

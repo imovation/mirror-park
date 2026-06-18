@@ -19,7 +19,7 @@ export default function AssetOverview() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       {ASSETS.map((asset) => (
         <div
           key={asset.key}
