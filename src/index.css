@@ -72,7 +72,11 @@
   --border: rgba(0, 0, 0, 0.08);
   --border-light: rgba(0, 0, 0, 0.04);
   --border-strong: rgba(0, 0, 0, 0.15);
+  --accent: #2563eb;
   --accent-rgb: 74, 158, 255;
+  --color-success: #059669;
+  --color-danger: #dc2626;
+  --color-pending: #d97706;
   --scrollbar-thumb: rgba(0, 0, 0, 0.15);
   --nav-arrow-bg: rgba(0, 0, 0, 0.15);
   --card-carousel-bg: rgba(255, 255, 255, 0.8);
