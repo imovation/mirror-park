@@ -8,7 +8,7 @@ export const adminHandlers = [
     return HttpResponse.json({
       departmentCount: 10,
       staffCount: 196,
-      attendanceRate: 0.962,
+      attendanceRate: 0.959,
       roomCount: 28,
     })
   }),

@@ -20,7 +20,7 @@ export const teachingResearchHandlers = [
 
   http.get(`${BASE}/teaching-research/resource-stats`, () => {
     return HttpResponse.json({
-      totalResources: faker.number.int({ min: 3000, max: 10000 }),
+      totalResources: 6500,
       cloudQuestions: faker.number.int({ min: 500, max: 3000 }),
       cloudResources: faker.number.int({ min: 1000, max: 5000 }),
       recentUpdates: faker.number.int({ min: 10, max: 100 }),
@@ -28,7 +28,7 @@ export const teachingResearchHandlers = [
   }),
 
   http.get(`${BASE}/teaching-research/updates`, () => {
-    const subjects = ['语文', '数学', '英语', '物理', '化学', '生物', '政治', '历史', '地理']
+    const subjects = ['语文', '数学', '英语', '物理', '化学', '生物', '道德与法治', '历史', '地理']
     return HttpResponse.json({
       recentItems: Array.from({ length: 10 }, (_, i) => ({
         id: `res-${i}`,
@@ -67,18 +67,14 @@ export const teachingResearchHandlers = [
 
   http.get(`${BASE}/teaching-research/studios`, () => {
     return HttpResponse.json({
-      studios: Array.from({ length: 6 }, (_, i) => ({
-        id: `studio-${i}`,
-        name: faker.helpers.arrayElement([
-          '语文名师工作室', '数学创新教学工作室', '英语教研工作室',
-          '物理实验教学工作室', '化学教研工作室', '生物学科工作室',
-          '信息技术教育工作室', '心理健康教育工作室',
-        ]),
-        host: faker.person.fullName(),
-        memberCount: faker.number.int({ min: 5, max: 20 }),
-        achievementCount: faker.number.int({ min: 10, max: 50 }),
-        subject: faker.helpers.arrayElement(['语文', '数学', '英语', '物理', '化学', '生物', '信息技术', '心理']),
-      })),
+      studios: [
+        { id: 'studio-0', name: '语文名师工作室', host: '张明华', memberCount: 15, achievementCount: 42, subject: '语文' },
+        { id: 'studio-1', name: '数学创新教学工作室', host: '李志强', memberCount: 12, achievementCount: 38, subject: '数学' },
+        { id: 'studio-2', name: '英语教研工作室', host: '王秀丽', memberCount: 18, achievementCount: 28, subject: '英语' },
+        { id: 'studio-3', name: '物理实验教学工作室', host: '刘建国', memberCount: 10, achievementCount: 22, subject: '物理' },
+        { id: 'studio-4', name: '化学教研工作室', host: '陈思远', memberCount: 8, achievementCount: 16, subject: '化学' },
+        { id: 'studio-5', name: '生物学科工作室', host: '赵晓梅', memberCount: 11, achievementCount: 19, subject: '生物' },
+      ],
     })
   }),
 ]
