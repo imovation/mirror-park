@@ -14,7 +14,7 @@ export default function StudentLeave() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ textAlign: 'center' }}>
-        <NumberFlip label="今日请假人数" value={data.todayTotal} unit="人" color="#ff6d00" />
+        <NumberFlip label="今日请假人数" value={data.todayTotal} unit="人" color="var(--color-warning)" />
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>

@@ -11,7 +11,7 @@ export default function TeacherTopics() {
     <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
       <NumberFlip label="课例数" value={data.lessonCases} unit="个" color="#4a9eff" />
       <NumberFlip label="公开成果数" value={data.publicAchievements} unit="项" color="#00c853" />
-      <NumberFlip label="在研课题数" value={data.ongoingTopics} unit="项" color="#ff6d00" />
+      <NumberFlip label="在研课题数" value={data.ongoingTopics} unit="项" color="var(--color-warning)" />
     </div>
   )
 }

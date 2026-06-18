@@ -11,7 +11,7 @@ export default function SecurityOverview() {
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
       <NumberFlip label="监控摄像头" value={data.cameraCount} unit="个" />
       <NumberFlip label="门禁设备" value={data.accessDeviceCount} unit="个" />
-      <NumberFlip label="今日告警" value={data.todayAlerts} unit="次" color="#ff6d00" />
+      <NumberFlip label="今日告警" value={data.todayAlerts} unit="次" color="var(--color-warning)" />
       <NumberFlip label="今日访客" value={data.todayVisitors} unit="人" color="#00c853" />
     </div>
   )

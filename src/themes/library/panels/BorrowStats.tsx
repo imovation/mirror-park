@@ -14,7 +14,7 @@ export default function BorrowStats() {
         <NumberFlip label="今日借阅" value={data.todayBorrow} unit="册" color="#00c853" />
         <NumberFlip label="今日归还" value={data.todayReturn} unit="册" color="#4a9eff" />
         <NumberFlip label="在借图书" value={data.totalBorrowed} unit="册" color="#ffc107" />
-        <NumberFlip label="逾期图书" value={data.overdue} unit="册" color="#ff6d00" />
+        <NumberFlip label="逾期图书" value={data.overdue} unit="册" color="var(--color-warning)" />
       </div>
       <div style={{ flex: 1 }}>
         <LineChart

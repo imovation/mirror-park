@@ -12,7 +12,7 @@ export default function TeachingOverview() {
       <NumberFlip label="今日课程" value={data.todayCourses} unit="节" />
       <NumberFlip label="正在上课" value={data.ongoingCourses} unit="节" color="#00c853" />
       <NumberFlip label="教室总数" value={data.totalClassrooms} unit="间" />
-      <NumberFlip label="教室使用率" value={Math.round(data.usageRate * 100)} unit="%" color="#ff6d00" />
+      <NumberFlip label="教室使用率" value={Math.round(data.usageRate * 100)} unit="%" color="var(--color-warning)" />
     </div>
   )
 }

@@ -19,7 +19,7 @@ export default function ClassroomUsagePanel() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="使用中" value={data.inUse} unit="间" color="#00c853" />
-        <NumberFlip label="空闲" value={data.available} unit="间" color="#ff6d00" />
+        <NumberFlip label="空闲" value={data.available} unit="间" color="var(--color-warning)" />
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
