@@ -18,7 +18,7 @@ export default function RankList({ items, maxHeight = 150 }: RankListProps) {
 
   const listItems = items.map((item, index) => {
     const rank = index + 1
-    const badgeBg = rank === 1 ? 'var(--color-danger)' : rank === 2 ? 'var(--color-warning)' : rank === 3 ? 'var(--color-pending)' : 'rgba(255,255,255,0.1)'
+    const badgeBg = rank === 1 ? 'var(--color-danger)' : rank === 2 ? 'var(--color-warning)' : rank === 3 ? 'var(--color-pending)' : 'var(--border)'
     const badgeColor = rank <= 3 ? '#fff' : 'var(--text-secondary)'
     const barColor = item.color || 'var(--accent)'
 

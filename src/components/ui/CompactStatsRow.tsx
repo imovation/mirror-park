@@ -17,7 +17,7 @@ export default function CompactStatsRow({ items }: CompactStatsRowProps) {
     <div style={{
       display: 'flex',
       justifyContent: 'space-between',
-      background: 'rgba(74,158,255,0.05)',
+      background: 'var(--card-carousel-bg)',
       borderRadius: 'var(--radius-md)',
       padding: '8px 12px',
       marginBottom: 8,

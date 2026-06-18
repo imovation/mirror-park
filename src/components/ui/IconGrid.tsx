@@ -20,7 +20,7 @@ export default function IconGrid({ items }: IconGridProps) {
           borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-light)'
         }}>
           <div style={{
-            width: 28, height: 28, borderRadius: '50%', background: 'rgba(74,158,255,0.1)',
+            width: 28, height: 28, borderRadius: '50%',             background: 'rgba(var(--accent-rgb), 0.1)',
             display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, color: 'var(--accent)'
           }}>
             {item.icon}
