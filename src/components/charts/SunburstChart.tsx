@@ -43,7 +43,7 @@ export default function SunburstChart({ data, height = 260, title }: SunburstCha
         levels: [
           {} as any,
           {
-            color: ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffd600', '#00bcd4'],
+            color: ['#4a9eff', '#00c853', 'var(--color-warning)', '#aa00ff', '#ffd600', '#00bcd4'],
             colorMappingBy: 'value',
           } as any,
           {

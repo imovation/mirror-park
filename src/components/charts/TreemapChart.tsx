@@ -36,13 +36,13 @@ export default function TreemapChart({ data, height = 220, title }: TreemapChart
           show: true,
           formatter: '{b}',
           fontSize: 11,
-          color: '#fff',
+          color: t.label,
         },
         upperLabel: {
           show: true,
           height: 22,
           fontSize: 11,
-          color: '#fff',
+          color: t.label,
           backgroundColor: 'rgba(0,0,0,0.3)',
         },
         itemStyle: {
@@ -57,7 +57,7 @@ export default function TreemapChart({ data, height = 220, title }: TreemapChart
           },
           {
             colorMappingBy: 'value',
-            color: ['#1a3a5c', '#2a6090', '#4a9eff', '#00c853', '#ff6d00', '#aa00ff'],
+            color: ['#1a3a5c', '#2a6090', '#4a9eff', '#00c853', 'var(--color-warning)', '#aa00ff'],
           },
         ],
       },

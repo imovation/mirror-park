@@ -20,7 +20,7 @@ interface RadarChartProps {
   title?: string
 }
 
-const SERIES_COLORS = ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffd600']
+const SERIES_COLORS = ['#4a9eff', '#00c853', 'var(--color-warning)', '#aa00ff', '#ffd600']
 
 export default function RadarChart({ indicator, series, height = 260, title }: RadarChartProps) {
   const t = useChartTheme()
