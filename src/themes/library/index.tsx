@@ -1,6 +1,6 @@
 import type { PanelConfig } from '@/types/panel'
 import LibraryScene from './LibraryScene'
-import CollectionOverview from './panels/CollectionOverview'
+import LibraryTopMetrics from './panels/LibraryTopMetrics'
 import BorrowStats from './panels/BorrowStats'
 import HotBooks from './panels/HotBooks'
 import ClassBorrowRank from './panels/ClassBorrowRank'
@@ -9,9 +9,10 @@ import VisitorStats from './panels/VisitorStats'
 
 export const libraryScene = () => <LibraryScene />
 
+export const libraryTopMetrics = () => <LibraryTopMetrics />
+
 export const libraryPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'lib-collection', title: '馆藏概况' },
     { id: 'lib-borrow', title: '借阅统计' },
     { id: 'lib-hot', title: '热门图书' },
   ],
@@ -24,7 +25,6 @@ export const libraryPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
 
 export function renderLibraryPanel(panelId: string) {
   switch (panelId) {
-    case 'lib-collection': return <CollectionOverview />
     case 'lib-borrow': return <BorrowStats />
     case 'lib-hot': return <HotBooks />
     case 'lib-class-rank': return <ClassBorrowRank />
