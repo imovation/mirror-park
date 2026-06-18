@@ -142,38 +142,38 @@
 
 ---
 
-## P2 遗留问题（未修复，记录备查）
+## P2 优化（全部已完成）
 
 ### 视觉填充率
 
-| # | 面板 | 问题 |
+| # | 面板 | 修复 |
 |---|------|------|
-| 1 | HotBooks (Library) | 3 图表垂直堆叠 ~430px，DashboardPanel `overflow:hidden` 可能裁剪底部 |
-| 2 | ClassroomUsagePanel (Academics) | 同上，~400px 内容 |
-| 3 | ReadingActivities (Library) | 仅单 CardCarousel，大量空白 |
-| 4 | ClassManagement (Academics) | 居中单 NumberFlip + 短图表，稀疏 |
-| 5 | AccessControl (Security) | 内容稀疏 |
-| 6 | CanteenSafety (Security) | ScrollList maxHeight=60 极小 |
-| 7 | TeacherDistribution (Overview) | RadarChart height=240 + BarChart height=100 在 ~140px 面板中被裁剪 |
-| 8 | CourseSchedule (Academics) | HeatmapChart height=90 单行几乎不可读 |
+| 1 | HotBooks (Library) | BarChart 160→110, PieChart 150→100, CardCarousel 120→90 |
+| 2 | ClassroomUsagePanel (Academics) | BarChart 100→80, GaugeChart 120→90, PieChart 110→80 |
+| 3 | ReadingActivities (Library) | 包裹 flex 容器，maxHeight 160→200, 状态颜色改为 CSS 变量 |
+| 4 | ClassManagement (Academics) | 2x2 网格增加"人均学生"额外指标 |
+| 5 | AccessControl (Security) | 双 NumberFlip（通行+异常），BarChart 100→110, ScrollList 80→100 |
+| 6 | CanteenSafety (Security) | ScrollList maxHeight 60→120 |
+| 7 | TeacherDistribution (Overview) | RadarChart 240→160, BarChart 100→75 |
+| 8 | CourseSchedule (Academics) | HeatmapChart 90→130 |
 
 ### Mock 数据
 
-| # | 主题 | 问题 |
+| # | 主题 | 修复 |
 |---|------|------|
-| 9 | Teaching-Research | 资源总数与分类值独立生成，和不一致 |
-| 10 | Teaching-Research | 工作室名称与学科独立随机，"化学教研工作室"可能得到 `subject: '生物'` |
-| 11 | Teaching-Research | 学科名称不一致（'政治' vs '道德与法治'） |
-| 12 | Admin | `attendanceRate=0.962` 但实际 188/196=0.959，细微差异 |
+| 9 | Teaching-Research | `totalResources` 固定为 6500（不再随机生成） |
+| 10 | Teaching-Research | 工作室替换为 6 组预配对的名称+学科数据 |
+| 11 | Teaching-Research | `'政治'` → `'道德与法治'`，统一学科命名 |
+| 12 | Admin | `attendanceRate` 修正为 0.959（与实际 188/196 符合） |
 
 ### 共享图表组件
 
-| # | 组件 | 问题 |
+| # | 组件 | 修复 |
 |---|------|------|
-| 13 | TreemapChart | 硬编码 `#fff` 文本颜色，浅色主题不可见 |
-| 14 | RadarChart | 硬编码 `#aa00ff` 等颜色，无 CSS 变量 |
-| 15 | SunburstChart | 同上硬编码色板 |
-| 16 | GaugeChart | 硬编码 `#00c853/#4a9eff/#ff6d00` 色阶，浅色主题 `#ff6d00` 变为 `#e6a000` |
+| 13 | TreemapChart | `#fff` → `t.label`，`#ff6d00` → `var(--color-warning)` |
+| 14 | RadarChart | `#ff6d00` → `var(--color-warning)` |
+| 15 | SunburstChart | `#ff6d00` → `var(--color-warning)` |
+| 16 | GaugeChart | `#ff6d00` → `var(--color-warning)`，pointer/detail 的 `#4a9eff` → `var(--accent)` |
 
 ---
 
@@ -186,4 +186,6 @@
 | 无 query hook 面板 | 2 | 0 |
 | Mock 数据不一致 | 4 | 0 |
 | 浅色主题颜色断裂点 (`#ff6d00`) | 8 | 0 |
+| 浅色主题图表颜色断裂点 (`#ff6d00`) | 4 | 0 |
 | 潜在 crash (空数组) | 1 | 0 |
+| P2 优化项 | 16 | 16 |
