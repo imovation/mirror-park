@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AGENTS.md",
+                "file": "docs/PROJECT_STATUS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "AGENTS"
+              "title": "PROJECT_STATUS"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AGENTS.md",
+                "file": "docs/PROJECT_STATUS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "AGENTS 的反向链接列表"
+              "title": "PROJECT_STATUS 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AGENTS.md",
+                "file": "docs/PROJECT_STATUS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "AGENTS 的出链列表"
+              "title": "PROJECT_STATUS 的出链列表"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "AGENTS.md",
+                "file": "docs/PROJECT_STATUS.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "AGENTS 的大纲"
+              "title": "PROJECT_STATUS 的大纲"
             }
           }
         ]
@@ -185,17 +185,19 @@
   },
   "active": "3ff39f6ea4c37b65",
   "lastOpenFiles": [
-    "vitest.config.ts.timestamp-1781791881984-f6a9617c108d68.mjs",
-    "dist/assets/index-DQDsKqfl.js",
+    "vitest.config.ts.timestamp-1781792172822-08bcae69c70318.mjs",
+    "dist/assets/index-DbR5-Ag5.js",
     "dist/index.html",
-    "dist/assets/TeachingResearchScene-D72Rzo2V.js",
     "dist/assets/index-Cvra4M9w.css",
-    "dist/assets/SecurityScene-DE-0_dIo.js",
-    "dist/assets/AdminScene-BczF-AQk.js",
-    "dist/assets/OverviewScene-CQofc3Mr.js",
-    "dist/assets/LibraryScene-GdD-6sYo.js",
-    "dist/assets/CampusBase-C7csjf91.js",
-    "dist/assets/AcademicsScene-BzebmNxX.js",
+    "dist/assets/TeachingResearchScene-C7ewO_As.js",
+    "dist/assets/SecurityScene-c1465HDQ.js",
+    "dist/assets/OverviewScene-D6pZACq1.js",
+    "dist/assets/LibraryScene-CzN_-nSN.js",
+    "dist/assets/CampusBase-DyFPE6vy.js",
+    "dist/assets/AdminScene-CTjB3Ohb.js",
+    "dist/assets/AcademicsScene-hWbkE-jV.js",
+    "AGENTS.md",
+    "README.md",
     "docs/superpowers/plans/2026-06-18-theme-overview.md",
     "docs/superpowers/plans/2026-06-18-data-panel-ui-optimization.md",
     "docs/superpowers/specs/2026-06-18-data-panel-ui-optimization-design.md",

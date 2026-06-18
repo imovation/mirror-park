@@ -39,8 +39,8 @@ export default function ScreenLayout({
           {topMetrics}
         </div>
       )}
-      <div style={{ gridArea: 'left', overflow: 'auto', maxWidth: 420, pointerEvents: 'auto' }}>{leftPanel}</div>
-      <div style={{ gridArea: 'right', overflow: 'auto', maxWidth: 420, pointerEvents: 'auto' }}>{rightPanel}</div>
+      <div style={{ gridArea: 'left', overflow: 'hidden', maxWidth: 420, pointerEvents: 'auto' }}>{leftPanel}</div>
+      <div style={{ gridArea: 'right', overflow: 'hidden', maxWidth: 420, pointerEvents: 'auto' }}>{rightPanel}</div>
       <div style={{ gridArea: 'bottombar', pointerEvents: 'auto' }}>{bottomBar}</div>
     </div>
   )

@@ -9,6 +9,7 @@ export default function SidePanel({ children }: SidePanelProps) {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
+      minHeight: 0,
       height: '100%',
       paddingTop: 4,
       backdropFilter: 'blur(6px)',

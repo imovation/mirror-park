@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { type ReactNode, useRef, useLayoutEffect, useState } from 'react'
 
 interface DashboardPanelProps {
   title?: string
@@ -6,7 +6,40 @@ interface DashboardPanelProps {
   className?: string
 }
 
+function useProportionalScale() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(1)
+
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const compute = () => {
+      const cw = el.clientWidth
+      const ch = el.clientHeight
+      const sw = el.scrollWidth
+      const sh = el.scrollHeight
+      if (sw <= cw && sh <= ch) {
+        setScale(1)
+        return
+      }
+      const sx = cw / sw
+      const sy = ch / sh
+      setScale(Math.min(sx, sy, 1))
+    }
+
+    compute()
+    const obs = new ResizeObserver(compute)
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return { ref, scale }
+}
+
 export default function DashboardPanel({ title, children, className = '' }: DashboardPanelProps) {
+  const { ref, scale } = useProportionalScale()
+
   return (
     <div
       className={`panel-enter relative flex flex-col backdrop-blur-md border rounded-md overflow-hidden ${className}`}
@@ -14,6 +47,7 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
         background: 'var(--panel-bg)',
         borderColor: 'var(--border-strong)',
         marginBottom: 6,
+        minHeight: 0,
       }}
     >
       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />
@@ -47,8 +81,14 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
           </h3>
         </div>
       )}
-      <div className="flex-1 p-4 overflow-hidden relative">
-        {children}
+      <div
+        ref={ref}
+        className="flex-1 p-4 overflow-hidden relative"
+        style={{ minHeight: 0 }}
+      >
+        <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}>
+          {children}
+        </div>
       </div>
     </div>
   )
