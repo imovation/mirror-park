@@ -7,7 +7,7 @@ export const academicsHandlers = [
   http.get(`${BASE}/academics/overview`, () => {
     return HttpResponse.json({
       todayCourses: 96,
-      activeCourses: 14,
+      ongoingCourses: 14,
       totalClassrooms: 60,
       usageRate: 0.72,
     })
