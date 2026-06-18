@@ -15,7 +15,7 @@ import { teachingResearchPanels, renderTeachingResearchPanel, teachingResearchTo
 import { adminPanels, renderAdminPanel, adminTopMetrics } from './admin'
 import { libraryPanels, renderLibraryPanel, libraryTopMetrics } from './library'
 import { academicsPanels, renderAcademicsPanel, academicsTopMetrics } from './academics'
-import { securityPanels, renderSecurityPanel } from './security'
+import { securityPanels, renderSecurityPanel, securityTopMetrics } from './security'
 
 type SceneRenderer = () => ReactNode
 type PanelRenderer = (panelId: string) => ReactNode
@@ -62,6 +62,7 @@ const registry: Record<ThemeId, ThemeEntry> = {
     scene: () => <SecurityScene />,
     panels: securityPanels,
     renderPanel: renderSecurityPanel,
+    topMetrics: securityTopMetrics,
   },
 }
 
