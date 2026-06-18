@@ -14,15 +14,16 @@ export default function ResearchProjectsList() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <CardCarousel
-      items={data.projects.map((p) => ({
-        id: p.id,
-        title: p.name,
-        subtitle: `负责人: ${p.leader} · ${p.members}人`,
-        tag: p.status,
-        tagColor: statusColors[p.status],
-      }))}
-      maxHeight={200}
-    />
+    <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
+      <CardCarousel
+        items={data.projects.map((p) => ({
+          id: p.id,
+          title: p.name,
+          subtitle: `负责人: ${p.leader} · ${p.members}人`,
+          tag: p.status,
+          tagColor: statusColors[p.status],
+        }))}
+      />
+    </div>
   )
 }

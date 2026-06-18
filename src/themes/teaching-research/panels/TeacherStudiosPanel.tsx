@@ -18,7 +18,7 @@ export default function TeacherStudiosPanel() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, flex: 1, minHeight: 0, overflow: 'auto' }}>
       {data.studios.map((s) => (
         <div
           key={s.id}
