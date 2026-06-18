@@ -8,7 +8,7 @@ export default function CollectionOverview() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <NumberFlip label="纸质图书" value={data.paperBooks} unit="册" />
       <NumberFlip label="电子图书" value={data.ebooks} unit="册" />
       <NumberFlip label="期刊种类" value={data.journals} unit="种" />

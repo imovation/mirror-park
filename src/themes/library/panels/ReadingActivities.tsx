@@ -13,7 +13,7 @@ export default function ReadingActivities() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <CardCarousel
         items={data.activities.map((a) => ({
           id: a.id,
@@ -22,7 +22,6 @@ export default function ReadingActivities() {
           tag: a.status,
           tagColor: statusColors[a.status],
         }))}
-        maxHeight={200}
       />
     </div>
   )
