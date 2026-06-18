@@ -35,6 +35,6 @@ export function renderSecurityPanel(panelId: string) {
     case 'sec-visitors': return <VisitorManagement />
     case 'sec-alerts': return <AlertEvents />
     case 'sec-canteen': return <CanteenSafety />
-    default: return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
+    default: return <span style={{ color: 'var(--text-tertiary)', fontSize: 'var(--font-size-xs)' }}>待实现</span>
   }
 }

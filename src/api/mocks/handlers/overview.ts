@@ -10,6 +10,8 @@ export const overviewHandlers = [
       buildingArea: 88000,
       classCount: 60,
       buildingCount: 9,
+      totalTeachers: 196,
+      totalStudents: 2800,
     })
   }),
 

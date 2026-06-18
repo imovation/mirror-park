@@ -32,6 +32,6 @@ export function renderAdminPanel(panelId: string) {
     case 'admin-calendar': return <SchoolCalendar />
     case 'admin-attendance': return <StaffAttendance />
     case 'admin-meetings': return <MeetingManagement />
-    default: return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
+    default: return <span style={{ color: 'var(--text-tertiary)', fontSize: 'var(--font-size-xs)' }}>待实现</span>
   }
 }

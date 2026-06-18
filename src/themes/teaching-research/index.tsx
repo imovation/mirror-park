@@ -40,6 +40,6 @@ export function renderTeachingResearchPanel(panelId: string) {
     case 'tr-studios':
       return <TeacherStudiosPanel />
     default:
-      return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
+      return <span style={{ color: 'var(--text-tertiary)', fontSize: 'var(--font-size-xs)' }}>待实现</span>
   }
 }

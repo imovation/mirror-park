@@ -7,6 +7,8 @@ export interface SchoolInfo {
   buildingArea: number
   classCount: number
   buildingCount: number
+  totalTeachers: number
+  totalStudents: number
 }
 
 export interface PersonnelComposition {

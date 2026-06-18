@@ -6,25 +6,11 @@ import StudentInfo from './panels/StudentInfo'
 import ActivityTimeStats from './panels/ActivityTimeStats'
 import AssetOverview from './panels/AssetOverview'
 import RoomDistribution from './panels/RoomDistribution'
-import TopMetricsCard from '@/components/ui/TopMetricsCard'
+import OverviewTopMetrics from './panels/OverviewTopMetrics'
 
 export const overviewScene = () => <OverviewScene />
 
-const metricCards = [
-  { label: '占地面积', value: '73' },
-  { label: '建筑面积', value: '8.8万' },
-  { label: '教学班', value: '60' },
-  { label: '在校学生', value: '2800' },
-  { label: '教职工', value: '220' },
-]
-
-export const overviewTopMetrics = () => (
-  <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', justifyContent: 'center' }}>
-    {metricCards.map((m) => (
-      <TopMetricsCard key={m.label} label={m.label} value={m.value} />
-    ))}
-  </div>
-)
+export const overviewTopMetrics = () => <OverviewTopMetrics />
 
 export const overviewPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
@@ -54,6 +40,6 @@ export function renderOverviewPanel(panelId: string) {
     case 'overview-room-dist':
       return <RoomDistribution />
     default:
-      return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
+      return <span style={{ color: 'var(--text-tertiary)', fontSize: 'var(--font-size-xs)' }}>待实现</span>
   }
 }
