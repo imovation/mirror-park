@@ -5,8 +5,8 @@ import PersonnelComposition from './panels/PersonnelComposition'
 import TeacherDistribution from './panels/TeacherDistribution'
 import StudentInfo from './panels/StudentInfo'
 import ActivityHeatmap from './panels/ActivityHeatmap'
-import RecentActivity from './panels/RecentActivity'
-import BuildingDetail from './panels/BuildingDetail'
+import AssetOverview from './panels/AssetOverview'
+import FunctionalRooms from './panels/FunctionalRooms'
 
 export const overviewScene = () => <OverviewScene />
 
@@ -19,8 +19,8 @@ export const overviewPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
     { id: 'overview-activity', title: '活跃度统计' },
   ],
   right: [
-    { id: 'overview-building-detail', title: '建筑详情' },
-    { id: 'overview-recent-activity', title: '实时动态' },
+    { id: 'overview-assets', title: '资产概况' },
+    { id: 'overview-rooms', title: '功能室分布' },
   ],
 }
 
@@ -36,10 +36,10 @@ export function renderOverviewPanel(panelId: string) {
       return <StudentInfo />
     case 'overview-activity':
       return <ActivityHeatmap />
-    case 'overview-building-detail':
-      return <BuildingDetail />
-    case 'overview-recent-activity':
-      return <RecentActivity />
+    case 'overview-assets':
+      return <AssetOverview />
+    case 'overview-rooms':
+      return <FunctionalRooms />
     default:
       return <span style={{ color: '#6b7280', fontSize: '0.75rem' }}>待实现</span>
   }
