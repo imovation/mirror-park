@@ -1,20 +1,22 @@
-import { useSchoolInfo } from '@/api/queries/overview'
-import NumberFlip from '@/components/ui/NumberFlip'
+import { useSchoolInfo, usePersonnelComposition } from '@/api/queries/overview'
+import CompactStatsRow from '@/components/ui/CompactStatsRow'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 export default function SchoolInfo() {
-  const { data, isLoading, error } = useSchoolInfo()
+  const { data: sData, isLoading: sLoading, error: sError } = useSchoolInfo()
+  const { data: pData, isLoading: pLoading, error: pError } = usePersonnelComposition()
 
-  if (isLoading) return <StatusPanel type="loading" />
-  if (error) return <StatusPanel type="error" />
-  if (!data) return <StatusPanel type="empty" />
+  if (sLoading || pLoading) return <StatusPanel type="loading" />
+  if (sError || pError) return <StatusPanel type="error" />
+  if (!sData || !pData) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-      <NumberFlip label="占地面积" value={data.landArea} unit="m²" />
-      <NumberFlip label="建筑面积" value={data.buildingArea} unit="m²" />
-      <NumberFlip label="班级数量" value={data.classCount} unit="个" />
-      <NumberFlip label="建筑数量" value={data.buildingCount} unit="栋" />
-    </div>
+    <CompactStatsRow items={[
+      { id: 'land', label: '占地面积', value: sData.landArea, unit: 'm²', color: 'var(--accent)' },
+      { id: 'build', label: '建筑面积', value: sData.buildingArea, unit: 'm²', color: 'var(--color-warning)' },
+      { id: 'class', label: '班级数', value: sData.classCount, unit: '个' },
+      { id: 'staff', label: '教职工', value: pData.totalTeachers, unit: '人' },
+      { id: 'stu', label: '学生数', value: 2800, unit: '人' }
+    ]} />
   )
 }
