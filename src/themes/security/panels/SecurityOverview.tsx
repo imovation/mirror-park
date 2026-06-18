@@ -8,7 +8,7 @@ export default function SecurityOverview() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+    <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
       <NumberFlip label="监控摄像头" value={data.cameraCount} unit="个" />
       <NumberFlip label="门禁设备" value={data.accessDeviceCount} unit="个" />
       <NumberFlip label="今日告警" value={data.todayAlerts} unit="次" color="var(--color-warning)" />

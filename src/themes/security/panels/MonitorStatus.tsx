@@ -11,23 +11,24 @@ export default function MonitorStatus() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, height: '100%' }}>
+    <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ display: 'flex', gap: 8 }}>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, minHeight: 0 }}>
           <RingChart
             data={[{ name: '在线', value: data.online }, { name: '离线', value: data.offline }, { name: '故障', value: data.faulty }]}
             colors={['#00c853', '#ffc107', '#ff1744']}
             centerLabel={`${data.online}/${data.total}`}
+            height={130}
           />
         </div>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">监控覆盖率</ChartLabel>
-          <GaugeChart value={Math.round(data.coverage * 100)} name="覆盖率" />
+          <GaugeChart value={Math.round(data.coverage * 100)} name="覆盖率" height={130} />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各区域摄像头分布</ChartLabel>
-        <BarChart data={data.regionDistribution} />
+        <BarChart data={data.regionDistribution} height={100} />
       </div>
     </div>
   )

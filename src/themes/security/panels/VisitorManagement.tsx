@@ -11,18 +11,18 @@ export default function VisitorManagement() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
+    <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="今日访客" value={data.todayVisitors} unit="人" color="#4a9eff" />
         <NumberFlip label="当前在校" value={data.currentVisitors} unit="人" color="#00c853" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel align="center">来访目的分布</ChartLabel>
-        <PieChart data={data.purposeDistribution} />
+        <PieChart data={data.purposeDistribution} height={130} />
       </div>
       <div>
         <ChartLabel>访客登记</ChartLabel>
-        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.purpose}</span><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.time}</span></span></div> }))} maxHeight={100} />
+        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.purpose}</span><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.time}</span></span></div> }))} />
       </div>
     </div>
   )

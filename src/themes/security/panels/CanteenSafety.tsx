@@ -16,13 +16,13 @@ export default function CanteenSafety() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
+    <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ textAlign: 'center' }}>
         <NumberFlip label="今日就餐人次" value={data.todayTotal} unit="人次" color="#00c853" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各餐次就餐人数</ChartLabel>
-        <BarChart data={data.meals} horizontal={false} />
+        <BarChart data={data.meals} height={100} horizontal={false} />
       </div>
       <button
         onClick={() => setShowVideo(!showVideo)}
@@ -41,7 +41,7 @@ export default function CanteenSafety() {
       </button>
       <div>
         <ChartLabel>食品安全检查</ChartLabel>
-        <ScrollList items={data.safetyRecords.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.item}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.date}</span><span style={{fontSize:10,color:'var(--color-success)'}}>{r.result}</span></span></div> }))} maxHeight={120} />
+        <ScrollList items={data.safetyRecords.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.item}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.date}</span><span style={{fontSize:10,color:'var(--color-success)'}}>{r.result}</span></span></div> }))} />
       </div>
       <VideoWindow visible={showVideo} title="食堂后厨实时监控" onClose={() => setShowVideo(false)} />
     </div>
