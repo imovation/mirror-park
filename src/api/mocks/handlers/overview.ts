@@ -70,4 +70,21 @@ export const overviewHandlers = [
       values: [120, 2600, 3800, 3500, 3000, 2800, 1600, 2200, 3300, 3200, 2800, 2200, 1900, 700],
     })
   }),
+
+  http.get(`${BASE}/overview/recent-activity`, () => {
+    const titles = [
+      '校园安保巡查完成', '教学设备巡检正常', '图书馆新书上架',
+      '体育馆场地预约', '行政会议已结束', '教职工考勤统计更新',
+      '校园活动场地布置中', '食堂食品安全检查通过',
+      '校车运行正常', '访客登记系统更新',
+    ]
+    const statuses = ['已完成', '进行中', '正常']
+    const items = Array.from({ length: 12 }, (_, i) => ({
+      id: `event-${Date.now()}-${i}`,
+      time: `${String(Math.floor(Math.random() * 17) + 6).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`,
+      title: titles[i % titles.length],
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+    }))
+    return HttpResponse.json(items)
+  }),
 ]

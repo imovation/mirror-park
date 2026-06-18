@@ -63,3 +63,17 @@ export const useActivity = () =>
     queryFn: () => fetchApi<ActivityData>('/overview/activity'),
     refetchInterval: REFRESH_INTERVALS.NEAR_REALTIME,
   })
+
+export interface RecentActivityItem {
+  id: string
+  time: string
+  title: string
+  status: string
+}
+
+export const useRecentActivity = () =>
+  useQuery<RecentActivityItem[]>({
+    queryKey: ['overview', 'recentActivity'],
+    queryFn: () => fetchApi<RecentActivityItem[]>('/overview/recent-activity'),
+    refetchInterval: REFRESH_INTERVALS.NEAR_REALTIME,
+  })
