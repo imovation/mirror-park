@@ -11,7 +11,9 @@ export default function TeacherDistribution() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
 
-  const maxSubject = Math.max(...data.subjects.map(s => s.value)) + 5
+  const maxSubject = data.subjects.length > 0
+    ? Math.max(...data.subjects.map(s => s.value)) + 5
+    : 5
   const indicator = data.subjects.map(s => ({ name: s.name, max: maxSubject }))
   const series = [{ name: '教师人数', value: data.subjects.map(s => s.value) }]
 
