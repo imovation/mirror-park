@@ -13,6 +13,7 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
       style={{
         background: 'var(--panel-bg)',
         borderColor: 'var(--border-strong)',
+        marginBottom: 6,
       }}
     >
       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />

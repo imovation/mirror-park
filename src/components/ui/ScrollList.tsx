@@ -9,11 +9,13 @@ interface ScrollListProps {
   items: ScrollItem[]
   speed?: number
   maxHeight?: number
+  header?: string
 }
 
-export default function ScrollList({ items, speed = 30, maxHeight = 150 }: ScrollListProps) {
+export default function ScrollList({ items, speed = 30, maxHeight = 150, header }: ScrollListProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isPaused, setIsPaused] = useState(false)
+
   useEffect(() => {
     if (items.length <= 3) return
 
@@ -41,16 +43,34 @@ export default function ScrollList({ items, speed = 30, maxHeight = 150 }: Scrol
 
   return (
     <div
-      ref={containerRef}
-      style={{ maxHeight, overflow: 'hidden' }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      className="flex flex-col overflow-hidden rounded-md backdrop-blur-sm"
+      style={{ background: 'var(--panel-bg)', border: '1px solid var(--border)' }}
     >
-      {items.map((item) => (
-        <div key={item.id} style={{ padding: '4px 0', borderBottom: '1px solid var(--border-light)', fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
-          {item.content}
+      {header && (
+        <div
+          className="flex items-center px-3 py-2"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="w-1 h-3 mr-2" style={{ background: 'var(--accent)' }} />
+          <span className="text-sm font-bold" style={{ color: 'var(--accent)' }}>{header}</span>
         </div>
-      ))}
+      )}
+      <div
+        ref={containerRef}
+        style={{ maxHeight, overflow: 'auto' }}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className="px-3 py-1.5 text-sm transition-colors duration-200 hover:bg-cyan-800/20"
+            style={{ borderBottom: '1px solid var(--border-light)', color: 'var(--text-secondary)' }}
+          >
+            {item.content}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
