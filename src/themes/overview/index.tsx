@@ -7,8 +7,25 @@ import StudentInfo from './panels/StudentInfo'
 import ActivityHeatmap from './panels/ActivityHeatmap'
 import RecentActivity from './panels/RecentActivity'
 import BuildingDetail from './panels/BuildingDetail'
+import TopMetricsCard from '@/components/ui/TopMetricsCard'
 
 export const overviewScene = () => <OverviewScene />
+
+const metricCards = [
+  { label: '占地面积', value: '73' },
+  { label: '建筑面积', value: '8.8万' },
+  { label: '教学班', value: '60' },
+  { label: '在校学生', value: '2800' },
+  { label: '教职工', value: '220' },
+]
+
+export const overviewTopMetrics = () => (
+  <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', justifyContent: 'center' }}>
+    {metricCards.map((m) => (
+      <TopMetricsCard key={m.label} label={m.label} value={m.value} />
+    ))}
+  </div>
+)
 
 export const overviewPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [

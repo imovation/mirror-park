@@ -27,6 +27,7 @@ function AppContent() {
   const uiTheme = useUIThemeStore((s) => s.uiTheme)
   const { status: sseStatus } = useSSE()
   const entry = getThemeEntry(currentTheme)
+  const TopMetricsComponent = entry.topMetrics
 
   useEffect(() => {
     document.documentElement.setAttribute('data-ui-theme', uiTheme)
@@ -54,6 +55,7 @@ function AppContent() {
       <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%', pointerEvents: 'none' }}>
         <ScreenLayout
           topBar={<ErrorBoundary name="顶部导航"><TopBar /></ErrorBoundary>}
+          topMetrics={TopMetricsComponent ? <TopMetricsComponent /> : undefined}
           leftPanel={
             <ErrorBoundary name="左侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
               <SidePanel>

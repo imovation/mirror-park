@@ -10,7 +10,7 @@ const LibraryScene = lazy(() => import('./library/LibraryScene'))
 const AcademicsScene = lazy(() => import('./academics/AcademicsScene'))
 const SecurityScene = lazy(() => import('./security/SecurityScene'))
 
-import { overviewPanels, renderOverviewPanel } from './overview'
+import { overviewPanels, renderOverviewPanel, overviewTopMetrics } from './overview'
 import { teachingResearchPanels, renderTeachingResearchPanel } from './teaching-research'
 import { adminPanels, renderAdminPanel } from './admin'
 import { libraryPanels, renderLibraryPanel } from './library'
@@ -24,6 +24,7 @@ interface ThemeEntry {
   scene: SceneRenderer
   panels: { left: PanelConfig[]; right: PanelConfig[] }
   renderPanel: PanelRenderer
+  topMetrics?: () => ReactNode
 }
 
 const registry: Record<ThemeId, ThemeEntry> = {
@@ -31,6 +32,7 @@ const registry: Record<ThemeId, ThemeEntry> = {
     scene: () => <OverviewScene />,
     panels: overviewPanels,
     renderPanel: renderOverviewPanel,
+    topMetrics: overviewTopMetrics,
   },
   [ThemeId.TEACHING_RESEARCH]: {
     scene: () => <TeachingResearchScene />,
