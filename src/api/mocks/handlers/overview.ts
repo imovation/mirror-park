@@ -71,6 +71,32 @@ export const overviewHandlers = [
     })
   }),
 
+  http.get(`${BASE}/overview/assets`, () => {
+    return HttpResponse.json({
+      computers: 680,
+      projectors: 72,
+      airConditioners: 320,
+      cameras: 420,
+      printers: 36,
+      doorLocks: 240,
+    })
+  }),
+
+  http.get(`${BASE}/overview/rooms`, () => {
+    return HttpResponse.json({
+      rooms: [
+        { name: '普通教室', count: 60 },
+        { name: '计算机室', count: 6 },
+        { name: '实验室', count: 8 },
+        { name: '音乐室', count: 4 },
+        { name: '美术室', count: 4 },
+        { name: '会议室', count: 6 },
+        { name: '图书馆', count: 1 },
+        { name: '体育馆', count: 1 },
+      ],
+    })
+  }),
+
   http.get(`${BASE}/overview/recent-activity`, () => {
     const titles = [
       '校园安保巡查完成', '教学设备巡检正常', '图书馆新书上架',

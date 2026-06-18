@@ -77,3 +77,28 @@ export const useRecentActivity = () =>
     queryFn: () => fetchApi<RecentActivityItem[]>('/overview/recent-activity'),
     refetchInterval: REFRESH_INTERVALS.NEAR_REALTIME,
   })
+
+export interface AssetData {
+  computers: number
+  projectors: number
+  airConditioners: number
+  cameras: number
+  printers: number
+  doorLocks: number
+}
+
+export const useAssetData = () =>
+  useQuery<AssetData>({
+    queryKey: ['overview', 'assets'],
+    queryFn: () => fetchApi<AssetData>('/overview/assets'),
+  })
+
+export interface RoomDistributionData {
+  rooms: { name: string; count: number }[]
+}
+
+export const useRoomDistribution = () =>
+  useQuery<RoomDistributionData>({
+    queryKey: ['overview', 'rooms'],
+    queryFn: () => fetchApi<RoomDistributionData>('/overview/rooms'),
+  })

@@ -1,5 +1,5 @@
 import { useStudentInfo } from '@/api/queries/overview'
-import SankeyChart from '@/components/charts/SankeyChart'
+import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
@@ -10,18 +10,38 @@ export default function StudentInfo() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
 
-  const sankeyLinks = data.grades.flatMap((g) => [
-    { source: '全校学生', target: g.name, value: g.total },
-    { source: g.name, target: `男 (${g.name})`, value: g.male },
-    { source: g.name, target: `女 (${g.name})`, value: g.female },
-  ])
-  const categories = ['全校学生', ...data.grades.map(g => g.name), ...data.grades.map(g => `男 (${g.name})`), ...data.grades.map(g => `女 (${g.name})`)]
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <div style={{ flex: 1 }}>
-        <ChartLabel>学生分布</ChartLabel>
-        <SankeyChart data={sankeyLinks} categories={categories} height={220} />
+      <div style={{ display: 'flex', gap: 8 }}>
+        {data.grades.map((g) => (
+          <div
+            key={g.name}
+            style={{
+              flex: 1,
+              background: 'var(--panel-bg)',
+              border: '1px solid var(--border-light)',
+              borderRadius: 6,
+              padding: '8px 10px',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4 }}>{g.name}</div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 12, fontSize: 11, color: 'var(--text-tertiary)' }}>
+              <span>男 <span style={{ color: '#4a9eff', fontWeight: 600 }}>{g.male}</span></span>
+              <span>女 <span style={{ color: '#ff6d00', fontWeight: 600 }}>{g.female}</span></span>
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--accent)', marginTop: 4 }}>{g.total}</div>
+          </div>
+        ))}
+      </div>
+      <div>
+        <ChartLabel>年级人数对比</ChartLabel>
+        <BarChart
+          data={data.grades.map((g) => ({ name: g.name, value: g.total }))}
+          height={90}
+          horizontal={false}
+          color="#4a9eff"
+        />
       </div>
     </div>
   )
