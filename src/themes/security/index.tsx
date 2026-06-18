@@ -1,6 +1,5 @@
 import type { PanelConfig } from '@/types/panel'
 import SecurityScene from './SecurityScene'
-import SecurityOverview from './panels/SecurityOverview'
 import MonitorStatus from './panels/MonitorStatus'
 import AccessControl from './panels/AccessControl'
 import StudentLeave from './panels/StudentLeave'
@@ -28,7 +27,6 @@ export const securityPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
 
 export function renderSecurityPanel(panelId: string) {
   switch (panelId) {
-    case 'sec-overview': return <SecurityOverview />
     case 'sec-monitor': return <MonitorStatus />
     case 'sec-access': return <AccessControl />
     case 'sec-leave': return <StudentLeave />

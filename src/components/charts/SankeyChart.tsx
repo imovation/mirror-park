@@ -11,11 +11,11 @@ interface SankeyLink {
 interface SankeyChartProps {
   data: SankeyLink[]
   categories: string[]
-  height?: number | string
+  height?: number
   title?: string
 }
 
-export default function SankeyChart({ data, categories, height = '100%', title }: SankeyChartProps) {
+export default function SankeyChart({ data, categories, height = 240, title }: SankeyChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {

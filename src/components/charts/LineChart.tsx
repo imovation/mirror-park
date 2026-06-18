@@ -5,12 +5,12 @@ import { useChartTheme } from '@/config/chartTheme'
 interface LineChartProps {
   xData: string[]
   series: { name: string; data: number[]; color?: string }[]
-  height?: number | string
+  height?: number
   smooth?: boolean
   area?: boolean
 }
 
-export default function LineChart({ xData, series, height = '100%', smooth = true, area = true }: LineChartProps) {
+export default function LineChart({ xData, series, height = 200, smooth = true, area = true }: LineChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },

@@ -35,12 +35,12 @@ export default function ScreenLayout({
     >
       <div style={{ gridArea: 'topbar', pointerEvents: 'auto' }}>{topBar}</div>
       {topMetrics && (
-        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', padding: '12px', zIndex: 10, overflow: 'hidden' }}>
+        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', padding: '12px', zIndex: 10 }}>
           {topMetrics}
         </div>
       )}
-      <div style={{ gridArea: 'left', overflow: 'hidden', maxWidth: 420, pointerEvents: 'auto' }}>{leftPanel}</div>
-      <div style={{ gridArea: 'right', overflow: 'hidden', maxWidth: 420, pointerEvents: 'auto' }}>{rightPanel}</div>
+      <div style={{ gridArea: 'left', overflow: 'auto', maxWidth: 420, pointerEvents: 'auto' }}>{leftPanel}</div>
+      <div style={{ gridArea: 'right', overflow: 'auto', maxWidth: 420, pointerEvents: 'auto' }}>{rightPanel}</div>
       <div style={{ gridArea: 'bottombar', pointerEvents: 'auto' }}>{bottomBar}</div>
     </div>
   )

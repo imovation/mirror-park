@@ -29,7 +29,7 @@ describe('DashboardPanel', () => {
         <span>内容</span>
       </DashboardPanel>,
     )
-    const root = screen.getByText('测试').closest('.panel-enter')
+    const root = screen.getByText('内容').parentElement?.parentElement
     expect(root?.className).toContain('custom-class')
   })
 })

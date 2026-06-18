@@ -10,11 +10,11 @@ interface TreemapNode {
 
 interface TreemapChartProps {
   data: TreemapNode[]
-  height?: number | string
+  height?: number
   title?: string
 }
 
-export default function TreemapChart({ data, height = '100%', title }: TreemapChartProps) {
+export default function TreemapChart({ data, height = 220, title }: TreemapChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {

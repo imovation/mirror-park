@@ -1,7 +1,6 @@
 import type { PanelConfig } from '@/types/panel'
 import AcademicsScene from './AcademicsScene'
 import AcademicsTopMetrics from './panels/AcademicsTopMetrics'
-import TeachingOverview from './panels/TeachingOverview'
 import CourseSchedule from './panels/CourseSchedule'
 import ClassroomUsagePanel from './panels/ClassroomUsagePanel'
 import StudentAttendance from './panels/StudentAttendance'
@@ -28,7 +27,6 @@ export const academicsPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
 
 export function renderAcademicsPanel(panelId: string) {
   switch (panelId) {
-    case 'acad-overview': return <TeachingOverview />
     case 'acad-schedule': return <CourseSchedule />
     case 'acad-classroom': return <ClassroomUsagePanel />
     case 'acad-attendance': return <StudentAttendance />

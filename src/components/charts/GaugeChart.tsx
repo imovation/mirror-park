@@ -6,10 +6,10 @@ interface GaugeChartProps {
   value: number
   max?: number
   name?: string
-  height?: number | string
+  height?: number
 }
 
-export default function GaugeChart({ value, max = 100, name = '', height = '100%' }: GaugeChartProps) {
+export default function GaugeChart({ value, max = 100, name = '', height = 180 }: GaugeChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     series: [

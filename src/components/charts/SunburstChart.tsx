@@ -10,11 +10,11 @@ interface SunburstNode {
 
 interface SunburstChartProps {
   data: SunburstNode[]
-  height?: number | string
+  height?: number
   title?: string
 }
 
-export default function SunburstChart({ data, height = '100%', title }: SunburstChartProps) {
+export default function SunburstChart({ data, height = 260, title }: SunburstChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {
