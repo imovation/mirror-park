@@ -6,8 +6,11 @@ import ResourceUpdates from './panels/ResourceUpdates'
 import TeacherTopics from './panels/TeacherTopics'
 import ResearchProjectsList from './panels/ResearchProjectsList'
 import TeacherStudiosPanel from './panels/TeacherStudiosPanel'
+import TeachingResearchTopMetrics from './panels/TeachingResearchTopMetrics'
 
 export const teachingResearchScene = () => <TeachingResearchScene />
+
+export const teachingResearchTopMetrics = () => <TeachingResearchTopMetrics />
 
 export const teachingResearchPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [

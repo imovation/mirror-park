@@ -11,7 +11,7 @@ const AcademicsScene = lazy(() => import('./academics/AcademicsScene'))
 const SecurityScene = lazy(() => import('./security/SecurityScene'))
 
 import { overviewPanels, renderOverviewPanel, overviewTopMetrics } from './overview'
-import { teachingResearchPanels, renderTeachingResearchPanel } from './teaching-research'
+import { teachingResearchPanels, renderTeachingResearchPanel, teachingResearchTopMetrics } from './teaching-research'
 import { adminPanels, renderAdminPanel } from './admin'
 import { libraryPanels, renderLibraryPanel } from './library'
 import { academicsPanels, renderAcademicsPanel } from './academics'
@@ -38,6 +38,7 @@ const registry: Record<ThemeId, ThemeEntry> = {
     scene: () => <TeachingResearchScene />,
     panels: teachingResearchPanels,
     renderPanel: renderTeachingResearchPanel,
+    topMetrics: teachingResearchTopMetrics,
   },
   [ThemeId.ADMIN]: {
     scene: () => <AdminScene />,
