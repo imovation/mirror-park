@@ -12,9 +12,9 @@ export default function ExamManagement() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ flex: 1, minHeight: 0 }}>
+        <div style={{ flex: 1 }}>
           <ChartLabel>近期考试</ChartLabel>
           <ScrollList
             items={data.upcomingExams.map(e => ({
@@ -26,19 +26,18 @@ export default function ExamManagement() {
                 </div>
               ),
             }))}
-            maxHeight={80}
           />
         </div>
         <NumberFlip label="本学期考试" value={data.semesterExamCount} unit="场" color="#4a9eff" />
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
-        <div style={{ flex: 1, minHeight: 0 }}>
+        <div style={{ flex: 1 }}>
           <ChartLabel align="center">年级均分</ChartLabel>
-          <BarChart data={data.gradeAverages} />
+          <BarChart data={data.gradeAverages} height={100} />
         </div>
-        <div style={{ flex: 1, minHeight: 0 }}>
+        <div style={{ flex: 1 }}>
           <ChartLabel align="center">成绩分布</ChartLabel>
-          <FunnelChart data={data.scoreDistribution} />
+          <FunnelChart data={data.scoreDistribution} height={200} />
         </div>
       </div>
     </div>

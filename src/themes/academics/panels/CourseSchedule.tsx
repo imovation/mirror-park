@@ -14,15 +14,15 @@ export default function CourseSchedule() {
   const heatmapData: [number, number, number][] = data.timeDistribution.hours.map((_, i) => [i, 0, data.timeDistribution.values[i]])
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">年级排课分布</ChartLabel>
-          <BarChart data={data.gradeDistribution} />
+          <BarChart data={data.gradeDistribution} height={100} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">科目占比</ChartLabel>
-          <PieChart data={data.subjectDistribution} />
+          <PieChart data={data.subjectDistribution} height={130} />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
@@ -31,6 +31,7 @@ export default function CourseSchedule() {
           xLabels={data.timeDistribution.hours}
           yLabels={['课程密度']}
           data={heatmapData}
+          height={130}
         />
       </div>
     </div>

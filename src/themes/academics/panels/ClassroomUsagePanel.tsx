@@ -16,7 +16,7 @@ export default function ClassroomUsagePanel() {
   const usagePercent = total > 0 ? Math.round((data.inUse / total) * 100) : 0
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="使用中" value={data.inUse} unit="间" color="#00c853" />
         <NumberFlip label="空闲" value={data.available} unit="间" color="var(--color-warning)" />
@@ -24,16 +24,16 @@ export default function ClassroomUsagePanel() {
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">各楼使用率</ChartLabel>
-          <BarChart data={data.buildingUsage} />
+          <BarChart data={data.buildingUsage} height={80} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">使用率</ChartLabel>
-          <GaugeChart value={usagePercent} name="教室使用率" />
+          <GaugeChart value={usagePercent} name="教室使用率" height={90} />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel align="center">教室类型分布</ChartLabel>
-        <PieChart data={data.typeDistribution} />
+        <PieChart data={data.typeDistribution} height={80} />
       </div>
     </div>
   )

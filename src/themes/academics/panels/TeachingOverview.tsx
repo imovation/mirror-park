@@ -8,7 +8,7 @@ export default function TeachingOverview() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <NumberFlip label="今日课程" value={data.todayCourses} unit="节" />
       <NumberFlip label="正在上课" value={data.ongoingCourses} unit="节" color="#00c853" />
       <NumberFlip label="教室总数" value={data.totalClassrooms} unit="间" />
