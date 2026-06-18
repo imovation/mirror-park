@@ -27,13 +27,13 @@ export default function DutySchedule() {
             gap: 4,
           }}
         >
-          <div style={{ fontSize: 11, color: ROLE_COLORS[s.role] || '#4a9eff', fontWeight: 500 }}>
+          <div style={{ fontSize: 11, color: ROLE_COLORS[s.role] || 'var(--accent)', fontWeight: 500 }}>
             {s.role}
           </div>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 600 }}>
+          <div style={{ fontSize: 13, color: 'var(--text-primary)', fontWeight: 600 }}>
             {s.name}
           </div>
-          <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>
+          <div style={{ fontSize: 10, color: 'var(--text-tertiary)' }}>
             {s.phone}
           </div>
         </div>

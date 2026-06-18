@@ -29,8 +29,8 @@ export default function MeetingManagement() {
                 textAlign: 'center',
               }}
             >
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>{room.name}</div>
-              <div style={{ fontSize: 10, color: room.status === '使用中' ? '#ff6d00' : '#00c853', marginTop: 2 }}>
+              <div style={{ fontSize: 11, color: 'var(--text-secondary)', fontWeight: 500 }}>{room.name}</div>
+              <div style={{ fontSize: 10, color: room.status === '使用中' ? 'var(--color-warning)' : 'var(--color-success)', marginTop: 2 }}>
                 {room.status}
               </div>
             </div>
@@ -46,8 +46,8 @@ export default function MeetingManagement() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span>{m.title}</span>
                 <span style={{ display: 'flex', gap: 8 }}>
-                  <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>{m.room}</span>
-                  <span style={{ fontSize: 10, color: '#4a9eff' }}>{m.date} {m.time}</span>
+                  <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{m.room}</span>
+                  <span style={{ fontSize: 10, color: 'var(--accent)' }}>{m.date} {m.time}</span>
                 </span>
               </div>
             ),

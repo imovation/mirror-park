@@ -23,7 +23,7 @@ export default function ClassBorrowRank() {
             content: (
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span>{s.name}</span>
-                <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: 10 }}>{s.className} · {s.count}册</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: 10 }}>{s.className} · {s.count}册</span>
               </div>
             ),
           }))}

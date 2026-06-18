@@ -15,9 +15,9 @@ export default function ResourceUpdates() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span>{item.name}</span>
             <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <span style={{ fontSize: 10, color: '#4a9eff' }}>{item.subject}</span>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>{item.teacher}</span>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>{item.time}</span>
+              <span style={{ fontSize: 10, color: 'var(--accent)' }}>{item.subject}</span>
+              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.teacher}</span>
+              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.time}</span>
             </span>
           </div>
         ),

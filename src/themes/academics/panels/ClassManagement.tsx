@@ -28,8 +28,8 @@ export default function ClassManagement() {
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span>{c.name}</span>
                 <span style={{ display: 'flex', gap: 10 }}>
-                  <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>{c.headTeacher}</span>
-                  <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>{c.studentCount}人</span>
+                  <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{c.headTeacher}</span>
+                  <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{c.studentCount}人</span>
                 </span>
               </div>
             ),

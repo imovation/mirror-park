@@ -52,7 +52,7 @@ export default function AlertEvents() {
       </div>
       <div>
         <ChartLabel>告警事件列表</ChartLabel>
-        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.type} · {r.location}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.time}</span><span style={{fontSize:10,color:r.status==='已处理'?'#00c853':r.status==='处理中'?'#4a9eff':'#ff1744'}}>{r.status}</span></span></div> }))} maxHeight={100} />
+        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.type} · {r.location}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.time}</span><span style={{fontSize:10,color:r.status==='已处理'?'var(--color-success)':r.status==='处理中'?'var(--accent)':'var(--color-danger)'}}>{r.status}</span></span></div> }))} maxHeight={100} />
       </div>
     </div>
   )

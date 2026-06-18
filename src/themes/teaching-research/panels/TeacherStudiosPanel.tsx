@@ -29,10 +29,10 @@ export default function TeacherStudiosPanel() {
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-            <span style={{ fontSize: 12, fontWeight: 500, color: 'rgba(255,255,255,0.85)' }}>{s.name}</span>
+            <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-primary)' }}>{s.name}</span>
             <span style={{
               fontSize: 10,
-              color: subjectColors[s.subject] || '#4a9eff',
+              color: subjectColors[s.subject] || 'var(--accent)',
               background: `${subjectColors[s.subject] || '#4a9eff'}15`,
               padding: '1px 6px',
               borderRadius: 3,
@@ -40,10 +40,10 @@ export default function TeacherStudiosPanel() {
               {s.subject}
             </span>
           </div>
-          <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>主持人: {s.host}</div>
+          <div style={{ fontSize: 10, color: 'var(--text-tertiary)', marginBottom: 2 }}>主持人: {s.host}</div>
           <div style={{ display: 'flex', gap: 12, fontSize: 10 }}>
-            <span style={{ color: '#4a9eff' }}>成员 {s.memberCount}人</span>
-            <span style={{ color: '#00c853' }}>成果 {s.achievementCount}项</span>
+            <span style={{ color: 'var(--accent)' }}>成员 {s.memberCount}人</span>
+            <span style={{ color: 'var(--color-success)' }}>成果 {s.achievementCount}项</span>
           </div>
         </div>
       ))}

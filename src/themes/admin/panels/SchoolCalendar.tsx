@@ -20,9 +20,9 @@ export default function SchoolCalendar() {
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: TYPE_COLORS[e.type] || '#4a9eff', flexShrink: 0 }} />
-          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', minWidth: 56 }}>{e.date}</span>
-          <span style={{ fontSize: 10, color: TYPE_COLORS[e.type] || '#4a9eff', minWidth: 28, textAlign: 'center' }}>{e.type}</span>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>{e.event}</span>
+          <span style={{ fontSize: 10, color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
+          <span style={{ fontSize: 10, color: TYPE_COLORS[e.type] || 'var(--accent)', minWidth: 28, textAlign: 'center' }}>{e.type}</span>
+          <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{e.event}</span>
         </div>
       ),
     })),
@@ -31,8 +31,8 @@ export default function SchoolCalendar() {
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#00c853', flexShrink: 0 }} />
-          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', minWidth: 56 }}>{e.date}</span>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>{e.event}</span>
+          <span style={{ fontSize: 10, color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
+          <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{e.event}</span>
         </div>
       ),
     })),
@@ -41,8 +41,8 @@ export default function SchoolCalendar() {
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#ffc107', flexShrink: 0 }} />
-          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', minWidth: 56 }}>{e.date}</span>
-          <span style={{ fontSize: 12, color: '#ffc107' }}>{e.event}</span>
+          <span style={{ fontSize: 10, color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
+          <span style={{ fontSize: 12, color: 'var(--color-pending)' }}>{e.event}</span>
         </div>
       ),
     })),

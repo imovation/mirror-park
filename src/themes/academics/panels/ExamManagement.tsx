@@ -22,7 +22,7 @@ export default function ExamManagement() {
               content: (
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <span>{e.grade} · {e.subject}</span>
-                  <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>{e.date}</span>
+                  <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{e.date}</span>
                 </div>
               ),
             }))}

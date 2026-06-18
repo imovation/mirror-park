@@ -34,10 +34,10 @@ export default function RecentActivity() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span>{e.title}</span>
         <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>{e.time}</span>
+          <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{e.time}</span>
           <span style={{
             fontSize: 10,
-            color: e.status === '进行中' ? '#4a9eff' : e.status === '已完成' ? '#00c853' : 'rgba(255,255,255,0.5)',
+            color: e.status === '进行中' ? 'var(--accent)' : e.status === '已完成' ? 'var(--color-success)' : 'var(--text-tertiary)',
           }}>
             {e.status}
           </span>

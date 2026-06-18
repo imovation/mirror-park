@@ -21,7 +21,7 @@ export default function AccessControl() {
       </div>
       <div>
         <ChartLabel>异常通行记录</ChartLabel>
-        <ScrollList items={data.abnormalRecords.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.location} · {r.type}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.time}</span><span style={{fontSize:10,color:r.status==='已处理'?'#00c853':'#ff6d00'}}>{r.status}</span></span></div> }))} maxHeight={80} />
+        <ScrollList items={data.abnormalRecords.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.location} · {r.type}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.time}</span><span style={{fontSize:10,color:r.status==='已处理'?'var(--color-success)':'var(--color-warning)'}}>{r.status}</span></span></div> }))} maxHeight={80} />
       </div>
     </div>
   )

@@ -28,7 +28,7 @@ export default function StudentLeave() {
       </div>
       <div>
         <ChartLabel>离校记录</ChartLabel>
-        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name} · {r.className}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.type}</span><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.time}</span></span></div> }))} maxHeight={90} />
+        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name} · {r.className}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.type}</span><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.time}</span></span></div> }))} maxHeight={90} />
       </div>
     </div>
   )
