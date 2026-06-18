@@ -13,7 +13,7 @@ export default function ClassBorrowRank() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ flex: 1 }}>
         <ChartLabel>班级借阅量排行</ChartLabel>
-        <BarChart data={data.classRank.slice(0, 8)} height={130} />
+        <BarChart data={data.classRank.slice(0, 8)} />
       </div>
       <div style={{ flex: 1 }}>
         <ChartLabel>阅读之星</ChartLabel>

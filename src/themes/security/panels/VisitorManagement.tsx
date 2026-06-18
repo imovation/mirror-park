@@ -16,9 +16,9 @@ export default function VisitorManagement() {
         <NumberFlip label="今日访客" value={data.todayVisitors} unit="人" color="#4a9eff" />
         <NumberFlip label="当前在校" value={data.currentVisitors} unit="人" color="#00c853" />
       </div>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel align="center">来访目的分布</ChartLabel>
-        <PieChart data={data.purposeDistribution} height={130} />
+        <PieChart data={data.purposeDistribution} />
       </div>
       <div>
         <ChartLabel>访客登记</ChartLabel>

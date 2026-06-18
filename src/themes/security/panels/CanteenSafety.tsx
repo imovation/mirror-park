@@ -20,9 +20,9 @@ export default function CanteenSafety() {
       <div style={{ textAlign: 'center' }}>
         <NumberFlip label="今日就餐人次" value={data.todayTotal} unit="人次" color="#00c853" />
       </div>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各餐次就餐人数</ChartLabel>
-        <BarChart data={data.meals} height={100} horizontal={false} />
+        <BarChart data={data.meals} horizontal={false} />
       </div>
       <button
         onClick={() => setShowVideo(!showVideo)}

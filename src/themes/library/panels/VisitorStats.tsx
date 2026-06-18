@@ -19,7 +19,6 @@ export default function VisitorStats() {
         <ChartLabel>入馆时段分布</ChartLabel>
         <BarChart
           data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
-          height={130}
           horizontal={false}
         />
       </div>

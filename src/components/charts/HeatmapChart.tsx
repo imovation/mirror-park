@@ -6,10 +6,10 @@ interface HeatmapChartProps {
   xLabels: string[]
   yLabels: string[]
   data: [number, number, number][]
-  height?: number
+  height?: number | string
 }
 
-export default function HeatmapChart({ xLabels, yLabels, data, height = 200 }: HeatmapChartProps) {
+export default function HeatmapChart({ xLabels, yLabels, data, height = '100%' }: HeatmapChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { position: 'top' },

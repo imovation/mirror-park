@@ -22,11 +22,11 @@ export default function PersonnelComposition() {
       <div style={{ display: 'flex', gap: 12 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">性别分布</ChartLabel>
-          <RingChart data={genderData} height={140} />
+          <RingChart data={genderData} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">学历分布</ChartLabel>
-          <RingChart data={data.education} height={140} colors={['#00c853', '#4a9eff', '#ff6d00', '#aa00ff']} />
+          <RingChart data={data.education} colors={['#00c853', '#4a9eff', '#ff6d00', '#aa00ff']} />
         </div>
       </div>
     </div>

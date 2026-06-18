@@ -4,14 +4,14 @@ import { useChartTheme } from '@/config/chartTheme'
 
 interface FunnelChartProps {
   data: { name: string; value: number }[]
-  height?: number
+  height?: number | string
   title?: string
   color?: string[]
 }
 
 const DEFAULT_COLORS = ['#4a9eff', '#00c853', '#ffd600', '#ff6d00', '#aa00ff']
 
-export default function FunnelChart({ data, height = 260, title, color = DEFAULT_COLORS }: FunnelChartProps) {
+export default function FunnelChart({ data, height = '100%', title, color = DEFAULT_COLORS }: FunnelChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: {

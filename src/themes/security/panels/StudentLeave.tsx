@@ -19,11 +19,11 @@ export default function StudentLeave() {
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">请假类型</ChartLabel>
-          <PieChart data={data.typeDistribution} height={120} />
+          <PieChart data={data.typeDistribution} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">各年级请假</ChartLabel>
-          <BarChart data={data.gradeDistribution} height={120} horizontal={false} />
+          <BarChart data={data.gradeDistribution} horizontal={false} />
         </div>
       </div>
       <div>

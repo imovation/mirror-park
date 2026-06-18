@@ -18,7 +18,7 @@ export default function AccessControl() {
       </div>
       <div style={{ flex: 1 }}>
         <ChartLabel>各门禁点通行统计</ChartLabel>
-        <BarChart data={data.points} height={110} />
+        <BarChart data={data.points} />
       </div>
       <div>
         <ChartLabel>异常通行记录</ChartLabel>

@@ -12,10 +12,14 @@ export default function HotBooks() {
   if (!data) return <StatusPanel type="empty" />
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <ChartLabel>借阅量 TOP10</ChartLabel>
-      <BarChart data={data.top10.map(b => ({ name: b.name, value: b.count }))} height={110} />
-      <ChartLabel>各类别借阅占比</ChartLabel>
-      <PieChart data={data.categoryRatio} height={100} />
+      <div style={{ flex: 1, minHeight: 0 }}>
+        <ChartLabel>借阅量 TOP10</ChartLabel>
+        <BarChart data={data.top10.map(b => ({ name: b.name, value: b.count }))} />
+      </div>
+      <div style={{ flex: 1, minHeight: 0 }}>
+        <ChartLabel>各类别借阅占比</ChartLabel>
+        <PieChart data={data.categoryRatio} />
+      </div>
       <ChartLabel>推荐图书</ChartLabel>
       <CardCarousel
         items={data.recommendBooks.map((b, i) => ({

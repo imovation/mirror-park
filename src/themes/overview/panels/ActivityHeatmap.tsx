@@ -17,7 +17,6 @@ export default function ActivityHeatmap() {
         <LineChart
           xData={data.hours}
           series={[{ name: '人流量', data: data.values, color: '#00c853' }]}
-          height={220}
           area
           smooth
         />

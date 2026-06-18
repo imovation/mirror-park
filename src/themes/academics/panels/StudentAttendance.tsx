@@ -15,21 +15,21 @@ export default function StudentAttendance() {
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">今日出勤率</ChartLabel>
-          <GaugeChart value={Math.round(data.todayRate * 100)} name="出勤率" height={120} />
+          <GaugeChart value={Math.round(data.todayRate * 100)} name="出勤率" />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">各年级出勤率</ChartLabel>
-          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={100} />
+          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} />
         </div>
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">班级出勤排名</ChartLabel>
-          <BarChart data={data.classRank.map(r => ({ name: r.name, value: r.value }))} height={120} />
+          <BarChart data={data.classRank.map(r => ({ name: r.name, value: r.value }))} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">30日出勤趋势</ChartLabel>
-          <LineChart xData={data.trend.days} series={[{ name: '出勤率', data: data.trend.values, color: '#4a9eff' }]} height={120} smooth area />
+          <LineChart xData={data.trend.days} series={[{ name: '出勤率', data: data.trend.values, color: '#4a9eff' }]} smooth area />
         </div>
       </div>
     </div>

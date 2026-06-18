@@ -18,20 +18,19 @@ export default function CourseSchedule() {
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">年级排课分布</ChartLabel>
-          <BarChart data={data.gradeDistribution} height={100} />
+          <BarChart data={data.gradeDistribution} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">科目占比</ChartLabel>
-          <PieChart data={data.subjectDistribution} height={130} />
+          <PieChart data={data.subjectDistribution} />
         </div>
       </div>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>时段课程密度</ChartLabel>
         <HeatmapChart
           xLabels={data.timeDistribution.hours}
           yLabels={['课程密度']}
           data={heatmapData}
-          height={130}
         />
       </div>
     </div>

@@ -4,12 +4,12 @@ import { useChartTheme } from '@/config/chartTheme'
 
 interface BarChartProps {
   data: { name: string; value: number }[]
-  height?: number
+  height?: number | string
   horizontal?: boolean
   color?: string
 }
 
-export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff' }: BarChartProps) {
+export default function BarChart({ data, height = '100%', horizontal = true, color = '#4a9eff' }: BarChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },

@@ -38,7 +38,7 @@ export default function AlertEvents() {
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">告警类型</ChartLabel>
-          <PieChart data={data.typeDistribution} height={130} colors={['#ff1744','#ff6d00','#ffc107','#4a9eff','#00c853']} />
+          <PieChart data={data.typeDistribution} colors={['#ff1744','#ff6d00','#ffc107','#4a9eff','#00c853']} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">处理状态</ChartLabel>
@@ -46,7 +46,6 @@ export default function AlertEvents() {
             data={[{ name: '已处理', value: Math.round(data.handledRatio * 100) }, { name: '未处理', value: 100 - Math.round(data.handledRatio * 100) }]}
             colors={['#00c853','#ff1744']}
             centerLabel={`${Math.round(data.handledRatio * 100)}%`}
-            height={130}
           />
         </div>
       </div>

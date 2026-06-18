@@ -22,12 +22,11 @@ export default function TeachingDevices() {
             ]}
             colors={['#00c853', '#ffc107', '#ff1744']}
             centerLabel={`${data.online}/${data.total}`}
-            height={140}
           />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">设备类型分布</ChartLabel>
-          <PieChart data={data.typeDistribution} height={150} />
+          <PieChart data={data.typeDistribution} />
         </div>
       </div>
     </div>

@@ -15,9 +15,11 @@ export default function TeachingResourcesPanel() {
   }))
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1 }}>
       <ChartLabel>教学资源分类占比</ChartLabel>
-      <TreemapChart data={treemapData} height={220} />
+      <div style={{ flex: 1, minHeight: 0 }}>
+        <TreemapChart data={treemapData} />
+      </div>
     </div>
   )
 }

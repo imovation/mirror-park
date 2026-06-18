@@ -12,13 +12,13 @@ export default function TeacherDistribution() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各学科教师数量</ChartLabel>
-        <BarChart data={data.subjects} height={140} color="#4a9eff" />
+        <BarChart data={data.subjects} color="#4a9eff" />
       </div>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>职称分布</ChartLabel>
-        <BarChart data={data.titles} height={75} color="#00c853" />
+        <BarChart data={data.titles} color="#00c853" />
       </div>
     </div>
   )

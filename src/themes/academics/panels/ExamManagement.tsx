@@ -34,11 +34,11 @@ export default function ExamManagement() {
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">年级均分</ChartLabel>
-          <BarChart data={data.gradeAverages} height={100} />
+          <BarChart data={data.gradeAverages} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">成绩分布</ChartLabel>
-          <FunnelChart data={data.scoreDistribution} height={200} />
+          <FunnelChart data={data.scoreDistribution} />
         </div>
       </div>
     </div>

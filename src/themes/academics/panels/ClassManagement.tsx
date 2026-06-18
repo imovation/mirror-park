@@ -18,7 +18,7 @@ export default function ClassManagement() {
       </div>
       <div style={{ flex: 1 }}>
         <ChartLabel align="center">各年级班级数</ChartLabel>
-        <BarChart data={data.gradeClasses.map(g => ({ name: g.name, value: g.count }))} height={90} />
+        <BarChart data={data.gradeClasses.map(g => ({ name: g.name, value: g.count }))} />
       </div>
       <div>
         <ChartLabel>班级列表</ChartLabel>

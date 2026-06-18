@@ -14,7 +14,7 @@ export default function RoomDistribution() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <ChartLabel>功能室分布</ChartLabel>
       <div style={{ flex: 1 }}>
-        <BarChart data={data.rooms.map((r) => ({ name: r.name, value: r.count }))} height={200} color="#00c853" />
+        <BarChart data={data.rooms.map((r) => ({ name: r.name, value: r.count }))} color="#00c853" />
       </div>
     </div>
   )

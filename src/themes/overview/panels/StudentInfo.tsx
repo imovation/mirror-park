@@ -34,11 +34,10 @@ export default function StudentInfo() {
           </div>
         ))}
       </div>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>年级人数对比</ChartLabel>
         <BarChart
           data={data.grades.map((g) => ({ name: g.name, value: g.total }))}
-          height={90}
           horizontal={false}
           color="#4a9eff"
         />
