@@ -1,19 +1,26 @@
 import { http, HttpResponse } from 'msw'
-import { faker } from '@faker-js/faker'
 
 const BASE = '/api'
 
+const SUBJECTS = ['语文', '数学', '英语', '物理', '化学', '生物', '道德与法治', '历史', '地理']
+const LEADERS = ['张志远', '李晓华', '王建平', '赵丽华', '陈光明', '刘芳']
+const RESOURCE_NAMES = [
+  '九年级数学期中试卷汇编', '初二物理实验学案', '高一语文整本书阅读设计',
+  '化学反应速率微课', '英语语法专题课件', '生物细胞结构素材包',
+  '历史地图集素材', '体育教学设计方案', '信息技术课件合集',
+  '地理气候类型学案',
+]
+
 export const teachingResearchHandlers = [
   http.get(`${BASE}/teaching-research/resources`, () => {
-    const subjectColors = ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffc107', '#00bcd4']
     return HttpResponse.json({
       resources: [
-        { name: '试卷', value: faker.number.int({ min: 500, max: 2000 }), color: subjectColors[0] },
-        { name: '学案', value: faker.number.int({ min: 300, max: 1500 }), color: subjectColors[1] },
-        { name: '教学设计', value: faker.number.int({ min: 200, max: 1000 }), color: subjectColors[2] },
-        { name: '微课', value: faker.number.int({ min: 100, max: 800 }), color: subjectColors[3] },
-        { name: '课件', value: faker.number.int({ min: 400, max: 1800 }), color: subjectColors[4] },
-        { name: '素材', value: faker.number.int({ min: 500, max: 2500 }), color: subjectColors[5] },
+        { name: '试卷', value: 1240, color: '#4a9eff' },
+        { name: '学案', value: 860, color: '#00c853' },
+        { name: '教学设计', value: 520, color: '#ff6d00' },
+        { name: '微课', value: 380, color: '#aa00ff' },
+        { name: '课件', value: 980, color: '#ffc107' },
+        { name: '素材', value: 1540, color: '#00bcd4' },
       ],
     })
   }),
@@ -21,46 +28,49 @@ export const teachingResearchHandlers = [
   http.get(`${BASE}/teaching-research/resource-stats`, () => {
     return HttpResponse.json({
       totalResources: 6500,
-      cloudQuestions: faker.number.int({ min: 500, max: 3000 }),
-      cloudResources: faker.number.int({ min: 1000, max: 5000 }),
-      recentUpdates: faker.number.int({ min: 10, max: 100 }),
+      cloudQuestions: 1840,
+      cloudResources: 3200,
+      recentUpdates: 48,
     })
   }),
 
   http.get(`${BASE}/teaching-research/updates`, () => {
-    const subjects = ['语文', '数学', '英语', '物理', '化学', '生物', '道德与法治', '历史', '地理']
     return HttpResponse.json({
       recentItems: Array.from({ length: 10 }, (_, i) => ({
         id: `res-${i}`,
-        name: faker.lorem.words(faker.number.int({ min: 2, max: 4 })),
-        subject: faker.helpers.arrayElement(subjects),
-        teacher: faker.person.fullName(),
-        time: faker.date.recent({ days: 7 }).toLocaleDateString('zh-CN'),
+        name: RESOURCE_NAMES[i],
+        subject: SUBJECTS[i % SUBJECTS.length],
+        teacher: LEADERS[i % LEADERS.length],
+        time: `2026-06-${String(10 + i).padStart(2, '0')}`,
       })),
     })
   }),
 
   http.get(`${BASE}/teaching-research/topics`, () => {
     return HttpResponse.json({
-      lessonCases: faker.number.int({ min: 50, max: 200 }),
-      publicAchievements: faker.number.int({ min: 20, max: 80 }),
-      ongoingTopics: faker.number.int({ min: 5, max: 30 }),
+      lessonCases: 128,
+      publicAchievements: 45,
+      ongoingTopics: 18,
     })
   }),
 
   http.get(`${BASE}/teaching-research/projects`, () => {
+    const PROJECT_NAMES = [
+      '基于大数据的课堂教学评价研究',
+      '高中语文整本书阅读教学实践',
+      '信息技术与学科教学深度融合研究',
+      '新高考背景下的分层教学策略',
+      '核心素养导向的化学实验教学研究',
+      'STEAM教育理念在物理教学中的应用',
+    ]
+    const STATUSES: Array<'在研' | '中期' | '结题'> = ['在研', '在研', '在研', '在研', '中期', '结题']
     return HttpResponse.json({
       projects: Array.from({ length: 6 }, (_, i) => ({
         id: `proj-${i}`,
-        name: faker.helpers.arrayElement([
-          '基于大数据的课堂教学评价研究', '高中语文整本书阅读教学实践',
-          '信息技术与学科教学深度融合研究', '新高考背景下的分层教学策略',
-          '核心素养导向的化学实验教学研究', 'STEAM教育理念在物理教学中的应用',
-          '中学生心理健康教育模式探索', '学校德育课程一体化建设研究',
-        ]),
-        leader: faker.person.fullName(),
-        status: faker.helpers.arrayElement(['在研', '在研', '在研', '中期', '结题']),
-        members: faker.number.int({ min: 3, max: 10 }),
+        name: PROJECT_NAMES[i],
+        leader: LEADERS[i],
+        status: STATUSES[i],
+        members: [5, 7, 4, 8, 6, 3][i],
       })),
     })
   }),
