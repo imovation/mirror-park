@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchApi } from '../client'
 import { REFRESH_INTERVALS } from '@/utils/constants'
 
-export interface AcademicsOverview { todayCourses: number; ongoingCourses: number; totalClassrooms: number; usageRate: number }
+export interface AcademicsOverview { todayCourses: number; activeCourses: number; totalClassrooms: number; usageRate: number }
 export interface ScheduleData { gradeDistribution: {name:string;value:number}[]; subjectDistribution: {name:string;value:number}[]; timeDistribution: {hours:string[];values:number[]} }
 export interface ClassroomUsage { inUse: number; available: number; buildingUsage: {name:string;value:number}[]; typeDistribution: {name:string;value:number}[] }
 export interface AttendanceData { todayRate: number; gradeRates: {name:string;value:number}[]; classRank: {name:string;value:number}[]; trend: {days:string[];values:number[]} }

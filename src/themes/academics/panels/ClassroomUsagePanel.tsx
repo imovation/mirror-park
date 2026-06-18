@@ -1,8 +1,6 @@
 import { useClassroomUsage } from '@/api/queries/academics'
-import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
 import PieChart from '@/components/charts/PieChart'
-import GaugeChart from '@/components/charts/GaugeChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
@@ -17,9 +15,10 @@ export default function ClassroomUsagePanel() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-        <NumberFlip label="使用中" value={data.inUse} unit="间" color="#00c853" />
-        <NumberFlip label="空闲" value={data.available} unit="间" color="var(--color-warning)" />
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 12px' }}>
+         <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>使用中: <span style={{color: 'var(--color-success)', fontWeight: 'bold'}}>{data.inUse}间</span></div>
+         <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>空闲: <span style={{color: 'var(--color-warning)', fontWeight: 'bold'}}>{data.available}间</span></div>
+         <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>使用率: <span style={{color: 'var(--accent)', fontWeight: 'bold'}}>{usagePercent}%</span></div>
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
@@ -27,13 +26,9 @@ export default function ClassroomUsagePanel() {
           <BarChart data={data.buildingUsage} height={80} />
         </div>
         <div style={{ flex: 1 }}>
-          <ChartLabel align="center">使用率</ChartLabel>
-          <GaugeChart value={usagePercent} name="教室使用率" height={90} />
+          <ChartLabel align="center">教室类型分布</ChartLabel>
+          <PieChart data={data.typeDistribution} height={80} />
         </div>
-      </div>
-      <div>
-        <ChartLabel align="center">教室类型分布</ChartLabel>
-        <PieChart data={data.typeDistribution} height={80} />
       </div>
     </div>
   )

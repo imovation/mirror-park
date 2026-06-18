@@ -1,5 +1,5 @@
 import { useAcademicsOverview } from '@/api/queries/academics'
-import NumberFlip from '@/components/ui/NumberFlip'
+import CompactStatsRow from '@/components/ui/CompactStatsRow'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 export default function TeachingOverview() {
@@ -7,12 +7,13 @@ export default function TeachingOverview() {
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-      <NumberFlip label="今日课程" value={data.todayCourses} unit="节" />
-      <NumberFlip label="正在上课" value={data.ongoingCourses} unit="节" color="#00c853" />
-      <NumberFlip label="教室总数" value={data.totalClassrooms} unit="间" />
-      <NumberFlip label="教室使用率" value={Math.round(data.usageRate * 100)} unit="%" color="var(--color-warning)" />
-    </div>
+    <CompactStatsRow items={[
+      { id: 'today', label: '今日课程', value: data.todayCourses, unit: '节', color: 'var(--accent)' },
+      { id: 'now', label: '正在上课', value: data.activeCourses, unit: '节', color: 'var(--color-success)' },
+      { id: 'rooms', label: '教室总数', value: data.totalClassrooms, unit: '间' },
+      { id: 'rate', label: '教室使用率', value: Math.round(data.usageRate * 100), unit: '%', color: 'var(--color-warning)' }
+    ]} />
   )
 }
