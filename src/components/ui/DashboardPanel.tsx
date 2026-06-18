@@ -1,38 +1,52 @@
 import type { ReactNode } from 'react'
 
 interface DashboardPanelProps {
-  title: string
+  title?: string
   children: ReactNode
+  className?: string
 }
 
-export default function DashboardPanel({ title, children }: DashboardPanelProps) {
+export default function DashboardPanel({ title, children, className = '' }: DashboardPanelProps) {
   return (
     <div
-      className="panel-enter"
+      className={`panel-enter relative flex flex-col backdrop-blur-md border rounded-md overflow-hidden ${className}`}
       style={{
-        marginBottom: 6,
         background: 'var(--panel-bg)',
-        border: '1px solid var(--border)',
-        borderRadius: 6,
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: 120,
+        borderColor: 'var(--border-strong)',
       }}
     >
-      <div
-        style={{
-          padding: 'var(--panel-padding-y) var(--panel-padding-x)',
-          fontSize: 13,
-          fontWeight: 600,
-          color: 'var(--accent)',
-          borderBottom: '1px solid var(--border-light)',
-          flexShrink: 0,
-        }}
-      >
-        {title}
-      </div>
-      <div style={{ padding: 'var(--panel-padding-y) var(--panel-padding-x)', flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />
+      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2" style={{ borderColor: 'var(--accent)' }} />
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2" style={{ borderColor: 'var(--accent)' }} />
+
+      {title && (
+        <div
+          className="flex items-center px-4 py-2 border-b"
+          style={{
+            borderBottomColor: 'var(--border-light)',
+            background: 'linear-gradient(90deg, rgba(var(--accent-rgb), 0.15), transparent)',
+          }}
+        >
+          <div
+            className="w-1 h-4 mr-2"
+            style={{
+              background: 'var(--accent)',
+              boxShadow: '0 0 8px rgba(var(--accent-rgb), 0.8)',
+            }}
+          />
+          <h3
+            className="font-bold tracking-wide"
+            style={{
+              color: 'var(--text-primary)',
+              filter: 'drop-shadow(0 0 2px rgba(var(--accent-rgb), 0.5))',
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+      )}
+      <div className="flex-1 p-4 overflow-hidden relative">
         {children}
       </div>
     </div>
