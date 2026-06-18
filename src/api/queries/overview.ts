@@ -77,3 +77,28 @@ export const useRecentActivity = () =>
     queryFn: () => fetchApi<RecentActivityItem[]>('/overview/recent-activity'),
     refetchInterval: REFRESH_INTERVALS.NEAR_REALTIME,
   })
+
+export interface AssetOverview {
+  computers: number
+  projectors: number
+  acs: number
+  cameras: number
+  printers: number
+  accessControls: number
+}
+
+export interface FunctionalRoomDist {
+  rooms: { name: string; value: number }[]
+}
+
+export const useAssetOverview = () =>
+  useQuery<AssetOverview>({
+    queryKey: ['overview', 'assets'],
+    queryFn: () => fetchApi<AssetOverview>('/overview/assets'),
+  })
+
+export const useFunctionalRoomDist = () =>
+  useQuery<FunctionalRoomDist>({
+    queryKey: ['overview', 'functionalRooms'],
+    queryFn: () => fetchApi<FunctionalRoomDist>('/overview/functional-rooms'),
+  })

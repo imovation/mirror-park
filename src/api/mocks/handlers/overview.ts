@@ -87,4 +87,26 @@ export const overviewHandlers = [
     }))
     return HttpResponse.json(items)
   }),
+
+  http.get(`${BASE}/overview/assets`, () => {
+    return HttpResponse.json({
+      computers: 326,
+      projectors: 68,
+      acs: 186,
+      cameras: 156,
+      printers: 42,
+      accessControls: 46
+    })
+  }),
+
+  http.get(`${BASE}/overview/functional-rooms`, () => {
+    return HttpResponse.json({
+      rooms: [
+        { name: '会议室', value: 6 },
+        { name: '功能教室', value: 20 },
+        { name: '机房', value: 6 },
+        { name: '实验室', value: 12 }
+      ]
+    })
+  }),
 ]
