@@ -1,16 +1,13 @@
 import { useSceneStore } from '@/stores/useSceneStore'
 import { BUILDINGS } from '@/components/scene/CampusBase'
+import StatusPanel from '@/components/ui/StatusPanel'
 
 export default function BuildingDetail() {
   const selectedId = useSceneStore((s) => s.selectedObjectId)
   const building = BUILDINGS.find((b) => b.id === selectedId)
 
   if (!building) {
-    return (
-      <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem', textAlign: 'center', padding: 20 }}>
-        点击左侧3D场景中的建筑查看详情
-      </div>
-    )
+    return <StatusPanel type="empty" message="点击左侧3D场景中的建筑查看详情" />
   }
 
   return (
