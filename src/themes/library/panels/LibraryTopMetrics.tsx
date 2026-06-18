@@ -7,7 +7,7 @@ export default function LibraryTopMetrics() {
   if (!data) return null
 
   return (
-    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
       <TopMetricsCard label="纸质图书" value={data.paperBooks?.toLocaleString() ?? '-'} />
       <TopMetricsCard label="电子图书" value={data.ebooks?.toLocaleString() ?? '-'} />
       <TopMetricsCard label="期刊种类" value={data.journals?.toString() ?? '-'} />

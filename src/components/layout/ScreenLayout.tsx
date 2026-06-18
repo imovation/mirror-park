@@ -35,7 +35,7 @@ export default function ScreenLayout({
     >
       <div style={{ gridArea: 'topbar', pointerEvents: 'auto' }}>{topBar}</div>
       {topMetrics && (
-        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', padding: '12px', zIndex: 10 }}>
+        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', padding: '12px', zIndex: 10, overflow: 'hidden' }}>
           {topMetrics}
         </div>
       )}

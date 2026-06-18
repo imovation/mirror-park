@@ -9,7 +9,7 @@ export default function AcademicsTopMetrics() {
   if (!overview) return null
 
   return (
-    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
       <TopMetricsCard label="今日课程" value={overview.todayCourses?.toString() ?? '-'} />
       <TopMetricsCard label="正在上课" value={overview.ongoingCourses?.toString() ?? '-'} />
       <TopMetricsCard label="教室总数" value={overview.totalClassrooms?.toString() ?? '-'} />

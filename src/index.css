@@ -101,6 +101,12 @@ html, body, #root {
   }
 }
 
+@media (max-width: 1100px) {
+  html, body, #root {
+    font-size: 13px;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

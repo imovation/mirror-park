@@ -7,7 +7,7 @@ export default function SecurityTopMetrics() {
   if (!data) return null
 
   return (
-    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
       <TopMetricsCard label="监控设备" value={data.cameraCount?.toString() ?? '-'} />
       <TopMetricsCard label="门禁设备" value={data.accessDeviceCount?.toString() ?? '-'} />
       <TopMetricsCard label="今日告警" value={data.todayAlerts?.toString() ?? '-'} />
