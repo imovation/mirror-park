@@ -1,5 +1,6 @@
 import type { PanelConfig } from '@/types/panel'
 import AdminScene from './AdminScene'
+import AdminTopMetrics from './panels/AdminTopMetrics'
 import AdminOverview from './panels/AdminOverview'
 import NoticeBoard from './panels/NoticeBoard'
 import DutySchedule from './panels/DutySchedule'
@@ -9,9 +10,10 @@ import MeetingManagement from './panels/MeetingManagement'
 
 export const adminScene = () => <AdminScene />
 
+export const adminTopMetrics = () => <AdminTopMetrics />
+
 export const adminPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'admin-overview', title: '办公概况' },
     { id: 'admin-notices', title: '通知公告' },
     { id: 'admin-duty', title: '值班安排' },
   ],
