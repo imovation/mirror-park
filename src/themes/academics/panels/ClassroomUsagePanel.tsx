@@ -4,6 +4,7 @@ import BarChart from '@/components/charts/BarChart'
 import PieChart from '@/components/charts/PieChart'
 import GaugeChart from '@/components/charts/GaugeChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function ClassroomUsagePanel() {
   const { data, isLoading, error } = useClassroomUsage()
@@ -22,16 +23,16 @@ export default function ClassroomUsagePanel() {
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>各楼使用率</div>
+          <ChartLabel align="center">各楼使用率</ChartLabel>
           <BarChart data={data.buildingUsage} height={100} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>使用率</div>
+          <ChartLabel align="center">使用率</ChartLabel>
           <GaugeChart value={usagePercent} name="教室使用率" height={120} />
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>教室类型分布</div>
+        <ChartLabel align="center">教室类型分布</ChartLabel>
         <PieChart data={data.typeDistribution} height={110} />
       </div>
     </div>

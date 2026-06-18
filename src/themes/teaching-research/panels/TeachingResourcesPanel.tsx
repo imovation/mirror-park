@@ -1,4 +1,5 @@
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 import { useTeachingResources } from '@/api/queries/teachingResearch'
 import TreemapChart from '@/components/charts/TreemapChart'
 
@@ -15,7 +16,7 @@ export default function TeachingResourcesPanel() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>教学资源分类占比</div>
+      <ChartLabel>教学资源分类占比</ChartLabel>
       <TreemapChart data={treemapData} height={220} />
     </div>
   )

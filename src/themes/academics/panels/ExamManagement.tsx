@@ -4,6 +4,7 @@ import FunnelChart from '@/components/charts/FunnelChart'
 import NumberFlip from '@/components/ui/NumberFlip'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function ExamManagement() {
   const { data, isLoading, error } = useExamData()
@@ -14,7 +15,7 @@ export default function ExamManagement() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>近期考试</div>
+          <ChartLabel>近期考试</ChartLabel>
           <ScrollList
             items={data.upcomingExams.map(e => ({
               id: e.id,
@@ -32,11 +33,11 @@ export default function ExamManagement() {
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>年级均分</div>
+          <ChartLabel align="center">年级均分</ChartLabel>
           <BarChart data={data.gradeAverages} height={100} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>成绩分布</div>
+          <ChartLabel align="center">成绩分布</ChartLabel>
           <FunnelChart data={data.scoreDistribution} height={200} />
         </div>
       </div>

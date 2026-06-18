@@ -1,6 +1,7 @@
 import { useActivity } from '@/api/queries/overview'
 import LineChart from '@/components/charts/LineChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function ActivityHeatmap() {
   const { data, isLoading, error } = useActivity()
@@ -11,7 +12,7 @@ export default function ActivityHeatmap() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 4 }}>各时段校园人流变化</div>
+      <ChartLabel>各时段校园人流变化</ChartLabel>
       <div style={{ flex: 1 }}>
         <LineChart
           xData={data.hours}

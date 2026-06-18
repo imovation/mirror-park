@@ -6,6 +6,7 @@ import PieChart from '@/components/charts/PieChart'
 import RingChart from '@/components/charts/RingChart'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function AlertEvents() {
   const { data, isLoading, error } = useAlertData()
@@ -36,11 +37,11 @@ export default function AlertEvents() {
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>告警类型</div>
+          <ChartLabel align="center">告警类型</ChartLabel>
           <PieChart data={data.typeDistribution} height={130} colors={['#ff1744','#ff6d00','#ffc107','#4a9eff','#00c853']} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>处理状态</div>
+          <ChartLabel align="center">处理状态</ChartLabel>
           <RingChart
             data={[{ name: '已处理', value: Math.round(data.handledRatio * 100) }, { name: '未处理', value: 100 - Math.round(data.handledRatio * 100) }]}
             colors={['#00c853','#ff1744']}
@@ -50,7 +51,7 @@ export default function AlertEvents() {
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>告警事件列表</div>
+        <ChartLabel>告警事件列表</ChartLabel>
         <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.type} · {r.location}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.time}</span><span style={{fontSize:10,color:r.status==='已处理'?'#00c853':r.status==='处理中'?'#4a9eff':'#ff1744'}}>{r.status}</span></span></div> }))} maxHeight={100} />
       </div>
     </div>

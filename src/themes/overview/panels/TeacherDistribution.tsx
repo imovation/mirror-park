@@ -2,6 +2,7 @@ import { useTeacherDistribution } from '@/api/queries/overview'
 import BarChart from '@/components/charts/BarChart'
 import RadarChart from '@/components/charts/RadarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function TeacherDistribution() {
   const { data, isLoading, error } = useTeacherDistribution()
@@ -17,11 +18,11 @@ export default function TeacherDistribution() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>各学科教师数量</div>
+        <ChartLabel>各学科教师数量</ChartLabel>
         <RadarChart indicator={indicator} series={series} height={240} />
       </div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>职称分布</div>
+        <ChartLabel>职称分布</ChartLabel>
         <BarChart data={data.titles} height={100} color="#00c853" />
       </div>
     </div>

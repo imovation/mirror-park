@@ -2,6 +2,7 @@ import { useLibraryVisitors } from '@/api/queries/library'
 import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function VisitorStats() {
   const { data, isLoading, error } = useLibraryVisitors()
@@ -15,7 +16,7 @@ export default function VisitorStats() {
         <NumberFlip label="实时在馆" value={data.currentVisitors} unit="人" color="#4a9eff" />
       </div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>入馆时段分布</div>
+        <ChartLabel>入馆时段分布</ChartLabel>
         <BarChart
           data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
           height={130}

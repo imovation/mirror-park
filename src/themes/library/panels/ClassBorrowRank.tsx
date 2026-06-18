@@ -2,6 +2,7 @@ import { useClassRank } from '@/api/queries/library'
 import BarChart from '@/components/charts/BarChart'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function ClassBorrowRank() {
   const { data, isLoading, error } = useClassRank()
@@ -11,11 +12,11 @@ export default function ClassBorrowRank() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>班级借阅量排行</div>
+        <ChartLabel>班级借阅量排行</ChartLabel>
         <BarChart data={data.classRank.slice(0, 8)} height={130} />
       </div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>阅读之星</div>
+        <ChartLabel>阅读之星</ChartLabel>
         <ScrollList
           items={data.readingStars.map((s, i) => ({
             id: `star-${i}`,

@@ -3,6 +3,7 @@ import RingChart from '@/components/charts/RingChart'
 import BarChart from '@/components/charts/BarChart'
 import GaugeChart from '@/components/charts/GaugeChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function MonitorStatus() {
   const { data, isLoading, error } = useMonitorStatus()
@@ -21,12 +22,12 @@ export default function MonitorStatus() {
           />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 4 }}>监控覆盖率</div>
+          <ChartLabel align="center">监控覆盖率</ChartLabel>
           <GaugeChart value={Math.round(data.coverage * 100)} name="覆盖率" height={130} />
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>各区域摄像头分布</div>
+        <ChartLabel>各区域摄像头分布</ChartLabel>
         <BarChart data={data.regionDistribution} height={100} />
       </div>
     </div>

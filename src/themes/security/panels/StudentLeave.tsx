@@ -4,6 +4,7 @@ import PieChart from '@/components/charts/PieChart'
 import BarChart from '@/components/charts/BarChart'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function StudentLeave() {
   const { data, isLoading, error } = useLeaveData()
@@ -17,16 +18,16 @@ export default function StudentLeave() {
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>请假类型</div>
+          <ChartLabel align="center">请假类型</ChartLabel>
           <PieChart data={data.typeDistribution} height={120} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>各年级请假</div>
+          <ChartLabel align="center">各年级请假</ChartLabel>
           <BarChart data={data.gradeDistribution} height={120} horizontal={false} />
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>离校记录</div>
+        <ChartLabel>离校记录</ChartLabel>
         <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name} · {r.className}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.type}</span><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.time}</span></span></div> }))} maxHeight={90} />
       </div>
     </div>

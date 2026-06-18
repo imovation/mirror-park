@@ -3,6 +3,7 @@ import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
 import LineChart from '@/components/charts/LineChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function StaffAttendance() {
   const { data, isLoading, error } = useAdminAttendance()
@@ -17,11 +18,11 @@ export default function StaffAttendance() {
         <NumberFlip label="缺勤" value={data.todayAbsent} unit="人" color="#ff1744" />
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>各部门出勤率</div>
+        <ChartLabel>各部门出勤率</ChartLabel>
         <BarChart data={data.departmentRates} height={100} horizontal={false} />
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>近30日出勤趋势</div>
+        <ChartLabel>近30日出勤趋势</ChartLabel>
         <LineChart
           xData={data.monthlyTrend.days}
           series={[{ name: '出勤率', data: data.monthlyTrend.values, color: '#4a9eff' }]}

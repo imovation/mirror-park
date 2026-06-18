@@ -2,6 +2,7 @@ import { useDeviceData } from '@/api/queries/academics'
 import RingChart from '@/components/charts/RingChart'
 import PieChart from '@/components/charts/PieChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function TeachingDevices() {
   const { data, isLoading, error } = useDeviceData()
@@ -12,7 +13,7 @@ export default function TeachingDevices() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>设备状态</div>
+          <ChartLabel align="center">设备状态</ChartLabel>
           <RingChart
             data={[
               { name: '在线', value: data.online },
@@ -25,7 +26,7 @@ export default function TeachingDevices() {
           />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>设备类型分布</div>
+          <ChartLabel align="center">设备类型分布</ChartLabel>
           <PieChart data={data.typeDistribution} height={150} />
         </div>
       </div>

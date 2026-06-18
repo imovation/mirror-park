@@ -2,6 +2,7 @@ import { useMeetingData } from '@/api/queries/admin'
 import NumberFlip from '@/components/ui/NumberFlip'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function MeetingManagement() {
   const { data, isLoading, error } = useMeetingData()
@@ -15,7 +16,7 @@ export default function MeetingManagement() {
         <NumberFlip label="本周会议" value={data.weekCount} unit="场" color="#00c853" />
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 4 }}>会议室状态</div>
+        <ChartLabel>会议室状态</ChartLabel>
         <div style={{ display: 'flex', gap: 6 }}>
           {data.rooms.map(room => (
             <div
@@ -37,7 +38,7 @@ export default function MeetingManagement() {
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>即将召开</div>
+        <ChartLabel>即将召开</ChartLabel>
         <ScrollList
           items={data.upcoming.map(m => ({
             id: m.id,

@@ -1,6 +1,7 @@
 import { useStudentInfo } from '@/api/queries/overview'
 import SankeyChart from '@/components/charts/SankeyChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function StudentInfo() {
   const { data, isLoading, error } = useStudentInfo()
@@ -19,7 +20,7 @@ export default function StudentInfo() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>学生分布</div>
+        <ChartLabel>学生分布</ChartLabel>
         <SankeyChart data={sankeyLinks} categories={categories} height={220} />
       </div>
     </div>

@@ -5,6 +5,7 @@ import BarChart from '@/components/charts/BarChart'
 import ScrollList from '@/components/ui/ScrollList'
 import VideoWindow from '@/components/ui/VideoWindow'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function CanteenSafety() {
   const { data, isLoading, error } = useCanteenData()
@@ -20,7 +21,7 @@ export default function CanteenSafety() {
         <NumberFlip label="今日就餐人次" value={data.todayTotal} unit="人次" color="#00c853" />
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>各餐次就餐人数</div>
+        <ChartLabel>各餐次就餐人数</ChartLabel>
         <BarChart data={data.meals} height={100} horizontal={false} />
       </div>
       <button
@@ -39,7 +40,7 @@ export default function CanteenSafety() {
         📹 {showVideo ? '关闭' : '明厨亮灶 — 查看监控'}
       </button>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>食品安全检查</div>
+        <ChartLabel>食品安全检查</ChartLabel>
         <ScrollList items={data.safetyRecords.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.item}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'rgba(255,255,255,0.3)'}}>{r.date}</span><span style={{fontSize:10,color:'#00c853'}}>{r.result}</span></span></div> }))} maxHeight={60} />
       </div>
       <VideoWindow visible={showVideo} title="食堂后厨实时监控" onClose={() => setShowVideo(false)} />

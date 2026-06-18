@@ -3,6 +3,7 @@ import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 export default function ClassManagement() {
   const { data, isLoading, error } = useClassData()
@@ -15,11 +16,11 @@ export default function ClassManagement() {
         <NumberFlip label="班级总数" value={data.totalClasses} unit="个" />
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 2 }}>各年级班级数</div>
+        <ChartLabel align="center">各年级班级数</ChartLabel>
         <BarChart data={data.gradeClasses.map(g => ({ name: g.name, value: g.count }))} height={90} />
       </div>
       <div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>班级列表</div>
+        <ChartLabel>班级列表</ChartLabel>
         <ScrollList
           items={data.classList.map(c => ({
             id: c.id,
