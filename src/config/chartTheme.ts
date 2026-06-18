@@ -11,18 +11,20 @@ export interface ChartTheme {
   borderColor: string
   gaugeAxis: string
   shadowColor: string
+  colors: string[]
 }
 
 const DARK: ChartTheme = {
-  axisLabel: 'rgba(255,255,255,0.4)',
-  axisLine: 'rgba(74,158,255,0.15)',
-  splitLine: 'rgba(74,158,255,0.08)',
-  label: 'rgba(255,255,255,0.6)',
-  title: 'rgba(255,255,255,0.5)',
-  legendText: 'rgba(255,255,255,0.5)',
+  axisLabel: 'rgba(255,255,255,0.6)',
+  axisLine: 'rgba(34,211,238,0.3)',
+  splitLine: 'rgba(34,211,238,0.1)',
+  label: 'rgba(255,255,255,0.8)',
+  title: 'rgba(34,211,238,0.9)',
+  legendText: 'rgba(255,255,255,0.7)',
   borderColor: 'rgba(10,22,40,1)',
   gaugeAxis: '#fff',
-  shadowColor: 'rgba(0,0,0,0.5)',
+  shadowColor: 'rgba(34,211,238,0.4)',
+  colors: ['#22d3ee', '#818cf8', '#facc15', '#34d399', '#f472b6'],
 }
 
 const LIGHT: ChartTheme = {
@@ -35,6 +37,7 @@ const LIGHT: ChartTheme = {
   borderColor: 'rgba(0,0,0,0.06)',
   gaugeAxis: '#333',
   shadowColor: 'rgba(0,0,0,0.15)',
+  colors: ['#0284c7', '#4f46e5', '#ca8a04', '#059669', '#db2777'],
 }
 
 const THEMES: Record<UITheme, ChartTheme> = { dark: DARK, light: LIGHT }
