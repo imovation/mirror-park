@@ -6,7 +6,7 @@ interface StatusPanelProps {
 export default function StatusPanel({ type, message }: StatusPanelProps) {
   const config = {
     loading: { icon: '⏳', text: '加载中...', color: 'var(--accent)' },
-    error: { icon: '⚠️', text: '数据加载失败', color: 'var(--color-warning)' },
+    error: { icon: '⚠️', text: '数据加载失败', color: 'var(--color-danger)' },
     empty: { icon: '📭', text: '暂无数据', color: 'var(--text-muted)' },
   }[type]
 
