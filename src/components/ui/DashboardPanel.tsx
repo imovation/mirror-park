@@ -47,7 +47,7 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
           </h3>
         </div>
       )}
-      <div className="flex-1 p-4 overflow-auto relative">
+      <div className="flex-1 p-4 overflow-hidden relative">
         {children}
       </div>
     </div>

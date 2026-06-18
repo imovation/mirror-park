@@ -105,6 +105,11 @@ html, body, #root {
   html, body, #root {
     font-size: 13px;
   }
+
+  :root {
+    --panel-padding-x: 10px;
+    --panel-padding-y: 6px;
+  }
 }
 
 ::-webkit-scrollbar {
