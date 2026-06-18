@@ -9,7 +9,7 @@ export default function CourseSchedule() {
   const { data, isLoading, error } = useScheduleData()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
 
   const heatmapData: [number, number, number][] = data.timeDistribution.hours.map((_, i) => [i, 0, data.timeDistribution.values[i]])
 

@@ -12,7 +12,7 @@ export default function ResearchProjectsList() {
   const { data, isLoading, error } = useResearchProjects()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
   return (
     <CardCarousel
       items={data.projects.map((p) => ({

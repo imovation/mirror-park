@@ -9,7 +9,7 @@ export default function TeacherDistribution() {
 
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
 
   const maxSubject = Math.max(...data.subjects.map(s => s.value)) + 5
   const indicator = data.subjects.map(s => ({ name: s.name, max: maxSubject }))

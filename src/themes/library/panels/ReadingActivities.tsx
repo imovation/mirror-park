@@ -11,7 +11,7 @@ export default function ReadingActivities() {
   const { data, isLoading, error } = useLibraryActivities()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
   return (
     <CardCarousel
       items={data.activities.map((a) => ({

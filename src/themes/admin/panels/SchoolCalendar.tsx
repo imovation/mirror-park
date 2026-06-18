@@ -12,7 +12,7 @@ export default function SchoolCalendar() {
   const { data, isLoading, error } = useCalendarData()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
 
   const allItems = [
     ...data.thisWeek.map(e => ({

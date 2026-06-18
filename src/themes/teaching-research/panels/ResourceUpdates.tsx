@@ -6,7 +6,7 @@ export default function ResourceUpdates() {
   const { data, isLoading, error } = useResourceUpdates()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
   return (
     <ScrollList
       items={data.recentItems.map((item) => ({

@@ -6,7 +6,7 @@ export default function SecurityOverview() {
   const { data, isLoading, error } = useSecurityOverview()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
       <NumberFlip label="监控摄像头" value={data.cameraCount} unit="个" />

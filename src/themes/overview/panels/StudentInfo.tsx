@@ -8,7 +8,7 @@ export default function StudentInfo() {
 
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
 
   const sankeyLinks = data.grades.flatMap((g) => [
     { source: '全校学生', target: g.name, value: g.total },

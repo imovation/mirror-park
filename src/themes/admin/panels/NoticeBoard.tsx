@@ -13,7 +13,7 @@ export default function NoticeBoard() {
   const { data, isLoading, error } = useNoticeData()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       <ScrollList

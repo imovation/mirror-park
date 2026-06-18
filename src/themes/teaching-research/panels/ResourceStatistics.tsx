@@ -6,7 +6,7 @@ export default function ResourceStatistics() {
   const { data, isLoading, error } = useResourceStats()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
       <NumberFlip label="资源总量" value={data.totalResources} unit="份" color="#4a9eff" />

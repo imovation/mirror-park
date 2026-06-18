@@ -10,7 +10,7 @@ export default function ClassroomUsagePanel() {
   const { data, isLoading, error } = useClassroomUsage()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
 
   const total = data.inUse + data.available
   const usagePercent = total > 0 ? Math.round((data.inUse / total) * 100) : 0

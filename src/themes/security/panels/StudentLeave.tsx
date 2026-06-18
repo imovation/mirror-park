@@ -10,7 +10,7 @@ export default function StudentLeave() {
   const { data, isLoading, error } = useLeaveData()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
-  if (!data) return null
+  if (!data) return <StatusPanel type="empty" />
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ textAlign: 'center' }}>
