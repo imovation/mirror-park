@@ -52,7 +52,7 @@ export default function NumberFlip({ value, unit, label, color = 'var(--accent)'
         </div>
       )}
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4 }}>
-        <span style={{ fontSize: 28, fontWeight: 'bold', color, fontFamily: 'monospace' }}>
+        <span style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 'bold', color, fontFamily: 'monospace' }}>
           {formatted.split('').map((char, i) => (
             <DigitColumn key={i} char={char} />
           ))}

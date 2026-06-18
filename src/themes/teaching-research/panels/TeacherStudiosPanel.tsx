@@ -2,14 +2,14 @@ import { useTeacherStudios } from '@/api/queries/teachingResearch'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 const subjectColors: Record<string, string> = {
-  '语文': '#e74c3c',
-  '数学': '#4a9eff',
-  '英语': '#00c853',
-  '物理': '#ff6d00',
-  '化学': '#aa00ff',
-  '生物': '#00bcd4',
-  '信息技术': '#ffc107',
-  '心理': '#ff80ab',
+  '语文': 'var(--color-danger)',
+  '数学': 'var(--accent)',
+  '英语': 'var(--color-success)',
+  '物理': 'var(--color-warning)',
+  '化学': 'var(--color-chart-7)',
+  '生物': 'var(--color-chart-1)',
+  '信息技术': 'var(--color-chart-3)',
+  '心理': 'var(--color-chart-5)',
 }
 
 export default function TeacherStudiosPanel() {
@@ -33,7 +33,7 @@ export default function TeacherStudiosPanel() {
             <span style={{
               fontSize: 10,
               color: subjectColors[s.subject] || 'var(--accent)',
-              background: `${subjectColors[s.subject] || '#4a9eff'}15`,
+              background: 'var(--skeleton-bg)',
               padding: '1px 6px',
               borderRadius: 3,
             }}>

@@ -11,7 +11,7 @@ export default function StudentInfo() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ display: 'flex', gap: 8 }}>
         {data.grades.map((g) => (
           <div
@@ -27,17 +27,18 @@ export default function StudentInfo() {
           >
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4 }}>{g.name}</div>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 12, fontSize: 11, color: 'var(--text-tertiary)' }}>
-              <span>男 <span style={{ color: '#4a9eff', fontWeight: 600 }}>{g.male}</span></span>
-              <span>女 <span style={{ color: '#ff6d00', fontWeight: 600 }}>{g.female}</span></span>
+              <span>男 <span style={{ color: 'var(--color-chart-8)', fontWeight: 600 }}>{g.male}</span></span>
+              <span>女 <span style={{ color: 'var(--color-chart-5)', fontWeight: 600 }}>{g.female}</span></span>
             </div>
             <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--accent)', marginTop: 4 }}>{g.total}</div>
           </div>
         ))}
       </div>
-      <div style={{ flex: 1, minHeight: 0 }}>
+      <div>
         <ChartLabel>年级人数对比</ChartLabel>
         <BarChart
           data={data.grades.map((g) => ({ name: g.name, value: g.total }))}
+          height={90}
           horizontal={false}
           color="#4a9eff"
         />
