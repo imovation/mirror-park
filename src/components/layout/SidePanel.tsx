@@ -9,10 +9,9 @@ export default function SidePanel({ children }: SidePanelProps) {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      minHeight: 0,
+      gap: 8,
       height: '100%',
       paddingTop: 4,
-      gap: 6,
       backdropFilter: 'blur(6px)',
       WebkitBackdropFilter: 'blur(6px)',
     }}>

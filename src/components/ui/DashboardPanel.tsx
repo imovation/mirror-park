@@ -11,10 +11,10 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
     <div
       className={`panel-enter relative flex flex-col backdrop-blur-md border rounded-md overflow-hidden ${className}`}
       style={{
+        flex: 1,
+        minHeight: 'fit-content',
         background: 'var(--panel-bg)',
         borderColor: 'var(--border-strong)',
-        minHeight: 0,
-        flex: 1,
       }}
     >
       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />
@@ -24,14 +24,14 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
 
       {title && (
         <div
-          className="flex items-center px-4 py-2 border-b flex-shrink-0"
+          className="flex items-center px-4 py-2 border-b"
           style={{
             borderBottomColor: 'var(--border-light)',
             background: 'linear-gradient(90deg, rgba(var(--accent-rgb), 0.15), transparent)',
           }}
         >
           <div
-            className="w-1 h-4 mr-2 flex-shrink-0"
+            className="w-1 h-4 mr-2"
             style={{
               background: 'var(--accent)',
               boxShadow: '0 0 8px rgba(var(--accent-rgb), 0.8)',
@@ -48,7 +48,7 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
           </h3>
         </div>
       )}
-      <div className="flex-1 p-4 overflow-hidden relative" style={{ minHeight: 0 }}>
+      <div className="flex-1 p-4 overflow-hidden relative">
         {children}
       </div>
     </div>
