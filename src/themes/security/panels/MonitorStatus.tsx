@@ -11,7 +11,7 @@ export default function MonitorStatus() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, height: '100%' }}>
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <RingChart

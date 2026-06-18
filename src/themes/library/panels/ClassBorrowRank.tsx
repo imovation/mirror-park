@@ -10,12 +10,12 @@ export default function ClassBorrowRank() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <div style={{ flex: 1 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>班级借阅量排行</ChartLabel>
         <BarChart data={data.classRank.slice(0, 8)} />
       </div>
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>阅读之星</ChartLabel>
         <ScrollList
           items={data.readingStars.map((s, i) => ({

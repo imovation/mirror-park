@@ -11,12 +11,12 @@ export default function AccessControl() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, height: '100%' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="今日通行" value={data.todayTotal} unit="人次" color="var(--color-success)" />
         <NumberFlip label="异常记录" value={data.abnormalRecords.length} unit="条" color="var(--color-warning)" />
       </div>
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各门禁点通行统计</ChartLabel>
         <BarChart data={data.points} />
       </div>

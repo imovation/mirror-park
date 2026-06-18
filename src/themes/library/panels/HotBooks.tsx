@@ -11,7 +11,7 @@ export default function HotBooks() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>借阅量 TOP10</ChartLabel>
         <BarChart data={data.top10.map(b => ({ name: b.name, value: b.count }))} />

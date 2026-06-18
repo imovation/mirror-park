@@ -11,7 +11,7 @@ export default function TeacherDistribution() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, height: '100%' }}>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各学科教师数量</ChartLabel>
         <BarChart data={data.subjects} color="#4a9eff" />

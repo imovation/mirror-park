@@ -10,12 +10,12 @@ export default function VisitorStats() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="今日入馆" value={data.todayVisitors} unit="人" color="#00c853" />
         <NumberFlip label="实时在馆" value={data.currentVisitors} unit="人" color="#4a9eff" />
       </div>
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>入馆时段分布</ChartLabel>
         <BarChart
           data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}

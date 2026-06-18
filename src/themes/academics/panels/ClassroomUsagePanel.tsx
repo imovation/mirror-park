@@ -16,7 +16,7 @@ export default function ClassroomUsagePanel() {
   const usagePercent = total > 0 ? Math.round((data.inUse / total) * 100) : 0
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="使用中" value={data.inUse} unit="间" color="#00c853" />
         <NumberFlip label="空闲" value={data.available} unit="间" color="var(--color-warning)" />

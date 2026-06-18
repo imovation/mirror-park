@@ -11,7 +11,7 @@ export default function StaffAttendance() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, height: '100%' }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
         <NumberFlip label="今日出勤" value={data.todayPresent} unit="人" color="#00c853" />
         <NumberFlip label="请假" value={data.todayLeave} unit="人" color="#ffc107" />

@@ -1,4 +1,4 @@
-import { type ReactNode, useRef, useLayoutEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 
 interface DashboardPanelProps {
   title?: string
@@ -6,48 +6,15 @@ interface DashboardPanelProps {
   className?: string
 }
 
-function useProportionalScale() {
-  const ref = useRef<HTMLDivElement>(null)
-  const [scale, setScale] = useState(1)
-
-  useLayoutEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const compute = () => {
-      const cw = el.clientWidth
-      const ch = el.clientHeight
-      const sw = el.scrollWidth
-      const sh = el.scrollHeight
-      if (sw <= cw && sh <= ch) {
-        setScale(1)
-        return
-      }
-      const sx = cw / sw
-      const sy = ch / sh
-      setScale(Math.min(sx, sy, 1))
-    }
-
-    compute()
-    const obs = new ResizeObserver(compute)
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return { ref, scale }
-}
-
 export default function DashboardPanel({ title, children, className = '' }: DashboardPanelProps) {
-  const { ref, scale } = useProportionalScale()
-
   return (
     <div
       className={`panel-enter relative flex flex-col backdrop-blur-md border rounded-md overflow-hidden ${className}`}
       style={{
         background: 'var(--panel-bg)',
         borderColor: 'var(--border-strong)',
-        marginBottom: 6,
         minHeight: 0,
+        flex: 1,
       }}
     >
       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />
@@ -57,14 +24,14 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
 
       {title && (
         <div
-          className="flex items-center px-4 py-2 border-b"
+          className="flex items-center px-4 py-2 border-b flex-shrink-0"
           style={{
             borderBottomColor: 'var(--border-light)',
             background: 'linear-gradient(90deg, rgba(var(--accent-rgb), 0.15), transparent)',
           }}
         >
           <div
-            className="w-1 h-4 mr-2"
+            className="w-1 h-4 mr-2 flex-shrink-0"
             style={{
               background: 'var(--accent)',
               boxShadow: '0 0 8px rgba(var(--accent-rgb), 0.8)',
@@ -81,14 +48,8 @@ export default function DashboardPanel({ title, children, className = '' }: Dash
           </h3>
         </div>
       )}
-      <div
-        ref={ref}
-        className="flex-1 p-4 overflow-hidden relative"
-        style={{ minHeight: 0 }}
-      >
-        <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}>
-          {children}
-        </div>
+      <div className="flex-1 p-4 overflow-hidden relative" style={{ minHeight: 0 }}>
+        {children}
       </div>
     </div>
   )

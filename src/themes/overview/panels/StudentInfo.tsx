@@ -11,7 +11,7 @@ export default function StudentInfo() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
       <div style={{ display: 'flex', gap: 8 }}>
         {data.grades.map((g) => (
           <div

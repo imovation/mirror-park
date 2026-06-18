@@ -16,7 +16,7 @@ export default function CanteenSafety() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
       <div style={{ textAlign: 'center' }}>
         <NumberFlip label="今日就餐人次" value={data.todayTotal} unit="人次" color="#00c853" />
       </div>

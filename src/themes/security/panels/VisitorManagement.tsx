@@ -11,7 +11,7 @@ export default function VisitorManagement() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="今日访客" value={data.todayVisitors} unit="人" color="#4a9eff" />
         <NumberFlip label="当前在校" value={data.currentVisitors} unit="人" color="#00c853" />
