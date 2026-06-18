@@ -51,7 +51,7 @@ export const academicsHandlers = [
         { name: '崇信楼', value: 68 },
       ],
       typeDistribution: [
-        { name: '普通教室', value: 48 },
+        { name: '普通教室', value: 44 },
         { name: '实验室', value: 6 },
         { name: '机房', value: 4 },
         { name: '音乐/美术', value: 4 },

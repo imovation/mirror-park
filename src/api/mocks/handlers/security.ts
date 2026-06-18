@@ -34,7 +34,7 @@ export const securityHandlers = [
   http.get(`${BASE}/security/access`, () => {
     const hours = Array.from({ length: 14 }, (_, i) => `${i + 6}:00`)
     return HttpResponse.json({
-      todayTotal: 5280,
+      todayTotal: 5410,
       points: [
         { name: '南门', value: 1580 },
         { name: '北门', value: 1180 },

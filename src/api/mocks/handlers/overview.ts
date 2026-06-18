@@ -35,7 +35,7 @@ export const overviewHandlers = [
         { name: '语文', value: 26 }, { name: '数学', value: 26 }, { name: '英语', value: 26 },
         { name: '物理', value: 14 }, { name: '化学', value: 10 }, { name: '生物', value: 12 },
         { name: '道德与法治', value: 14 }, { name: '历史', value: 14 }, { name: '地理', value: 12 },
-        { name: '体育', value: 14 }, { name: '信息技术', value: 10 }, { name: '音乐', value: 8 }, { name: '美术', value: 8 },
+        { name: '体育', value: 15 }, { name: '信息技术', value: 10 }, { name: '音乐', value: 9 }, { name: '美术', value: 8 },
       ],
       titles: [
         { name: '正高级', value: 3 }, { name: '高级', value: 42 },
