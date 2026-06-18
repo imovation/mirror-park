@@ -16,11 +16,11 @@ export const adminPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
     { id: 'admin-notices', title: '通知公告' },
     { id: 'admin-duty', title: '值班安排' },
+    { id: 'admin-meetings', title: '会议管理' },
   ],
   right: [
     { id: 'admin-calendar', title: '校历日程' },
     { id: 'admin-attendance', title: '教职工考勤' },
-    { id: 'admin-meetings', title: '会议管理' },
   ],
 }
 
