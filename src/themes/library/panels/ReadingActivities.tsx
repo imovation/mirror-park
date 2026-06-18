@@ -3,8 +3,8 @@ import CardCarousel from '@/components/ui/CardCarousel'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 const statusColors: Record<string, string> = {
-  '进行中': '#4a9eff',
-  '即将开始': '#ffc107',
+  '进行中': 'var(--accent)',
+  '即将开始': 'var(--color-pending)',
 }
 
 export default function ReadingActivities() {
@@ -13,15 +13,17 @@ export default function ReadingActivities() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <CardCarousel
-      items={data.activities.map((a) => ({
-        id: a.id,
-        title: a.title,
-        subtitle: a.date,
-        tag: a.status,
-        tagColor: statusColors[a.status],
-      }))}
-      maxHeight={160}
-    />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
+      <CardCarousel
+        items={data.activities.map((a) => ({
+          id: a.id,
+          title: a.title,
+          subtitle: a.date,
+          tag: a.status,
+          tagColor: statusColors[a.status],
+        }))}
+        maxHeight={200}
+      />
+    </div>
   )
 }

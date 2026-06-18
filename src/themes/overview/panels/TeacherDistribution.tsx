@@ -21,11 +21,11 @@ export default function TeacherDistribution() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ flex: 1 }}>
         <ChartLabel>各学科教师数量</ChartLabel>
-        <RadarChart indicator={indicator} series={series} height={240} />
+        <RadarChart indicator={indicator} series={series} height={160} />
       </div>
       <div style={{ flex: 1 }}>
         <ChartLabel>职称分布</ChartLabel>
-        <BarChart data={data.titles} height={100} color="#00c853" />
+        <BarChart data={data.titles} height={75} color="#00c853" />
       </div>
     </div>
   )

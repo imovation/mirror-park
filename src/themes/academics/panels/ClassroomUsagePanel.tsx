@@ -24,16 +24,16 @@ export default function ClassroomUsagePanel() {
       <div style={{ display: 'flex', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">各楼使用率</ChartLabel>
-          <BarChart data={data.buildingUsage} height={100} />
+          <BarChart data={data.buildingUsage} height={80} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">使用率</ChartLabel>
-          <GaugeChart value={usagePercent} name="教室使用率" height={120} />
+          <GaugeChart value={usagePercent} name="教室使用率" height={90} />
         </div>
       </div>
       <div>
         <ChartLabel align="center">教室类型分布</ChartLabel>
-        <PieChart data={data.typeDistribution} height={110} />
+        <PieChart data={data.typeDistribution} height={80} />
       </div>
     </div>
   )

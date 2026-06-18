@@ -31,7 +31,7 @@ export default function CourseSchedule() {
           xLabels={data.timeDistribution.hours}
           yLabels={['课程密度']}
           data={heatmapData}
-          height={90}
+          height={130}
         />
       </div>
     </div>
