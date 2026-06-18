@@ -1,5 +1,6 @@
 import type { PanelConfig } from '@/types/panel'
 import AcademicsScene from './AcademicsScene'
+import AcademicsTopMetrics from './panels/AcademicsTopMetrics'
 import TeachingOverview from './panels/TeachingOverview'
 import CourseSchedule from './panels/CourseSchedule'
 import ClassroomUsagePanel from './panels/ClassroomUsagePanel'
@@ -10,16 +11,17 @@ import TeachingDevices from './panels/TeachingDevices'
 
 export const academicsScene = () => <AcademicsScene />
 
+export const academicsTopMetrics = () => <AcademicsTopMetrics />
+
 export const academicsPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'acad-overview', title: '教学概况' },
     { id: 'acad-schedule', title: '课程安排' },
     { id: 'acad-classroom', title: '教室使用' },
+    { id: 'acad-classes', title: '班级管理' },
   ],
   right: [
     { id: 'acad-attendance', title: '学生出勤' },
     { id: 'acad-exams', title: '考试管理' },
-    { id: 'acad-classes', title: '班级管理' },
     { id: 'acad-devices', title: '教学设备' },
   ],
 }

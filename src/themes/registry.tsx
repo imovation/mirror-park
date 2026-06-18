@@ -14,7 +14,7 @@ import { overviewPanels, renderOverviewPanel, overviewTopMetrics } from './overv
 import { teachingResearchPanels, renderTeachingResearchPanel, teachingResearchTopMetrics } from './teaching-research'
 import { adminPanels, renderAdminPanel, adminTopMetrics } from './admin'
 import { libraryPanels, renderLibraryPanel, libraryTopMetrics } from './library'
-import { academicsPanels, renderAcademicsPanel } from './academics'
+import { academicsPanels, renderAcademicsPanel, academicsTopMetrics } from './academics'
 import { securityPanels, renderSecurityPanel } from './security'
 
 type SceneRenderer = () => ReactNode
@@ -56,6 +56,7 @@ const registry: Record<ThemeId, ThemeEntry> = {
     scene: () => <AcademicsScene />,
     panels: academicsPanels,
     renderPanel: renderAcademicsPanel,
+    topMetrics: academicsTopMetrics,
   },
   [ThemeId.SECURITY]: {
     scene: () => <SecurityScene />,
