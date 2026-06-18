@@ -38,54 +38,53 @@ function AppContent() {
   }, [sseStatus])
 
   return (
-    <ScreenLayout
-      topBar={<ErrorBoundary name="顶部导航"><TopBar /></ErrorBoundary>}
-      leftPanel={
-        <ErrorBoundary name="左侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
-          <LeftPanel>
-            {entry.panels.left.map((p) => (
-              <DashboardPanel key={p.id} title={p.title}>
-                <ErrorBoundary name={p.title}>
-                  {entry.renderPanel(p.id)}
-                </ErrorBoundary>
-              </DashboardPanel>
-            ))}
-          </LeftPanel>
-        </ErrorBoundary>
-      }
-      scene={
+    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <ErrorBoundary name="3D 场景" fallback={
           <div style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'var(--page-bg)',
-            color: 'var(--text-tertiary)',
-            fontSize: '0.875rem',
+            width: '100%', height: '100%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'var(--page-bg)', color: 'var(--text-tertiary)', fontSize: '0.875rem',
           }}>
             3D 场景不可用
           </div>
         }>
           <SceneCanvas>{entry.scene()}</SceneCanvas>
         </ErrorBoundary>
-      }
-      rightPanel={
-        <ErrorBoundary name="右侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>右侧面板异常</div>}>
-          <RightPanel>
-            {entry.panels.right.map((p) => (
-              <DashboardPanel key={p.id} title={p.title}>
-                <ErrorBoundary name={p.title}>
-                  {entry.renderPanel(p.id)}
-                </ErrorBoundary>
-              </DashboardPanel>
-            ))}
-          </RightPanel>
-        </ErrorBoundary>
-      }
-      bottomBar={<BottomBar status={sseStatus} />}
-    />
+      </div>
+      <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%', pointerEvents: 'none' }}>
+        <ScreenLayout
+          topBar={<ErrorBoundary name="顶部导航"><TopBar /></ErrorBoundary>}
+          leftPanel={
+            <ErrorBoundary name="左侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
+              <LeftPanel>
+                {entry.panels.left.map((p) => (
+                  <DashboardPanel key={p.id} title={p.title}>
+                    <ErrorBoundary name={p.title}>
+                      {entry.renderPanel(p.id)}
+                    </ErrorBoundary>
+                  </DashboardPanel>
+                ))}
+              </LeftPanel>
+            </ErrorBoundary>
+          }
+          rightPanel={
+            <ErrorBoundary name="右侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>右侧面板异常</div>}>
+              <RightPanel>
+                {entry.panels.right.map((p) => (
+                  <DashboardPanel key={p.id} title={p.title}>
+                    <ErrorBoundary name={p.title}>
+                      {entry.renderPanel(p.id)}
+                    </ErrorBoundary>
+                  </DashboardPanel>
+                ))}
+              </RightPanel>
+            </ErrorBoundary>
+          }
+          bottomBar={<BottomBar status={sseStatus} />}
+        />
+      </div>
+    </div>
   )
 }
 

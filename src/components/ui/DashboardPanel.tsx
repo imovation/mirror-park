@@ -18,6 +18,8 @@ export default function DashboardPanel({ title, children }: DashboardPanelProps)
         display: 'flex',
         flexDirection: 'column',
         minHeight: 120,
+        backdropFilter: 'blur(6px)',
+        WebkitBackdropFilter: 'blur(6px)',
       }}
     >
       <div

@@ -3,7 +3,6 @@ import type { ReactNode } from 'react'
 interface ScreenLayoutProps {
   topBar: ReactNode
   leftPanel: ReactNode
-  scene: ReactNode
   rightPanel: ReactNode
   bottomBar: ReactNode
 }
@@ -11,7 +10,6 @@ interface ScreenLayoutProps {
 export default function ScreenLayout({
   topBar,
   leftPanel,
-  scene,
   rightPanel,
   bottomBar,
 }: ScreenLayoutProps) {
@@ -21,21 +19,21 @@ export default function ScreenLayout({
         display: 'grid',
         gridTemplateAreas: `
           "topbar  topbar  topbar"
-          "left    scene   right"
+          "left    .       right"
           "bottombar bottombar bottombar"
         `,
         gridTemplateRows: 'minmax(48px, 4vh) 1fr minmax(28px, 2.5vh)',
         gridTemplateColumns: 'minmax(240px, 18vw) 1fr minmax(240px, 18vw)',
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         overflow: 'hidden',
+        pointerEvents: 'none',
       }}
     >
-      <div style={{ gridArea: 'topbar' }}>{topBar}</div>
-      <div style={{ gridArea: 'left', overflow: 'auto', maxWidth: 420 }}>{leftPanel}</div>
-      <div style={{ gridArea: 'scene', position: 'relative', overflow: 'hidden' }}>{scene}</div>
-      <div style={{ gridArea: 'right', overflow: 'auto', maxWidth: 420 }}>{rightPanel}</div>
-      <div style={{ gridArea: 'bottombar' }}>{bottomBar}</div>
+      <div style={{ gridArea: 'topbar', pointerEvents: 'auto' }}>{topBar}</div>
+      <div style={{ gridArea: 'left', overflow: 'auto', maxWidth: 420, pointerEvents: 'auto' }}>{leftPanel}</div>
+      <div style={{ gridArea: 'right', overflow: 'auto', maxWidth: 420, pointerEvents: 'auto' }}>{rightPanel}</div>
+      <div style={{ gridArea: 'bottombar', pointerEvents: 'auto' }}>{bottomBar}</div>
     </div>
   )
 }
