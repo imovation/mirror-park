@@ -761,7 +761,7 @@ export default function CampusBase() {
         <BuildingMesh key={b.id} building={b} />
       ))}
 
-      <Environment preset={cfg.environment.preset as any} />
+      <Environment files={cfg.environment.file} path={cfg.environment.path} />
       <ContactShadows position={[0, 0.05, 0]} scale={80} resolution={1024} far={20} blur={2.5} opacity={0.6} color="#000000" />
 
       <ambientLight intensity={cfg.ambientLight.intensity} />

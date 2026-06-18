@@ -198,3 +198,4 @@ export default function SomePanel() {
 - **依赖约束**：`@react-three/postprocessing` 不可升级到 v3（要求 `fiber@^9.0`，项目使用 v8），当前锁定 v2.19.1
 - **兼容性**：`useUIStore.addAlert` 已用 `Date.now()+Math.random` 替代 `crypto.randomUUID`（旧浏览器不兼容）
 - **Shader 修改后**：需重启 `pnpm dev`（Vite HMR 不会热更新 `.vert`/`.frag` 文件）
+- **HDR 环境贴图本地托管**：`@react-three/drei` 的 `Environment` 组件通过 `preset` 属性会从 `raw.githack.com`（GitHub CDN）加载 HDR 文件，在国内网络可能无法访问导致 3D 场景崩溃。已将所需文件下载到 `public/hdri/`，改用 `files` + `path` 属性本地加载。如需新增 HDR 环境，文件放在 `public/hdri/` 并在 `dayNightTheme.ts` 中配置。

@@ -58,7 +58,7 @@ export interface DayNightTheme {
     baseColor: string
     laneColor: string
   }
-  environment: { preset: string | null }
+  environment: { file: string; path: string }
 }
 
 export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
@@ -117,7 +117,7 @@ export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
     bloom: { intensity: 0.3 },
     particle: { color: '#888888', opacity: 0.2 },
     track: { baseColor: '#c44', laneColor: '#c44' },
-    environment: { preset: 'sunset' },
+    environment: { file: 'venice_sunset_1k.hdr', path: '/hdri/' },
   },
   night: {
     building: {
@@ -174,6 +174,6 @@ export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
     bloom: { intensity: 0.6 },
     particle: { color: '#4a9eff', opacity: 0.4 },
     track: { baseColor: '#1a2535', laneColor: '#00e5ff' },
-    environment: { preset: 'city' },
+    environment: { file: 'potsdamer_platz_1k.hdr', path: '/hdri/' },
   },
 }
