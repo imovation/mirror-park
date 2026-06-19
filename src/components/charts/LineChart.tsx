@@ -20,7 +20,7 @@ export default function LineChart({ xData, series, height = 200, smooth = true, 
       itemWidth: 14,
       itemHeight: 8,
     },
-    grid: { left: 10, right: 20, top: 5, bottom: 32, containLabel: true },
+    grid: { left: 10, right: '6%', top: 5, bottom: 32, containLabel: true },
     xAxis: {
       type: 'category',
       data: xData,

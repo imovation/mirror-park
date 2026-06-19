@@ -10,13 +10,14 @@ interface BarChartProps {
   colors?: (string | undefined)[]
   barWidth?: number | string
   gridLeft?: number | string
+  gridBottom?: number | string
 }
 
-export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff', colors, barWidth, gridLeft }: BarChartProps) {
+export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff', colors, barWidth, gridLeft, gridBottom }: BarChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
-    grid: { left: gridLeft ?? 10, right: 20, top: 5, bottom: 5, containLabel: true },
+    grid: { left: gridLeft ?? 10, right: 20, top: 5, bottom: gridBottom ?? 5, containLabel: true },
     [horizontal ? 'yAxis' : 'xAxis']: {
       type: 'category',
       data: data.map((d) => d.name),

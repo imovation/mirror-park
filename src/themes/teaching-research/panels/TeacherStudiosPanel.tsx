@@ -40,7 +40,7 @@ export default function TeacherStudiosPanel() {
               {s.subject}
             </span>
           </div>
-          <div style={{ fontSize: 10, color: 'var(--text-tertiary)', marginBottom: 2 }}>主持人: {s.host}</div>
+          <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.55)', marginBottom: 2 }}>主持人: {s.host}</div>
           <div style={{ display: 'flex', gap: 12, fontSize: 10 }}>
             <span style={{ color: 'var(--accent)' }}>成员 {s.memberCount}人</span>
             <span style={{ color: 'var(--color-success)' }}>成果 {s.achievementCount}项</span>
