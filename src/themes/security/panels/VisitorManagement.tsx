@@ -11,14 +11,14 @@ export default function VisitorManagement() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
         <NumberFlip label="今日访客" value={data.todayVisitors} unit="人" color="#4a9eff" />
         <NumberFlip label="当前在校" value={data.currentVisitors} unit="人" color="#00c853" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel align="center">来访目的分布</ChartLabel>
-        <PieChart data={data.purposeDistribution} height={130} />
+        <PieChart data={data.purposeDistribution} height={120} />
       </div>
       <div>
         <ChartLabel>访客登记</ChartLabel>

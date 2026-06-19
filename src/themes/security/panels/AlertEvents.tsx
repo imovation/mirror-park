@@ -31,14 +31,14 @@ export default function AlertEvents() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
         <NumberFlip label="今日告警" value={data.todayTotal} unit="次" color="#ff1744" />
       </div>
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">告警类型</ChartLabel>
-          <PieChart data={data.typeDistribution} height={130} colors={['#ff1744','#ff6d00','#ffc107','#4a9eff','#00c853']} />
+          <PieChart data={data.typeDistribution} height={120} colors={['#ff1744','#ff6d00','#ffc107','#4a9eff','#00c853']} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">处理状态</ChartLabel>
@@ -46,7 +46,7 @@ export default function AlertEvents() {
             data={[{ name: '已处理', value: Math.round(data.handledRatio * 100) }, { name: '未处理', value: 100 - Math.round(data.handledRatio * 100) }]}
             colors={['#00c853','#ff1744']}
             centerLabel={`${Math.round(data.handledRatio * 100)}%`}
-            height={130}
+            height={120}
           />
         </div>
       </div>

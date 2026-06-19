@@ -14,14 +14,14 @@ export default function AccessControl() {
   const abnormalRecords = data.abnormalRecords ?? []
 
   return (
-    <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
         <NumberFlip label="今日通行" value={data.todayTotal} unit="人次" color="var(--color-success)" />
         <NumberFlip label="异常记录" value={abnormalRecords.length} unit="条" color="var(--color-warning)" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各门禁点通行统计</ChartLabel>
-        <BarChart data={data.points} height={110} />
+        <BarChart data={data.points} height={120} />
       </div>
       <div>
         <ChartLabel>异常通行记录</ChartLabel>

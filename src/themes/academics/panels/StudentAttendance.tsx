@@ -11,18 +11,18 @@ export default function StudentAttendance() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0, overflow: 'auto' }}>
-      <div style={{ display: 'flex', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', gap: 6 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">今日出勤率</ChartLabel>
           <GaugeChart value={Math.round(data.todayRate * 100)} name="出勤率" height={120} />
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">各年级出勤率</ChartLabel>
-          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={100} />
+          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={120} />
         </div>
       </div>
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div style={{ display: 'flex', gap: 6 }}>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">班级出勤排名</ChartLabel>
           <BarChart data={data.classRank.map(r => ({ name: r.name, value: r.value }))} height={120} />
