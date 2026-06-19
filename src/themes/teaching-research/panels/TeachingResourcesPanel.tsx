@@ -2,6 +2,10 @@ import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 import { useTeachingResources } from '@/api/queries/teachingResearch'
 
+const UNITS: Record<string, string> = {
+  '试卷': '套', '学案': '份', '教学设计': '个', '微课': '节', '课件': '个', '素材': '份',
+}
+
 export default function TeachingResourcesPanel() {
   const { data, isLoading, error } = useTeachingResources()
   if (isLoading) return <StatusPanel type="loading" />
@@ -9,9 +13,9 @@ export default function TeachingResourcesPanel() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0, overflow: 'auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
       <ChartLabel>教学资源分类占比</ChartLabel>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flex: 1, minHeight: 0 }}>
         {data.resources.map((r) => (
           <div
             key={r.name}
@@ -22,10 +26,12 @@ export default function TeachingResourcesPanel() {
               overflow: 'hidden',
             }}
           >
-            <div style={{ height: 4, background: r.color, opacity: 0.65 }} />
-            <div style={{ padding: '8px', textAlign: 'center' }}>
-              <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>{r.value}</div>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{r.name}</div>
+            <div style={{ height: 4, background: r.color, opacity: 0.35 }} />
+            <div style={{ padding: '8px 6px', textAlign: 'center' }}>
+              <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
+                {r.value}<span style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginLeft: 2, marginRight: 4, fontWeight: 400 }}>{UNITS[r.name] || ''}</span>
+              </div>
+              <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)', marginTop: 2 }}>{r.name}</div>
             </div>
           </div>
         ))}

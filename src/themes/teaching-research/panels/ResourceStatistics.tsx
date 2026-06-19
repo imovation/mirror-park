@@ -27,8 +27,8 @@ export default function ResourceStatistics() {
             textAlign: 'center',
           }}
         >
-          <div style={{ fontSize: 22, fontWeight: 700, color: s.color }}>{data[s.key].toLocaleString()}</div>
-          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{s.label} <span style={{ fontSize: 10 }}>{s.unit}</span></div>
+          <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: s.color }}>{data[s.key].toLocaleString()}</div>
+          <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>{s.label} <span style={{ fontSize: 'var(--font-size-xs)' }}>{s.unit}</span></div>
         </div>
       ))}
     </div>

@@ -18,9 +18,9 @@ export default function ResourceUpdates() {
               {item.name}
             </span>
             <span style={{ display: 'flex', gap: 4, alignItems: 'center', flexShrink: 0 }}>
-              <span style={{ fontSize: 9, color: '#fff', background: 'var(--accent)', padding: '1px 5px', borderRadius: 3, opacity: 0.8 }}>{item.subject}</span>
-              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.teacher}</span>
-              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.time}</span>
+              <span style={{ fontSize: 'var(--font-size-2xs)', color: '#fff', background: 'var(--accent)', padding: '1px 5px', borderRadius: 3, opacity: 0.8 }}>{item.subject}</span>
+              <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>{item.teacher}</span>
+              <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>{item.time}</span>
             </span>
           </div>
         ),

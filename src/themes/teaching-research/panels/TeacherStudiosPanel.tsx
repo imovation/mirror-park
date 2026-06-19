@@ -13,7 +13,7 @@ export default function TeacherStudiosPanel() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, flex: 1, minHeight: 0, overflow: 'auto' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, flex: 1, minHeight: 0, alignContent: 'start' }}>
       {data.studios.map((s) => (
         <div
           key={s.id}
@@ -25,11 +25,11 @@ export default function TeacherStudiosPanel() {
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: 'var(--font-size-sm)', fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {s.name}
             </span>
             <span style={{
-              fontSize: 10,
+              fontSize: 'var(--font-size-xs)',
               color: SUBJECT_COLORS[s.subject] || 'var(--accent)',
               background: `${SUBJECT_COLORS[s.subject] || 'var(--accent)'}20`,
               padding: '2px 6px',
@@ -40,10 +40,10 @@ export default function TeacherStudiosPanel() {
               {s.subject}
             </span>
           </div>
-          <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.55)', marginBottom: 2 }}>主持人: {s.host}</div>
-          <div style={{ display: 'flex', gap: 12, fontSize: 10 }}>
-            <span style={{ color: 'var(--accent)' }}>成员 {s.memberCount}人</span>
-            <span style={{ color: 'var(--color-success)' }}>成果 {s.achievementCount}项</span>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: '#a6b9c7', marginBottom: 2 }}>主持人: {s.host}</div>
+          <div style={{ display: 'flex', gap: 12, fontSize: 'var(--font-size-xs)' }}>
+            <span style={{ color: '#a6b9c7' }}>成员 {s.memberCount}人</span>
+            <span style={{ color: '#a6b9c7' }}>成果 {s.achievementCount}项</span>
           </div>
         </div>
       ))}

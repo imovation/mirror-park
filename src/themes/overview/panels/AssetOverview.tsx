@@ -19,7 +19,7 @@ export default function AssetOverview() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, flex: 1, minHeight: 0, alignContent: 'center', padding: 4 }}>
       {ASSETS.map((asset) => (
         <div
           key={asset.key}
@@ -37,8 +37,8 @@ export default function AssetOverview() {
         >
           <div
             style={{
-              width: 32,
-              height: 32,
+              width: 30,
+              height: 30,
               borderRadius: '50%',
               background: `${asset.color}22`,
               display: 'flex',
@@ -51,10 +51,10 @@ export default function AssetOverview() {
           >
             {asset.label[0]}
           </div>
-          <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)' }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--text-primary)' }}>
             {data[asset.key]}
           </div>
-          <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
             {asset.label}
           </div>
         </div>

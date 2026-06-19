@@ -14,7 +14,7 @@ export default function ResearchProjectsList() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
+    <div style={{ flex: 1, minHeight: 0 }}>
       <CardCarousel
         items={data.projects.map((p) => ({
           id: p.id,
