@@ -45,7 +45,7 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--accent)', flex: 1 }}>{item.title}</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--accent)', flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.title}</div>
           {item.tag && (
             <span style={{
               padding: '2px 8px',
@@ -60,7 +60,7 @@ export default function CardCarousel({ items, autoPlay = true, interval = 4000, 
           )}
         </div>
         {item.subtitle && (
-          <div style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>{item.subtitle}</div>
+          <div style={{ fontSize: 12, color: 'var(--text-tertiary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.subtitle}</div>
         )}
       </div>
 

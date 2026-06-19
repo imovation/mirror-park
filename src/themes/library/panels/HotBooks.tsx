@@ -14,11 +14,11 @@ export default function HotBooks() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <ChartLabel>借阅量 TOP10</ChartLabel>
       <div style={{ flex: 1, minHeight: 0 }}>
-        <BarChart data={data.top10.map(b => ({ name: b.name, value: b.count }))} height={110} />
+        <BarChart data={data.top10.map(b => ({ name: b.name, value: b.count }))} height={130} gridLeft={70} />
       </div>
       <ChartLabel>各类别借阅占比</ChartLabel>
       <div style={{ flex: 1, minHeight: 0 }}>
-        <PieChart data={data.categoryRatio} height={100} />
+        <PieChart data={data.categoryRatio} height={120} />
       </div>
       <ChartLabel>推荐图书</ChartLabel>
       <div style={{ flex: 1, minHeight: 0 }}>

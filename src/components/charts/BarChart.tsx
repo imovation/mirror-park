@@ -7,11 +7,12 @@ interface BarChartProps {
   height?: number
   horizontal?: boolean
   color?: string
+  colors?: (string | undefined)[]
   barWidth?: number | string
   gridLeft?: number | string
 }
 
-export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff', barWidth, gridLeft }: BarChartProps) {
+export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff', colors, barWidth, gridLeft }: BarChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
@@ -31,12 +32,14 @@ export default function BarChart({ data, height = 200, horizontal = true, color 
     series: [
       {
         type: 'bar',
-        data: data.map((d) => d.value),
-        itemStyle: {
-          color,
-          borderRadius: horizontal ? [0, 3, 3, 0] : [3, 3, 0, 0],
-          opacity: 0.85,
-        },
+        data: data.map((d, i) => ({
+          value: d.value,
+          itemStyle: {
+            color: colors?.[i] || color,
+            borderRadius: horizontal ? [0, 3, 3, 0] : [3, 3, 0, 0],
+            opacity: 0.85,
+          },
+        })),
         barWidth: barWidth || '50%',
       },
     ],

@@ -16,9 +16,11 @@ export default function LineChart({ xData, series, height = 200, smooth = true, 
     tooltip: { trigger: 'axis' },
     legend: {
       bottom: 0,
-      textStyle: { color: t.legendText, fontSize: 10 },
+      textStyle: { color: t.legendText, fontSize: 11 },
+      itemWidth: 14,
+      itemHeight: 8,
     },
-    grid: { left: 10, right: 20, top: 5, bottom: 30, containLabel: true },
+    grid: { left: 10, right: 20, top: 5, bottom: 32, containLabel: true },
     xAxis: {
       type: 'category',
       data: xData,

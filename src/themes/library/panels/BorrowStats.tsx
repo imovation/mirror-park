@@ -23,7 +23,7 @@ export default function BorrowStats() {
             { name: '借阅', data: data.trend.borrow, color: '#00c853' },
             { name: '归还', data: data.trend.return, color: '#4a9eff' },
           ]}
-          height={140}
+          height={160}
           area={false}
         />
       </div>

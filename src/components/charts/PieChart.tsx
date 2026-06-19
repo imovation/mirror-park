@@ -15,15 +15,22 @@ export default function PieChart({ data, height = 200, colors = DEFAULT_COLORS }
   const option: EChartsOption = {
     tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
     color: colors,
+    legend: {
+      orient: 'vertical',
+      right: 5,
+      top: 'center',
+      textStyle: { color: t.legendText, fontSize: 11 },
+      itemWidth: 8,
+      itemHeight: 8,
+    },
     series: [
       {
         type: 'pie',
-        radius: ['0', '65%'],
-        center: ['50%', '50%'],
+        radius: ['0', '55%'],
+        center: ['35%', '50%'],
         data,
         label: {
-          color: t.label,
-          fontSize: 10,
+          show: false,
         },
         emphasis: {
           itemStyle: { shadowBlur: 10, shadowColor: t.shadowColor },
