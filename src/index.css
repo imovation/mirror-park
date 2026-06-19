@@ -57,9 +57,9 @@
   --color-chart-7: #e879f9;
   --color-chart-8: #60a5fa;
   --skeleton-bg: rgba(255, 255, 255, 0.05);
-  --panel-padding: 12px;
+  --panel-padding: 0.75rem;
   --panel-scrollbar-width: 4px;
-  --chart-min-height: 120px;
+  --chart-min-height: 7.5rem;
 }
 
 [data-ui-theme="light"] {
@@ -101,7 +101,7 @@
   --font-size-xl: 1.17rem;
   --font-size-xxl: 1.52rem;
   --font-size-3xl: 2rem;
-  --panel-padding: 12px;
+  --panel-padding: 0.75rem;
   --panel-scrollbar-width: 4px;
   --color-chart-1: #0284c7;
   --color-chart-2: #4f46e5;
