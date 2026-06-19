@@ -1,18 +1,36 @@
 import { useResourceStats } from '@/api/queries/teachingResearch'
-import NumberFlip from '@/components/ui/NumberFlip'
 import StatusPanel from '@/components/ui/StatusPanel'
+
+const STATS = [
+  { key: 'totalResources', label: '资源总量', unit: '份', color: '#1890ff' },
+  { key: 'cloudQuestions', label: '云试题数', unit: '道', color: '#52c41a' },
+  { key: 'cloudResources', label: '云资源数', unit: '份', color: '#faad14' },
+  { key: 'recentUpdates', label: '近期更新', unit: '次', color: '#722ed1' },
+] as const
 
 export default function ResourceStatistics() {
   const { data, isLoading, error } = useResourceStats()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, flex: 1, minHeight: 0, overflow: 'auto' }}>
-      <NumberFlip label="资源总量" value={data.totalResources} unit="份" color="#4a9eff" />
-      <NumberFlip label="云试题数" value={data.cloudQuestions} unit="道" color="#00c853" />
-      <NumberFlip label="云资源数" value={data.cloudResources} unit="份" color="var(--color-warning)" />
-      <NumberFlip label="近期更新数" value={data.recentUpdates} unit="次" color="#aa00ff" />
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+      {STATS.map((s) => (
+        <div
+          key={s.key}
+          style={{
+            background: 'var(--panel-bg)',
+            border: '1px solid var(--border-light)',
+            borderRadius: 6,
+            padding: '10px 12px',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{ fontSize: 22, fontWeight: 700, color: s.color }}>{data[s.key].toLocaleString()}</div>
+          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{s.label} <span style={{ fontSize: 10 }}>{s.unit}</span></div>
+        </div>
+      ))}
     </div>
   )
 }

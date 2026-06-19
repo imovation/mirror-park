@@ -8,22 +8,24 @@ export default function ResourceUpdates() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
-      <ScrollList
-        items={data.recentItems.map((item) => ({
-          id: item.id,
-          content: (
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span>{item.name}</span>
-              <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <span style={{ fontSize: 10, color: 'var(--accent)' }}>{item.subject}</span>
-                <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.teacher}</span>
-                <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.time}</span>
-              </span>
-            </div>
-          ),
-        }))}
-      />
-    </div>
+    <ScrollList
+      header="近期更新资源"
+      items={data.recentItems.map((item) => ({
+        id: item.id,
+        content: (
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, marginRight: 8 }}>
+              {item.name}
+            </span>
+            <span style={{ display: 'flex', gap: 6, alignItems: 'center', flexShrink: 0 }}>
+              <span style={{ fontSize: 10, color: 'var(--accent)' }}>{item.subject}</span>
+              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.teacher}</span>
+              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{item.time}</span>
+            </span>
+          </div>
+        ),
+      }))}
+      maxHeight={200}
+    />
   )
 }

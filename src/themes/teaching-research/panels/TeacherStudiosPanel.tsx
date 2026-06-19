@@ -1,15 +1,10 @@
 import { useTeacherStudios } from '@/api/queries/teachingResearch'
 import StatusPanel from '@/components/ui/StatusPanel'
 
-const subjectColors: Record<string, string> = {
-  '语文': 'var(--color-danger)',
-  '数学': 'var(--accent)',
-  '英语': 'var(--color-success)',
-  '物理': 'var(--color-warning)',
-  '化学': 'var(--color-chart-7)',
-  '生物': 'var(--color-chart-1)',
-  '信息技术': 'var(--color-chart-3)',
-  '心理': 'var(--color-chart-5)',
+const SUBJECT_COLORS: Record<string, string> = {
+  '语文': '#f5222d', '数学': '#1890ff', '英语': '#52c41a',
+  '物理': '#fa8c16', '化学': '#722ed1', '生物': '#13c2c2',
+  '信息技术': '#eb2f96', '心理': '#a0d911',
 }
 
 export default function TeacherStudiosPanel() {
@@ -23,19 +18,24 @@ export default function TeacherStudiosPanel() {
         <div
           key={s.id}
           style={{
-            background: 'rgba(74,158,255,0.06)',
+            background: 'var(--skeleton-bg)',
             borderRadius: 6,
             padding: '8px 10px',
+            border: '1px solid var(--border-light)',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-            <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-primary)' }}>{s.name}</span>
+            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {s.name}
+            </span>
             <span style={{
               fontSize: 10,
-              color: subjectColors[s.subject] || 'var(--accent)',
-              background: 'var(--skeleton-bg)',
-              padding: '1px 6px',
+              color: SUBJECT_COLORS[s.subject] || 'var(--accent)',
+              background: `${SUBJECT_COLORS[s.subject] || 'var(--accent)'}20`,
+              padding: '2px 6px',
               borderRadius: 3,
+              flexShrink: 0,
+              marginLeft: 4,
             }}>
               {s.subject}
             </span>
