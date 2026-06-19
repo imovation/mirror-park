@@ -8,9 +8,9 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 128 |
-| 测试 | 35/35 单元测试 + 8/8 E2E 测试 |
-| Git 提交 | 177 |
+| 源文件 | 130 |
+| 测试 | 37/37 单元测试 + 8/8 E2E 测试 |
+| Git 提交 | 216 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 
@@ -30,7 +30,7 @@
 
 **已完成（测试）**：Playwright E2E 测试（8 用例，覆盖加载/主题切换/专题导航/建筑交互）；Vitest 单元/集成测试 35 用例。
 
-**已完成（数据面板审查与优化）**：全面审查 6 专题 39 数据面板，修复 87 处硬编码颜色 → CSS 变量（浅色/深色主题兼容）、新增 ChartLabel 组件（复用 46 处）、统一 37 面板空数据状态为 StatusPanel empty、修复 4 处 Mock 数据不一致、优化 8 面板视觉填充率、4 共享图表组件颜色兼容；`pnpm build` + 35/35 测试通过。
+**已完成（UI 优化与审查修复）**：重构 DashboardPanel 毛玻璃科技风容器（backdrop-blur + 四角霓虹折角）；重写 ChartTheme 统一 ECharts 霓虹配色字典（`#1890ff`/`#52c41a`/`#faad14`/`#f5222d`/`#722ed1`）；ScrollList 新增 header 表头 + 行悬浮高亮；ScreenLayout 新增 topMetrics 插槽，6 专题各配备 TopMetrics 指标卡（数据驱动）；BarChart 支持 barWidth/gridLeft/gridBottom 参数化；RingChart 支持 legendPosition/centerLabelSize；LineChart 添加 xAxis rotate:30 + grid.right:6%；GaugeChart 指针高亮白色 + 放大；FunnelChart 改为同色系渐变；AlertPopup 改为 fixed 右下角绝对定位 z-index:9999；ErrorBoundary fallback 轻量化；三轮 Gemini 审查共修复约 30 项 UI/UX 缺陷（全局背景 opacity 0.35→0.85、告警 .map() 空值保护、3D 热区透明化、屋顶光照优化等）；`pnpm build` + 37/37 测试通过。
 
 **3D 场景特性**：
 - **Day/Night 模式**：白天（红砖暖光 + 绿地 + 米白窗户）、夜间（暗黑赛博 + 青色窗户发光 + 道路光流）
