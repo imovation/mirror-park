@@ -12,6 +12,8 @@ export interface ChartTheme {
   gaugeAxis: string
   shadowColor: string
   colors: string[]
+  gaugeColors: string[]
+  heatmapGradient: string[]
 }
 
 const DARK: ChartTheme = {
@@ -24,7 +26,9 @@ const DARK: ChartTheme = {
   borderColor: 'rgba(10,22,40,1)',
   gaugeAxis: '#fff',
   shadowColor: 'rgba(34,211,238,0.4)',
-  colors: ['#22d3ee', '#818cf8', '#facc15', '#34d399', '#f472b6'],
+  colors: ['#22d3ee', '#818cf8', '#facc15', '#34d399', '#f472b6', '#fb923c', '#a78bfa', '#2dd4bf'],
+  gaugeColors: ['#34d399', '#22d3ee', '#facc15', '#fb923c', '#f472b6'],
+  heatmapGradient: ['#0a1628', '#1a3a5c', '#2a6090', '#22d3ee', '#67e8f9'],
 }
 
 const LIGHT: ChartTheme = {
@@ -37,7 +41,9 @@ const LIGHT: ChartTheme = {
   borderColor: 'rgba(0,0,0,0.06)',
   gaugeAxis: '#333',
   shadowColor: 'rgba(0,0,0,0.15)',
-  colors: ['#0284c7', '#4f46e5', '#ca8a04', '#059669', '#db2777'],
+  colors: ['#0284c7', '#4f46e5', '#ca8a04', '#059669', '#db2777', '#ea580c', '#7c3aed', '#0d9488'],
+  gaugeColors: ['#059669', '#0284c7', '#ca8a04', '#ea580c', '#db2777'],
+  heatmapGradient: ['#eef1f5', '#bae6fd', '#7dd3fc', '#0284c7', '#0369a1'],
 }
 
 const THEMES: Record<UITheme, ChartTheme> = { dark: DARK, light: LIGHT }
@@ -45,4 +51,13 @@ const THEMES: Record<UITheme, ChartTheme> = { dark: DARK, light: LIGHT }
 export function useChartTheme(): ChartTheme {
   const uiTheme = useUIThemeStore((s) => s.uiTheme)
   return THEMES[uiTheme]
+}
+
+export function getChartFontSizes() {
+  const rootStyle = getComputedStyle(document.documentElement)
+  return {
+    axisFontSize: parseInt(rootStyle.getPropertyValue('--font-size-xs').trim()) || 10,
+    legendFontSize: parseInt(rootStyle.getPropertyValue('--font-size-sm').trim()) || 11,
+    titleFontSize: parseInt(rootStyle.getPropertyValue('--font-size-md').trim()) || 12,
+  }
 }
