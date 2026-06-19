@@ -22,7 +22,7 @@ export default function CourseSchedule() {
         </div>
         <div style={{ flex: 1 }}>
           <ChartLabel align="center">科目占比</ChartLabel>
-          <PieChart data={data.subjectDistribution} height={130} />
+          <PieChart data={data.subjectDistribution} height={130} colors={['#1890ff', '#52c41a', '#faad14', '#722ed1', '#f5222d']} />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>

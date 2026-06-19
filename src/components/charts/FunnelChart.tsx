@@ -9,7 +9,7 @@ interface FunnelChartProps {
   color?: string[]
 }
 
-const DEFAULT_COLORS = ['#4a9eff', '#00c853', '#ffd600', '#ff6d00', '#aa00ff']
+const DEFAULT_COLORS = ['#0d3b66', '#185a9d', '#2176c9', '#3d8fd9', '#6ab0e8']
 
 export default function FunnelChart({ data, height = 260, title, color = DEFAULT_COLORS }: FunnelChartProps) {
   const t = useChartTheme()
