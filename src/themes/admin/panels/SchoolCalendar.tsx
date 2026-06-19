@@ -20,9 +20,9 @@ export default function SchoolCalendar() {
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: TYPE_COLORS[e.type] || '#1890ff', boxShadow: '0 0 8px rgba(24,144,255,0.5)', flexShrink: 0 }} />
-          <span style={{ fontSize: 10, color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
-          <span style={{ fontSize: 10, color: TYPE_COLORS[e.type] || 'var(--accent)', minWidth: 28, textAlign: 'center' }}>{e.type}</span>
-          <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{e.event}</span>
+          <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
+          <span style={{ fontSize: 'var(--font-size-xs)', color: TYPE_COLORS[e.type] || 'var(--accent)', minWidth: 28, textAlign: 'center' }}>{e.type}</span>
+          <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>{e.event}</span>
         </div>
       ),
     })),
@@ -31,8 +31,8 @@ export default function SchoolCalendar() {
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#52c41a', boxShadow: '0 0 8px rgba(82,196,26,0.5)', flexShrink: 0 }} />
-          <span style={{ fontSize: 10, color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
-          <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{e.event}</span>
+          <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
+          <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>{e.event}</span>
         </div>
       ),
     })),
@@ -41,16 +41,16 @@ export default function SchoolCalendar() {
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#faad14', boxShadow: '0 0 8px rgba(250,173,20,0.5)', flexShrink: 0 }} />
-          <span style={{ fontSize: 10, color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
-          <span style={{ fontSize: 12, color: 'var(--color-pending)' }}>{e.event}</span>
+          <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
+          <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-pending)' }}>{e.event}</span>
         </div>
       ),
     })),
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0, overflow: 'auto' }}>
-      <ScrollList items={allItems} />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
+      <ScrollList items={allItems} maxHeight={220} />
     </div>
   )
 }

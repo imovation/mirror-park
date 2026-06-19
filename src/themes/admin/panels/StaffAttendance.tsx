@@ -11,22 +11,22 @@ export default function StaffAttendance() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0, overflow: 'auto' }}>
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
         <NumberFlip label="今日出勤" value={data.todayPresent} unit="人" color="#00c853" />
         <NumberFlip label="请假" value={data.todayLeave} unit="人" color="#ffc107" />
         <NumberFlip label="缺勤" value={data.todayAbsent} unit="人" color="#ff1744" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各部门出勤率</ChartLabel>
-        <BarChart data={data.departmentRates} height={100} horizontal={false} />
+        <BarChart data={data.departmentRates} height={120} horizontal={false} />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>近30日出勤趋势</ChartLabel>
         <LineChart
           xData={data.monthlyTrend.days}
           series={[{ name: '出勤率', data: data.monthlyTrend.values, color: '#4a9eff' }]}
-          height={100}
+          height={120}
         />
       </div>
     </div>
