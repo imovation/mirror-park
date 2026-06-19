@@ -15,6 +15,8 @@ export default function CanteenSafety() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
 
+  const safetyRecords = data.safetyRecords ?? []
+
   return (
     <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
       <div style={{ textAlign: 'center' }}>
@@ -41,7 +43,7 @@ export default function CanteenSafety() {
       </button>
       <div>
         <ChartLabel>食品安全检查</ChartLabel>
-        <ScrollList items={data.safetyRecords.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.item}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.date}</span><span style={{fontSize:10,color:'var(--color-success)'}}>{r.result}</span></span></div> }))} />
+        <ScrollList items={safetyRecords.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.item}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.date}</span><span style={{fontSize:10,color:'var(--color-success)'}}>{r.result}</span></span></div> }))} />
       </div>
       <VideoWindow visible={showVideo} title="食堂后厨实时监控" onClose={() => setShowVideo(false)} />
     </div>

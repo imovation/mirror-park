@@ -31,9 +31,9 @@ function ClassroomHeatmap() {
               <meshStandardMaterial
                 color={color}
                 transparent
-                opacity={0.85}
+                opacity={0.3}
                 emissive={color}
-                emissiveIntensity={0.3}
+                emissiveIntensity={0.1}
               />
             </Box>
           )

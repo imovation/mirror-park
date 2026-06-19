@@ -21,12 +21,12 @@ export default function NoticeBoard() {
           id: n.id,
           content: (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <div style={{ fontWeight: 500 }}>{n.title}</div>
+              <span style={{ fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{n.title}</span>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{n.department}</span>
-                <span style={{ display: 'flex', gap: 8 }}>
-                  <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{n.date}</span>
-                  <span style={{ fontSize: 10, color: TYPE_COLORS[n.type] || 'var(--accent)', fontWeight: 500 }}>{n.type}</span>
+                <span style={{ fontSize: 10, color: 'var(--text-muted)', minWidth: 0, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{n.department}</span>
+                <span style={{ display: 'flex', gap: 8, flexShrink: 0, marginLeft: 8 }}>
+                  <span style={{ fontSize: 10, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>{n.date}</span>
+                  <span style={{ fontSize: 10, color: TYPE_COLORS[n.type] || 'var(--accent)', fontWeight: 500, whiteSpace: 'nowrap' }}>{n.type}</span>
                 </span>
               </div>
             </div>

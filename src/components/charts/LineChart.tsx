@@ -27,6 +27,7 @@ export default function LineChart({ xData, series, height = 200, smooth = true, 
     },
     yAxis: {
       type: 'value',
+      scale: true,
       splitLine: { lineStyle: { color: t.splitLine } },
       axisLabel: { color: t.axisLabel, fontSize: 10 },
     },
