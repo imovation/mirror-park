@@ -24,7 +24,7 @@ export default function LineChart({ xData, series, height = 200, smooth = true, 
     xAxis: {
       type: 'category',
       data: xData,
-      axisLabel: { color: t.axisLabel, fontSize: 10 },
+      axisLabel: { color: t.axisLabel, fontSize: 10, rotate: 30, interval: 'auto' },
       axisLine: { lineStyle: { color: t.axisLine } },
     },
     yAxis: {

@@ -29,7 +29,7 @@ export default function PersonnelComposition() {
             legendPosition="bottom"
           />
           <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--text-muted)', marginTop: -8 }}>
-            教师总数 / 人
+          教师总数（人）
           </div>
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>

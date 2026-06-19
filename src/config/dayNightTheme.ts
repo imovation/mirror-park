@@ -67,7 +67,7 @@ export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
       baseColor: '#a0522d',
       windowColor: '#f5f0e8',
       litChance: 0.6,
-      facadeColor: '#d4cfc8',
+      facadeColor: '#c8c3bd',
     },
     road: {
       staticColor: '#3a3a3a',
@@ -76,8 +76,8 @@ export const DAY_NIGHT: Record<TimeMode, DayNightTheme> = {
       flowSecondaryColor: '#00e5ff',
     },
     ground: { color: '#1a5c2a' },
-    ambientLight: { intensity: 0.8 },
-    directionalLight: { intensity: 1.0 },
+    ambientLight: { intensity: 0.75 },
+    directionalLight: { intensity: 0.9 },
     fog: { color: '#dce8f5' },
     canvas: { background: 'linear-gradient(180deg, #e8f0fe 0%, #f0f4f8 100%)' },
     archway: {
