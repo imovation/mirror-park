@@ -2,10 +2,10 @@ import { useDutyData } from '@/api/queries/admin'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 const ROLE_COLORS: Record<string, string> = {
-  '行政值班': '#4a9eff',
-  '教师值班': '#00c853',
-  '安保值班': '#ff6d00',
-  '医务值班': '#ff1744',
+  '行政值班': '#8b9dc3',
+  '教师值班': '#7bbf8a',
+  '安保值班': '#d4a855',
+  '医务值班': '#c48b9d',
 }
 
 export default function DutySchedule() {

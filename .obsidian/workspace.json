@@ -185,6 +185,8 @@
   },
   "active": "3ff39f6ea4c37b65",
   "lastOpenFiles": [
+    "vite.config.ts.timestamp-1781841980534-4d8de4511aa478.mjs",
+    "vitest.config.ts.timestamp-1781841977144-db70f49a943a88.mjs",
     "vite.config.ts.timestamp-1781841928392-cd00764db16e4.mjs",
     "vitest.config.ts.timestamp-1781841923165-97d4a36fe78878.mjs",
     "dist/index.html",
@@ -194,8 +196,6 @@
     "dist/assets/SecurityScene-BUf5av49.js",
     "dist/assets/OverviewScene-DU2-wF5V.js",
     "dist/assets/LibraryScene-DPeCgYiQ.js",
-    "dist/assets/CampusBase-DtfMOBjN.js",
-    "dist/assets/AdminScene-E2WoXB6s.js",
     "docs/CONSOLIDATED_AUDIT.md",
     "docs/PROJECT_STATUS.md",
     "AGENTS.md",

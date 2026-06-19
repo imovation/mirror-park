@@ -1,5 +1,4 @@
 import { useMeetingData } from '@/api/queries/admin'
-import NumberFlip from '@/components/ui/NumberFlip'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
@@ -12,8 +11,14 @@ export default function MeetingManagement() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-        <NumberFlip label="今日会议" value={data.todayCount} unit="场" color="#4a9eff" />
-        <NumberFlip label="本周会议" value={data.weekCount} unit="场" color="#00c853" />
+        <div style={{ textAlign: 'center', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '10px 20px' }}>
+          <div style={{ fontSize: 26, fontWeight: 700, color: '#1890ff', fontFamily: "'Courier New', monospace" }}>{data.todayCount}</div>
+          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>今日会议 / 场</div>
+        </div>
+        <div style={{ textAlign: 'center', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '10px 20px' }}>
+          <div style={{ fontSize: 26, fontWeight: 700, color: '#52c41a', fontFamily: "'Courier New', monospace" }}>{data.weekCount}</div>
+          <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>本周会议 / 场</div>
+        </div>
       </div>
       <div>
         <ChartLabel>会议室状态</ChartLabel>
