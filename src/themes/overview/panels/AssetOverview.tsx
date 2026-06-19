@@ -27,7 +27,7 @@ export default function AssetOverview() {
             background: 'var(--panel-bg)',
             border: '1px solid var(--border-light)',
             borderRadius: 6,
-            padding: '10px 8px',
+            padding: '14px 10px',
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
@@ -37,8 +37,8 @@ export default function AssetOverview() {
         >
           <div
             style={{
-              width: 28,
-              height: 28,
+              width: 32,
+              height: 32,
               borderRadius: '50%',
               background: `${asset.color}22`,
               display: 'flex',
@@ -51,10 +51,10 @@ export default function AssetOverview() {
           >
             {asset.label[0]}
           </div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>
+          <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)' }}>
             {data[asset.key]}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--text-tertiary)' }}>
+          <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
             {asset.label}
           </div>
         </div>

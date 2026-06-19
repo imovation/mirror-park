@@ -21,16 +21,16 @@ export default function StudentInfo() {
               background: 'var(--panel-bg)',
               border: '1px solid var(--border-light)',
               borderRadius: 6,
-              padding: '8px 10px',
+              padding: '10px 8px',
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4 }}>{g.name}</div>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 12, fontSize: 11, color: 'var(--text-tertiary)' }}>
-              <span>男 <span style={{ color: 'var(--color-chart-8)', fontWeight: 600 }}>{g.male}</span></span>
-              <span>女 <span style={{ color: 'var(--color-chart-5)', fontWeight: 600 }}>{g.female}</span></span>
+            <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1 }}>{g.total}</div>
+            <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 6 }}>{g.name} · 总人数</div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 16, fontSize: 13 }}>
+              <span style={{ color: '#60a5fa', fontWeight: 600 }}>♂ {g.male}</span>
+              <span style={{ color: '#f472b6', fontWeight: 600 }}>♀ {g.female}</span>
             </div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--accent)', marginTop: 4 }}>{g.total}</div>
           </div>
         ))}
       </div>

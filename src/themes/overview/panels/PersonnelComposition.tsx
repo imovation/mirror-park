@@ -1,5 +1,4 @@
 import { usePersonnelComposition } from '@/api/queries/overview'
-import NumberFlip from '@/components/ui/NumberFlip'
 import RingChart from '@/components/charts/RingChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
@@ -18,15 +17,29 @@ export default function PersonnelComposition() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
-      <NumberFlip label="教师总数" value={data.totalTeachers} unit="人" />
       <div style={{ display: 'flex', gap: 12, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <ChartLabel align="center">性别分布</ChartLabel>
-          <RingChart data={genderData} height={140} />
+          <ChartLabel align="center">性别比例</ChartLabel>
+          <RingChart
+            data={genderData}
+            height={150}
+            centerLabel={String(data.totalTeachers)}
+            centerLabelSize={22}
+            centerLabelColor="var(--text-primary)"
+            legendPosition="bottom"
+          />
+          <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--text-muted)', marginTop: -8 }}>
+            教师总数 / 人
+          </div>
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">学历分布</ChartLabel>
-          <RingChart data={data.education} height={140} colors={['#00c853', '#4a9eff', '#ff6d00', '#aa00ff']} />
+          <RingChart
+            data={data.education}
+            height={150}
+            colors={['#1890ff', '#52c41a', '#faad14', '#722ed1']}
+            legendPosition="bottom"
+          />
         </div>
       </div>
     </div>

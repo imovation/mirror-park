@@ -7,13 +7,15 @@ interface BarChartProps {
   height?: number
   horizontal?: boolean
   color?: string
+  barWidth?: number | string
+  gridLeft?: number | string
 }
 
-export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff' }: BarChartProps) {
+export default function BarChart({ data, height = 200, horizontal = true, color = '#4a9eff', barWidth, gridLeft }: BarChartProps) {
   const t = useChartTheme()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
-    grid: { left: 10, right: 20, top: 5, bottom: 5, containLabel: true },
+    grid: { left: gridLeft ?? 10, right: 20, top: 5, bottom: 5, containLabel: true },
     [horizontal ? 'yAxis' : 'xAxis']: {
       type: 'category',
       data: data.map((d) => d.name),
@@ -35,7 +37,7 @@ export default function BarChart({ data, height = 200, horizontal = true, color 
           borderRadius: horizontal ? [0, 3, 3, 0] : [3, 3, 0, 0],
           opacity: 0.85,
         },
-        barWidth: '50%',
+        barWidth: barWidth || '50%',
       },
     ],
   }
