@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface SunburstNode {
   name: string
@@ -14,8 +14,11 @@ interface SunburstChartProps {
   title?: string
 }
 
-export default function SunburstChart({ data, height = 260, title }: SunburstChartProps) {
+const MIN_HEIGHT = 120
+
+export default function SunburstChart({ data, height = 220, title }: SunburstChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
   const option: EChartsOption = {
     tooltip: {
       formatter: (params: any) => {
@@ -33,7 +36,7 @@ export default function SunburstChart({ data, height = 260, title }: SunburstCha
         label: {
           rotate: 'radial',
           color: t.label,
-          fontSize: 11,
+          fontSize: f.legendFontSize,
         },
         itemStyle: {
           borderRadius: 4,
@@ -43,7 +46,7 @@ export default function SunburstChart({ data, height = 260, title }: SunburstCha
         levels: [
           {} as any,
           {
-            color: ['#4a9eff', '#00c853', 'var(--color-warning)', '#aa00ff', '#ffd600', '#00bcd4'],
+            color: t.colors,
             colorMappingBy: 'value',
           } as any,
           {
@@ -58,11 +61,11 @@ export default function SunburstChart({ data, height = 260, title }: SunburstCha
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: f.titleFontSize, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

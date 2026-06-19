@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface RadarIndicator {
   name: string
@@ -20,10 +20,11 @@ interface RadarChartProps {
   title?: string
 }
 
-const SERIES_COLORS = ['#4a9eff', '#00c853', 'var(--color-warning)', '#aa00ff', '#ffd600']
+const MIN_HEIGHT = 120
 
-export default function RadarChart({ indicator, series, height = 260, title }: RadarChartProps) {
+export default function RadarChart({ indicator, series, height = 220, title }: RadarChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
   const option: EChartsOption = {
     tooltip: {
       trigger: 'item',
@@ -39,7 +40,7 @@ export default function RadarChart({ indicator, series, height = 260, title }: R
       shape: 'polygon',
       axisName: {
         color: t.label,
-        fontSize: 11,
+        fontSize: f.legendFontSize,
       },
       splitArea: {
         areaStyle: {
@@ -59,9 +60,9 @@ export default function RadarChart({ indicator, series, height = 260, title }: R
         data: series.map((s, i) => ({
           value: s.value,
           name: s.name,
-          areaStyle: { color: s.color || SERIES_COLORS[i % SERIES_COLORS.length], opacity: 0.15 },
-          lineStyle: { color: s.color || SERIES_COLORS[i % SERIES_COLORS.length], width: 2 },
-          itemStyle: { color: s.color || SERIES_COLORS[i % SERIES_COLORS.length] },
+          areaStyle: { color: s.color || t.colors[i % t.colors.length], opacity: 0.15 },
+          lineStyle: { color: s.color || t.colors[i % t.colors.length], width: 2 },
+          itemStyle: { color: s.color || t.colors[i % t.colors.length] },
         })),
         symbol: 'circle',
         symbolSize: 6,
@@ -73,11 +74,11 @@ export default function RadarChart({ indicator, series, height = 260, title }: R
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: f.titleFontSize, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

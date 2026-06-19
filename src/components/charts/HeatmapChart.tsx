@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface HeatmapChartProps {
   xLabels: string[]
@@ -9,21 +9,24 @@ interface HeatmapChartProps {
   height?: number
 }
 
-export default function HeatmapChart({ xLabels, yLabels, data, height = 200 }: HeatmapChartProps) {
+const MIN_HEIGHT = 120
+
+export default function HeatmapChart({ xLabels, yLabels, data, height = 180 }: HeatmapChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
   const option: EChartsOption = {
     tooltip: { position: 'top' },
     grid: { left: 60, right: 20, top: 5, bottom: 30 },
     xAxis: {
       type: 'category',
       data: xLabels,
-      axisLabel: { color: t.axisLabel, fontSize: 10 },
+      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize },
       splitArea: { show: true },
     },
     yAxis: {
       type: 'category',
       data: yLabels,
-      axisLabel: { color: t.axisLabel, fontSize: 10 },
+      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize },
       splitArea: { show: true },
     },
     visualMap: {
@@ -33,7 +36,7 @@ export default function HeatmapChart({ xLabels, yLabels, data, height = 200 }: H
       orient: 'horizontal',
       left: 'center',
       bottom: 0,
-      inRange: { color: ['#0a1628', '#1a3a5c', '#2a6090', '#4a9eff', '#7cb9ff'] },
+      inRange: { color: t.heatmapGradient },
     },
     series: [
       {
@@ -45,5 +48,5 @@ export default function HeatmapChart({ xLabels, yLabels, data, height = 200 }: H
     ],
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

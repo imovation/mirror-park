@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface RingChartProps {
   data: { name: string; value: number }[]
@@ -12,19 +12,34 @@ interface RingChartProps {
   legendPosition?: 'bottom' | 'right'
 }
 
-const DEFAULT_COLORS = ['#4a9eff', '#ff6d00', '#00c853', '#aa00ff', '#ffc107']
+const MIN_HEIGHT = 120
 
-export default function RingChart({ data, height = 200, colors = DEFAULT_COLORS, centerLabel, centerLabelSize = 14, centerLabelColor = '#4a9eff', legendPosition }: RingChartProps) {
+export default function RingChart({ data, height = 160, colors, centerLabel, centerLabelSize = 14, centerLabelColor = '#4a9eff', legendPosition }: RingChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
+  const ringColors = colors || t.colors.slice(0, data.length)
   const option: EChartsOption = {
     tooltip: { trigger: 'item' },
-    color: colors,
+    color: ringColors,
     legend: legendPosition
-      ? {
-          [legendPosition === 'right' ? 'orient' : 'bottom']: legendPosition === 'right' ? 'vertical' : undefined,
-          [legendPosition === 'right' ? 'right' : 'bottom']: 0,
-          textStyle: { color: t.legendText, fontSize: 10 },
-        }
+      ? legendPosition === 'right'
+        ? {
+            orient: 'vertical',
+            right: 0,
+            top: 'center',
+            textStyle: { color: t.legendText, fontSize: f.legendFontSize },
+            itemWidth: 8,
+            itemHeight: 8,
+          }
+        : {
+            orient: 'horizontal',
+            bottom: 0,
+            left: 'center',
+            textStyle: { color: t.legendText, fontSize: f.legendFontSize },
+            itemWidth: 8,
+            itemHeight: 8,
+            itemGap: 8,
+          }
       : undefined,
     series: [
       {
@@ -54,5 +69,5 @@ export default function RingChart({ data, height = 200, colors = DEFAULT_COLORS,
       : [],
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

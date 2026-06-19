@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface SankeyLink {
   source: string
@@ -15,8 +15,11 @@ interface SankeyChartProps {
   title?: string
 }
 
-export default function SankeyChart({ data, categories, height = 240, title }: SankeyChartProps) {
+const MIN_HEIGHT = 120
+
+export default function SankeyChart({ data, categories, height = 200, title }: SankeyChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
   const option: EChartsOption = {
     tooltip: {
       trigger: 'item',
@@ -32,7 +35,7 @@ export default function SankeyChart({ data, categories, height = 240, title }: S
         layoutIterations: 32,
         emphasis: { focus: 'adjacency' },
         lineStyle: { color: 'gradient', opacity: 0.4 },
-        label: { color: t.label, fontSize: 11 },
+        label: { color: t.label, fontSize: f.legendFontSize },
         data: categories.map((name) => ({ name })),
         links: data,
       } as any,
@@ -42,11 +45,11 @@ export default function SankeyChart({ data, categories, height = 240, title }: S
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: f.titleFontSize, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

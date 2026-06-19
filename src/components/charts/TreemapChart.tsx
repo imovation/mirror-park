@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface TreemapNode {
   name: string
@@ -14,8 +14,11 @@ interface TreemapChartProps {
   title?: string
 }
 
-export default function TreemapChart({ data, height = 220, title }: TreemapChartProps) {
+const MIN_HEIGHT = 120
+
+export default function TreemapChart({ data, height = 200, title }: TreemapChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
   const option: EChartsOption = {
     tooltip: {
       formatter: (params: any) => {
@@ -35,13 +38,13 @@ export default function TreemapChart({ data, height = 220, title }: TreemapChart
         label: {
           show: true,
           formatter: '{b}',
-          fontSize: 11,
+          fontSize: f.legendFontSize,
           color: t.label,
         },
         upperLabel: {
           show: true,
           height: 22,
-          fontSize: 11,
+          fontSize: f.legendFontSize,
           color: t.label,
           backgroundColor: 'rgba(0,0,0,0.3)',
         },
@@ -57,7 +60,7 @@ export default function TreemapChart({ data, height = 220, title }: TreemapChart
           },
           {
             colorMappingBy: 'value',
-            color: ['#1a3a5c', '#2a6090', '#4a9eff', '#00c853', 'var(--color-warning)', '#aa00ff'],
+            color: t.colors,
           },
         ],
       },
@@ -67,11 +70,11 @@ export default function TreemapChart({ data, height = 220, title }: TreemapChart
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: f.titleFontSize, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

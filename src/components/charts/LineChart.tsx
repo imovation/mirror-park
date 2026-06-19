@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface LineChartProps {
   xData: string[]
@@ -10,39 +10,41 @@ interface LineChartProps {
   area?: boolean
 }
 
-export default function LineChart({ xData, series, height = 200, smooth = true, area = true }: LineChartProps) {
+const MIN_HEIGHT = 120
+
+export default function LineChart({ xData, series, height = 160, smooth = false, area = false }: LineChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
     legend: {
+      data: series.map((s) => s.name),
       bottom: 0,
-      textStyle: { color: t.legendText, fontSize: 11 },
-      itemWidth: 14,
-      itemHeight: 8,
+      textStyle: { color: t.legendText, fontSize: f.legendFontSize },
     },
     grid: { left: 10, right: '6%', top: 5, bottom: 32, containLabel: true },
     xAxis: {
       type: 'category',
       data: xData,
-      axisLabel: { color: t.axisLabel, fontSize: 10, rotate: 30, interval: 'auto' },
+      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize, rotate: 30 },
       axisLine: { lineStyle: { color: t.axisLine } },
     },
     yAxis: {
       type: 'value',
       scale: true,
       splitLine: { lineStyle: { color: t.splitLine } },
-      axisLabel: { color: t.axisLabel, fontSize: 10 },
+      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize },
     },
-    series: series.map((s) => ({
-      name: s.name,
+    series: series.map((s, i) => ({
       type: 'line',
+      name: s.name,
       data: s.data,
       smooth,
-      areaStyle: area ? { color: (s.color || '#4a9eff') + '20' } : undefined,
-      lineStyle: { color: s.color || '#4a9eff', width: 2 },
-      itemStyle: { color: s.color || '#4a9eff' },
+      lineStyle: { color: s.color || t.colors[i % t.colors.length], width: 2 },
+      areaStyle: area ? { color: (s.color || t.colors[i % t.colors.length]) + '20' } : undefined,
+      itemStyle: { color: s.color || t.colors[i % t.colors.length] },
     })),
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

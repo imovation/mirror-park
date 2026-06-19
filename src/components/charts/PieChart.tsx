@@ -1,43 +1,44 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface PieChartProps {
   data: { name: string; value: number }[]
   height?: number
   colors?: string[]
+  radius?: [string, string]
 }
 
-const DEFAULT_COLORS = ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffc107', '#00bcd4']
+const MIN_HEIGHT = 120
 
-export default function PieChart({ data, height = 200, colors = DEFAULT_COLORS }: PieChartProps) {
+export default function PieChart({ data, height = 160, colors, radius }: PieChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
+  const r = radius || ['0', '55%']
+  const pieColors = colors || t.colors.slice(0, data.length)
   const option: EChartsOption = {
     tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
-    color: colors,
+    color: pieColors,
     legend: {
       orient: 'vertical',
       right: 5,
       top: 'center',
-      textStyle: { color: t.legendText, fontSize: 11 },
+      textStyle: { color: t.legendText, fontSize: f.legendFontSize },
       itemWidth: 8,
       itemHeight: 8,
     },
     series: [
       {
         type: 'pie',
-        radius: ['0', '55%'],
-        center: ['35%', '50%'],
+        radius: r,
+        center: ['50%', '50%'],
         data,
-        label: {
-          show: false,
-        },
-        emphasis: {
-          itemStyle: { shadowBlur: 10, shadowColor: t.shadowColor },
-        },
+        avoidLabelOverlap: true,
+        label: { show: false },
+        emphasis: { itemStyle: { shadowBlur: 10, shadowColor: t.shadowColor } },
       },
     ],
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }

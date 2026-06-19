@@ -1,6 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
-import { useChartTheme } from '@/config/chartTheme'
+import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface FunnelChartProps {
   data: { name: string; value: number }[]
@@ -9,10 +9,12 @@ interface FunnelChartProps {
   color?: string[]
 }
 
-const DEFAULT_COLORS = ['#0d3b66', '#185a9d', '#2176c9', '#3d8fd9', '#6ab0e8']
+const MIN_HEIGHT = 120
 
-export default function FunnelChart({ data, height = 260, title, color = DEFAULT_COLORS }: FunnelChartProps) {
+export default function FunnelChart({ data, height = 220, title, color }: FunnelChartProps) {
   const t = useChartTheme()
+  const f = getChartFontSizes()
+  const funnelColors = color || t.colors
   const option: EChartsOption = {
     tooltip: {
       trigger: 'item',
@@ -27,20 +29,20 @@ export default function FunnelChart({ data, height = 260, title, color = DEFAULT
         left: '10%',
         right: '10%',
         sort: 'descending',
-        gap: 4,
+        gap: 6,
         label: {
           show: true,
           position: 'inside',
           color: t.label,
-          fontSize: 12,
+          fontSize: f.legendFontSize,
           formatter: '{b}: {c}',
         },
         labelLine: { show: false },
         itemStyle: { borderColor: t.borderColor, borderWidth: 2 },
         emphasis: {
-          label: { fontSize: 14, fontWeight: 'bold' },
+          label: { fontSize: f.titleFontSize, fontWeight: 'bold' },
         },
-        data: data.map((d, i) => ({ ...d, itemStyle: { color: color[i % color.length] } })),
+        data: data.map((d, i) => ({ ...d, itemStyle: { color: funnelColors[i % funnelColors.length] } })),
       },
     ],
   }
@@ -48,11 +50,11 @@ export default function FunnelChart({ data, height = 260, title, color = DEFAULT
   if (title) {
     option.title = {
       text: title,
-      textStyle: { color: t.title, fontSize: 12, fontWeight: 'normal' },
+      textStyle: { color: t.title, fontSize: f.titleFontSize, fontWeight: 'normal' },
       left: 'center',
       top: -5,
     }
   }
 
-  return <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
