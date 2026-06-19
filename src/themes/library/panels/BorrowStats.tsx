@@ -9,8 +9,8 @@ export default function BorrowStats() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'auto' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flex: 1, minHeight: 0, overflow: 'auto' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, flexShrink: 0 }}>
         <NumberFlip label="今日借阅" value={data.todayBorrow} unit="册" color="#00c853" />
         <NumberFlip label="今日归还" value={data.todayReturn} unit="册" color="#4a9eff" />
         <NumberFlip label="在借图书" value={data.totalBorrowed} unit="册" color="#ffc107" />

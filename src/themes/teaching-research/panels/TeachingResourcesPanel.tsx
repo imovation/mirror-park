@@ -22,7 +22,7 @@ export default function TeachingResourcesPanel() {
               overflow: 'hidden',
             }}
           >
-            <div style={{ height: 4, background: r.color }} />
+            <div style={{ height: 4, background: r.color, opacity: 0.65 }} />
             <div style={{ padding: '8px', textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>{r.value}</div>
               <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{r.name}</div>
