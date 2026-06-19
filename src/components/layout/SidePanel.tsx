@@ -6,12 +6,13 @@ interface SidePanelProps {
 
 export default function SidePanel({ children }: SidePanelProps) {
   return (
-    <div style={{
+    <div className="panel-scroll" style={{
       display: 'flex',
       flexDirection: 'column',
       gap: 8,
       height: '100%',
       paddingTop: 4,
+      overflowY: 'auto',
       backdropFilter: 'blur(6px)',
       WebkitBackdropFilter: 'blur(6px)',
     }}>
