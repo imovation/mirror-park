@@ -14,14 +14,14 @@ export const teachingResearchTopMetrics = () => <TeachingResearchTopMetrics />
 
 export const teachingResearchPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'tr-resources', title: '教学资源' },
-    { id: 'tr-resource-stats', title: '资源统计' },
-    { id: 'tr-updates', title: '资源更新动态' },
+    { id: 'tr-resources', title: '教学资源', height: 'flex-1' },
+    { id: 'tr-resource-stats', title: '资源统计', height: 'flex-1' },
+    { id: 'tr-updates', title: '资源更新动态', height: 'flex-1' },
   ],
   right: [
-    { id: 'tr-topics', title: '教师课题' },
-    { id: 'tr-projects', title: '课题项目' },
-    { id: 'tr-studios', title: '名师工作室' },
+    { id: 'tr-topics', title: '教师课题', height: 'flex-1' },
+    { id: 'tr-projects', title: '课题项目', height: 'flex-1' },
+    { id: 'tr-studios', title: '名师工作室', height: 'flex-2' },
   ],
 }
 
