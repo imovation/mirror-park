@@ -53,6 +53,7 @@ describe('Panel Integration', () => {
     it('renders borrow stats when data is loaded', async () => {
       fillQueryCache(qc, ['library', 'borrowStats'], {
         todayBorrow: 5,
+        yesterdayBorrow: 8,
         todayReturn: 4,
         totalBorrowed: 1320,
         overdue: 16,

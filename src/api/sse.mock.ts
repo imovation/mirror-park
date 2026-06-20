@@ -30,6 +30,10 @@ const MOCK_DATA = {
       { name: '正高级', value: 3 }, { name: '高级', value: 42 },
       { name: '一级', value: 78 }, { name: '二级', value: 55 }, { name: '三级及未定', value: 18 },
     ],
+    ageDistribution: [
+      { name: '30岁以下', value: 40 }, { name: '30-39岁', value: 85 },
+      { name: '40-49岁', value: 50 }, { name: '50岁及以上', value: 21 },
+    ],
   }),
   'overview.studentInfo': (): StudentInfo => ({
     grades: [
@@ -37,9 +41,13 @@ const MOCK_DATA = {
       { name: '初二', male: 470, female: 460, total: 930 },
       { name: '初三', male: 460, female: 480, total: 940 },
     ],
+    totalStudents: 2800,
+    maleRatio: 1410 / 2800,
+    femaleRatio: 1390 / 2800,
   }),
   'security.alerts': (): AlertData => ({
     todayTotal: 3,
+    yesterdayTotal: 5,
     typeDistribution: [
       { name: '周界入侵', value: 0 },
       { name: '火警预警', value: 0 },

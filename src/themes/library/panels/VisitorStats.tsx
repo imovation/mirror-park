@@ -1,6 +1,7 @@
 import { useLibraryVisitors } from '@/api/queries/library'
 import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
+import LineChart from '@/components/charts/LineChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
@@ -15,7 +16,15 @@ export default function VisitorStats() {
         <NumberFlip label="今日入馆" value={data.todayVisitors} unit="人" color="#00c853" />
         <NumberFlip label="实时在馆" value={data.currentVisitors} unit="人" color="#4a9eff" />
       </div>
-      <div style={{ flex: 1, minHeight: 0 }}>
+      <div style={{ flexShrink: 0 }}>
+        <ChartLabel>近7日入馆趋势</ChartLabel>
+        <LineChart
+          xData={['6/14', '6/15', '6/16', '6/17', '6/18', '6/19', '今日']}
+          series={[{ name: '入馆人数', data: [210, 280, 195, 340, 260, 310, 353], color: 'var(--accent)' }]}
+          height={140}
+        />
+      </div>
+      <div style={{ flexShrink: 0 }}>
         <ChartLabel>入馆时段分布</ChartLabel>
         <BarChart
           data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}

@@ -16,7 +16,7 @@ export default function MonitorStatus() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <RingChart
             data={[{ name: '在线', value: data.online }, { name: '离线', value: data.offline }, { name: '故障', value: data.faulty }]}
-            colors={['#00c853', '#ffc107', '#ff1744']}
+            colors={['var(--color-success)', 'var(--color-warning)', 'var(--color-danger)']}
             centerLabel={`${data.online}/${data.total}`}
             height={120}
             legendPosition="bottom"

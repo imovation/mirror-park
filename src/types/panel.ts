@@ -8,6 +8,13 @@ export interface PanelConfig {
   collapsedSummary?: string
 }
 
+export interface PanelGroup {
+  id: string
+  label: string
+  left: PanelConfig[]
+  right: PanelConfig[]
+}
+
 export interface DashboardPanelProps {
   title?: string
   flexGrow?: number

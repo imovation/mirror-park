@@ -5,6 +5,7 @@ interface NumberFlipProps {
   unit?: string
   label?: string
   color?: string
+  trend?: { direction: 'up' | 'down' | 'same'; percent: number }
 }
 
 function DigitColumn({ char }: { char: string }) {
@@ -41,8 +42,11 @@ function DigitColumn({ char }: { char: string }) {
   )
 }
 
-export default function NumberFlip({ value, unit, label, color = 'var(--accent)' }: NumberFlipProps) {
+export default function NumberFlip({ value, unit, label, color = 'var(--accent)', trend }: NumberFlipProps) {
   const formatted = formatNumber(value)
+
+  const trendColor = trend?.direction === 'up' ? '#f44336' : trend?.direction === 'down' ? '#4caf50' : 'var(--text-tertiary)'
+  const trendArrow = trend?.direction === 'up' ? '↑' : trend?.direction === 'down' ? '↓' : '→'
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -61,6 +65,11 @@ export default function NumberFlip({ value, unit, label, color = 'var(--accent)'
           <span style={{ fontSize: 'var(--font-size-md)', color: 'var(--text-tertiary)' }}>{unit}</span>
         )}
       </div>
+      {trend && (
+        <div style={{ fontSize: 'var(--font-size-2xs)', color: trendColor, marginTop: 2 }}>
+          {trendArrow} {trend.percent}%
+        </div>
+      )}
     </div>
   )
 }

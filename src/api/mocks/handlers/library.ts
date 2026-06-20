@@ -20,6 +20,7 @@ export const libraryHandlers = [
     })
     return HttpResponse.json({
       todayBorrow: 5,
+      yesterdayBorrow: 8,
       todayReturn: 4,
       totalBorrowed: 1320,
       overdue: 16,

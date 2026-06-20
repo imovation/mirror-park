@@ -86,12 +86,19 @@ describe('TopMetrics Integration', () => {
         attendanceRate: 0.96,
         roomCount: 36,
       })
+      fillQueryCache(qc, ['admin', 'meetings'], {
+        todayCount: 3,
+        weekCount: 10,
+        rooms: [],
+        upcoming: [],
+      })
       renderWithProviders(<AdminTopMetrics />, { queryClient: qc })
       expect(screen.getByText('部门数量')).toBeInTheDocument()
       expect(screen.getByText('12')).toBeInTheDocument()
       expect(screen.getByText('教职工总数')).toBeInTheDocument()
       expect(screen.getByText('今日出勤率')).toBeInTheDocument()
       expect(screen.getByText('96%')).toBeInTheDocument()
+      expect(screen.getByText('今日会议')).toBeInTheDocument()
     })
 
     it('shows nothing when data is null', () => {
@@ -111,12 +118,25 @@ describe('TopMetrics Integration', () => {
         journals: 86,
         newspapers: 12,
       })
+      fillQueryCache(qc, ['library', 'borrowStats'], {
+        todayBorrow: 5,
+        yesterdayBorrow: 8,
+        todayReturn: 4,
+        totalBorrowed: 1320,
+        overdue: 16,
+        trend: { days: ['1'], borrow: [1], return: [1] },
+      })
+      fillQueryCache(qc, ['library', 'visitors'], {
+        todayVisitors: 353,
+        currentVisitors: 68,
+        hourlyDistribution: { hours: ['06:00'], values: [0] },
+      })
       renderWithProviders(<LibraryTopMetrics />, { queryClient: qc })
-      expect(screen.getByText('纸质图书')).toBeInTheDocument()
+      expect(screen.getByText('馆藏纸质书')).toBeInTheDocument()
       expect(screen.getByText('85,000')).toBeInTheDocument()
-      expect(screen.getByText('电子图书')).toBeInTheDocument()
-      expect(screen.getByText('期刊种类')).toBeInTheDocument()
-      expect(screen.getByText('报纸种类')).toBeInTheDocument()
+      expect(screen.getByText('今日借阅')).toBeInTheDocument()
+      expect(screen.getByText('5')).toBeInTheDocument()
+      expect(screen.getByText('今日入馆')).toBeInTheDocument()
     })
 
     it('shows nothing when data is null', () => {
@@ -166,10 +186,19 @@ describe('TopMetrics Integration', () => {
         todayAlerts: 8,
         todayVisitors: 45,
       })
+      fillQueryCache(qc, ['security', 'monitor'], {
+        total: 256,
+        online: 245,
+        offline: 6,
+        faulty: 5,
+        regionDistribution: [],
+        coverage: 0.91,
+      })
       renderWithProviders(<SecurityTopMetrics />, { queryClient: qc })
       expect(screen.getByText('监控设备')).toBeInTheDocument()
       expect(screen.getByText('420')).toBeInTheDocument()
-      expect(screen.getByText('门禁设备')).toBeInTheDocument()
+      expect(screen.getByText('设备在线率')).toBeInTheDocument()
+      expect(screen.getByText('96%')).toBeInTheDocument()
       expect(screen.getByText('今日告警')).toBeInTheDocument()
       expect(screen.getByText('今日访客')).toBeInTheDocument()
     })

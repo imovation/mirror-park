@@ -24,7 +24,7 @@ describe('Academics MSW Handlers', () => {
     const data = await res.json()
     expect(data).toHaveProperty('upcomingExams')
     expect(Array.isArray(data.upcomingExams)).toBe(true)
-    expect(data.upcomingExams.length).toBe(5)
+    expect(data.upcomingExams.length).toBe(12)
     expect(data.upcomingExams[0]).toHaveProperty('subject', '语文')
     expect(data).toHaveProperty('semesterExamCount', 5)
     expect(data).toHaveProperty('scoreDistribution')

@@ -2,19 +2,19 @@
 
 ## 项目概述
 
-东莞滨海湾镇远中学数字孪生大屏展示系统。6 个专题 (综合态势/教学研究/行政办公/智慧图书/智慧教学/智慧安防)，38 个数据面板，142 项指标，Three.js (R3F) 三维场景。
+东莞滨海湾镇远中学数字孪生大屏展示系统。7 个专题 (综合态势/教学研究/行政办公/智慧图书/智慧教学/智慧安防/智慧后勤)，41 个数据面板，142 项指标，Three.js (R3F) 三维场景。
 
 ## 当前状态
 
 | 指标 | 数值 |
 |------|------|
 | 源文件 | 175 |
-| 测试 | 242/242 单元测试 + 76/76 E2E 测试 |
+| 测试 | 243/243 单元测试 + 76/76 E2E 测试 |
 | Git 提交 | 258 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 
-**已完成**：平台框架、6 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割。
+**已完成**：平台框架、7 专题全部 41 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割。
 
 **已完成（叠加式布局）**：3D 场景全屏绝对定位 (Layer 0)，UI 覆盖层 (Layer 1) 半透明叠加 + backdrop-filter 毛玻璃；ScreenLayout 移除 scene prop，仅管理 topbar/left/right/bottombar Grid；LeftPanel/RightPanel 合并为 SidePanel。
 
@@ -33,6 +33,8 @@
 **已完成（UI 优化与审查修复）**：重构 DashboardPanel 毛玻璃科技风容器（backdrop-blur + 四角霓虹折角）；重写 ChartTheme 统一 ECharts 霓虹配色字典（`#1890ff`/`#52c41a`/`#faad14`/`#f5222d`/`#722ed1`）；ScrollList 新增 header 表头 + 行悬浮高亮；ScreenLayout 新增 topMetrics 插槽，6 专题各配备 TopMetrics 指标卡（数据驱动）；BarChart 支持 barWidth/gridLeft/gridBottom 参数化；RingChart 支持 legendPosition/centerLabelSize；LineChart 添加 xAxis rotate:30 + grid.right:6%；GaugeChart 指针高亮白色 + 放大；FunnelChart 改为同色系渐变；AlertPopup 改为 fixed 右下角绝对定位 z-index:9999；ErrorBoundary fallback 轻量化；三轮 Gemini 审查共修复约 30 项 UI/UX 缺陷（全局背景 opacity 0.35→0.85、告警 .map() 空值保护、3D 热区透明化、屋顶光照优化等）；`pnpm build` + 314/314 测试通过。
 
 **已完成（Dashboard 布局重构）**：全面重构面板布局与样式系统。PanelConfig 启用 `height:'flex-1'|'flex-2'|'flex-3'` 加权分配 + 新增 `collapsible` 折叠机制（9 个高密度面板支持折叠）；DashboardPanel 新增 `flexGrow`/`collapsible` props，SidePanel 增加滚动；11 个图表组件颜色统一来自 `chartTheme.colors`（8 色）、内置 `MIN_HEIGHT=120px` 保底、字号取自 CSS 变量 `getChartFontSizes()`；新增 3 个字号变量（`--font-size-3xs/2xs/3xl`），~45 处硬编码 fontSize 全部替换，浅色主题字号 +5%；6 主题 30 面板完成权重分配；`pnpm build` + 314/314 测试通过。
+
+**已完成（第三轮优化）**：智慧安防拆分为智慧安防+智慧后勤两个独立专题（新增第7专题，各占左右面板不空）；所有面板 overflow 改为 auto（内容不再被截断）；新增 StatCard 统组件（AssetOverview/DutySchedule 重构）；NumberFlip 支持 trend 同比/环比箭头（告警↓40% 借阅↓37%）；TopMetrics 差异化（安防在线率/行政会议/图书馆借阅）；chart 高度增大填空间（StudentInfo 120→200, ExamManagement 120→200, BorrowStats 140→200, ActivityTimeStats 180→250, RoomDistribution 140→240）；~30处硬编码hex→CSS变量迁移（color-success/color-danger/accent）；安防panel权重交换(monitor flex-2, access/alerts flex-2)；ScheduleSpace 使用buildingUsage+typeDistribution未用数据；TeachingDevices 移除冗余ScrollList；ReadingActivities 全部8条展示；BookBorrowRank 推荐书籍区块；mock数据充实（告警3→12条, 值班4→8人, 考试5→12场）；3个稀疏面板新增图表填充；`pnpm build` + 243/243 测试通过。
 
 **3D 场景特性**：
 - **Day/Night 模式**：白天（红砖暖光 + 绿地 + 米白窗户）、夜间（暗黑赛博 + 青色窗户发光 + 道路光流）
@@ -97,7 +99,8 @@ src/
 │   ├── admin/                   # 行政办公 (3 左 + 3 右)
 │   ├── library/                 # 智慧图书 (3 左 + 3 右)
 │   ├── academics/               # 智慧教学 (3 左 + 4 右 + 3D 热力图)
-│   └── security/                # 智慧安防 (3 左 + 4 右 + 3D 设备/告警标注)
+│   └── security/                # 智慧安防 (2 左 + 1 右 + 3D 设备/告警标注)
+│   └── logistics/               # 智慧后勤 (1 左 + 2 右)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts
 └── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等)
 e2e/                 # Playwright E2E 测试 (8 用例: 加载/主题切换/专题导航/建筑交互)

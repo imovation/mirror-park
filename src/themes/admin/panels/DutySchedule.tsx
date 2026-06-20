@@ -1,4 +1,5 @@
 import { useDutyData } from '@/api/queries/admin'
+import StatCard from '@/components/ui/StatCard'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 const ROLE_COLORS: Record<string, string> = {
@@ -8,40 +9,41 @@ const ROLE_COLORS: Record<string, string> = {
   '医务值班': '#c48b9d',
 }
 
+function todayStr() {
+  const d = new Date()
+  const weekdays = ['日', '一', '二', '三', '四', '五', '六']
+  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日 星期${weekdays[d.getDay()]}`
+}
+
 export default function DutySchedule() {
   const { data, isLoading, error } = useDutyData()
   if (isLoading) return <StatusPanel type="loading" />
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, flex: 1, minHeight: 0, alignContent: 'center' }}>
-      {data.staffs.map(s => (
-        <div
-          key={s.role}
-          style={{
-            background: 'rgba(74,158,255,0.06)',
-            border: '1px solid var(--border-light)',
-            borderRadius: 8,
-            padding: '8px 10px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: 56,
-          }}
-        >
-          <div style={{ fontSize: 'var(--font-size-xs)', color: ROLE_COLORS[s.role] || 'var(--accent)', fontWeight: 500, letterSpacing: 1 }}>
-            {s.role}
-          </div>
-          <div style={{ fontSize: 'var(--font-size-md)', color: 'var(--text-primary)', fontWeight: 700 }}>
-            {s.name}
-          </div>
-          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-tertiary)' }}>
-            {s.phone}
-          </div>
-        </div>
-      ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0, padding: '0 2px' }}>
+        <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>今日值班</span>
+        <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-tertiary)' }}>{todayStr()}</span>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
+        {data.staffs.map(s => (
+          <StatCard
+            key={s.role}
+            icon={s.role[0]}
+            iconColor={ROLE_COLORS[s.role] || '#4a9eff'}
+            value={s.name}
+            label={s.role}
+            sublabel={s.phone}
+            sublabelColor="var(--text-tertiary)"
+          />
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexShrink: 0, fontSize: 'var(--font-size-xs)', color: 'var(--text-tertiary)' }}>
+        <span>总值班人数 <b style={{ color: 'var(--text-primary)' }}>{data.staffs.length}</b> 人</span>
+        <span style={{ color: 'var(--border-light)' }}>|</span>
+        <span>值班电话 <b style={{ color: 'var(--text-primary)' }}>0769-****8000</b></span>
+      </div>
     </div>
   )
 }

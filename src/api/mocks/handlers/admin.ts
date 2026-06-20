@@ -34,6 +34,10 @@ export const adminHandlers = [
         { role: '教师值班', name: '李明华', phone: '138****5721' },
         { role: '安保值班', name: '王志刚', phone: '139****3825' },
         { role: '医务值班', name: '赵丽萍', phone: '136****4187' },
+        { role: '行政副值班', name: '张卫国', phone: '135****2468' },
+        { role: '教师副值班', name: '王秀英', phone: '136****3579' },
+        { role: '巡逻安保', name: '刘铁柱', phone: '137****4680' },
+        { role: '值班组长', name: '赵志刚', phone: '138****5791' },
       ],
     })
   }),

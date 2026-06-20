@@ -11,6 +11,7 @@ export interface Collection {
 
 export interface BorrowStats {
   todayBorrow: number
+  yesterdayBorrow: number
   todayReturn: number
   totalBorrowed: number
   overdue: number

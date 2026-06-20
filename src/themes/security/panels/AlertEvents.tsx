@@ -33,18 +33,20 @@ export default function AlertEvents() {
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="今日告警" value={data.todayTotal} unit="次" color="#ff1744" />
+          <NumberFlip label="今日告警" value={data.todayTotal} unit="次" color="var(--color-danger)"
+          trend={{ direction: data.todayTotal > data.yesterdayTotal ? 'up' : data.todayTotal < data.yesterdayTotal ? 'down' : 'same', percent: Math.abs(Math.round((data.todayTotal - data.yesterdayTotal) / data.yesterdayTotal * 100)) }}
+        />
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">告警类型</ChartLabel>
-          <PieChart data={data.typeDistribution} height={120} colors={['#ff1744','#ff6d00','#ffc107','#4a9eff','#00c853']} />
+          <PieChart data={data.typeDistribution} height={120} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">处理状态</ChartLabel>
           <RingChart
             data={[{ name: '已处理', value: Math.round(data.handledRatio * 100) }, { name: '未处理', value: 100 - Math.round(data.handledRatio * 100) }]}
-            colors={['#00c853','#ff1744']}
+            colors={['var(--color-success)','var(--color-danger)']}
             centerLabel={`${Math.round(data.handledRatio * 100)}%`}
             height={120}
           />

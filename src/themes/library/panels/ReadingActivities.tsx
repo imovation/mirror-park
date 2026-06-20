@@ -14,14 +14,18 @@ export default function ReadingActivities() {
   if (!data) return <StatusPanel type="empty" />
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
-      {data.activities.slice(0, 4).map((a) => (
+      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexShrink: 0, fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>
+        <span>活动 <b style={{ color: 'var(--text-primary)' }}>{data.activities.length}</b> 项</span>
+        <span>进行中 <b style={{ color: 'var(--accent)' }}>{data.activities.filter(a => a.status === '进行中').length}</b></span>
+      </div>
+      {data.activities.map((a) => (
         <div
           key={a.id}
           style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            background: 'rgba(74,158,255,0.05)',
+            background: 'var(--panel-bg)',
             border: '1px solid var(--border-light)',
             borderRadius: 6,
             padding: '8px 10px',
@@ -36,7 +40,7 @@ export default function ReadingActivities() {
             fontWeight: 500,
             padding: '2px 8px',
             borderRadius: 4,
-            background: 'rgba(74,158,255,0.1)',
+            background: 'var(--skeleton-bg)',
             color: statusColors[a.status] || 'var(--accent)',
             flexShrink: 0,
             marginLeft: 8,

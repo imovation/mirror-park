@@ -9,6 +9,7 @@ const AdminScene = lazy(() => import('./admin/AdminScene'))
 const LibraryScene = lazy(() => import('./library/LibraryScene'))
 const AcademicsScene = lazy(() => import('./academics/AcademicsScene'))
 const SecurityScene = lazy(() => import('./security/SecurityScene'))
+const LogisticsScene = lazy(() => import('./logistics/LogisticsScene'))
 
 import { overviewPanels, renderOverviewPanel, overviewTopMetrics } from './overview'
 import { teachingResearchPanels, renderTeachingResearchPanel, teachingResearchTopMetrics } from './teaching-research'
@@ -16,6 +17,7 @@ import { adminPanels, renderAdminPanel, adminTopMetrics } from './admin'
 import { libraryPanels, renderLibraryPanel, libraryTopMetrics } from './library'
 import { academicsPanels, renderAcademicsPanel, academicsTopMetrics } from './academics'
 import { securityPanels, renderSecurityPanel, securityTopMetrics } from './security'
+import { logisticsPanels, renderLogisticsPanel, logisticsTopMetrics } from './logistics'
 
 type SceneRenderer = () => ReactNode
 type PanelRenderer = (panelId: string) => ReactNode
@@ -63,6 +65,12 @@ const registry: Record<ThemeId, ThemeEntry> = {
     panels: securityPanels,
     renderPanel: renderSecurityPanel,
     topMetrics: securityTopMetrics,
+  },
+  [ThemeId.LOGISTICS]: {
+    scene: () => <LogisticsScene />,
+    panels: logisticsPanels,
+    renderPanel: renderLogisticsPanel,
+    topMetrics: logisticsTopMetrics,
   },
 }
 

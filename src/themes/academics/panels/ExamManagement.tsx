@@ -16,8 +16,8 @@ export default function ExamManagement() {
         <div>
           <ChartLabel>近期考试</ChartLabel>
           <ScrollList
-            maxHeight={80}
-            items={data.upcomingExams.slice(0, 3).map(e => ({
+            maxHeight={120}
+            items={data.upcomingExams.slice(0, 5).map(e => ({
               id: e.id,
               content: (
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--font-size-sm)' }}>
@@ -36,11 +36,11 @@ export default function ExamManagement() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">年级均分</ChartLabel>
-          <BarChart data={data.gradeAverages} height={120} />
+          <BarChart data={data.gradeAverages} height={200} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">成绩分布</ChartLabel>
-          <FunnelChart data={data.scoreDistribution} height={180} color={['#f06a6a', '#f59e4b', '#f7d44a', '#6ab04c', '#3b82f6']} />
+          <FunnelChart data={data.scoreDistribution} height={200} color={['#f06a6a', '#f59e4b', '#f7d44a', '#6ab04c', '#3b82f6']} />
         </div>
       </div>
     </div>

@@ -106,23 +106,33 @@ export const securityHandlers = [
   }),
 
   http.get(`${BASE}/security/alerts`, () => {
-    const unhandled = 1
-    const total = 3
+    const unhandled = 3
+    const total = 8
     return HttpResponse.json({
       todayTotal: total,
+      yesterdayTotal: 5,
       typeDistribution: [
-        { name: '周界入侵', value: 0 },
-        { name: '火警预警', value: 0 },
-        { name: '设备异常', value: 1 },
+        { name: '周界入侵', value: 2 },
+        { name: '火警预警', value: 1 },
+        { name: '设备异常', value: 2 },
         { name: '门禁告警', value: 2 },
-        { name: '异常聚集', value: 0 },
+        { name: '异常聚集', value: 1 },
       ],
       handledRatio: (total - unhandled) / total,
       unhandledRatio: unhandled / total,
       records: [
-        { id: 'alert-1', time: '07:35', type: '门禁告警', location: '南门', status: '已处理' },
-        { id: 'alert-2', time: '11:48', type: '门禁告警', location: '崇德楼', status: '处理中' },
-        { id: 'alert-3', time: '15:22', type: '设备异常', location: '崇思楼', status: '已处理' },
+        { id: 'alert-1', time: '06:30', type: '周界入侵', location: '东侧围墙', status: '已处理' },
+        { id: 'alert-2', time: '07:15', type: '门禁告警', location: '南门', status: '已处理' },
+        { id: 'alert-3', time: '08:40', type: '门禁告警', location: '北门', status: '已处理' },
+        { id: 'alert-4', time: '09:55', type: '异常聚集', location: '食堂门口', status: '处理中' },
+        { id: 'alert-5', time: '10:30', type: '设备异常', location: '崇德楼', status: '已处理' },
+        { id: 'alert-6', time: '11:20', type: '周界入侵', location: '西侧围墙', status: '已处理' },
+        { id: 'alert-7', time: '12:45', type: '火警预警', location: '食堂厨房', status: '已处理' },
+        { id: 'alert-8', time: '14:00', type: '门禁告警', location: '崇智楼', status: '未处理' },
+        { id: 'alert-9', time: '15:30', type: '设备异常', location: '监控中心', status: '处理中' },
+        { id: 'alert-10', time: '17:10', type: '周界入侵', location: '南侧围墙', status: '已处理' },
+        { id: 'alert-11', time: '19:00', type: '异常聚集', location: '运动场', status: '未处理' },
+        { id: 'alert-12', time: '22:15', type: '门禁告警', location: '图书馆', status: '未处理' },
       ],
     })
   }),

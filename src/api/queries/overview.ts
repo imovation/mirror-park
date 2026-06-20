@@ -23,10 +23,14 @@ export interface PersonnelComposition {
 export interface TeacherDistribution {
   subjects: { name: string; value: number }[]
   titles: { name: string; value: number }[]
+  ageDistribution: { name: string; value: number }[]
 }
 
 export interface StudentInfo {
   grades: { name: string; male: number; female: number; total: number }[]
+  totalStudents: number
+  maleRatio: number
+  femaleRatio: number
 }
 
 export interface ActivityData {

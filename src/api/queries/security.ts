@@ -7,7 +7,7 @@ export interface MonitorStatus { total: number; online: number; offline: number;
 export interface AccessData { todayTotal: number; points: {name:string;value:number}[]; hourlyDistribution: {hours:string[];values:number[]}; abnormalRecords: {id:string;time:string;location:string;type:string;status:string}[] }
 export interface LeaveData { todayTotal: number; typeDistribution: {name:string;value:number}[]; gradeDistribution: {name:string;value:number}[]; records: {id:string;name:string;className:string;type:string;time:string}[] }
 export interface VisitorData { todayVisitors: number; currentVisitors: number; purposeDistribution: {name:string;value:number}[]; records: {id:string;name:string;time:string;purpose:string;idNumber:string}[] }
-export interface AlertData { todayTotal: number; typeDistribution: {name:string;value:number}[]; handledRatio: number; unhandledRatio: number; records: {id:string;time:string;type:string;location:string;status:string}[] }
+export interface AlertData { todayTotal: number; yesterdayTotal: number; typeDistribution: {name:string;value:number}[]; handledRatio: number; unhandledRatio: number; records: {id:string;time:string;type:string;location:string;status:string}[] }
 export interface CanteenData { todayTotal: number; meals: {name:string;value:number}[]; safetyRecords: {id:string;date:string;item:string;result:string}[] }
 
 export const useSecurityOverview = () => useQuery<SecurityOverview>({ queryKey: ['security','overview'], queryFn: () => fetchApi('/security/overview'), refetchInterval: REFRESH_INTERVALS.REALTIME })

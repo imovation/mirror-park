@@ -1,6 +1,9 @@
 import { useAssetData } from '@/api/queries/overview'
 import type { AssetData } from '@/api/queries/overview'
+import StatCard from '@/components/ui/StatCard'
+import RingChart from '@/components/charts/RingChart'
 import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
 
 const ASSETS: { key: keyof AssetData; label: string; color: string }[] = [
   { key: 'computers', label: '电脑', color: '#4a9eff' },
@@ -11,6 +14,15 @@ const ASSETS: { key: keyof AssetData; label: string; color: string }[] = [
   { key: 'doorLocks', label: '门禁锁', color: '#00bcd4' },
 ]
 
+const RING_DATA = [
+  { name: '电脑', value: 580 },
+  { name: '投影仪', value: 120 },
+  { name: '空调', value: 260 },
+  { name: '摄像头', value: 430 },
+  { name: '打印机', value: 85 },
+  { name: '门禁锁', value: 65 },
+]
+
 export default function AssetOverview() {
   const { data, isLoading, error } = useAssetData()
 
@@ -19,46 +31,23 @@ export default function AssetOverview() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, flex: 1, minHeight: 0, alignContent: 'center', padding: 4 }}>
-      {ASSETS.map((asset) => (
-        <div
-          key={asset.key}
-          style={{
-            background: 'var(--panel-bg)',
-            border: '1px solid var(--border-light)',
-            borderRadius: 6,
-            padding: '14px 10px',
-            textAlign: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 4,
-          }}
-        >
-          <div
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: '50%',
-              background: `${asset.color}22`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 'var(--font-size-sm)',
-              fontWeight: 700,
-              color: asset.color,
-            }}
-          >
-            {asset.label[0]}
-          </div>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--text-primary)' }}>
-            {data[asset.key]}
-          </div>
-          <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
-            {asset.label}
-          </div>
-        </div>
-      ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, flexShrink: 0, padding: 4 }}>
+        {ASSETS.map((asset) => (
+          <StatCard
+            key={asset.key}
+            icon={asset.label[0]}
+            iconColor={asset.color}
+            value={String(data[asset.key])}
+            label=""
+            sublabel={asset.label}
+          />
+        ))}
+      </div>
+      <div style={{ flexShrink: 0 }}>
+        <ChartLabel>设备类型占比</ChartLabel>
+        <RingChart data={RING_DATA} height={130} />
+      </div>
     </div>
   )
 }

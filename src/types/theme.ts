@@ -5,6 +5,7 @@ export enum ThemeId {
   LIBRARY = 'library',
   ACADEMICS = 'academics',
   SECURITY = 'security',
+  LOGISTICS = 'logistics',
 }
 
 export interface ThemeConfig {
@@ -20,4 +21,5 @@ export const THEMES: ThemeConfig[] = [
   { id: ThemeId.LIBRARY, label: '智慧图书' },
   { id: ThemeId.ACADEMICS, label: '智慧教学' },
   { id: ThemeId.SECURITY, label: '智慧安防' },
+  { id: ThemeId.LOGISTICS, label: '智慧后勤' },
 ]

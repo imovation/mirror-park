@@ -5,7 +5,7 @@ import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
-const TOP3_COLORS = ['#f5222d', '#fa8c16', '#faad14']
+const TOP3_COLORS = ['var(--color-danger)', 'var(--color-warning)', '#faad14']
 const rankLabel = ['🥇', '🥈', '🥉']
 
 export default function BookBorrowRank() {
@@ -44,7 +44,7 @@ export default function BookBorrowRank() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">阅读之星</ChartLabel>
           <ScrollList
-            maxHeight={100}
+            maxHeight={80}
             items={rank.readingStars.slice(0, 4).map((s, i) => ({
               id: `star-${i}`,
               content: (
@@ -64,6 +64,21 @@ export default function BookBorrowRank() {
             }))}
           />
         </div>
+        {hot.recommendBooks?.length > 0 && (
+          <div style={{ flexShrink: 0 }}>
+            <ChartLabel align="center">好书推荐</ChartLabel>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2, padding: '0 4px' }}>
+              {hot.recommendBooks.slice(0, 3).map((b, i) => (
+                <div key={i} style={{ display: 'flex', gap: 6, fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>
+                  <span style={{ color: 'var(--accent)', flexShrink: 0 }}>《</span>
+                  <span style={{ color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{b.name}</span>
+                  <span style={{ flexShrink: 0 }}>》</span>
+                  <span style={{ marginLeft: 'auto', flexShrink: 0 }}>{b.author}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

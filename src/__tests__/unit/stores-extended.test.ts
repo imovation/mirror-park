@@ -83,11 +83,12 @@ describe('useThemeStore', () => {
     expect(useThemeStore.getState().isTransitioning).toBe(false)
   })
 
-  it('has all 6 themes in allThemes', () => {
+  it('has all 7 themes in allThemes', () => {
     const themes = useThemeStore.getState().allThemes
-    expect(themes).toHaveLength(6)
+    expect(themes).toHaveLength(7)
     expect(themes.map(t => t.id)).toContain(ThemeId.OVERVIEW)
     expect(themes.map(t => t.id)).toContain(ThemeId.SECURITY)
+    expect(themes.map(t => t.id)).toContain(ThemeId.LOGISTICS)
   })
 })
 

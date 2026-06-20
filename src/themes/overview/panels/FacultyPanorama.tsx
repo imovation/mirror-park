@@ -20,6 +20,8 @@ export default function FacultyPanorama() {
     { name: '女', value: p.femaleCount },
   ]
 
+  const ageData = t.ageDistribution
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, flex: 1, minHeight: 0, overflow: 'hidden' }}>
@@ -27,7 +29,7 @@ export default function FacultyPanorama() {
           <ChartLabel align="center">性别比例</ChartLabel>
           <RingChart
             data={genderData}
-            height={120}
+            height={100}
             centerLabel={String(p.totalTeachers)}
             centerLabelSize={16}
             centerLabelColor="var(--text-primary)"
@@ -38,23 +40,18 @@ export default function FacultyPanorama() {
           </div>
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
-          <ChartLabel align="center">学历分布</ChartLabel>
-          <RingChart
-            data={p.education}
-            height={120}
-            colors={['#1890ff', '#52c41a', '#faad14', '#722ed1']}
-            legendPosition="bottom"
-          />
+          <ChartLabel align="center">年龄分布</ChartLabel>
+          <BarChart data={ageData} height={100} gridLeft="2%" gridBottom="12%" barWidth="70%" />
         </div>
       </div>
       <div style={{ display: 'flex', gap: 8, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">职称分布</ChartLabel>
-          <BarChart data={t.titles} height={120} gridLeft="15%" barWidth="70%" />
+          <BarChart data={t.titles} height={140} gridLeft="15%" barWidth="70%" />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">学科分布</ChartLabel>
-          <BarChart data={t.subjects.slice(0, 6)} height={120} gridLeft="10%" barWidth="70%" />
+          <BarChart data={t.subjects.slice(0, 6)} height={140} gridLeft="10%" barWidth="70%" />
         </div>
       </div>
     </div>

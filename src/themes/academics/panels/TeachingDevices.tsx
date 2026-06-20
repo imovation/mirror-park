@@ -1,7 +1,6 @@
 import { useDeviceData } from '@/api/queries/academics'
 import RingChart from '@/components/charts/RingChart'
 import PieChart from '@/components/charts/PieChart'
-import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
@@ -21,7 +20,7 @@ export default function TeachingDevices() {
               { name: '离线', value: data.offline },
               { name: '故障', value: data.faulty },
             ]}
-            colors={['#00c853', '#ffc107', '#ff1744']}
+            colors={['var(--color-success)', 'var(--color-warning)', 'var(--color-danger)']}
             centerLabel={`${data.online}/${data.total}`}
             height={120}
           />
@@ -32,19 +31,17 @@ export default function TeachingDevices() {
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
-        <ChartLabel>设备明细</ChartLabel>
-        <ScrollList
-          maxHeight={120}
-          items={data.typeDistribution.map((d, i) => ({
-            id: `dev-${i}`,
-            content: (
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span>{d.name}</span>
-                <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>{d.value} 台</span>
-              </div>
-            ),
-          }))}
-        />
+        <ChartLabel>设备状态概览</ChartLabel>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, padding: '0 4px' }}>
+          <div style={{ textAlign: 'center', background: 'var(--panel-bg)', borderRadius: 6, padding: 8 }}>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>总设备</div>
+            <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: 'var(--text-primary)' }}>{data.total}</div>
+          </div>
+          <div style={{ textAlign: 'center', background: 'var(--panel-bg)', borderRadius: 6, padding: 8 }}>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>在线率</div>
+            <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: 'var(--color-success)' }}>{Math.round((data.online / data.total) * 100)}%</div>
+          </div>
+        </div>
       </div>
     </div>
   )

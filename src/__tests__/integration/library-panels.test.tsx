@@ -57,8 +57,9 @@ describe('Library Panel Integration', () => {
       })
       renderWithProviders(<ReadingActivities />, { queryClient: qc })
       await waitFor(() => {
-        expect(screen.getByText('进行中')).toBeInTheDocument()
-        expect(screen.getByText('即将开始')).toBeInTheDocument()
+        expect(screen.getByText((content) => content.includes('活动'))).toBeInTheDocument()
+        expect(screen.getByText('经典诵读比赛')).toBeInTheDocument()
+        expect(screen.getByText('读书分享会')).toBeInTheDocument()
       })
     })
 

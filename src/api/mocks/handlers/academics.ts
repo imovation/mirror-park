@@ -99,6 +99,13 @@ export const academicsHandlers = [
         { id: 'exam-3', subject: '英语', date: '2026/6/25', grade: '初三' },
         { id: 'exam-4', subject: '物理', date: '2026/6/26', grade: '初二' },
         { id: 'exam-5', subject: '化学', date: '2026/6/27', grade: '初三' },
+        { id: 'exam-6', subject: '历史', date: '2026/6/28', grade: '初一' },
+        { id: 'exam-7', subject: '地理', date: '2026/6/28', grade: '初二' },
+        { id: 'exam-8', subject: '政治', date: '2026/6/29', grade: '初一' },
+        { id: 'exam-9', subject: '生物', date: '2026/6/29', grade: '初二' },
+        { id: 'exam-10', subject: '英语', date: '2026/6/30', grade: '初三' },
+        { id: 'exam-11', subject: '数学', date: '2026/7/1', grade: '初一' },
+        { id: 'exam-12', subject: '语文', date: '2026/7/1', grade: '初二' },
       ],
       semesterExamCount: 5,
       gradeAverages: [
