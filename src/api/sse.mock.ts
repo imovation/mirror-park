@@ -42,10 +42,20 @@ const MOCK_DATA: Record<string, () => unknown> = {
     totalStudents: 2800, maleRatio: 1410 / 2800, femaleRatio: 1390 / 2800,
   }),
   'security.alerts': () => ({
-    alerts: [
-      { id: '1', type: 'error', message: '西门门禁异常开启', timestamp: new Date() },
-      { id: '2', type: 'warning', message: '教学楼3F烟雾浓度偏高', timestamp: new Date() },
-      { id: '3', type: 'info', message: '访客预约待确认：张三', timestamp: new Date() },
+    todayTotal: 3,
+    typeDistribution: [
+      { name: '周界入侵', value: 0 },
+      { name: '火警预警', value: 0 },
+      { name: '设备异常', value: 1 },
+      { name: '门禁告警', value: 2 },
+      { name: '异常聚集', value: 0 },
+    ],
+    handledRatio: 2 / 3,
+    unhandledRatio: 1 / 3,
+    records: [
+      { id: 'alert-1', time: '07:35', type: '门禁告警', location: '南门', status: '已处理' },
+      { id: 'alert-2', time: '11:48', type: '门禁告警', location: '崇德楼', status: '处理中' },
+      { id: 'alert-3', time: '15:22', type: '设备异常', location: '崇思楼', status: '已处理' },
     ],
   }),
 }
