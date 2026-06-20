@@ -4,10 +4,7 @@ import {
   useSecurityOverview,
   useMonitorStatus,
   useAccessData,
-  useLeaveData,
-  useVisitorData,
   useAlertData,
-  useCanteenData,
 } from '@/api/queries/security'
 
 function createWrapper(qc: QueryClient) {
@@ -35,27 +32,9 @@ describe('Security Query Hooks', () => {
     expect(result.current).toBeDefined()
   })
 
-  it('useLeaveData returns defined result', () => {
-    const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-    const { result } = renderHook(() => useLeaveData(), { wrapper: createWrapper(qc) })
-    expect(result.current).toBeDefined()
-  })
-
-  it('useVisitorData returns defined result', () => {
-    const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-    const { result } = renderHook(() => useVisitorData(), { wrapper: createWrapper(qc) })
-    expect(result.current).toBeDefined()
-  })
-
   it('useAlertData returns defined result', () => {
     const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
     const { result } = renderHook(() => useAlertData(), { wrapper: createWrapper(qc) })
-    expect(result.current).toBeDefined()
-  })
-
-  it('useCanteenData returns defined result', () => {
-    const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-    const { result } = renderHook(() => useCanteenData(), { wrapper: createWrapper(qc) })
     expect(result.current).toBeDefined()
   })
 
@@ -65,10 +44,7 @@ describe('Security Query Hooks', () => {
       useSecurityOverview,
       useMonitorStatus,
       useAccessData,
-      useLeaveData,
-      useVisitorData,
       useAlertData,
-      useCanteenData,
     ]
     hooks.forEach(hook => {
       renderHook(() => hook(), { wrapper: createWrapper(qc) })

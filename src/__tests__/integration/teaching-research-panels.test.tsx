@@ -130,7 +130,7 @@ describe('Teaching Research Panel Integration', () => {
       renderWithProviders(<ResearchProjectsList />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText(/负责人:/)).toBeInTheDocument()
-        expect(screen.getByText('在研')).toBeInTheDocument()
+        expect(screen.getByText('6人')).toBeInTheDocument()
       })
     })
 

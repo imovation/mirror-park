@@ -35,11 +35,11 @@ describe('TopMetrics Integration', () => {
       expect(screen.getByText('60')).toBeInTheDocument()
     })
 
-    it('shows nothing when data is null', () => {
+    it('shows skeleton when data is null', () => {
       const qc = createQC()
       fillQueryCache(qc, ['overview', 'schoolInfo'], null)
-      const { container } = renderWithProviders(<OverviewTopMetrics />, { queryClient: qc })
-      expect(container.innerHTML).toBe('')
+      renderWithProviders(<OverviewTopMetrics />, { queryClient: qc })
+      expect(screen.getByText('占地面积')).toBeInTheDocument()
     })
   })
 
@@ -139,11 +139,12 @@ describe('TopMetrics Integration', () => {
       expect(screen.getByText('今日入馆')).toBeInTheDocument()
     })
 
-    it('shows nothing when data is null', () => {
+    it('shows skeleton when data is null', () => {
       const qc = createQC()
       fillQueryCache(qc, ['library', 'collection'], null)
       const { container } = renderWithProviders(<LibraryTopMetrics />, { queryClient: qc })
-      expect(container.innerHTML).toBe('')
+      expect(container.innerHTML).not.toBe('')
+      expect(container.querySelectorAll('[style*="100px"]').length).toBeGreaterThanOrEqual(5)
     })
   })
 

@@ -45,7 +45,7 @@ export default function StudentInfo() {
         <ChartLabel>年级人数对比</ChartLabel>
         <BarChart
           data={data.grades.map((g) => ({ name: g.name, value: g.total }))}
-          height={200}
+          height={150}
           horizontal={false}
           color="var(--accent)"
           gridTop={0}

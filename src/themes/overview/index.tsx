@@ -17,7 +17,7 @@ export const overviewPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
     { id: 'overview-student-info', title: '学生基础信息', height: 'flex-2' },
   ],
   right: [
-    { id: 'overview-activity-stats', title: '活跃度时段统计', height: 'flex-1' },
+    { id: 'overview-activity-stats', title: '活跃度时段统计', height: 'flex-2' },
     { id: 'overview-asset-overview', title: '资产概况', height: 'flex-1' },
     { id: 'overview-room-dist', title: '功能室分布', height: 'flex-1' },
   ],

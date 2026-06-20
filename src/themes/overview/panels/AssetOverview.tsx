@@ -1,6 +1,5 @@
 import { useAssetData } from '@/api/queries/overview'
 import type { AssetData } from '@/api/queries/overview'
-import StatCard from '@/components/ui/StatCard'
 import RingChart from '@/components/charts/RingChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
@@ -32,16 +31,13 @@ export default function AssetOverview() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, flexShrink: 0, padding: 4 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, flexShrink: 0 }}>
         {ASSETS.map((asset) => (
-          <StatCard
-            key={asset.key}
-            icon={asset.label[0]}
-            iconColor={asset.color}
-            value={String(data[asset.key])}
-            label=""
-            sublabel={asset.label}
-          />
+          <div key={asset.key} style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, padding: '6px 8px', textAlign: 'center' }}>
+            <div style={{ height: 3, background: asset.color, borderRadius: 2, marginBottom: 4, opacity: 0.5 }} />
+            <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)' }}>{String(data[asset.key])}</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>{asset.label}</div>
+          </div>
         ))}
       </div>
       <div style={{ flexShrink: 0 }}>

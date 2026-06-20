@@ -7,7 +7,13 @@ export default function LibraryTopMetrics() {
   const { data: borrow } = useBorrowStats()
   const { data: visitors } = useLibraryVisitors()
 
-  if (!coll) return null
+  if (!coll) return (
+    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+      {[1,2,3,4,5].map(i => (
+        <div key={i} style={{ width: 100, height: 64, background: 'var(--panel-bg)', borderRadius: 8, opacity: 0.4 }} />
+      ))}
+    </div>
+  )
 
   return (
     <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>

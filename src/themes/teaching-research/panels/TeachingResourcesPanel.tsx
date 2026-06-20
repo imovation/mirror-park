@@ -1,5 +1,6 @@
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
+import BarChart from '@/components/charts/BarChart'
 import { useTeachingResources } from '@/api/queries/teachingResearch'
 
 const UNITS: Record<string, string> = {
@@ -15,7 +16,7 @@ export default function TeachingResourcesPanel() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
       <ChartLabel>教学资源分类占比</ChartLabel>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0 }}>
         {data.resources.map((r) => (
           <div
             key={r.name}
@@ -35,6 +36,15 @@ export default function TeachingResourcesPanel() {
             </div>
           </div>
         ))}
+      </div>
+      <div style={{ flex: 1, minHeight: 0 }}>
+        <BarChart
+          data={data.resources.map((r) => ({ name: r.name, value: r.value }))}
+          height={100}
+          barWidth="60%"
+          gridTop={10}
+          gridBottom={20}
+        />
       </div>
     </div>
   )
