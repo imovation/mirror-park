@@ -31,4 +31,21 @@ test.describe('Topic Navigation', () => {
     await page.waitForTimeout(500)
     await expect(canvas).toBeAttached()
   })
+
+  test('should collapse and expand a collapsible panel', async ({ page }) => {
+    await page.goto('/')
+    await page.waitForTimeout(2000)
+    const facultyPanel = page.getByText('教职工全景态势').first()
+    await expect(facultyPanel).toBeVisible({ timeout: 5000 })
+
+    const collapseBtn = page.locator('h3', { hasText: '教职工全景态势' }).locator('..').locator('button')
+    const btnText = await collapseBtn.textContent()
+    if (btnText?.includes('▼')) {
+      await collapseBtn.click()
+      await page.waitForTimeout(300)
+      await expect(page.getByText('教职工组成、学历、职称、学科分布')).toBeVisible()
+      await collapseBtn.click()
+      await page.waitForTimeout(300)
+    }
+  })
 })

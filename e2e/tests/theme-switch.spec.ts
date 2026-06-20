@@ -11,4 +11,22 @@ test.describe('UI Theme Switch', () => {
     await page.getByText('🌙 暗色').click()
     await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'dark')
   })
+
+  test('should keep theme consistent across topic switches', async ({ page }) => {
+    await page.goto('/')
+    await page.waitForTimeout(2000)
+
+    await page.getByText('☀️ 亮色').click()
+    await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'light')
+
+    const topics = ['教学研究', '智慧图书', '智慧安防']
+    for (const topic of topics) {
+      await page.getByText(topic, { exact: true }).click()
+      await page.waitForTimeout(500)
+      await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'light')
+    }
+
+    await page.getByText('🌙 暗色').click()
+    await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'dark')
+  })
 })

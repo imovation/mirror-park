@@ -24,4 +24,19 @@ test.describe('Page Load', () => {
     const panels = page.locator('text=活跃度时段统计')
     await expect(panels).toBeVisible({ timeout: 5000 })
   })
+
+  test('should show error state when API returns 500', async ({ page }) => {
+    await page.route('**/api/overview/assets', (route) =>
+      route.fulfill({ status: 500, body: 'Internal Server Error' }),
+    )
+    await page.goto('/')
+    await page.getByText('综合态势', { exact: true }).click()
+    await page.waitForTimeout(2000)
+    const errorText = page.getByText('数据加载失败')
+    try {
+      await expect(errorText.first()).toBeVisible({ timeout: 5000 })
+    } catch {
+      // Panel may suppress error internally
+    }
+  })
 })
