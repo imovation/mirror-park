@@ -9,7 +9,7 @@
 | 指标 | 数值 |
 |------|------|
 | 源文件 | 155 |
-| 测试 | 100/100 单元测试 + 76/76 E2E 测试 |
+| 测试 | 172/172 单元测试 + 76/76 E2E 测试 |
 | Git 提交 | 230 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
@@ -28,7 +28,7 @@
 
 **已完成（SSE 实时推送）**：SSE 客户端（`src/api/sse.ts`，指数退避重连）+ `useSSE()` hook 自动注入 QueryClient；Dev 模式 Mock SSE 客户端（`src/api/sse.mock.ts`，`setInterval` 推送 6 种事件类型）；BottomBar SSE 连接状态指示灯。
 
-**已完成（测试）**：Playwright E2E 测试（76 用例，6 专题 × 38 面板视觉回归截图 + 主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠）；Vitest 单元/集成测试 100 用例（stores/api-client/chartTheme/11-chart-components/4-layout-components/6-ui-components/ErrorBoundary/ScrollList/3-panel-integration）。
+**已完成（测试）**：Playwright E2E 测试（76 用例，6 专题 × 38 面板视觉回归截图 + 主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠）；Vitest 单元/集成测试 172 用例（stores/api-client/SSE/client/useSSEQuery/query-hooks/MSW-handlers/chartTheme/11-chart-components/4-layout-components/6-ui-components/ErrorBoundary/ScrollList/3-panel-integration）。
 
 **已完成（UI 优化与审查修复）**：重构 DashboardPanel 毛玻璃科技风容器（backdrop-blur + 四角霓虹折角）；重写 ChartTheme 统一 ECharts 霓虹配色字典（`#1890ff`/`#52c41a`/`#faad14`/`#f5222d`/`#722ed1`）；ScrollList 新增 header 表头 + 行悬浮高亮；ScreenLayout 新增 topMetrics 插槽，6 专题各配备 TopMetrics 指标卡（数据驱动）；BarChart 支持 barWidth/gridLeft/gridBottom 参数化；RingChart 支持 legendPosition/centerLabelSize；LineChart 添加 xAxis rotate:30 + grid.right:6%；GaugeChart 指针高亮白色 + 放大；FunnelChart 改为同色系渐变；AlertPopup 改为 fixed 右下角绝对定位 z-index:9999；ErrorBoundary fallback 轻量化；三轮 Gemini 审查共修复约 30 项 UI/UX 缺陷（全局背景 opacity 0.35→0.85、告警 .map() 空值保护、3D 热区透明化、屋顶光照优化等）；`pnpm build` + 37/37 测试通过。
 
