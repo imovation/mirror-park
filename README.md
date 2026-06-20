@@ -30,7 +30,7 @@
 pnpm install
 pnpm dev        # http://localhost:3000
 pnpm build      # 生产构建到 dist/
-pnpm test       # 运行所有测试 (37 单元 + 8 E2E)
+pnpm test       # 运行所有测试 (238 单元 + 76 E2E)
 ```
 
 ## 专题模块
@@ -61,7 +61,7 @@ src/
 ├── themes/         # 6 个专题 (panels + scene + registry)
 ├── types/          # TypeScript 类型定义
 └── utils/          # format, constants
-e2e/                # Playwright E2E 测试 (8 用例)
+e2e/                # Playwright E2E 测试 (76 用例 + 44 截图 baseline)
 ```
 
 ## 功能亮点
@@ -72,7 +72,7 @@ e2e/                # Playwright E2E 测试 (8 用例)
 - **主题切换**：UI 深色/浅色主题 (CSS 变量) + 3D 白天/夜间模式独立切换
 - **实时推送**：SSE 基础设施 (指数退避重连) + BottomBar 连接状态指示灯
 - **响应式**：1920px ~ 7680px 超宽屏自适应
-- **完整测试**：35 Vitest 单元测试 + 8 Playwright E2E 测试
+- **完整测试**：238 Vitest 单元/集成测试 + 76 Playwright E2E 测试 (含 6 专题视觉回归截图)
 
 ## 设计文档
 
