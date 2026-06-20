@@ -15,13 +15,13 @@ test.describe('Page Load', () => {
 
   test('should render left panel data panels', async ({ page }) => {
     await page.goto('/')
-    const panels = page.locator('text=学校概况')
+    const panels = page.locator('text=教职工全景态势')
     await expect(panels).toBeVisible({ timeout: 5000 })
   })
 
   test('should render right panel data panels', async ({ page }) => {
     await page.goto('/')
-    const panels = page.locator('text=建筑详情')
+    const panels = page.locator('text=活跃度时段统计')
     await expect(panels).toBeVisible({ timeout: 5000 })
   })
 })

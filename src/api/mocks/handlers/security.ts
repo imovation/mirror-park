@@ -137,9 +137,12 @@ export const securityHandlers = [
       ],
       safetyRecords: [
         { id: 'safe-1', date: '2026/6/15', item: '食材抽检', result: '合格' },
-        { id: 'safe-2', date: '2026/6/14', item: '卫生检查', result: '合格' },
+        { id: 'safe-2', date: '2026/6/15', item: '餐具消毒', result: '合格' },
         { id: 'safe-3', date: '2026/6/14', item: '留样检测', result: '合格' },
-        { id: 'safe-4', date: '2026/6/13', item: '操作规范检查', result: '合格' },
+        { id: 'safe-4', date: '2026/6/14', item: '农药残留', result: '待复检' },
+        { id: 'safe-5', date: '2026/6/13', item: '卫生检查', result: '合格' },
+        { id: 'safe-6', date: '2026/6/13', item: '冷链运输', result: '合格' },
+        { id: 'safe-7', date: '2026/6/12', item: '操作规范', result: '合格' },
       ],
     })
   }),

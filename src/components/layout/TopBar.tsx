@@ -72,6 +72,7 @@ export default function TopBar() {
               background: currentTheme === t.id ? 'rgba(var(--accent-rgb), 0.2)' : 'transparent',
               color: currentTheme === t.id ? 'var(--accent)' : 'var(--text-tertiary)',
               fontSize: 'var(--font-size-md)',
+              fontFamily: 'inherit',
               cursor: 'pointer',
               transition: 'all 0.3s',
             }}
@@ -92,6 +93,7 @@ export default function TopBar() {
             cursor: 'pointer',
             transition: 'var(--transition-fast)',
             fontSize: 'var(--font-size-sm)',
+            fontFamily: 'inherit',
             padding: '4px 10px',
             fontWeight: 600,
           }}
@@ -108,6 +110,7 @@ export default function TopBar() {
             cursor: 'pointer',
             transition: 'var(--transition-fast)',
             fontSize: 'var(--font-size-sm)',
+            fontFamily: 'inherit',
             padding: '4px 10px',
             fontWeight: 600,
           }}
@@ -124,6 +127,7 @@ export default function TopBar() {
             cursor: 'pointer',
             transition: 'var(--transition-fast)',
             fontSize: 'var(--font-size-sm)',
+            fontFamily: 'inherit',
             padding: '4px 10px',
           }}
         >

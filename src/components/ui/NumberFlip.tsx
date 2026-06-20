@@ -25,7 +25,7 @@ function DigitColumn({ char }: { char: string }) {
         <span
           style={{
             display: 'block',
-            transform: `translateY(-${digit * 100}%)`,
+            transform: `translateY(-${digit * 10}%)`,
             transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
             willChange: 'transform',
           }}

@@ -8,7 +8,7 @@ interface ChartLabelProps {
 export default function ChartLabel({ children, align = 'left' }: ChartLabelProps) {
   return (
     <div style={{
-      fontSize: 11,
+      fontSize: 'var(--font-size-xs)',
       color: 'var(--text-tertiary)',
       marginBottom: 4,
       textAlign: align,

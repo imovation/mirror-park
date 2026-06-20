@@ -54,13 +54,13 @@ export const overviewHandlers = [
   http.get(`${BASE}/overview/student-info`, () => {
     return HttpResponse.json({
       grades: [
-        { name: '初一', male: 480, female: 450, total: 930 },
-        { name: '初二', male: 470, female: 460, total: 930 },
-        { name: '初三', male: 460, female: 480, total: 940 },
+        { name: '初一', male: 510, female: 470, total: 980 },
+        { name: '初二', male: 490, female: 460, total: 950 },
+        { name: '初三', male: 440, female: 430, total: 870 },
       ],
       totalStudents: 2800,
-      maleRatio: 1410 / 2800,
-      femaleRatio: 1390 / 2800,
+      maleRatio: 1440 / 2800,
+      femaleRatio: 1360 / 2800,
     })
   }),
 

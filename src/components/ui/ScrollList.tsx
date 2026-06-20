@@ -15,6 +15,7 @@ interface ScrollListProps {
 export default function ScrollList({ items, speed = 30, maxHeight = 150, header }: ScrollListProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isPaused, setIsPaused] = useState(false)
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   useEffect(() => {
     if (items.length <= 3) return
@@ -64,8 +65,14 @@ export default function ScrollList({ items, speed = 30, maxHeight = 150, header 
         {items.map((item) => (
           <div
             key={item.id}
-            className="px-3 py-1.5 text-sm transition-colors duration-200 hover:bg-cyan-800/20"
-            style={{ borderBottom: '1px solid var(--border-light)', color: 'var(--text-secondary)' }}
+            className="px-3 py-1.5 text-sm transition-colors duration-200"
+            style={{
+              borderBottom: '1px solid var(--border-light)',
+              color: 'var(--text-secondary)',
+              background: hoveredId === item.id ? 'rgba(var(--accent-rgb), 0.1)' : 'transparent',
+            }}
+            onMouseEnter={() => setHoveredId(item.id)}
+            onMouseLeave={() => setHoveredId(null)}
           >
             {item.content}
           </div>

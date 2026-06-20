@@ -58,7 +58,7 @@ function DeviceMarkers() {
           <Html position={[d.position[0], d.position[1] + 0.6, d.position[2]]} center distanceFactor={40} style={{ pointerEvents: 'none' }}>
             <div style={{
               background: d.type === 'camera' ? 'rgba(74,158,255,0.8)' : 'rgba(0,200,83,0.8)',
-              color: '#fff', padding: '1px 6px', borderRadius: 3, fontSize: 9, whiteSpace: 'nowrap',
+              color: '#fff', padding: '1px 6px', borderRadius: 3, fontSize: 'var(--font-size-2xs)', whiteSpace: 'nowrap',
             }}>
               {d.type === 'camera' ? '📹' : '🚪'} {d.label}
             </div>
@@ -88,7 +88,7 @@ function AlertMarkers() {
           <Html position={[loc.position[0], loc.position[1] + 1, loc.position[2]]} center distanceFactor={40} style={{ pointerEvents: 'none' }}>
             <div style={{
               background: 'rgba(255,23,68,0.9)', color: '#fff',
-              padding: '2px 8px', borderRadius: 4, fontSize: 10, whiteSpace: 'nowrap',
+              padding: '2px 8px', borderRadius: 4, fontSize: 'var(--font-size-xs)', whiteSpace: 'nowrap',
               animation: 'pulse 1s ease-in-out infinite',
             }}>
               ⚠ {loc.label}

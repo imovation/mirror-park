@@ -22,7 +22,7 @@ export default function VisitorManagement() {
       </div>
       <div>
         <ChartLabel>访客登记</ChartLabel>
-        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.purpose}</span><span style={{fontSize:10,color:'var(--text-muted)'}}>{r.time}</span></span></div> }))} />
+        <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:'var(--font-size-xs)',color:'var(--text-muted)'}}>{r.purpose}</span><span style={{fontSize:'var(--font-size-xs)',color:'var(--text-muted)'}}>{r.time}</span></span></div> }))} />
       </div>
     </div>
   )

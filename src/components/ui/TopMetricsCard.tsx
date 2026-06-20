@@ -15,8 +15,8 @@ export default function TopMetricsCard({ label, value }: TopMetricsCardProps) {
       backdropFilter: 'blur(8px)',
       minWidth: 100,
     }}>
-      <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)' }}>{value}</span>
-      <span style={{ fontSize: 11, color: 'var(--text-tertiary)', marginTop: 2 }}>{label}</span>
+      <span style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: 'var(--text-primary)' }}>{value}</span>
+      <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-tertiary)', marginTop: 2 }}>{label}</span>
     </div>
   )
 }

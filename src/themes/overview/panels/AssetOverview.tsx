@@ -44,7 +44,7 @@ export default function AssetOverview() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 13,
+              fontSize: 'var(--font-size-sm)',
               fontWeight: 700,
               color: asset.color,
             }}

@@ -99,6 +99,8 @@ export const libraryHandlers = [
         { id: 'act-4', title: '作家进校园讲座', date: '2026/6/5', status: '即将开始' },
         { id: 'act-5', title: '阅读分享会', date: '2026/4/28', status: '已结束' },
         { id: 'act-6', title: '读书笔记展评', date: '2026/5/8', status: '已结束' },
+        { id: 'act-7', title: '世界读书日共读会', date: '2026/4/23', status: '已结束' },
+        { id: 'act-8', title: '校园诗歌大赛', date: '2026/6/15', status: '即将开始' },
       ],
     })
   }),
