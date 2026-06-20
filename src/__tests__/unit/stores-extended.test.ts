@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { useUIStore } from '@/stores/useUIStore'
 import { useThemeStore } from '@/stores/useThemeStore'
+import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import { ThemeId } from '@/types/theme'
 
 describe('useSceneStore', () => {
@@ -87,5 +88,32 @@ describe('useThemeStore', () => {
     expect(themes).toHaveLength(6)
     expect(themes.map(t => t.id)).toContain(ThemeId.OVERVIEW)
     expect(themes.map(t => t.id)).toContain(ThemeId.SECURITY)
+  })
+})
+
+// ======= useUIThemeStore =======
+describe('useUIThemeStore', () => {
+  beforeEach(() => {
+    useUIThemeStore.setState({ uiTheme: 'dark' })
+  })
+
+  it('starts with dark theme', () => {
+    const theme = useUIThemeStore.getState().uiTheme
+    expect(theme).toBe('dark')
+  })
+
+  it('toggleUITheme switches dark→light→dark', () => {
+    const store = useUIThemeStore.getState()
+    store.toggleUITheme()
+    expect(useUIThemeStore.getState().uiTheme).toBe('light')
+    useUIThemeStore.getState().toggleUITheme()
+    expect(useUIThemeStore.getState().uiTheme).toBe('dark')
+  })
+
+  it('setUITheme explicitly sets theme', () => {
+    useUIThemeStore.getState().setUITheme('light')
+    expect(useUIThemeStore.getState().uiTheme).toBe('light')
+    useUIThemeStore.getState().setUITheme('dark')
+    expect(useUIThemeStore.getState().uiTheme).toBe('dark')
   })
 })
