@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { navigateWithBlock3D } from '../helpers/visual-utils'
 
 test.describe('UI Theme Switch', () => {
   test('should toggle between dark and light mode', async ({ page }) => {
-    await page.goto('/')
+    await navigateWithBlock3D(page)
     await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'dark')
 
     await page.getByText('☀️ 亮色').click()
@@ -13,7 +14,7 @@ test.describe('UI Theme Switch', () => {
   })
 
   test('should keep theme consistent across topic switches', async ({ page }) => {
-    await page.goto('/')
+    await navigateWithBlock3D(page)
     await page.waitForTimeout(2000)
 
     await page.getByText('☀️ 亮色').click()

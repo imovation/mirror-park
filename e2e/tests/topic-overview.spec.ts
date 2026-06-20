@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import {
+  navigateWithBlock3D,
   navigateToTopic,
   waitForAllPanels,
   hide3DCanvas,
@@ -10,7 +11,7 @@ import {
 
 test.describe('Topic: Overview', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/')
+    await navigateWithBlock3D(page)
     await waitForAllPanels(page)
     await navigateToTopic(page, 'overview')
     await waitForAllPanels(page)

@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test'
-import { waitForAllPanels } from '../helpers/visual-utils'
+import { navigateWithBlock3D, waitForAllPanels } from '../helpers/visual-utils'
 
 test.describe('Alert Popup', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/')
+    await navigateWithBlock3D(page)
     await waitForAllPanels(page)
   })
 

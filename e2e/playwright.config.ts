@@ -8,6 +8,11 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'list',
   snapshotPathTemplate: '{testDir}/../screenshots/{testFilePath}/{arg}-{projectName}-{platform}.png',
+  expect: {
+    toHaveScreenshot: {
+      animations: 'disabled',
+    },
+  },
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',

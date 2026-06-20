@@ -37,9 +37,32 @@ export async function waitForAllPanels(page: Page) {
   }
 }
 
+export async function navigateWithBlock3D(page: Page) {
+  await page.addInitScript(() => {
+    const orig = HTMLCanvasElement.prototype.getContext
+    HTMLCanvasElement.prototype.getContext = function (
+      this: HTMLCanvasElement,
+      type: string,
+      ...args: unknown[]
+    ) {
+      if (type === 'webgl' || type === 'webgl2' || type === 'experimental-webgl') return null
+      return orig.apply(this, [type as any, ...args])
+    }
+  })
+  await page.goto('/')
+}
+
 export async function hide3DCanvas(page: Page) {
-  await page.locator('#root canvas').first().evaluate((el) => {
-    (el as HTMLElement).style.display = 'none'
+  await page.addStyleTag({ content: 'canvas { display: none !important; }' })
+  // Stop SSE mock intervals that push data updates
+  await page.evaluate(() => {
+    const maxId = window.setTimeout(() => {}, 0)
+    // Clear all intervals (SSE mock uses setInterval for data pushes)
+    for (let i = 1; i <= maxId; i++) {
+      window.clearInterval(i)
+    }
+    // Stop requestAnimationFrame-based animations
+    window.requestAnimationFrame = (() => 0) as typeof window.requestAnimationFrame
   })
 }
 

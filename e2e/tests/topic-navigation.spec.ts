@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { navigateWithBlock3D } from '../helpers/visual-utils'
 
 const topicPanel: Record<string, string> = {
   '教学研究': '教学资源',
@@ -10,7 +11,7 @@ const topicPanel: Record<string, string> = {
 
 test.describe('Topic Navigation', () => {
   test('should switch between all 6 topics', async ({ page }) => {
-    await page.goto('/')
+    await navigateWithBlock3D(page)
 
     for (const [topic, panelTitle] of Object.entries(topicPanel)) {
       await page.getByText(topic, { exact: true }).click()
@@ -20,7 +21,7 @@ test.describe('Topic Navigation', () => {
   })
 
   test('should keep scene canvas mounted after topic switch', async ({ page }) => {
-    await page.goto('/')
+    await navigateWithBlock3D(page)
     const canvas = page.locator('#root canvas').first()
 
     await page.getByText('行政办公').click()
@@ -33,7 +34,7 @@ test.describe('Topic Navigation', () => {
   })
 
   test('should collapse and expand a collapsible panel', async ({ page }) => {
-    await page.goto('/')
+    await navigateWithBlock3D(page)
     await page.waitForTimeout(2000)
     const facultyPanel = page.getByText('教职工全景态势').first()
     await expect(facultyPanel).toBeVisible({ timeout: 5000 })

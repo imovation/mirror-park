@@ -5,3 +5,5 @@ dist/
 pnpm-lock.yaml
 tsconfig.tsbuildinfo
 pnpm-workspace.yaml
+test-results/
+.last-run.json
