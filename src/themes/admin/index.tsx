@@ -13,7 +13,7 @@ export const adminTopMetrics = () => <AdminTopMetrics />
 
 export const adminPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'admin-notices', title: '通知公告', height: 'flex-1' },
+    { id: 'admin-notices', title: '通知公告', height: 'flex-2' },
     { id: 'admin-duty', title: '值班安排', height: 'flex-1' },
     { id: 'admin-meetings', title: '会议管理', height: 'flex-2' },
   ],

@@ -20,7 +20,7 @@ export default function DashboardPanel({
 }: DashboardPanelProps) {
   const [collapsed, setCollapsed] = useState(false)
   const showCollapse = collapsible && flexGrow >= 3
-  const scrollMode = flexGrow >= 2 ? 'auto' : 'hidden'
+  const scrollMode = 'auto'
 
   return (
     <div

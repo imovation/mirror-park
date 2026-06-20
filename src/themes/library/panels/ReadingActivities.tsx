@@ -14,7 +14,7 @@ export default function ReadingActivities() {
   if (!data) return <StatusPanel type="empty" />
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
-      {data.activities.slice(0, 5).map((a) => (
+      {data.activities.slice(0, 4).map((a) => (
         <div
           key={a.id}
           style={{

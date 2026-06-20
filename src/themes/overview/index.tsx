@@ -14,7 +14,7 @@ export const overviewTopMetrics = () => <OverviewTopMetrics />
 export const overviewPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
     { id: 'overview-faculty', title: '教职工全景态势', height: 'flex-3', collapsible: true, collapsedSummary: '教职工组成、学历、职称、学科分布' },
-    { id: 'overview-student-info', title: '学生基础信息', height: 'flex-1' },
+    { id: 'overview-student-info', title: '学生基础信息', height: 'flex-2' },
   ],
   right: [
     { id: 'overview-activity-stats', title: '活跃度时段统计', height: 'flex-1' },

@@ -16,7 +16,7 @@ export default function ActivityTimeStats() {
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       <ChartLabel>各时段活跃度</ChartLabel>
       <div style={{ flex: 1, minHeight: 0 }}>
-        <BarChart data={chartData} height={180} horizontal={false} barWidth="30%" />
+        <BarChart data={chartData} height={250} horizontal={false} barWidth="30%" />
       </div>
     </div>
   )
