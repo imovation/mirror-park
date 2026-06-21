@@ -3,7 +3,7 @@ import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
-const TOP3_COLORS = ['var(--color-danger)', 'var(--color-warning)', '#faad14']
+const TOP3_COLORS = ['var(--color-danger)', 'var(--color-warning)', 'var(--color-pending)']
 const rankLabel = ['🥇', '🥈', '🥉']
 
 export default function ReadingStars() {

@@ -63,7 +63,7 @@ export default function BorrowStats() {
             <RingChart
               data={collectionData}
               height={110}
-              colors={['#4a9eff', '#fa8c16', '#52c41a']}
+              colors={['var(--accent)', 'var(--color-pending)', 'var(--color-success)']}
               centerLabel={String(collectionData.reduce((a, b) => a + b.value, 0).toLocaleString())}
               centerLabelSize={12}
             />
@@ -72,7 +72,7 @@ export default function BorrowStats() {
             {collectionData.map((c, i) => {
               const total = collectionData.reduce((a, b) => a + b.value, 0)
               const pct = total > 0 ? Math.round((c.value / total) * 100) : 0
-              const color = ['#4a9eff', '#fa8c16', '#52c41a'][i]
+              const color = ['var(--accent)', 'var(--color-pending)', 'var(--color-success)'][i]
               return (
                 <div key={c.name} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span style={{ width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0 }} />

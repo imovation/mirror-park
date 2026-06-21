@@ -38,7 +38,7 @@ export default function LogisticsCanteen() {
         <button
           onClick={() => setShowVideo(true)}
           style={{
-            background: 'rgba(74,158,255,0.1)', border: '1px solid var(--border-light)',
+            background: 'rgba(var(--accent-rgb), 0.1)', border: '1px solid var(--border-light)',
             borderRadius: 4, color: 'var(--accent)', cursor: 'pointer',
             fontSize: 'var(--font-size-xs)', fontFamily: 'inherit',
             padding: '2px 8px',

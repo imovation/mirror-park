@@ -42,8 +42,8 @@ export default function MeetingManagement() {
             <div
               key={room.name}
               style={{
-                background: room.status === '使用中' ? 'rgba(255,109,0,0.12)' : 'rgba(0,200,83,0.1)',
-                border: `1px solid ${room.status === '使用中' ? 'rgba(255,109,0,0.3)' : 'rgba(0,200,83,0.25)'}`,
+                background: 'var(--panel-bg)',
+                border: room.status === '使用中' ? '1px solid var(--color-warning)' : '1px solid var(--color-success)',
                 borderRadius: 6,
                 padding: '6px 8px',
                 textAlign: 'center',

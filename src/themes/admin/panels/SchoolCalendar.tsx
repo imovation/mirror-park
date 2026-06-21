@@ -30,7 +30,7 @@ export default function SchoolCalendar() {
       id: `upcoming-${e.date}`,
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px rgba(82,196,26,0.5)', flexShrink: 0 }} />
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px rgba(var(--color-success-rgb), 0.5)', flexShrink: 0 }} />
           <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
           <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>{e.event}</span>
         </div>
@@ -40,7 +40,7 @@ export default function SchoolCalendar() {
       id: `holiday-${e.date}`,
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-pending)', boxShadow: '0 0 8px rgba(250,173,20,0.5)', flexShrink: 0 }} />
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-pending)', boxShadow: '0 0 8px rgba(var(--color-warning-rgb), 0.5)', flexShrink: 0 }} />
           <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
           <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-pending)' }}>{e.event}</span>
         </div>
@@ -74,11 +74,11 @@ export default function SchoolCalendar() {
           活动
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 4px rgba(82,196,26,0.6)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 4px rgba(var(--color-success-rgb), 0.6)' }} />
           近期事件
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-pending)', boxShadow: '0 0 4px rgba(250,173,20,0.6)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-pending)', boxShadow: '0 0 4px rgba(var(--color-warning-rgb), 0.6)' }} />
           假期
         </span>
       </div>

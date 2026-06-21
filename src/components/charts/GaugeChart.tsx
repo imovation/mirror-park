@@ -34,7 +34,7 @@ export default function GaugeChart({ value, max = 100, name = '', height = 150 }
             ],
           },
         },
-        pointer: { length: '60%', width: 6, itemStyle: { color: '#fff' } },
+        pointer: { length: '60%', width: 6, itemStyle: { color: 'var(--text-primary)' } },
         axisTick: { distance: -14, length: 6, lineStyle: { color: t.gaugeAxis, width: 1 } },
         splitLine: { distance: -20, length: 16, lineStyle: { color: t.gaugeAxis, width: 2 } },
         axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize, distance: 28 },

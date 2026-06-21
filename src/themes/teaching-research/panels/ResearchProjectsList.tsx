@@ -3,9 +3,9 @@ import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
 const statusColors: Record<string, string> = {
-  '在研': '#4a9eff',
-  '中期': '#fa8c16',
-  '结题': '#52c41a',
+  '在研': 'var(--accent)',
+  '中期': 'var(--color-pending)',
+  '结题': 'var(--color-success)',
 }
 
 const STATUS_ORDER = ['在研', '中期', '结题']

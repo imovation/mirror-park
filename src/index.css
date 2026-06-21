@@ -19,6 +19,7 @@
   --accent: #4a9eff;
   --accent-rgb: 74, 158, 255;
   --color-success: #00c853;
+  --color-success-rgb: 0, 200, 83;
   --color-warning: #ff6d00;
   --color-danger: #ff1744;
   --color-pending: #ffc107;
@@ -79,6 +80,7 @@
   --accent: #2563eb;
   --accent-rgb: 37, 99, 235;
   --color-success: #059669;
+  --color-success-rgb: 5, 150, 105;
   --color-danger: #dc2626;
   --color-pending: #d97706;
   --scrollbar-thumb: rgba(0, 0, 0, 0.15);

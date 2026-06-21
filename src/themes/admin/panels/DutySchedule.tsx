@@ -4,14 +4,14 @@ import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
 const ROLE_COLORS: Record<string, string> = {
-  '行政值班': '#8b9dc3',
-  '教师值班': '#7bbf8a',
-  '安保值班': '#d4a855',
-  '医务值班': '#c48b9d',
-  '行政副值班': '#8b9dc3',
-  '教师副值班': '#7bbf8a',
-  '巡逻安保': '#d4a855',
-  '值班组长': '#c48b9d',
+  '行政值班': 'var(--accent)',
+  '教师值班': 'var(--color-success)',
+  '安保值班': 'var(--color-pending)',
+  '医务值班': 'var(--color-chart-5)',
+  '行政副值班': 'var(--accent)',
+  '教师副值班': 'var(--color-success)',
+  '巡逻安保': 'var(--color-pending)',
+  '值班组长': 'var(--color-chart-5)',
 }
 
 const ROLE_ICONS: Record<string, string> = {
@@ -67,7 +67,7 @@ export default function DutySchedule() {
           <StatCard
             key={s.role}
             icon={ROLE_ICONS[s.role] || '👤'}
-            iconColor={ROLE_COLORS[s.role] || '#4a9eff'}
+            iconColor={ROLE_COLORS[s.role] || 'var(--accent)'}
             value={s.name}
             label={s.role}
             sublabel={s.phone}
