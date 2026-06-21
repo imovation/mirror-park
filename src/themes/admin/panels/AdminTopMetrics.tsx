@@ -1,15 +1,9 @@
 import { useAdminOverview, useMeetingData } from '@/api/queries/admin'
 import TopMetricsCard from '@/components/ui/TopMetricsCard'
-import { TOP_METRIC_PALETTE } from '@/config/metricColors'
+import { getMetricShades } from '@/config/metricColors'
 import { formatNumber } from '@/utils/format'
 
-const COLORS = [
-  TOP_METRIC_PALETTE.blue,
-  TOP_METRIC_PALETTE.purple,
-  TOP_METRIC_PALETTE.green,
-  TOP_METRIC_PALETTE.cyan,
-  TOP_METRIC_PALETTE.orange,
-]
+const SHADES = getMetricShades()
 
 export default function AdminTopMetrics() {
   const { data } = useAdminOverview()
@@ -19,11 +13,11 @@ export default function AdminTopMetrics() {
 
   return (
     <div style={{ display: 'flex', gap: 10, justifyContent: 'space-between', width: '100%' }}>
-      <TopMetricsCard icon="department" label="部门数量" value={formatNumber(data.departmentCount)} valueColor={COLORS[0]} />
-      <TopMetricsCard icon="teacher" label="教职工总数" value={formatNumber(data.staffCount)} valueColor={COLORS[1]} />
-      <TopMetricsCard icon="attendance" label="今日出勤率" value={`${Math.round((data.attendanceRate ?? 0) * 100)}%`} valueColor={COLORS[2]} />
-      <TopMetricsCard icon="calendar" label="今日会议" value={meetings?.todayCount?.toString() ?? '-'} valueColor={COLORS[3]} />
-      <TopMetricsCard icon="room" label="功能室数量" value={data.roomCount?.toString() ?? '-'} valueColor={COLORS[4]} />
+      <TopMetricsCard icon="department" label="部门数量" value={formatNumber(data.departmentCount)} valueColor={SHADES[0]} />
+      <TopMetricsCard icon="teacher" label="教职工总数" value={formatNumber(data.staffCount)} valueColor={SHADES[1]} />
+      <TopMetricsCard icon="attendance" label="今日出勤率" value={`${Math.round((data.attendanceRate ?? 0) * 100)}%`} valueColor={SHADES[2]} />
+      <TopMetricsCard icon="calendar" label="今日会议" value={meetings?.todayCount?.toString() ?? '-'} valueColor={SHADES[3]} />
+      <TopMetricsCard icon="room" label="功能室数量" value={data.roomCount?.toString() ?? '-'} valueColor={SHADES[4]} />
     </div>
   )
 }

@@ -19,14 +19,15 @@ export default function AlertPopup() {
   return (
     <div className="panel-scroll" style={{
       position: 'fixed',
-      bottom: 48,
-      right: 20,
+      bottom: 56,
+      left: '50%',
+      transform: 'translateX(-50%)',
       zIndex: 9999,
       display: 'flex',
       flexDirection: 'column',
       gap: 8,
-      maxWidth: 320,
-      maxHeight: 'calc(100vh - 60px)',
+      maxWidth: 520,
+      maxHeight: '28vh',
       overflowY: 'auto',
       paddingRight: 4,
     }}>

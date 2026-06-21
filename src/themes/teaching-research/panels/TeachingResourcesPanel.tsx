@@ -2,6 +2,7 @@ import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 import PieChart from '@/components/charts/PieChart'
 import { useTeachingResources } from '@/api/queries/teachingResearch'
+import { HUE_ROTATION } from '@/config/chartTheme'
 
 const UNITS: Record<string, string> = {
   '试卷': '套', '学案': '份', '教学设计': '个', '微课': '节', '课件': '个', '素材': '份',
@@ -24,7 +25,7 @@ export default function TeachingResourcesPanel() {
         </span>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0 }}>
-        {data.resources.map((r) => (
+        {data.resources.map((r, i) => (
           <div
             key={r.name}
             style={{
@@ -34,7 +35,7 @@ export default function TeachingResourcesPanel() {
               overflow: 'hidden',
             }}
           >
-            <div style={{ height: 4, background: r.color, opacity: 0.45 }} />
+            <div style={{ height: 4, background: HUE_ROTATION.r4[i % 4], opacity: 0.7 }} />
             <div style={{ padding: '8px 6px', textAlign: 'center' }}>
               <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
                 {r.value}<span style={{ fontSize: 12, color: 'var(--text-muted)', marginLeft: 2, marginRight: 4, fontWeight: 400 }}>{UNITS[r.name] || ''}</span>
@@ -47,6 +48,7 @@ export default function TeachingResourcesPanel() {
       <div style={{ flex: 1, minHeight: 0 }}>
         <PieChart
           data={data.resources.map((r) => ({ name: r.name, value: r.value }))}
+          colors={HUE_ROTATION.r4}
           height={140}
           legendPosition="bottom"
         />

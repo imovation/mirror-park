@@ -57,8 +57,18 @@ function DeviceMarkers() {
           </Sphere>
           <Html position={[d.position[0], d.position[1] + 0.6, d.position[2]]} center distanceFactor={40} style={{ pointerEvents: 'none' }}>
             <div style={{
-              background: d.type === 'camera' ? 'rgba(74,158,255,0.8)' : 'rgba(0,200,83,0.8)',
-              color: 'var(--text-primary)', padding: '1px 6px', borderRadius: 3, fontSize: 'var(--font-size-2xs)', whiteSpace: 'nowrap',
+              background: d.type === 'camera' ? 'rgba(8, 24, 48, 0.85)' : 'rgba(4, 28, 16, 0.85)',
+              color: d.type === 'camera' ? '#7dd3fc' : '#86efac',
+              padding: '2px 8px',
+              borderRadius: 4,
+              fontSize: 'var(--font-size-2xs)',
+              fontWeight: 600,
+              whiteSpace: 'nowrap',
+              border: d.type === 'camera' ? '1px solid rgba(125, 211, 252, 0.5)' : '1px solid rgba(134, 239, 172, 0.5)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
+              textShadow: '0 1px 2px rgba(0,0,0,0.6)',
             }}>
               {d.type === 'camera' ? '📹' : '🚪'} {d.label}
             </div>

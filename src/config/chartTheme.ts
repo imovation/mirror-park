@@ -117,4 +117,15 @@ export const CHART_PALETTE = {
   semantic: SEMANTIC,
 }
 
+// 色相轮转: 相邻图表用不同色相增强区分
+// 设计: 60° 间隔的高对比色对, 避免视觉混淆
+export const HUE_ROTATION = {
+  // 4 色: 青/紫/橙/绿 (60° 间隔)
+  r4: ['#22d3ee', '#a78bfa', '#fb923c', '#34d399'],
+  // 3 色: 青/橙/紫 (120° 间隔, 三角形色相)
+  r3: ['#22d3ee', '#fb923c', '#a78bfa'],
+  // 2 色: 青/橙 (180° 间隔, 补色)
+  r2: ['#22d3ee', '#fb923c'],
+}
+
 export type UIThemeType = UITheme

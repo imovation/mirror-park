@@ -10,3 +10,14 @@ export const TOP_METRIC_PALETTE = {
   teal: '#2dd4bf',
   lime: '#a3e635',
 }
+
+export function getMetricShades(): string[] {
+  return [
+    '#22d3ee',
+    '#a78bfa',
+    '#fb923c',
+    '#34d399',
+    '#22d3ee',
+    '#a78bfa',
+  ]
+}

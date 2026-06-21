@@ -1,4 +1,4 @@
-import { CHART_PALETTE } from '@/config/chartTheme'
+import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
 import { useAttendanceData, useClassroomUsage } from '@/api/queries/academics'
 import BarChart from '@/components/charts/BarChart'
 import LineChart from '@/components/charts/LineChart'
@@ -38,13 +38,13 @@ export default function AttendanceAndSpace() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">班级出勤排名</ChartLabel>
-          <BarChart data={att.classRank.map(r => ({ name: r.name, value: r.value }))} colors={CHART_PALETTE.dark} height={200} />
+          <BarChart data={att.classRank.map(r => ({ name: r.name, value: r.value }))} color={HUE_ROTATION.r3[0]} height={200} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">30日出勤趋势</ChartLabel>
           <LineChart
             xData={att.trend.days}
-            series={[{ name: '出勤率', data: att.trend.values, color: 'var(--accent)' }]}
+            series={[{ name: '出勤率', data: att.trend.values, color: HUE_ROTATION.r3[1] }]}
             height={140}
             smooth
             area

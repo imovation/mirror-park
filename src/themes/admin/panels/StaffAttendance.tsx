@@ -1,4 +1,4 @@
-import { CHART_PALETTE } from '@/config/chartTheme'
+import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
 import { useAdminAttendance } from '@/api/queries/admin'
 import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
@@ -20,13 +20,13 @@ export default function StaffAttendance() {
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各部门出勤率</ChartLabel>
-        <BarChart data={data.departmentRates} colors={CHART_PALETTE.dark} height={120} horizontal={false} barWidth="50%" />
+        <BarChart data={data.departmentRates} color={HUE_ROTATION.r2[0]} height={120} horizontal={false} barWidth="50%" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>近30日出勤趋势</ChartLabel>
         <LineChart
           xData={data.monthlyTrend.days}
-          series={[{ name: '出勤率', data: data.monthlyTrend.values, color: CHART_PALETTE.semantic.info }]}
+          series={[{ name: '出勤率', data: data.monthlyTrend.values, color: HUE_ROTATION.r2[1] }]}
           height={120}
         />
       </div>

@@ -2,6 +2,7 @@ import { useHotBooks, useClassRank } from '@/api/queries/library'
 import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
+import { HUE_ROTATION } from '@/config/chartTheme'
 
 export default function BookRank() {
   const hotQuery = useHotBooks()
@@ -21,6 +22,7 @@ export default function BookRank() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={hot.top10.map(b => ({ name: b.name, value: b.count }))}
+            color={HUE_ROTATION.r2[0]}
             height={160}
             gridLeft={70}
             tooltip={false}
@@ -33,6 +35,7 @@ export default function BookRank() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={rank.classRank.slice(0, 8)}
+            color={HUE_ROTATION.r2[1]}
             height={160}
             gridLeft="20%"
             tooltip={false}

@@ -20,28 +20,41 @@ export default function TeacherStudiosPanel() {
           style={{
             background: 'var(--skeleton-bg)',
             borderRadius: 6,
-            padding: '8px 10px',
+            padding: '6px 8px',
             border: '1px solid var(--border-light)',
+            minWidth: 0,
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-            <span style={{ fontSize: 'var(--font-size-sm)', fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+            <span style={{
+              fontSize: 12,
+              fontWeight: 600,
+              color: 'var(--text-primary)',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              flex: 1,
+              minWidth: 0,
+            }}
+              title={s.name}
+            >
               {s.name}
             </span>
             <span style={{
-              fontSize: 'var(--font-size-xs)',
+              fontSize: 10,
               color: SUBJECT_COLORS[s.subject] || 'var(--accent)',
               background: `${SUBJECT_COLORS[s.subject] || 'var(--accent)'}20`,
-              padding: '2px 6px',
+              padding: '1px 5px',
               borderRadius: 3,
               flexShrink: 0,
-              marginLeft: 4,
             }}>
               {s.subject}
             </span>
           </div>
-          <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)', marginBottom: 2 }}>主持人: {s.host}</div>
-          <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            主持人: {s.host}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>
             成果 <b style={{ color: 'var(--text-primary)' }}>{s.achievementCount}</b> 项
           </div>
         </div>

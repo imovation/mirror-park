@@ -1,4 +1,4 @@
-import { CHART_PALETTE } from '@/config/chartTheme'
+import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
 import { useExamData } from '@/api/queries/academics'
 import BarChart from '@/components/charts/BarChart'
 import ScrollList from '@/components/ui/ScrollList'
@@ -36,11 +36,11 @@ export default function ExamManagement() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">年级均分</ChartLabel>
-          <BarChart data={data.gradeAverages} colors={CHART_PALETTE.dark} height={200} />
+          <BarChart data={data.gradeAverages} color={HUE_ROTATION.r2[0]} height={200} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">成绩分布</ChartLabel>
-          <BarChart data={data.scoreDistribution} colors={CHART_PALETTE.dark} height={200} barWidth="60%" showLabel labelFormat="value" />
+          <BarChart data={data.scoreDistribution} color={HUE_ROTATION.r2[1]} height={200} barWidth="60%" showLabel labelFormat="value" />
         </div>
       </div>
     </div>

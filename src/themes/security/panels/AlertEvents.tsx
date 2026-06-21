@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { CHART_PALETTE } from '@/config/chartTheme'
+import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
 import { useAlertData } from '@/api/queries/security'
 import { useUIStore } from '@/stores/useUIStore'
 import NumberFlip from '@/components/ui/NumberFlip'
@@ -44,7 +44,7 @@ export default function AlertEvents() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">告警类型</ChartLabel>
-          <PieChart data={data.typeDistribution} height={120} />
+          <PieChart data={data.typeDistribution} colors={HUE_ROTATION.r2} height={120} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">处理状态</ChartLabel>

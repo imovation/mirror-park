@@ -25,6 +25,29 @@
 5. 纯黑色修复（LineChart areaStyle CSS 变量 + RingChart colors）
 6. UI 打磨：Tooltip 卡片式 + 面板序次动画 + BottomBar 运行时长 + 微交互 hover
 
+## 变更日志 (2026-06-22) — 7 轮 UI/UX 优化
+
+| 类别 | 改动 | 文件 |
+|------|------|------|
+| P0-1 | **TopMetrics 移到中间列** (gridArea: 'topmetrics') | `ScreenLayout.tsx` |
+| P0-2 | **TopMetrics 缩短背景** (max-width 880px, 圆角卡片式) | `ScreenLayout.tsx` |
+| P0-3 | **TopMetrics 4 色循环** (青/紫/橙/绿) | `metricColors.ts` + 7 主题 TopMetrics |
+| P0-4 | **AlertPopup 位置修复** (top 64→bottom 56, 居中底部, max-width 520) | `AlertPopup.tsx` |
+| P0-5 | **LogisticsLeave 请假记录区加间距+边框** | `LogisticsLeave.tsx` |
+| P1-1 | **HUE_ROTATION 工具** (r2/r3/r4 色相轮转) | `chartTheme.ts` |
+| P1-2 | **12 个 panel 应用色相轮转** | 12 源文件 |
+| P1-3 | **教学研究文字溢出修复** (2 行 clamp + 字号缩小) | `ResearchProjectsList.tsx` + `TeacherStudiosPanel.tsx` |
+| P2-1 | **教学资源 6 卡片 4 色循环** | `TeachingResourcesPanel.tsx` |
+| P2-2 | **3D POI 标签对比度增强** (深底亮字 + 边框 + 阴影 + 模糊) | `SecurityScene.tsx` |
+| 文档 | **UI_UX_AUDIT_2026-06-21.md** (新) | `docs/` |
+| 测试 | **8 张截图基线更新** | `e2e/screenshots/` |
+
+### 关键设计决策
+- **TopMetrics 4 色循环**: 用 `HUE_ROTATION.r4 = ['#22d3ee', '#a78bfa', '#fb923c', '#34d399']` 替代原 6 色混乱
+- **多图表色相轮转**: 同 panel 内 2 图用 r2 (青/橙), 3 图用 r3 (青/橙/紫)
+- **保留语义色**: 状态类 RingChart (在线/离线/故障) 仍用绿/橙/红
+- **TopMetrics 圆角卡片**: `borderRadius: 8` + 边框 + blur + shadow，不贯穿整个屏幕
+
 ## 变更日志 (2026-06-21)
 
 ### P0 — 布局严重问题修复

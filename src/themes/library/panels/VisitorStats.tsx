@@ -4,6 +4,7 @@ import BarChart from '@/components/charts/BarChart'
 import LineChart from '@/components/charts/LineChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
+import { HUE_ROTATION } from '@/config/chartTheme'
 
 export default function VisitorStats() {
   const { data, isLoading, error } = useLibraryVisitors()
@@ -21,7 +22,7 @@ export default function VisitorStats() {
           <ChartLabel>近7日入馆趋势</ChartLabel>
           <LineChart
             xData={['6/14', '6/15', '6/16', '6/17', '6/18', '6/19', '今日']}
-            series={[{ name: '入馆人数', data: [210, 280, 195, 340, 260, 310, 353], color: 'var(--accent)' }]}
+            series={[{ name: '入馆人数', data: [210, 280, 195, 340, 260, 310, 353], color: HUE_ROTATION.r2[0] }]}
             height={120}
           />
         </div>
@@ -31,7 +32,7 @@ export default function VisitorStats() {
             data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
             height={120}
             horizontal={false}
-            color="var(--color-chart-1)"
+            color={HUE_ROTATION.r2[1]}
           />
         </div>
       </div>

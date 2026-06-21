@@ -68,14 +68,18 @@ export default function ResearchProjectsList() {
           >
             <div
               style={{
-                fontSize: 'var(--font-size-md)',
+                fontSize: 13,
                 fontWeight: 600,
                 color: 'var(--text-primary)',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
                 marginBottom: 4,
+                lineHeight: 1.3,
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                minHeight: 34,
               }}
+              title={p.name}
             >
               {p.name}
             </div>

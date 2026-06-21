@@ -1,4 +1,4 @@
-import { CHART_PALETTE } from '@/config/chartTheme'
+import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
 import { useLogisticsLeave } from '@/api/queries/logistics'
 import NumberFlip from '@/components/ui/NumberFlip'
 import PieChart from '@/components/charts/PieChart'
@@ -33,25 +33,25 @@ export default function LogisticsLeave() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">请假类型分布</ChartLabel>
-          <PieChart data={data.typeDistribution} height={130} />
+          <PieChart data={data.typeDistribution} colors={HUE_ROTATION.r3} height={130} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各年级请假</ChartLabel>
-          <BarChart data={data.gradeDistribution} colors={CHART_PALETTE.dark} height={130} />
+          <BarChart data={data.gradeDistribution} color={HUE_ROTATION.r3[1]} height={130} />
         </div>
       </div>
       <div style={{ flexShrink: 0 }}>
         <ChartLabel>近 7 日请假趋势</ChartLabel>
         <LineChart
           xData={fakeTrend.days}
-          series={[{ name: '请假人数', data: fakeTrend.values, color: 'var(--accent)' }]}
+          series={[{ name: '请假人数', data: fakeTrend.values, color: HUE_ROTATION.r3[2] }]}
           height={120}
           smooth
         />
       </div>
-      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', marginTop: 4 }}>
         <ChartLabel>请假离校记录 ({data.records.length})</ChartLabel>
-        <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
+        <div style={{ flex: 1, minHeight: 0, overflow: 'auto', borderRadius: 6, background: 'var(--panel-bg)', border: '1px solid var(--border)', paddingTop: 4 }}>
           <ScrollList
             maxHeight={120}
             items={data.records.slice(0, 6).map(r => ({

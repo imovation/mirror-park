@@ -3,7 +3,7 @@ import RingChart from '@/components/charts/RingChart'
 import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
-import { CHART_PALETTE } from '@/config/chartTheme'
+import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
 
 export function FacultyComposition() {
   const personnel = usePersonnelComposition()
@@ -73,7 +73,7 @@ export function FacultyStructure() {
           <ChartLabel align="center">职称分布</ChartLabel>
           <BarChart
             data={t.titles}
-            colors={CHART_PALETTE.dark}
+            color={HUE_ROTATION.r3[0]}
             height={150}
             gridLeft="20%"
             gridBottom="15%"
@@ -85,7 +85,7 @@ export function FacultyStructure() {
           <ChartLabel align="center">学历分布</ChartLabel>
           <BarChart
             data={p.education}
-            colors={CHART_PALETTE.dark}
+            color={HUE_ROTATION.r3[1]}
             height={150}
             gridLeft="15%"
             gridBottom="15%"
@@ -98,7 +98,7 @@ export function FacultyStructure() {
         <ChartLabel align="center">学科分布</ChartLabel>
         <BarChart
           data={t.subjects}
-          colors={CHART_PALETTE.dark}
+          color={HUE_ROTATION.r3[2]}
           height={140}
           gridLeft="14%"
           gridBottom="15%"
