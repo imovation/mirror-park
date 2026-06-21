@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useMonitorStatus } from '@/api/queries/security'
 import RingChart from '@/components/charts/RingChart'
 import BarChart from '@/components/charts/BarChart'
@@ -43,7 +44,7 @@ export default function MonitorStatus() {
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各区域摄像头分布</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={data.regionDistribution} height={180} barWidth="50%" />
+          <BarChart data={data.regionDistribution} colors={CHART_PALETTE.dark} height={180} barWidth="50%" />
         </div>
       </div>
     </div>

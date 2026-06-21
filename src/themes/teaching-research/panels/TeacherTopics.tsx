@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useTeacherTopics, useResearchProjects } from '@/api/queries/teachingResearch'
 import NumberFlip from '@/components/ui/NumberFlip'
 import StatusPanel from '@/components/ui/StatusPanel'
@@ -36,7 +37,7 @@ export default function TeacherTopics() {
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">课题成员数</ChartLabel>
-          <BarChart data={memberCount} height={160} gridLeft="20%" />
+          <BarChart data={memberCount} colors={CHART_PALETTE.dark} height={160} gridLeft="20%" />
         </div>
       </div>
     </div>

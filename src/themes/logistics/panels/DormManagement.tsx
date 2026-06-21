@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useDormData } from '@/api/queries/logistics'
 import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
@@ -20,7 +21,7 @@ export default function DormManagement() {
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel align="center">各楼栋入住率</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={data.buildingOccupancy} height={200} />
+          <BarChart data={data.buildingOccupancy} colors={CHART_PALETTE.dark} height={200} />
         </div>
       </div>
     </div>

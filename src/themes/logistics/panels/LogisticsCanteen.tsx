@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useState } from 'react'
 import { useLogisticsCanteen } from '@/api/queries/logistics'
 import BarChart from '@/components/charts/BarChart'
@@ -48,7 +49,7 @@ export default function LogisticsCanteen() {
         </button>
       </div>
       <div style={{ flexShrink: 0, height: 130 }}>
-        <BarChart data={data.meals} height={120} showLabel />
+        <BarChart data={data.meals} colors={CHART_PALETTE.dark} height={120} showLabel />
       </div>
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>食品安全检查 ({data.safetyRecords.length} 项)</ChartLabel>

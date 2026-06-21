@@ -4,6 +4,7 @@ import GaugeChart from '@/components/charts/GaugeChart'
 import NumberFlip from '@/components/ui/NumberFlip'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
+import { CHART_PALETTE } from '@/config/chartTheme'
 
 export function ScheduleDistribution() {
   const schedule = useScheduleData()
@@ -19,17 +20,17 @@ export function ScheduleDistribution() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="使用中" value={c.inUse} unit="间" color="var(--color-success)" />
-        <NumberFlip label="空闲" value={c.available} unit="间" color="var(--color-warning)" />
+        <NumberFlip label="使用中" value={c.inUse} unit="间" color={CHART_PALETTE.semantic.success} />
+        <NumberFlip label="空闲" value={c.available} unit="间" color={CHART_PALETTE.semantic.warning} />
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">年级排课分布</ChartLabel>
-          <BarChart data={s.gradeDistribution} height={180} barWidth="55%" />
+          <BarChart data={s.gradeDistribution} colors={CHART_PALETTE.dark} height={180} barWidth="55%" />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各楼宇使用率</ChartLabel>
-          <BarChart data={c.buildingUsage} height={180} barWidth="55%" />
+          <BarChart data={c.buildingUsage} colors={CHART_PALETTE.dark} height={180} barWidth="55%" />
         </div>
       </div>
     </div>
@@ -51,13 +52,13 @@ export function SpaceUsage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="教室总数" value={total} unit="间" color="var(--accent)" />
-        <NumberFlip label="实时冲突" value={conflictCount} unit="节" color="var(--color-danger)" />
+        <NumberFlip label="教室总数" value={total} unit="间" color={CHART_PALETTE.semantic.info} />
+        <NumberFlip label="实时冲突" value={conflictCount} unit="节" color={CHART_PALETTE.semantic.danger} />
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">教室类型分布</ChartLabel>
-          <BarChart data={c.typeDistribution} height={180} />
+          <BarChart data={c.typeDistribution} colors={CHART_PALETTE.dark} height={180} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">使用率</ChartLabel>

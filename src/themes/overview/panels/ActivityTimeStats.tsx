@@ -3,6 +3,7 @@ import BarChart from '@/components/charts/BarChart'
 import NumberFlip from '@/components/ui/NumberFlip'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
+import { CHART_PALETTE } from '@/config/chartTheme'
 
 export default function ActivityTimeStats() {
   const { data, isLoading, error } = useActivity()
@@ -21,11 +22,11 @@ export default function ActivityTimeStats() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0, alignItems: 'center' }}>
-        <NumberFlip label="峰值人数" value={peakValue} unit="人" color="var(--accent)" />
-        <NumberFlip label="平均活跃" value={avgValue} unit="人" color="var(--color-success)" />
+        <NumberFlip label="峰值人数" value={peakValue} unit="人" color={CHART_PALETTE.semantic.info} />
+        <NumberFlip label="平均活跃" value={avgValue} unit="人" color={CHART_PALETTE.semantic.success} />
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', marginBottom: 4 }}>峰值时段</div>
-          <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: 'var(--accent)', fontFamily: 'monospace' }}>{peakHour}</div>
+          <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: CHART_PALETTE.semantic.warning, fontFamily: 'monospace' }}>{peakHour}</div>
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
@@ -36,7 +37,13 @@ export default function ActivityTimeStats() {
           </span>
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={chartData} height={200} horizontal={false} barWidth="30%" />
+          <BarChart
+            data={chartData}
+            colors={chartData.map((d, i) => (i === peakIndex ? CHART_PALETTE.semantic.warning : CHART_PALETTE.semantic.info))}
+            height={200}
+            horizontal={false}
+            barWidth="30%"
+          />
         </div>
       </div>
     </div>

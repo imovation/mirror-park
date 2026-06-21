@@ -5,10 +5,12 @@ interface TopMetricsCardProps {
   value: string
   unit?: string
   icon?: IconType
+  valueColor?: string
   title?: string
 }
 
-export default function TopMetricsCard({ label, value, unit, icon, title }: TopMetricsCardProps) {
+export default function TopMetricsCard({ label, value, unit, icon, valueColor, title }: TopMetricsCardProps) {
+  const finalValueColor = valueColor || 'var(--text-primary)'
   return (
     <div
       title={title}
@@ -17,13 +19,13 @@ export default function TopMetricsCard({ label, value, unit, icon, title }: TopM
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
-        padding: '5px 12px 5px 10px',
+        gap: 10,
+        padding: '6px 14px 6px 12px',
         borderRadius: 6,
         background: 'var(--theme-gradient), var(--panel-bg)',
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
-        minWidth: 88,
+        minWidth: 96,
         cursor: title ? 'help' : 'default',
         overflow: 'hidden',
       }}>
@@ -34,8 +36,8 @@ export default function TopMetricsCard({ label, value, unit, icon, title }: TopM
           top: 4,
           bottom: 4,
           width: 3,
-          background: 'var(--theme-primary)',
-          boxShadow: '0 0 6px var(--theme-glow)',
+          background: valueColor || 'var(--theme-primary)',
+          boxShadow: `0 0 6px ${valueColor || 'var(--theme-glow)'}`,
           borderRadius: 2,
         }}
       />
@@ -46,7 +48,7 @@ export default function TopMetricsCard({ label, value, unit, icon, title }: TopM
           left: 0,
           right: 0,
           height: 1,
-          background: 'linear-gradient(90deg, var(--theme-primary), transparent 60%)',
+          background: `linear-gradient(90deg, ${valueColor || 'var(--theme-primary)'}, transparent 60%)`,
           opacity: 0.7,
         }}
       />
@@ -56,15 +58,15 @@ export default function TopMetricsCard({ label, value, unit, icon, title }: TopM
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: 22,
-            height: 22,
-            borderRadius: 4,
-            background: 'rgba(var(--theme-primary-rgb), 0.12)',
-            boxShadow: 'inset 0 0 0 1px rgba(var(--theme-primary-rgb), 0.25)',
+            width: 26,
+            height: 26,
+            borderRadius: 5,
+            background: 'rgba(255,255,255,0.04)',
+            boxShadow: `inset 0 0 0 1px ${valueColor ? `${valueColor}55` : 'rgba(var(--theme-primary-rgb), 0.25)'}`,
             flexShrink: 0,
           }}
         >
-          <MetricIcon type={icon} size={14} />
+          <MetricIcon type={icon} size={15} color={valueColor || 'var(--theme-primary)'} />
         </div>
       )}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: 1, minWidth: 0 }}>
@@ -77,10 +79,10 @@ export default function TopMetricsCard({ label, value, unit, icon, title }: TopM
           }}>
           <span
             style={{
-              fontSize: 'var(--font-size-lg)',
+              fontSize: 'var(--font-size-xl)',
               fontWeight: 700,
-              color: 'var(--text-primary)',
-              textShadow: '0 0 8px var(--theme-glow)',
+              color: finalValueColor,
+              textShadow: `0 0 8px ${valueColor ? `${valueColor}66` : 'var(--theme-glow)'}`,
               fontFamily: 'monospace',
             }}>
             {value}
@@ -89,7 +91,7 @@ export default function TopMetricsCard({ label, value, unit, icon, title }: TopM
             <span
               style={{
                 fontSize: 'var(--font-size-2xs)',
-                color: 'var(--theme-primary)',
+                color: 'var(--text-tertiary)',
                 fontWeight: 500,
               }}>
               {unit}
@@ -100,7 +102,7 @@ export default function TopMetricsCard({ label, value, unit, icon, title }: TopM
           style={{
             fontSize: 'var(--font-size-2xs)',
             color: 'var(--text-tertiary)',
-            marginTop: 2,
+            marginTop: 3,
             letterSpacing: 0.5,
             whiteSpace: 'nowrap',
             overflow: 'hidden',

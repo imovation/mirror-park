@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useAdminAttendance } from '@/api/queries/admin'
 import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
@@ -19,7 +20,7 @@ export default function StaffAttendance() {
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各部门出勤率</ChartLabel>
-        <BarChart data={data.departmentRates} height={120} horizontal={false} barWidth="50%" />
+        <BarChart data={data.departmentRates} colors={CHART_PALETTE.dark} height={120} horizontal={false} barWidth="50%" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>近30日出勤趋势</ChartLabel>

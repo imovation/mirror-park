@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useResourceStats } from '@/api/queries/teachingResearch'
 import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
@@ -45,7 +46,7 @@ export default function ResourceStatistics() {
       </div>
       <div style={{ flexShrink: 0 }}>
         <ChartLabel>资源类型分布</ChartLabel>
-        <BarChart data={RESOURCE_DATA} height={140} />
+        <BarChart data={RESOURCE_DATA} colors={CHART_PALETTE.dark} height={140} />
       </div>
     </div>
   )

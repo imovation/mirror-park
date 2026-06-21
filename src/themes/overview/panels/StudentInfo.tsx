@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useStudentInfo } from '@/api/queries/overview'
 import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
@@ -28,7 +29,7 @@ export default function StudentInfo() {
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel align="center">年级人数对比</ChartLabel>
-        <BarChart data={data.grades.map(g => ({ name: g.name, value: g.male + g.female }))} height={160} horizontal />
+        <BarChart data={data.grades.map(g => ({ name: g.name, value: g.male + g.female }))} colors={CHART_PALETTE.dark} height={160} horizontal />
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, flexShrink: 0 }}>
         {data.grades.map((g) => (

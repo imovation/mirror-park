@@ -20,10 +20,10 @@ export default function ScreenLayout({
       style={{
         display: 'grid',
       gridTemplateAreas: `
-        "topbar  topbar  topbar"
-        "left    topmetrics right"
-        "left    .        right"
-        "bottombar bottombar bottombar"
+        "topbar       topbar       topbar"
+        "topmetrics   topmetrics   topmetrics"
+        "left         .            right"
+        "bottombar    bottombar    bottombar"
       `,
         gridTemplateRows: 'minmax(48px, 4vh) auto 1fr minmax(28px, 2.5vh)',
         gridTemplateColumns: 'minmax(260px, 20vw) 1fr minmax(260px, 20vw)',
@@ -35,7 +35,7 @@ export default function ScreenLayout({
     >
       <div style={{ gridArea: 'topbar', pointerEvents: 'auto' }}>{topBar}</div>
       {topMetrics && (
-        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', padding: '4px 8px', zIndex: 10, background: 'var(--overlay-bg)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 'var(--radius-lg)', margin: '4px 12px 0' }}>
+        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'stretch', padding: '6px 20px', zIndex: 10, background: 'var(--overlay-bg)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderBottom: '1px solid var(--border)', margin: '4px 12px 0', borderRadius: 6 }}>
           {topMetrics}
         </div>
       )}

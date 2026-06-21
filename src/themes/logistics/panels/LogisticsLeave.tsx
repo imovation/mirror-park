@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useLogisticsLeave } from '@/api/queries/logistics'
 import NumberFlip from '@/components/ui/NumberFlip'
 import PieChart from '@/components/charts/PieChart'
@@ -36,7 +37,7 @@ export default function LogisticsLeave() {
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各年级请假</ChartLabel>
-          <BarChart data={data.gradeDistribution} height={130} />
+          <BarChart data={data.gradeDistribution} colors={CHART_PALETTE.dark} height={130} />
         </div>
       </div>
       <div style={{ flexShrink: 0 }}>

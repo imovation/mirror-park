@@ -144,7 +144,7 @@ describe('TopMetrics Integration', () => {
       fillQueryCache(qc, ['library', 'collection'], null)
       const { container } = renderWithProviders(<LibraryTopMetrics />, { queryClient: qc })
       expect(container.innerHTML).not.toBe('')
-      expect(container.querySelectorAll('[style*="100px"]').length).toBeGreaterThanOrEqual(5)
+      expect(container.querySelectorAll('[style*="flex: 1"]').length).toBeGreaterThanOrEqual(5)
     })
   })
 
