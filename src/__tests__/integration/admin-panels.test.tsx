@@ -12,7 +12,7 @@ function fillQueryCache(qc: QueryClient, key: string[], data: unknown) {
 }
 
 function createQC() {
-  return new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: 0 } } })
+  return new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: 0, staleTime: Infinity } } })
 }
 
 describe('Admin Panel Integration', () => {
@@ -76,7 +76,7 @@ describe('Admin Panel Integration', () => {
       })
       renderWithProviders(<SchoolCalendar />, { queryClient: qc })
       await waitFor(() => {
-        expect(screen.getByText('会议')).toBeInTheDocument()
+        expect(screen.getAllByText('会议').length).toBeGreaterThan(0)
       })
     })
 

@@ -11,11 +11,11 @@ const TOPIC_LABELS: Record<string, string> = {
 }
 
 const TOPIC_FIRST_PANEL: Record<string, string> = {
-  overview: '教职工全景态势',
+  overview: '教职工组成',
   'teaching-research': '教学资源',
   admin: '通知公告',
   library: '借阅统计',
-  academics: '课表与空间调度',
+  academics: '课表分布',
   security: '监控状态',
 }
 

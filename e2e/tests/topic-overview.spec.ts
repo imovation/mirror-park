@@ -28,12 +28,13 @@ test.describe('Topic: Overview', () => {
   })
 
   test('collapsible panel folded — screenshot', async ({ page }) => {
-    await collapsePanel(page, '教职工全景态势')
+    await collapsePanel(page, '教职工结构')
     await expect(page).toHaveScreenshot('topic-overview-collapsed.png', { fullPage: false, threshold: 0.3 })
   })
 
   test('all panel titles visible', async ({ page }) => {
-    await expect(page.getByText('教职工全景态势').first()).toBeVisible()
+    await expect(page.getByText('教职工组成').first()).toBeVisible()
+    await expect(page.getByText('教职工结构').first()).toBeVisible()
     await expect(page.getByText('学生基础信息').first()).toBeVisible()
     await expect(page.getByText('活跃度时段统计').first()).toBeVisible()
     await expect(page.getByText('资产概况').first()).toBeVisible()
@@ -41,9 +42,9 @@ test.describe('Topic: Overview', () => {
   })
 
   test('panel fold/unfold toggle works', async ({ page }) => {
-    await collapsePanel(page, '教职工全景态势')
-    await expect(page.getByText('教职工组成、学历、职称、学科分布')).toBeVisible()
-    await expandPanel(page, '教职工全景态势')
-    await expect(page.getByText('教职工全景态势').first()).toBeVisible()
+    await collapsePanel(page, '教职工结构')
+    await expect(page.getByText('职称分布、学科分布')).toBeVisible()
+    await expandPanel(page, '教职工结构')
+    await expect(page.getByText('教职工结构').first()).toBeVisible()
   })
 })

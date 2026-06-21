@@ -8,7 +8,7 @@ test.describe('Responsive Layout', () => {
     await waitForAllPanels(page)
     await hide3DCanvas(page)
     await expect(page.getByText('智慧校园可视化平台').first()).toBeVisible()
-    await expect(page.getByText('教职工全景态势').first()).toBeVisible()
+    await expect(page.getByText('教职工组成').first()).toBeVisible()
     await expect(page).toHaveScreenshot('responsive-desktop.png', {
       fullPage: true,
       threshold: 0.3,

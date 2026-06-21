@@ -20,7 +20,7 @@ describe('AlertPopup', () => {
     expect(screen.getByText(/测试告警消息/)).toBeInTheDocument()
   })
 
-  it('renders at most 3 visible alerts', () => {
+  it('renders all alerts in scrollable container when more than 3', () => {
     useUIStore.setState({
       alertQueue: [
         { id: '1', type: 'error', message: 'Alert 1', timestamp: new Date() },
@@ -29,10 +29,12 @@ describe('AlertPopup', () => {
         { id: '4', type: 'error', message: 'Alert 4', timestamp: new Date() },
       ],
     })
-    renderWithProviders(<AlertPopup />)
+    const { container } = renderWithProviders(<AlertPopup />)
     expect(screen.getByText(/Alert 1/)).toBeInTheDocument()
     expect(screen.getByText(/Alert 2/)).toBeInTheDocument()
     expect(screen.getByText(/Alert 3/)).toBeInTheDocument()
-    expect(screen.queryByText(/Alert 4/)).not.toBeInTheDocument()
+    expect(screen.getByText(/Alert 4/)).toBeInTheDocument()
+    const popup = container.querySelector('.panel-scroll')
+    expect(popup).not.toBeNull()
   })
 })

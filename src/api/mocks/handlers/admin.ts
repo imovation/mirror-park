@@ -52,10 +52,10 @@ export const adminHandlers = [
         { date: '周五 6/20', event: '班主任工作例会', type: '会议' },
       ],
       upcomingEvents: [
-        { date: '6/23', event: '初一年级家长会' },
-        { date: '6/25', event: '教职工代表大会' },
-        { date: '6/28', event: '学期总结大会' },
-        { date: '7/2', event: '初一初二期末考试' },
+        { date: '周二 6/23', event: '初一年级家长会' },
+        { date: '周四 6/25', event: '教职工代表大会' },
+        { date: '周日 6/28', event: '学期总结大会' },
+        { date: '周四 7/2', event: '初一初二期末考试' },
       ],
       holidays: [
         { date: '7/12-8/31', event: '暑假' },

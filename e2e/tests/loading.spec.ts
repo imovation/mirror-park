@@ -15,7 +15,7 @@ test.describe('Page Load', () => {
 
   test('should render left panel data panels', async ({ page }) => {
     await page.goto('/')
-    const panels = page.locator('text=教职工全景态势')
+    const panels = page.locator('text=教职工组成')
     await expect(panels).toBeVisible({ timeout: 5000 })
   })
 

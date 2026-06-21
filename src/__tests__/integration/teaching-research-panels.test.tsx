@@ -28,7 +28,7 @@ describe('Teaching Research Panel Integration', () => {
       })
       renderWithProviders(<TeachingResourcesPanel />, { queryClient: qc })
       await waitFor(() => {
-        expect(screen.getByText('教学资源分类占比')).toBeInTheDocument()
+        expect(screen.getByText('教学资源分类')).toBeInTheDocument()
         expect(screen.getByText('课件')).toBeInTheDocument()
       })
     })
@@ -102,6 +102,11 @@ describe('Teaching Research Panel Integration', () => {
         publicAchievements: 89,
         ongoingTopics: 24,
       })
+      fillQueryCache(qc, ['tr', 'projects'], {
+        projects: [
+          { id: '1', name: '智慧课堂研究', leader: '王老师', status: '在研', members: 6 },
+        ],
+      })
       renderWithProviders(<TeacherTopics />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('课例数')).toBeInTheDocument()
@@ -112,6 +117,7 @@ describe('Teaching Research Panel Integration', () => {
     it('shows empty state when data is null', async () => {
       const qc = createQC()
       fillQueryCache(qc, ['tr', 'topics'], null)
+      fillQueryCache(qc, ['tr', 'projects'], null)
       renderWithProviders(<TeacherTopics />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('暂无数据')).toBeInTheDocument()
