@@ -1,19 +1,21 @@
+import { useUIThemeStore } from '@/stores/useUIThemeStore'
+
 export default function SceneInfo() {
+  const uiTheme = useUIThemeStore((s) => s.uiTheme)
   return (
     <div style={{
       position: 'absolute',
-      bottom: 12,
-      left: 12,
-      background: 'var(--panel-bg)',
-      border: '1px solid var(--border)',
-      borderRadius: 6,
-      padding: '8px 14px',
-      color: 'var(--text-secondary)',
+      bottom: 4,
+      left: '50%',
+      transform: 'translateX(-50%)',
+      color: 'var(--text-muted)',
       fontSize: 'var(--font-size-xs)',
+      textShadow: uiTheme === 'dark' ? '0 1px 2px rgba(0,0,0,0.3)' : 'none',
       pointerEvents: 'none',
       zIndex: 10,
+      whiteSpace: 'nowrap',
     }}>
-      <span>鼠标拖拽旋转 | 滚轮缩放 | 右键平移 | 点击建筑查看详情</span>
+      鼠标拖拽旋转 | 滚轮缩放 | 右键平移 | 点击建筑查看详情
     </div>
   )
 }
