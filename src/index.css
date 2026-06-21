@@ -12,7 +12,7 @@
   --text-primary: rgba(255, 255, 255, 0.85);
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-tertiary: rgba(255, 255, 255, 0.5);
-  --text-muted: rgba(255, 255, 255, 0.3);
+  --text-muted: rgba(255, 255, 255, 0.45);
   --border: rgba(74, 158, 255, 0.12);
   --border-light: rgba(74, 158, 255, 0.06);
   --border-strong: rgba(74, 158, 255, 0.3);
@@ -72,7 +72,7 @@
   --text-primary: rgba(0, 0, 0, 0.85);
   --text-secondary: rgba(0, 0, 0, 0.7);
   --text-tertiary: rgba(0, 0, 0, 0.5);
-  --text-muted: rgba(0, 0, 0, 0.3);
+  --text-muted: rgba(0, 0, 0, 0.42);
   --border: rgba(0, 0, 0, 0.08);
   --border-light: rgba(0, 0, 0, 0.04);
   --border-strong: rgba(0, 0, 0, 0.15);
@@ -209,4 +209,22 @@ html, body, #root {
 .panel-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-gutter: stable;
+}
+
+.panel-scroll::-webkit-scrollbar {
+  width: var(--panel-scrollbar-width);
+}
+
+.panel-scroll::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 2px;
+}
+
+.panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--accent-rgb), 0.5);
+}
+
+.panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }

@@ -82,7 +82,7 @@ export default function TopBar() {
         ))}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 'var(--font-size-md)', color: 'var(--text-tertiary)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 'var(--font-size-md)', color: 'var(--text-tertiary)' }}>
         <button
           onClick={toggleUITheme}
           style={{
@@ -133,8 +133,8 @@ export default function TopBar() {
         >
           {playing ? '🔊' : '🔇'}
         </button>
-        <span>{dateStr}</span>
-        <span style={{ fontSize: 'var(--font-size-lg)', color: 'var(--accent)', fontFamily: 'monospace' }}>{timeStr}</span>
+        <span style={{ fontSize: 'var(--font-size-sm)' }}>{dateStr}</span>
+        <span style={{ fontSize: 'var(--font-size-xl)', color: 'var(--accent)', fontFamily: 'monospace', fontWeight: 600, letterSpacing: 1 }}>{timeStr}</span>
       </div>
     </div>
   )

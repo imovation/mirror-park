@@ -58,7 +58,8 @@ export default function ScrollList({ items, speed = 30, maxHeight = 150, header 
       )}
       <div
         ref={containerRef}
-        style={{ maxHeight, overflow: 'auto' }}
+        className="panel-scroll"
+        style={{ maxHeight, overflow: 'auto', paddingTop: 6 }}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

@@ -19,7 +19,7 @@ export default function DashboardPanel({
   children,
 }: DashboardPanelProps) {
   const [collapsed, setCollapsed] = useState(false)
-  const showCollapse = collapsible && flexGrow >= 3
+  const showCollapse = collapsible && flexGrow >= 2
   const scrollMode = 'auto'
 
   return (
@@ -58,7 +58,6 @@ export default function DashboardPanel({
             className="font-bold tracking-wide flex-1"
             style={{
               color: 'var(--text-primary)',
-              filter: 'drop-shadow(0 0 2px rgba(var(--accent-rgb), 0.5))',
             }}
           >
             {title}

@@ -26,7 +26,7 @@ export default function ScreenLayout({
         "bottombar bottombar bottombar"
       `,
         gridTemplateRows: 'minmax(48px, 4vh) auto 1fr minmax(28px, 2.5vh)',
-        gridTemplateColumns: 'minmax(240px, 18vw) 1fr minmax(240px, 18vw)',
+        gridTemplateColumns: 'minmax(260px, 20vw) 1fr minmax(260px, 20vw)',
         width: '100%',
         height: '100%',
         overflow: 'hidden',
@@ -39,8 +39,8 @@ export default function ScreenLayout({
           {topMetrics}
         </div>
       )}
-      <div style={{ gridArea: 'left', overflow: 'hidden', maxWidth: 420, pointerEvents: 'auto', height: '100%' }}>{leftPanel}</div>
-      <div style={{ gridArea: 'right', overflow: 'hidden', maxWidth: 420, pointerEvents: 'auto', height: '100%' }}>{rightPanel}</div>
+      <div style={{ gridArea: 'left', overflow: 'hidden', maxWidth: 460, pointerEvents: 'auto', height: '100%' }}>{leftPanel}</div>
+      <div style={{ gridArea: 'right', overflow: 'hidden', maxWidth: 460, pointerEvents: 'auto', height: '100%' }}>{rightPanel}</div>
       <div style={{ gridArea: 'bottombar', pointerEvents: 'auto' }}>{bottomBar}</div>
     </div>
   )

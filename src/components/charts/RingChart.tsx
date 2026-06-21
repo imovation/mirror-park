@@ -14,7 +14,7 @@ interface RingChartProps {
 
 const MIN_HEIGHT = 120
 
-export default function RingChart({ data, height = 160, colors, centerLabel, centerLabelSize = 14, centerLabelColor = '#4a9eff', legendPosition }: RingChartProps) {
+export default function RingChart({ data, height = 160, colors, centerLabel,   centerLabelSize = 20, centerLabelColor = '#4a9eff', legendPosition }: RingChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
   const ringColors = colors || t.colors.slice(0, data.length)

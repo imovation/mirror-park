@@ -45,7 +45,7 @@ function DigitColumn({ char }: { char: string }) {
 export default function NumberFlip({ value, unit, label, color = 'var(--accent)', trend }: NumberFlipProps) {
   const formatted = formatNumber(value)
 
-  const trendColor = trend?.direction === 'up' ? '#f44336' : trend?.direction === 'down' ? '#4caf50' : 'var(--text-tertiary)'
+  const trendColor = trend?.direction === 'up' ? 'var(--color-warning)' : trend?.direction === 'down' ? 'var(--color-success)' : 'var(--text-tertiary)'
   const trendArrow = trend?.direction === 'up' ? '↑' : trend?.direction === 'down' ? '↓' : '→'
 
   return (

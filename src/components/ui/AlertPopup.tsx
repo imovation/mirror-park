@@ -10,17 +10,13 @@ export default function AlertPopup() {
   const [visibleAlerts, setVisibleAlerts] = useState<typeof alerts>([])
 
   useEffect(() => {
-    if (alerts.length > 0) {
-      setVisibleAlerts(alerts.slice(0, 3))
-    } else {
-      setVisibleAlerts([])
-    }
+    setVisibleAlerts(alerts)
   }, [alerts])
 
   if (visibleAlerts.length === 0) return null
 
   return (
-    <div style={{
+    <div className="panel-scroll" style={{
       position: 'fixed',
       bottom: 20,
       right: 20,
@@ -29,6 +25,9 @@ export default function AlertPopup() {
       flexDirection: 'column',
       gap: 8,
       maxWidth: 320,
+      maxHeight: 'calc(100vh - 60px)',
+      overflowY: 'auto',
+      paddingRight: 4,
     }}>
       {visibleAlerts.map((alert) => (
         <div

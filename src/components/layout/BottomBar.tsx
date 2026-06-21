@@ -37,9 +37,9 @@ export default function BottomBar({ status = 'disconnected' }: BottomBarProps) {
       }}
     >
       <span>智慧校园可视化平台 v0.2.0 | 数据更新: {currentTime}</span>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: currentStatus.color }}>
-        <span style={{ fontSize: 'var(--font-size-sm)' }}>{currentStatus.icon}</span>
-        <span>{currentStatus.text}</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: currentStatus.color }}>
+        <span style={{ fontSize: 'var(--font-size-md)', filter: `drop-shadow(0 0 4px ${currentStatus.color})` }}>{currentStatus.icon}</span>
+        <span style={{ fontSize: 'var(--font-size-sm)' }}>{currentStatus.text}</span>
       </div>
     </div>
   )
