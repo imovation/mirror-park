@@ -35,7 +35,7 @@ export default function ScreenLayout({
     >
       <div style={{ gridArea: 'topbar', pointerEvents: 'auto' }}>{topBar}</div>
       {topMetrics && (
-        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', padding: '12px', zIndex: 10, background: 'var(--overlay-bg)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 'var(--radius-lg)', margin: '8px 12px 0' }}>
+        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', padding: '4px 8px', zIndex: 10, background: 'var(--overlay-bg)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 'var(--radius-lg)', margin: '4px 12px 0' }}>
           {topMetrics}
         </div>
       )}

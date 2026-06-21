@@ -242,12 +242,13 @@ function BuildingMesh({ building }: { building: BuildingData }) {
           >
             <div style={{
               writingMode: 'vertical-rl',
-              color: timeMode === 'day' ? '#000000' : '#ffffff',
+              color: '#ffffff',
               fontSize: 16,
               fontWeight: 'bold',
               letterSpacing: 4,
               textOrientation: 'upright',
               fontFamily: '"Noto Serif SC", "SimSun", serif',
+              textShadow: '0 2px 6px rgba(0,0,0,0.9)',
             }}>
               镇远中学
             </div>

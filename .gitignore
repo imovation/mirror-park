@@ -8,3 +8,4 @@ pnpm-workspace.yaml
 test-results/
 .last-run.json
 .playwright-cli/
+.obsidian/

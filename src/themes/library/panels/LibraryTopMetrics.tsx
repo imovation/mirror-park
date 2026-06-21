@@ -8,7 +8,7 @@ export default function LibraryTopMetrics() {
   const { data: visitors } = useLibraryVisitors()
 
   if (!coll) return (
-    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
       {[1,2,3,4,5].map(i => (
         <div key={i} style={{ width: 100, height: 64, background: 'var(--panel-bg)', borderRadius: 8, opacity: 0.4 }} />
       ))}
@@ -16,7 +16,7 @@ export default function LibraryTopMetrics() {
   )
 
   return (
-    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
       <TopMetricsCard label="馆藏纸质书" value={formatNumber(coll.paperBooks ?? 0)} />
       <TopMetricsCard label="在借图书" value={borrow ? formatNumber(borrow.totalBorrowed) : '-'} />
       <TopMetricsCard label="今日借阅" value={borrow ? formatNumber(borrow.todayBorrow) : '-'} />

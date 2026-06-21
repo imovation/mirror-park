@@ -10,7 +10,7 @@ export default function LogisticsTopMetrics() {
   if (!leave && !visitors) return null
 
   return (
-    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
       <TopMetricsCard label="今日请假" value={leave ? formatNumber(leave.todayTotal) : '-'} />
       <TopMetricsCard label="今日访客" value={visitors ? formatNumber(visitors.todayVisitors) : '-'} />
       <TopMetricsCard label="当前在校访客" value={visitors ? formatNumber(visitors.currentVisitors) : '-'} />

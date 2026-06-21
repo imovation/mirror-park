@@ -12,15 +12,15 @@ export default function TopMetricsCard({ label, value, title }: TopMetricsCardPr
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '5px 12px',
-        borderRadius: 8,
+        padding: '3px 8px',
+        borderRadius: 6,
         background: 'var(--panel-bg)',
         backdropFilter: 'blur(8px)',
-        minWidth: 90,
+        minWidth: 72,
         cursor: title ? 'help' : 'default',
       }}>
-      <span style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--text-primary)' }}>{value}</span>
-      <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-tertiary)', marginTop: 2 }}>{label}</span>
+      <span style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)' }}>{value}</span>
+      <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-tertiary)' }}>{label}</span>
     </div>
   )
 }

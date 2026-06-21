@@ -9,7 +9,7 @@ export default function AdminTopMetrics() {
   if (!data) return null
 
   return (
-    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+    <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
       <TopMetricsCard label="部门数量" value={formatNumber(data.departmentCount)} />
       <TopMetricsCard label="教职工总数" value={formatNumber(data.staffCount)} />
       <TopMetricsCard label="今日出勤率" value={`${Math.round((data.attendanceRate ?? 0) * 100)}%`} />
