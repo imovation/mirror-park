@@ -10,11 +10,32 @@ export default function RoomDistribution() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
 
+  const total = data.rooms.reduce((a, b) => a + b.count, 0)
+  const sorted = [...data.rooms].sort((a, b) => b.count - a.count)
+  const topColors = ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffc107', '#00bcd4', '#ec407a', '#26a69a']
+  const barColors = sorted.map((_, i) => topColors[i] || 'var(--accent)')
+  const dataWithColors = data.rooms.map((r) => {
+    const idx = sorted.findIndex((s) => s.name === r.name)
+    return { ...r, color: barColors[idx] }
+  })
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
-      <ChartLabel>功能室分布</ChartLabel>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+        <ChartLabel>功能室分布</ChartLabel>
+        <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>
+          共 <b style={{ color: 'var(--accent)' }}>{total}</b> 间
+        </span>
+      </div>
       <div style={{ flex: 1, minHeight: 0 }}>
-        <BarChart data={data.rooms.map((r) => ({ name: r.name, value: r.count }))} height={240} gridLeft="25%" gridBottom="12%" />
+        <BarChart
+          data={dataWithColors.map((r) => ({ name: r.name, value: r.count }))}
+          colors={dataWithColors.map((r) => r.color)}
+          height={220}
+          gridLeft="22%"
+          gridBottom="10%"
+          showLabel
+        />
       </div>
     </div>
   )

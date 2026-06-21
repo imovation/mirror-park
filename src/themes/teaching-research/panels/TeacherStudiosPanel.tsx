@@ -40,10 +40,10 @@ export default function TeacherStudiosPanel() {
               {s.subject}
             </span>
           </div>
-          <div style={{ fontSize: 'var(--font-size-xs)', color: '#a6b9c7', marginBottom: 2 }}>主持人: {s.host}</div>
-          <div style={{ display: 'flex', gap: 12, fontSize: 'var(--font-size-xs)' }}>
-            <span style={{ color: '#a6b9c7' }}>成员 {s.memberCount}人</span>
-            <span style={{ color: '#a6b9c7' }}>成果 {s.achievementCount}项</span>
+          <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)', marginBottom: 2 }}>主持人: {s.host}</div>
+          <div style={{ display: 'flex', gap: 12, fontSize: 'var(--font-size-sm)' }}>
+            <span style={{ color: 'var(--text-secondary)' }}>成员 <b style={{ color: 'var(--text-primary)' }}>{s.memberCount}</b> 人</span>
+            <span style={{ color: 'var(--text-secondary)' }}>成果 <b style={{ color: 'var(--text-primary)' }}>{s.achievementCount}</b> 项</span>
           </div>
         </div>
       ))}

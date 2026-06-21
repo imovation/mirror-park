@@ -15,7 +15,7 @@ export default function NoticeBoard() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0, paddingTop: 2 }}>
       <ScrollList
         maxHeight={250}
         items={data.notices.map(n => ({

@@ -14,7 +14,11 @@ export default function SecurityTopMetrics() {
     <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
       <TopMetricsCard label="监控设备" value={formatNumber(data.cameraCount ?? 0)} />
       <TopMetricsCard label="设备在线率" value={onlineRate !== null ? `${onlineRate}%` : '-'} />
-      <TopMetricsCard label="今日告警" value={formatNumber(data.todayAlerts ?? 0)} />
+      <TopMetricsCard
+        label="今日告警"
+        value={formatNumber(data.todayAlerts ?? 0)}
+        title="今日需要处理的实时告警事件数（不含已处理的设备离线提示）"
+      />
       <TopMetricsCard label="今日访客" value={formatNumber(data.todayVisitors ?? 0)} />
       <TopMetricsCard label="门禁设备" value={formatNumber(data.accessDeviceCount ?? 0)} />
     </div>

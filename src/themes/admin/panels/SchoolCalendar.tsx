@@ -49,7 +49,29 @@ export default function SchoolCalendar() {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#1890ff', boxShadow: '0 0 4px rgba(24,144,255,0.6)' }} />
+          会议
+        </span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#f5222d', boxShadow: '0 0 4px rgba(245,34,45,0.6)' }} />
+          考试
+        </span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#fa8c16', boxShadow: '0 0 4px rgba(250,140,22,0.6)' }} />
+          活动
+        </span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#52c41a', boxShadow: '0 0 4px rgba(82,196,26,0.6)' }} />
+          近期事件
+        </span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#faad14', boxShadow: '0 0 4px rgba(250,173,20,0.6)' }} />
+          假期
+        </span>
+      </div>
       <ScrollList items={allItems} maxHeight={220} />
     </div>
   )

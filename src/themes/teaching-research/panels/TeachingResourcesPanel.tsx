@@ -1,6 +1,6 @@
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
-import BarChart from '@/components/charts/BarChart'
+import PieChart from '@/components/charts/PieChart'
 import { useTeachingResources } from '@/api/queries/teachingResearch'
 
 const UNITS: Record<string, string> = {
@@ -13,9 +13,16 @@ export default function TeachingResourcesPanel() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
 
+  const total = data.resources.reduce((a, b) => a + b.value, 0)
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
-      <ChartLabel>教学资源分类占比</ChartLabel>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+        <ChartLabel>教学资源分类</ChartLabel>
+        <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>
+          共 <b style={{ color: 'var(--accent)' }}>{total.toLocaleString()}</b> 份
+        </span>
+      </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0 }}>
         {data.resources.map((r) => (
           <div
@@ -27,7 +34,7 @@ export default function TeachingResourcesPanel() {
               overflow: 'hidden',
             }}
           >
-            <div style={{ height: 4, background: r.color, opacity: 0.35 }} />
+            <div style={{ height: 4, background: r.color, opacity: 0.45 }} />
             <div style={{ padding: '8px 6px', textAlign: 'center' }}>
               <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
                 {r.value}<span style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginLeft: 2, marginRight: 4, fontWeight: 400 }}>{UNITS[r.name] || ''}</span>
@@ -38,12 +45,10 @@ export default function TeachingResourcesPanel() {
         ))}
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
-        <BarChart
+        <PieChart
           data={data.resources.map((r) => ({ name: r.name, value: r.value }))}
-          height={100}
-          barWidth="60%"
-          gridTop={10}
-          gridBottom={20}
+          height={140}
+          legendPosition="bottom"
         />
       </div>
     </div>

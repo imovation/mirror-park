@@ -13,15 +13,6 @@ const ASSETS: { key: keyof AssetData; label: string; color: string }[] = [
   { key: 'doorLocks', label: '门禁锁', color: '#00bcd4' },
 ]
 
-const RING_DATA = [
-  { name: '电脑', value: 580 },
-  { name: '投影仪', value: 120 },
-  { name: '空调', value: 260 },
-  { name: '摄像头', value: 430 },
-  { name: '打印机', value: 85 },
-  { name: '门禁锁', value: 65 },
-]
-
 export default function AssetOverview() {
   const { data, isLoading, error } = useAssetData()
 
@@ -29,20 +20,26 @@ export default function AssetOverview() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
 
+  const ringData = ASSETS.map((asset) => ({
+    name: asset.label,
+    value: data[asset.key],
+    itemStyle: { color: asset.color },
+  }))
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, flexShrink: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0 }}>
         {ASSETS.map((asset) => (
-          <div key={asset.key} style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, padding: '6px 8px', textAlign: 'center' }}>
-            <div style={{ height: 3, background: asset.color, borderRadius: 2, marginBottom: 4, opacity: 0.5 }} />
+          <div key={asset.key} style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, padding: '8px 8px', textAlign: 'center' }}>
+            <div style={{ height: 3, background: asset.color, borderRadius: 2, marginBottom: 4, opacity: 0.6 }} />
             <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)' }}>{String(data[asset.key])}</div>
             <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>{asset.label}</div>
           </div>
         ))}
       </div>
-      <div style={{ flexShrink: 0 }}>
+      <div style={{ flexShrink: 0, marginTop: 4 }}>
         <ChartLabel>设备类型占比</ChartLabel>
-        <RingChart data={RING_DATA} height={130} />
+        <RingChart data={ringData} height={150} />
       </div>
     </div>
   )
