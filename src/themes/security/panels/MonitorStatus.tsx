@@ -30,7 +30,7 @@ export default function MonitorStatus() {
               { name: '离线', value: data.offline },
               { name: '故障', value: data.faulty },
             ]}
-            colors={['var(--color-success)', 'var(--color-warning)', 'var(--color-danger)']}
+            colors={[CHART_PALETTE.semantic.success, CHART_PALETTE.semantic.warning, CHART_PALETTE.semantic.danger]}
             centerLabel={`${data.online}/${data.total}`}
             height={160}
             legendPosition="bottom"

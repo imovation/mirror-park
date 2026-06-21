@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useDeviceData } from '@/api/queries/academics'
 import RingChart from '@/components/charts/RingChart'
 import PieChart from '@/components/charts/PieChart'
@@ -20,7 +21,7 @@ export default function TeachingDevices() {
               { name: '离线', value: data.offline },
               { name: '故障', value: data.faulty },
             ]}
-            colors={['var(--color-success)', 'var(--color-warning)', 'var(--color-danger)']}
+            colors={[CHART_PALETTE.semantic.success, CHART_PALETTE.semantic.warning, CHART_PALETTE.semantic.danger]}
             centerLabel={`${data.online}/${data.total}`}
             height={120}
           />

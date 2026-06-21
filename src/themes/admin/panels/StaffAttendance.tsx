@@ -26,7 +26,7 @@ export default function StaffAttendance() {
         <ChartLabel>近30日出勤趋势</ChartLabel>
         <LineChart
           xData={data.monthlyTrend.days}
-          series={[{ name: '出勤率', data: data.monthlyTrend.values, color: 'var(--accent)' }]}
+          series={[{ name: '出勤率', data: data.monthlyTrend.values, color: CHART_PALETTE.semantic.info }]}
           height={120}
         />
       </div>

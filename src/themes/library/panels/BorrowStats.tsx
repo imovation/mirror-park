@@ -1,3 +1,4 @@
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useBorrowStats, useCollection } from '@/api/queries/library'
 import NumberFlip from '@/components/ui/NumberFlip'
 import LineChart from '@/components/charts/LineChart'
@@ -63,7 +64,7 @@ export default function BorrowStats() {
             <RingChart
               data={collectionData}
               height={110}
-              colors={['var(--accent)', 'var(--color-pending)', 'var(--color-success)']}
+              colors={[CHART_PALETTE.semantic.male, CHART_PALETTE.semantic.info, CHART_PALETTE.semantic.secondary]}
               centerLabel={String(collectionData.reduce((a, b) => a + b.value, 0).toLocaleString())}
               centerLabelSize={12}
             />
@@ -72,7 +73,7 @@ export default function BorrowStats() {
             {collectionData.map((c, i) => {
               const total = collectionData.reduce((a, b) => a + b.value, 0)
               const pct = total > 0 ? Math.round((c.value / total) * 100) : 0
-              const color = ['var(--accent)', 'var(--color-pending)', 'var(--color-success)'][i]
+              const color = [CHART_PALETTE.semantic.male, CHART_PALETTE.semantic.info, CHART_PALETTE.semantic.secondary][i]
               return (
                 <div key={c.name} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span style={{ width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0 }} />

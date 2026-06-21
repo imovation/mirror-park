@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useAlertData } from '@/api/queries/security'
 import { useUIStore } from '@/stores/useUIStore'
 import NumberFlip from '@/components/ui/NumberFlip'
@@ -49,7 +50,7 @@ export default function AlertEvents() {
           <ChartLabel align="center">处理状态</ChartLabel>
           <RingChart
             data={[{ name: '已处理', value: Math.round(data.handledRatio * 100) }, { name: '未处理', value: 100 - Math.round(data.handledRatio * 100) }]}
-            colors={['var(--color-success)','var(--color-danger)']}
+            colors={[CHART_PALETTE.semantic.success, CHART_PALETTE.semantic.danger]}
             centerLabel={`${Math.round(data.handledRatio * 100)}%`}
             height={120}
           />
