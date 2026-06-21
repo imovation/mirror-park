@@ -13,6 +13,7 @@ import AlertPopup from '@/components/ui/AlertPopup'
 import ErrorBoundary from '@/components/layout/ErrorBoundary'
 import SceneCanvas from '@/components/scene/SceneCanvas'
 import { getThemeEntry } from '@/themes/registry'
+import { applyThemeColor } from '@/config/themeColors'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,10 @@ function AppContent() {
   useEffect(() => {
     document.documentElement.setAttribute('data-ui-theme', uiTheme)
   }, [uiTheme])
+
+  useEffect(() => {
+    applyThemeColor(currentTheme)
+  }, [currentTheme])
 
   useEffect(() => {
     console.log(`[SSE] ${sseStatus}`)

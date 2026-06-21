@@ -69,14 +69,30 @@ export default function TopBar() {
               padding: '6px 16px',
               border: 'none',
               borderRadius: 4,
-              background: currentTheme === t.id ? 'rgba(var(--accent-rgb), 0.2)' : 'transparent',
-              color: currentTheme === t.id ? 'var(--accent)' : 'var(--text-tertiary)',
+              background: currentTheme === t.id ? 'rgba(var(--theme-primary-rgb), 0.2)' : 'transparent',
+              color: currentTheme === t.id ? 'var(--theme-primary)' : 'var(--text-tertiary)',
               fontSize: 'var(--font-size-md)',
               fontFamily: 'inherit',
               cursor: 'pointer',
               transition: 'all 0.3s',
+              position: 'relative',
             }}
           >
+            {currentTheme === t.id && (
+              <span
+                style={{
+                  position: 'absolute',
+                  bottom: -2,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '60%',
+                  height: 2,
+                  background: 'var(--theme-primary)',
+                  boxShadow: '0 0 8px var(--theme-glow)',
+                  borderRadius: 1,
+                }}
+              />
+            )}
             {t.label}
           </button>
         ))}

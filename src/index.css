@@ -30,6 +30,11 @@
   --card-carousel-dot-inactive: rgba(255, 255, 255, 0.15);
   --color-danger-rgb: 255, 23, 68;
   --color-warning-rgb: 255, 109, 0;
+  --theme-primary: #22d3ee;
+  --theme-primary-rgb: 34, 211, 238;
+  --theme-secondary: #06b6d4;
+  --theme-glow: rgba(34, 211, 238, 0.6);
+  --theme-gradient: linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(34, 211, 238, 0) 70%);
   --shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.5);
   --shadow-toast: 0 4px 16px rgba(0, 0, 0, 0.3);
   --shadow-panel: 0 2px 8px rgba(0, 0, 0, 0.15);

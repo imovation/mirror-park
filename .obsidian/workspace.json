@@ -186,16 +186,17 @@
   "active": "3ff39f6ea4c37b65",
   "lastOpenFiles": [
     "test-results",
-    "vitest.config.ts.timestamp-1782036646625-b60ac3c8b195e8.mjs",
-    "dist/assets/SecurityScene-CwdcGreP.js",
+    "test-results/alert-popup-Alert-Popup-al-2d6f5-rs-when-triggered-via-store-Desktop/error-context.md",
+    "test-results/alert-popup-Alert-Popup-al-2d6f5-rs-when-triggered-via-store-Desktop/test-failed-1.png",
+    "test-results/alert-popup-Alert-Popup-al-2d6f5-rs-when-triggered-via-store-Desktop",
+    "vitest.config.ts.timestamp-1782037548400-a5136c5171fa08.mjs",
     "dist/index.html",
-    "dist/assets/CampusBase-B_7ev_wq.js",
-    "dist/assets/vendor-echarts-KrfOgD_D.js",
-    "dist/assets/LogisticsScene--jam2Jr9.js",
-    "dist/assets/vendor-three-CBzilZre.js",
-    "dist/assets/index-DPtIIPcG.css",
+    "dist/assets/CampusBase-1yGAYU2u.js",
+    "dist/assets/LogisticsScene-ypW_l9kz.js",
     "dist/assets/vendor-react-BqsY1VeW.js",
-    "dist/assets/index-DHPHJWkl.js",
+    "dist/assets/LibraryScene-CtP4AAOb.js",
+    "dist/assets/SecurityScene-9hzOWsFh.js",
+    "dist/assets/AcademicsScene-D41ot4aR.js",
     "test-results/topic-security-Topic-Secur-29215-heme-—-full-page-screenshot-Tablet/topic-security-light-actual.png",
     "test-results/topic-overview-Topic-Overv-50046-heme-—-full-page-screenshot-Tablet/topic-overview-light-actual.png",
     "test-results/topic-security-Topic-Secur-29215-heme-—-full-page-screenshot-Tablet/error-context.md",
@@ -210,7 +211,6 @@
     "docs/UI_UX_AUDIT.md",
     "test-results/topic-logistics-Topic-Logi-5ae19-heme-—-full-page-screenshot-Tablet/error-context.md",
     "test-results/topic-logistics-Topic-Logi-5ae19-heme-—-full-page-screenshot-Tablet/test-failed-1.png",
-    "test-results/topic-logistics-Topic-Logi-5ae19-heme-—-full-page-screenshot-Tablet/topic-logistics-light-actual.png",
     "test-results/topic-logistics-Topic-Logi-3e3d8-heme-—-full-page-screenshot-Tablet/error-context.md",
     "test-results/topic-logistics-Topic-Logi-5ae19-heme-—-full-page-screenshot-Desktop/error-context.md",
     "test-results/topic-logistics-Topic-Logi-3e3d8-heme-—-full-page-screenshot-Desktop/error-context.md",
@@ -229,7 +229,6 @@
     "test-results/topic-academics-Topic-Academics-all-panel-titles-visible-Desktop/error-context.md",
     "test-results/topic-security-Topic-Security-all-panel-titles-visible-Tablet/error-context.md",
     "test-results/topic-teaching-research-To-64f1c-ch-all-panel-titles-visible-Tablet/error-context.md",
-    "test-results/topic-admin-Topic-Admin-all-panel-titles-visible-Tablet/error-context.md",
-    "test-results/theme-switch-UI-Theme-Swit-bab22-stent-across-topic-switches-Tablet/error-context.md"
+    "test-results/topic-admin-Topic-Admin-all-panel-titles-visible-Tablet/error-context.md"
   ]
 }

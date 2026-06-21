@@ -34,24 +34,24 @@ export default function DashboardPanel({
         transition: 'flex 0.3s ease, min-height 0.3s ease, height 0.3s ease',
       }}
     >
-      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />
-      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2" style={{ borderColor: 'var(--accent)' }} />
-      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2" style={{ borderColor: 'var(--accent)' }} />
-      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2" style={{ borderColor: 'var(--accent)' }} />
+      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--theme-primary)' }} />
+      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2" style={{ borderColor: 'var(--theme-primary)' }} />
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2" style={{ borderColor: 'var(--theme-primary)' }} />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2" style={{ borderColor: 'var(--theme-primary)' }} />
 
       {title && (
         <div
           className="flex items-center px-4 py-2 border-b flex-shrink-0"
           style={{
             borderBottomColor: 'var(--border-light)',
-            background: 'linear-gradient(90deg, rgba(var(--accent-rgb), 0.15), transparent)',
+            background: 'linear-gradient(90deg, rgba(var(--theme-primary-rgb), 0.15), transparent)',
           }}
         >
           <div
             className="w-1 h-4 mr-2"
             style={{
-              background: 'var(--accent)',
-              boxShadow: '0 0 8px rgba(var(--accent-rgb), 0.8)',
+              background: 'var(--theme-primary)',
+              boxShadow: '0 0 8px var(--theme-glow)',
             }}
           />
           <h3
