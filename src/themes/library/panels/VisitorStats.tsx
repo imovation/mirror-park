@@ -16,22 +16,24 @@ export default function VisitorStats() {
         <NumberFlip label="今日入馆" value={data.todayVisitors} unit="人" color="var(--color-success)" />
         <NumberFlip label="实时在馆" value={data.currentVisitors} unit="人" color="var(--accent)" />
       </div>
-      <div style={{ flexShrink: 0 }}>
-        <ChartLabel>近7日入馆趋势</ChartLabel>
-        <LineChart
-          xData={['6/14', '6/15', '6/16', '6/17', '6/18', '6/19', '今日']}
-          series={[{ name: '入馆人数', data: [210, 280, 195, 340, 260, 310, 353], color: 'var(--accent)' }]}
-          height={140}
-        />
-      </div>
-      <div style={{ flexShrink: 0 }}>
-        <ChartLabel>入馆时段分布</ChartLabel>
-        <BarChart
-          data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
-          height={160}
-          horizontal={false}
-          color="var(--color-chart-1)"
-        />
+      <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <ChartLabel>近7日入馆趋势</ChartLabel>
+          <LineChart
+            xData={['6/14', '6/15', '6/16', '6/17', '6/18', '6/19', '今日']}
+            series={[{ name: '入馆人数', data: [210, 280, 195, 340, 260, 310, 353], color: 'var(--accent)' }]}
+            height={120}
+          />
+        </div>
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <ChartLabel>入馆时段分布</ChartLabel>
+          <BarChart
+            data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
+            height={120}
+            horizontal={false}
+            color="var(--color-chart-1)"
+          />
+        </div>
       </div>
     </div>
   )

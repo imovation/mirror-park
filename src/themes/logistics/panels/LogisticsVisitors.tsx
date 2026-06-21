@@ -1,6 +1,6 @@
 import { useLogisticsVisitors } from '@/api/queries/logistics'
 import NumberFlip from '@/components/ui/NumberFlip'
-import PieChart from '@/components/charts/PieChart'
+import RingChart from '@/components/charts/RingChart'
 import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
@@ -18,7 +18,7 @@ export default function LogisticsVisitors() {
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel align="center">来访目的分布</ChartLabel>
-        <PieChart data={data.purposeDistribution} height={120} />
+        <RingChart data={data.purposeDistribution} height={120} legendPosition="bottom" centerLabel={`${data.todayVisitors} 总`} />
       </div>
       <div>
         <ChartLabel>访客登记</ChartLabel>

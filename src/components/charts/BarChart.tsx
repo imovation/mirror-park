@@ -56,13 +56,13 @@ export default function BarChart({ data, height = 160, horizontal = true, color,
             opacity: 0.85,
           },
         })),
-        barWidth: barWidth || '50%',
+        barWidth: barWidth || (height < 150 && data.length > 6 ? '40%' : '50%'),
         label: showLabel
           ? {
               show: true,
               position: horizontal ? 'right' : 'top',
               color: t.axisLabel,
-              fontSize: f.axisFontSize,
+              fontSize: height < 150 ? Math.min(f.axisFontSize, 10) : f.axisFontSize,
               formatter: (params: { dataIndex: number; value: unknown }) => {
                 const v = Number(params.value ?? 0)
                 if (labelFormat === 'percent') {

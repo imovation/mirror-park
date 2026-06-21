@@ -35,6 +35,7 @@ export default function RoomDistribution() {
           gridLeft="22%"
           gridBottom="10%"
           showLabel
+          barWidth="40%"
         />
       </div>
     </div>

@@ -21,7 +21,7 @@ export default function ActivityTimeStats() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0, alignItems: 'center' }}>
-        <NumberFlip label="峰值人数" value={peakValue} unit="人" color="var(--color-warning)" />
+        <NumberFlip label="峰值人数" value={peakValue} unit="人" color="var(--accent)" />
         <NumberFlip label="平均活跃" value={avgValue} unit="人" color="var(--color-success)" />
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', marginBottom: 4 }}>峰值时段</div>

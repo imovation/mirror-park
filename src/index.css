@@ -12,7 +12,7 @@
   --text-primary: rgba(255, 255, 255, 0.85);
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-tertiary: rgba(255, 255, 255, 0.5);
-  --text-muted: rgba(255, 255, 255, 0.45);
+  --text-muted: rgba(255, 255, 255, 0.55);
   --border: rgba(74, 158, 255, 0.12);
   --border-light: rgba(74, 158, 255, 0.06);
   --border-strong: rgba(74, 158, 255, 0.3);
@@ -54,8 +54,8 @@
   --color-chart-4: #34d399;
   --color-chart-5: #f472b6;
   --color-chart-6: #fb923c;
-  --color-chart-7: #e879f9;
-  --color-chart-8: #60a5fa;
+  --color-chart-7: #a78bfa;
+  --color-chart-8: #2dd4bf;
   --skeleton-bg: rgba(255, 255, 255, 0.05);
   --panel-padding: 0.75rem;
   --panel-scrollbar-width: 4px;
@@ -67,7 +67,7 @@
   --panel-bg: rgba(255, 255, 255, 0.82);
   --panel-bg-solid: rgba(255, 255, 255, 0.98);
   --topbar-bg: rgba(255, 255, 255, 0.9);
-  --bottombar-bg: rgba(0, 0, 0, 0.05);
+  --bottombar-bg: rgba(255, 255, 255, 0.85);
   --overlay-bg: rgba(0, 0, 0, 0.4);
   --text-primary: rgba(0, 0, 0, 0.85);
   --text-secondary: rgba(0, 0, 0, 0.7);
@@ -109,9 +109,9 @@
   --color-chart-3: #ca8a04;
   --color-chart-4: #059669;
   --color-chart-5: #db2777;
-  --color-chart-6: #dc2626;
-  --color-chart-7: #a21caf;
-  --color-chart-8: #2563eb;
+  --color-chart-6: #ea580c;
+  --color-chart-7: #7c3aed;
+  --color-chart-8: #0d9488;
   --skeleton-bg: rgba(0, 0, 0, 0.04);
 }
 

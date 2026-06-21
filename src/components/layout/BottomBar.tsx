@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useUIThemeStore } from '@/stores/useUIThemeStore'
 
 interface BottomBarProps {
   status?: 'connecting' | 'connected' | 'disconnected'
@@ -14,6 +15,8 @@ export default function BottomBar({ status = 'disconnected' }: BottomBarProps) {
     }, 30000)
     return () => clearInterval(timer)
   }, [])
+
+  const uiTheme = useUIThemeStore((s) => s.uiTheme)
 
   const statusConfig = {
     connected: { icon: '🟢', text: '实时连接正常', color: 'var(--color-success)' },
@@ -36,7 +39,7 @@ export default function BottomBar({ status = 'disconnected' }: BottomBarProps) {
         color: 'var(--text-muted)',
       }}
     >
-      <span>智慧校园可视化平台 v0.2.0 | 数据更新: {currentTime}</span>
+      <span style={{ textShadow: uiTheme === 'dark' ? '0 1px 2px rgba(0,0,0,0.3)' : 'none' }}>智慧校园可视化平台 v0.2.0 | 数据更新: {currentTime}</span>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: currentStatus.color }}>
         <span style={{ fontSize: 'var(--font-size-md)', filter: `drop-shadow(0 0 4px ${currentStatus.color})` }}>{currentStatus.icon}</span>
         <span style={{ fontSize: 'var(--font-size-sm)' }}>{currentStatus.text}</span>

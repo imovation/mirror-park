@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { formatNumber } from '@/utils/format'
 
 interface NumberFlipProps {
@@ -8,7 +9,7 @@ interface NumberFlipProps {
   trend?: { direction: 'up' | 'down' | 'same'; percent: number }
 }
 
-function DigitColumn({ char }: { char: string }) {
+function DigitColumn({ char, animate }: { char: string; animate: boolean }) {
   const digit = parseInt(char, 10)
   const isDigit = !isNaN(digit)
 
@@ -27,7 +28,7 @@ function DigitColumn({ char }: { char: string }) {
           style={{
             display: 'block',
             transform: `translateY(-${digit * 10}%)`,
-            transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
             willChange: 'transform',
           }}
         >
@@ -43,6 +44,10 @@ function DigitColumn({ char }: { char: string }) {
 }
 
 export default function NumberFlip({ value, unit, label, color = 'var(--accent)', trend }: NumberFlipProps) {
+  const prevValue = useRef(value)
+  const animate = value !== prevValue.current
+  prevValue.current = value
+
   const formatted = formatNumber(value)
 
   const trendColor = trend?.direction === 'up' ? 'var(--color-warning)' : trend?.direction === 'down' ? 'var(--color-success)' : 'var(--text-tertiary)'
@@ -58,7 +63,7 @@ export default function NumberFlip({ value, unit, label, color = 'var(--accent)'
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4 }}>
         <span style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 'bold', color, fontFamily: 'monospace' }}>
           {formatted.split('').map((char, i) => (
-            <DigitColumn key={i} char={char} />
+            <DigitColumn key={i} char={char} animate={animate} />
           ))}
         </span>
         {unit && (

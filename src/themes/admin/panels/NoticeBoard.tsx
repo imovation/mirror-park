@@ -3,10 +3,10 @@ import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 const TYPE_COLORS: Record<string, string> = {
-  '行政': '#4a9eff',
-  '教学': '#00c853',
-  '活动': '#ff6d00',
-  '紧急': '#ff1744',
+  '行政': 'var(--accent)',
+  '教学': 'var(--color-success)',
+  '活动': 'var(--color-warning)',
+  '紧急': 'var(--color-danger)',
 }
 
 export default function NoticeBoard() {
@@ -17,7 +17,7 @@ export default function NoticeBoard() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0, paddingTop: 2 }}>
       <ScrollList
-        maxHeight={250}
+        maxHeight={400}
         items={data.notices.map(n => ({
           id: n.id,
           content: (

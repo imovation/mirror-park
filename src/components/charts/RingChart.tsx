@@ -19,6 +19,7 @@ export default function RingChart({ data, height = 160, colors, centerLabel,   c
   const f = getChartFontSizes()
   const ringColors = colors || t.colors.slice(0, data.length)
   const labelColor = centerLabelColor || ringColors[0] || t.colors[0]
+  const autoLabelSize = centerLabel && centerLabel.length > 5 ? Math.floor(centerLabelSize * 0.7) : centerLabelSize
   const option: EChartsOption = {
     tooltip: { trigger: 'item' },
     color: ringColors,
@@ -45,7 +46,7 @@ export default function RingChart({ data, height = 160, colors, centerLabel,   c
     series: [
       {
         type: 'pie',
-        radius: legendPosition === 'right' ? ['40%', '62%'] : ['50%', '75%'],
+        radius: legendPosition === 'right' ? ['40%', '62%'] : ['38%', '62%'],
         center: legendPosition === 'right' ? ['35%', '50%'] : ['50%', '50%'],
         data,
         label: { show: false },
@@ -62,7 +63,7 @@ export default function RingChart({ data, height = 160, colors, centerLabel,   c
               text: centerLabel,
               align: 'center',
               fill: labelColor,
-              fontSize: centerLabelSize,
+              fontSize: autoLabelSize,
               fontWeight: 'bold',
             },
           },

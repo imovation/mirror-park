@@ -27,8 +27,8 @@ export default function AssetOverview() {
   }))
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'hidden' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0, overflow: 'auto' }}>
         {ASSETS.map((asset) => {
           const pct = total > 0 ? Math.round((data[asset.key] / total) * 100) : 0
           return (

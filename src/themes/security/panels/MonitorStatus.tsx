@@ -43,7 +43,7 @@ export default function MonitorStatus() {
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各区域摄像头分布</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={data.regionDistribution} height={180} />
+          <BarChart data={data.regionDistribution} height={180} barWidth="50%" />
         </div>
       </div>
     </div>

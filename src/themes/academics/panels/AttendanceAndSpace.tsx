@@ -29,7 +29,10 @@ export default function AttendanceAndSpace() {
         <NumberFlip label="今日出勤率" value={rate} unit="%" color="var(--color-success)" />
         <NumberFlip label="年级均分" value={avgGradeRate} unit="%" color="var(--accent)" />
         <NumberFlip label="教室总数" value={total} unit="间" color="var(--accent)" />
-        <NumberFlip label="实时冲突" value={conflictCount} unit="节" color="var(--color-danger)" />
+        <div style={{ textAlign: 'center', padding: '4px 8px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: 70 }}>
+          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>实时冲突</div>
+          <div style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--color-danger)' }}>{conflictCount}<span style={{ fontSize: 'var(--font-size-xs)', fontWeight: 400, color: 'var(--text-muted)' }}>节</span></div>
+        </div>
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>

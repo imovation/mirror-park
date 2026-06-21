@@ -30,9 +30,9 @@ export function AttendanceOverview() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="今日出勤率" value={rate} unit="%" color="var(--color-success)" />
-        <NumberFlip label="年级均分" value={avgGradeRate} unit="%" color="var(--accent)" />
-        <NumberFlip label="30日均值" value={avgTrend} unit="%" color="var(--color-warning)" />
+        <NumberFlip label="今日出勤率" value={rate} unit="%" color="var(--accent)" />
+        <NumberFlip label="年级均分" value={avgGradeRate} unit="%" color="var(--color-success)" />
+        <NumberFlip label="30日均值" value={avgTrend} unit="%" color="var(--text-primary)" />
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>

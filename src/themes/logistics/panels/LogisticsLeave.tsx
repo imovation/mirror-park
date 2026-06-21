@@ -24,10 +24,10 @@ export default function LogisticsLeave() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="今日请假" value={data.todayTotal} unit="人" color="var(--color-warning)" trend={{ direction: 'down', percent: 12 }} />
-        <NumberFlip label="病假占比" value={sickRatio} unit="%" color="var(--color-danger)" />
-        <NumberFlip label="事假人数" value={personalCount} unit="人" color="var(--accent)" />
+      <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexShrink: 0 }}>
+        <div style={{ flexShrink: 0, minWidth: 0, overflow: 'hidden' }}><NumberFlip label="今日请假" value={data.todayTotal} unit="人" color="var(--color-warning)" trend={{ direction: 'down', percent: 12 }} /></div>
+        <div style={{ flexShrink: 0, minWidth: 0, overflow: 'hidden' }}><NumberFlip label="病假占比" value={sickRatio} unit="%" color="var(--color-danger)" /></div>
+        <div style={{ flexShrink: 0, minWidth: 0, overflow: 'hidden' }}><NumberFlip label="事假人数" value={personalCount} unit="人" color="var(--accent)" /></div>
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>

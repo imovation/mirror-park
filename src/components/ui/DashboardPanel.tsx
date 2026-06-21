@@ -73,6 +73,7 @@ export default function DashboardPanel({
                 fontSize: 'var(--font-size-md)',
                 padding: '2px 6px',
                 lineHeight: 1,
+                marginLeft: 'auto',
               }}
             >
               {collapsed ? '▶' : '▼'}

@@ -33,9 +33,12 @@ export default function AlertEvents() {
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-          <NumberFlip label="今日告警" value={data.todayTotal} unit="次" color="var(--color-danger)"
-          trend={{ direction: data.todayTotal > data.yesterdayTotal ? 'up' : data.todayTotal < data.yesterdayTotal ? 'down' : 'same', percent: Math.abs(Math.round((data.todayTotal - data.yesterdayTotal) / data.yesterdayTotal * 100)) }}
-        />
+        <div style={{ textAlign: 'center' }}>
+          <NumberFlip label="今日告警" value={data.todayTotal} unit="次" color="var(--color-danger)" />
+          {data.yesterdayTotal > 0 && <div style={{ fontSize: 'var(--font-size-2xs)', color: data.todayTotal > data.yesterdayTotal ? 'var(--color-warning)' : data.todayTotal < data.yesterdayTotal ? 'var(--color-success)' : 'var(--text-tertiary)', marginTop: 2 }}>
+            较昨日 {data.todayTotal > data.yesterdayTotal ? '↑' : data.todayTotal < data.yesterdayTotal ? '↓' : '→'} {Math.abs(Math.round((data.todayTotal - data.yesterdayTotal) / data.yesterdayTotal * 100))}%
+          </div>}
+        </div>
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>

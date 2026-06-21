@@ -33,7 +33,7 @@ export default function ReadingStars() {
                       width: 16, height: 16, borderRadius: '50%',
                       background: TOP3_COLORS[i] || 'var(--text-muted)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: '#fff', fontSize: 'var(--font-size-2xs)', fontWeight: 700, flexShrink: 0,
+                      color: 'var(--text-primary)', fontSize: 'var(--font-size-2xs)', fontWeight: 700, flexShrink: 0,
                     }}>{i + 1}</span>
                     <span>{rankLabel[i]}{s.name}</span>
                   </div>
@@ -44,6 +44,7 @@ export default function ReadingStars() {
           />
         </div>
       </div>
+      <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }} />
       {hot.recommendBooks?.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0 }}>
           <ChartLabel align="center">好书推荐</ChartLabel>

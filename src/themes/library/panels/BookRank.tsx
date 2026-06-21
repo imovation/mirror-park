@@ -15,15 +15,16 @@ export default function BookRank() {
   const rank = rankQuery.data
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0 }}>
         <ChartLabel align="center">借阅量 TOP10</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={hot.top10.map(b => ({ name: b.name, value: b.count }))}
-            height={220}
+            height={160}
             gridLeft={70}
             tooltip={false}
+            barWidth="50%"
           />
         </div>
       </div>
@@ -32,9 +33,10 @@ export default function BookRank() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={rank.classRank.slice(0, 8)}
-            height={220}
+            height={160}
             gridLeft="20%"
             tooltip={false}
+            barWidth="50%"
           />
         </div>
       </div>

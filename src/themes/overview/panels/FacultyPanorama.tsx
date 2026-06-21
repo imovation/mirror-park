@@ -28,14 +28,6 @@ export function FacultyComposition() {
           <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'monospace' }}>{p.totalTeachers}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>教职工</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--accent)', fontFamily: 'monospace' }}>♂ {p.maleCount}</div>
-          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>男</div>
-        </div>
-        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--color-chart-5)', fontFamily: 'monospace' }}>♀ {p.femaleCount}</div>
-          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>女</div>
-        </div>
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
