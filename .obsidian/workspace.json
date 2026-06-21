@@ -186,17 +186,18 @@
   "active": "3ff39f6ea4c37b65",
   "lastOpenFiles": [
     "test-results",
+    "test-results/building-interaction-Build-d0179-building-labels-in-3D-scene-Desktop/error-context.md",
+    "test-results/building-interaction-Build-d0179-building-labels-in-3D-scene-Desktop",
+    "vitest.config.ts.timestamp-1782038648354-52432c71b760e8.mjs",
+    "vitest.config.ts.timestamp-1782038616253-e2e9eb12eb31b8.mjs",
+    "vitest.config.ts.timestamp-1782038602573-39446986c55b6.mjs",
+    "dist/assets/vendor-echarts-KrfOgD_D.js",
+    "dist/assets/CampusBase-BOVIXz1f.js",
+    "dist/index.html",
+    "dist/assets/SecurityScene-BlGEESyV.js",
+    "dist/assets/LogisticsScene-BvUaJggs.js",
     "test-results/alert-popup-Alert-Popup-al-2d6f5-rs-when-triggered-via-store-Desktop/error-context.md",
     "test-results/alert-popup-Alert-Popup-al-2d6f5-rs-when-triggered-via-store-Desktop/test-failed-1.png",
-    "test-results/alert-popup-Alert-Popup-al-2d6f5-rs-when-triggered-via-store-Desktop",
-    "vitest.config.ts.timestamp-1782037548400-a5136c5171fa08.mjs",
-    "dist/index.html",
-    "dist/assets/CampusBase-1yGAYU2u.js",
-    "dist/assets/LogisticsScene-ypW_l9kz.js",
-    "dist/assets/vendor-react-BqsY1VeW.js",
-    "dist/assets/LibraryScene-CtP4AAOb.js",
-    "dist/assets/SecurityScene-9hzOWsFh.js",
-    "dist/assets/AcademicsScene-D41ot4aR.js",
     "test-results/topic-security-Topic-Secur-29215-heme-—-full-page-screenshot-Tablet/topic-security-light-actual.png",
     "test-results/topic-overview-Topic-Overv-50046-heme-—-full-page-screenshot-Tablet/topic-overview-light-actual.png",
     "test-results/topic-security-Topic-Secur-29215-heme-—-full-page-screenshot-Tablet/error-context.md",
@@ -228,7 +229,6 @@
     "test-results/topic-library-Topic-Library-all-panel-titles-visible-Desktop/error-context.md",
     "test-results/topic-academics-Topic-Academics-all-panel-titles-visible-Desktop/error-context.md",
     "test-results/topic-security-Topic-Security-all-panel-titles-visible-Tablet/error-context.md",
-    "test-results/topic-teaching-research-To-64f1c-ch-all-panel-titles-visible-Tablet/error-context.md",
-    "test-results/topic-admin-Topic-Admin-all-panel-titles-visible-Tablet/error-context.md"
+    "test-results/topic-teaching-research-To-64f1c-ch-all-panel-titles-visible-Tablet/error-context.md"
   ]
 }

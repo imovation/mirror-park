@@ -13,11 +13,11 @@ export default function TeachingResearchTopMetrics() {
 
   return (
     <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-      <TopMetricsCard label="资源总量" value={formatNumber(stats.totalResources)} />
-      <TopMetricsCard label="课例成果" value={topics?.lessonCases?.toLocaleString() ?? '-'} />
-      <TopMetricsCard label="在研课题" value={topics?.ongoingTopics?.toLocaleString() ?? '-'} />
-      <TopMetricsCard label="名师工作室" value={studios?.studios?.length?.toString() ?? '-'} />
-      <TopMetricsCard label="近期更新" value={stats.recentUpdates?.toString() ?? '-'} />
+      <TopMetricsCard icon="library" label="资源总量" value={formatNumber(stats.totalResources)} />
+      <TopMetricsCard icon="file" label="课例成果" value={topics?.lessonCases?.toLocaleString() ?? '-'} />
+      <TopMetricsCard icon="flask" label="在研课题" value={topics?.ongoingTopics?.toLocaleString() ?? '-'} />
+      <TopMetricsCard icon="person" label="名师工作室" value={studios?.studios?.length?.toString() ?? '-'} />
+      <TopMetricsCard icon="clock" label="近期更新" value={stats.recentUpdates?.toString() ?? '-'} />
     </div>
   )
 }

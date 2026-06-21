@@ -17,11 +17,11 @@ export default function LibraryTopMetrics() {
 
   return (
     <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-      <TopMetricsCard label="馆藏纸质书" value={formatNumber(coll.paperBooks ?? 0)} />
-      <TopMetricsCard label="在借图书" value={borrow ? formatNumber(borrow.totalBorrowed) : '-'} />
-      <TopMetricsCard label="今日借阅" value={borrow ? formatNumber(borrow.todayBorrow) : '-'} />
-      <TopMetricsCard label="今日入馆" value={visitors ? formatNumber(visitors.todayVisitors) : '-'} />
-      <TopMetricsCard label="电子图书" value={formatNumber(coll.ebooks ?? 0)} />
+      <TopMetricsCard icon="book" label="馆藏纸质书" value={formatNumber(coll.paperBooks ?? 0)} />
+      <TopMetricsCard icon="library" label="在借图书" value={borrow ? formatNumber(borrow.totalBorrowed) : '-'} />
+      <TopMetricsCard icon="arrow-up" label="今日借阅" value={borrow ? formatNumber(borrow.todayBorrow) : '-'} />
+      <TopMetricsCard icon="enter" label="今日入馆" value={visitors ? formatNumber(visitors.todayVisitors) : '-'} />
+      <TopMetricsCard icon="tablet" label="电子图书" value={formatNumber(coll.ebooks ?? 0)} />
     </div>
   )
 }
