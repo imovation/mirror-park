@@ -21,7 +21,7 @@ export default function ScreenLayout({
         display: 'grid',
       gridTemplateAreas: `
         "topbar       topbar       topbar"
-        "topmetrics   topmetrics   topmetrics"
+        "left         topmetrics   right"
         "left         .            right"
         "bottombar    bottombar    bottombar"
       `,
@@ -35,7 +35,7 @@ export default function ScreenLayout({
     >
       <div style={{ gridArea: 'topbar', pointerEvents: 'auto' }}>{topBar}</div>
       {topMetrics && (
-        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'stretch', padding: '6px 20px', zIndex: 10, background: 'var(--overlay-bg)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderBottom: '1px solid var(--border)', margin: '4px 12px 0', borderRadius: 6 }}>
+        <div style={{ gridArea: 'topmetrics', pointerEvents: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'stretch', padding: '6px 16px', zIndex: 10, background: 'var(--overlay-bg)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', boxShadow: '0 2px 12px rgba(0,0,0,0.4)', margin: '4px 12px 0', alignSelf: 'start', justifySelf: 'center', maxWidth: 1000, width: '100%', borderRadius: 8 }}>
           {topMetrics}
         </div>
       )}

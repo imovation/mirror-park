@@ -18,7 +18,7 @@ export default function AdminTopMetrics() {
   if (!data) return null
 
   return (
-    <div style={{ display: 'flex', gap: 12, justifyContent: 'space-between', width: '100%' }}>
+    <div style={{ display: 'flex', gap: 10, justifyContent: 'space-between', width: '100%' }}>
       <TopMetricsCard icon="department" label="部门数量" value={formatNumber(data.departmentCount)} valueColor={COLORS[0]} />
       <TopMetricsCard icon="teacher" label="教职工总数" value={formatNumber(data.staffCount)} valueColor={COLORS[1]} />
       <TopMetricsCard icon="attendance" label="今日出勤率" value={`${Math.round((data.attendanceRate ?? 0) * 100)}%`} valueColor={COLORS[2]} />

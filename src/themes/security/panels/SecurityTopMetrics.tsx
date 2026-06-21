@@ -20,7 +20,7 @@ export default function SecurityTopMetrics() {
   const onlineRate = monitor ? Math.round((monitor.online / monitor.total) * 100) : null
 
   return (
-    <div style={{ display: 'flex', gap: 12, justifyContent: 'space-between', width: '100%' }}>
+    <div style={{ display: 'flex', gap: 10, justifyContent: 'space-between', width: '100%' }}>
       <TopMetricsCard icon="camera" label="监控设备" value={formatNumber(data.cameraCount ?? 0)} valueColor={COLORS[0]} />
       <TopMetricsCard icon="signal" label="设备在线率" value={onlineRate !== null ? `${onlineRate}%` : '-'} valueColor={COLORS[1]} />
       <TopMetricsCard

@@ -19,7 +19,7 @@ export default function LogisticsTopMetrics() {
   if (!leave && !visitors) return null
 
   return (
-    <div style={{ display: 'flex', gap: 12, justifyContent: 'space-between', width: '100%' }}>
+    <div style={{ display: 'flex', gap: 10, justifyContent: 'space-between', width: '100%' }}>
       <TopMetricsCard icon="calendar" label="今日请假" value={leave ? formatNumber(leave.todayTotal) : '-'} valueColor={COLORS[0]} />
       <TopMetricsCard icon="users" label="今日访客" value={visitors ? formatNumber(visitors.todayVisitors) : '-'} valueColor={COLORS[1]} />
       <TopMetricsCard icon="person" label="当前在校访客" value={visitors ? formatNumber(visitors.currentVisitors) : '-'} valueColor={COLORS[2]} />

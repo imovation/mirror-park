@@ -21,7 +21,7 @@ export default function TeachingResearchTopMetrics() {
   if (!stats) return null
 
   return (
-    <div style={{ display: 'flex', gap: 12, justifyContent: 'space-between', width: '100%' }}>
+    <div style={{ display: 'flex', gap: 10, justifyContent: 'space-between', width: '100%' }}>
       <TopMetricsCard icon="library" label="资源总量" value={formatNumber(stats.totalResources)} valueColor={COLORS[0]} />
       <TopMetricsCard icon="file" label="课例成果" value={topics?.lessonCases?.toLocaleString() ?? '-'} valueColor={COLORS[1]} />
       <TopMetricsCard icon="flask" label="在研课题" value={topics?.ongoingTopics?.toLocaleString() ?? '-'} valueColor={COLORS[2]} />
