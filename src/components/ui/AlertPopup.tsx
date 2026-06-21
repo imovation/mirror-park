@@ -10,7 +10,8 @@ export default function AlertPopup() {
   const [visibleAlerts, setVisibleAlerts] = useState<typeof alerts>([])
 
   useEffect(() => {
-    setVisibleAlerts(alerts)
+    const sorted = [...alerts].sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
+    setVisibleAlerts(sorted.slice(0, 5))
   }, [alerts])
 
   if (visibleAlerts.length === 0) return null
@@ -18,7 +19,7 @@ export default function AlertPopup() {
   return (
     <div className="panel-scroll" style={{
       position: 'fixed',
-      bottom: 20,
+      bottom: 48,
       right: 20,
       zIndex: 9999,
       display: 'flex',

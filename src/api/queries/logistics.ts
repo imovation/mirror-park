@@ -22,6 +22,13 @@ export interface CanteenData {
   safetyRecords: { id: string; date: string; item: string; result: string }[]
 }
 
+export interface DormData {
+  occupied: number
+  available: number
+  maintenance: number
+  buildingOccupancy: { name: string; value: number }[]
+}
+
 export const useLogisticsLeave = () =>
   useQuery<LeaveData>({
     queryKey: ['logistics', 'leave'],
@@ -41,4 +48,11 @@ export const useLogisticsCanteen = () =>
     queryKey: ['logistics', 'canteen'],
     queryFn: () => fetchApi<CanteenData>('/logistics/canteen'),
     refetchInterval: REFRESH_INTERVALS.REALTIME,
+  })
+
+export const useDormData = () =>
+  useQuery<DormData>({
+    queryKey: ['logistics', 'dorm'],
+    queryFn: () => fetchApi<DormData>('/logistics/dorm'),
+    refetchInterval: REFRESH_INTERVALS.NEAR_REALTIME,
   })

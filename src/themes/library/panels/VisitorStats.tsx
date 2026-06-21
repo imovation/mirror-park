@@ -13,8 +13,8 @@ export default function VisitorStats() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="今日入馆" value={data.todayVisitors} unit="人" color="#00c853" />
-        <NumberFlip label="实时在馆" value={data.currentVisitors} unit="人" color="#4a9eff" />
+        <NumberFlip label="今日入馆" value={data.todayVisitors} unit="人" color="var(--color-success)" />
+        <NumberFlip label="实时在馆" value={data.currentVisitors} unit="人" color="var(--accent)" />
       </div>
       <div style={{ flexShrink: 0 }}>
         <ChartLabel>近7日入馆趋势</ChartLabel>
@@ -30,7 +30,7 @@ export default function VisitorStats() {
           data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
           height={160}
           horizontal={false}
-          color="#22d3ee"
+          color="var(--color-chart-1)"
         />
       </div>
     </div>

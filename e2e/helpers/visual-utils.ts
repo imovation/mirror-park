@@ -8,6 +8,7 @@ const TOPIC_LABELS: Record<string, string> = {
   library: '智慧图书',
   academics: '智慧教学',
   security: '智慧安防',
+  logistics: '智慧后勤',
 }
 
 const TOPIC_FIRST_PANEL: Record<string, string> = {
@@ -17,6 +18,7 @@ const TOPIC_FIRST_PANEL: Record<string, string> = {
   library: '借阅统计',
   academics: '课表分布',
   security: '监控状态',
+  logistics: '学生请假管理',
 }
 
 export async function navigateToTopic(page: Page, topicId: string) {
@@ -80,10 +82,10 @@ export async function toggleUITheme(page: Page, target: 'dark' | 'light') {
 
 export async function collapsePanel(page: Page, panelTitle: string) {
   const panel = page.locator('h3', { hasText: panelTitle }).locator('..')
-  const collapseBtn = panel.locator('button')
+  const collapseBtn = panel.getByRole('button')
   const btnText = await collapseBtn.textContent()
   if (btnText?.includes('▼')) {
-    await collapseBtn.click()
+    await collapseBtn.click({ force: true })
     await page.waitForTimeout(300)
   }
 }

@@ -2,48 +2,104 @@
 
 ## 项目概述
 
-东莞滨海湾镇远中学数字孪生大屏展示系统。7 个专题 (综合态势/教学研究/行政办公/智慧图书/智慧教学/智慧安防/智慧后勤)，33 个数据面板（拆分后），Three.js (R3F) 三维场景。
+东莞滨海湾镇远中学数字孪生大屏展示系统。7 个专题 (综合态势/教学研究/行政办公/智慧图书/智慧教学/智慧安防/智慧后勤)，38 个数据面板（拆分后），Three.js (R3F) 三维场景。
 
 ## 当前状态
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 175 |
-| 测试 | 234/234 单元测试 + 74/74 E2E 测试 |
+| 源文件 | 183 |
+| 测试 | 248/248 单元测试 + 80/80 E2E 测试 |
 | Git 提交 | 271 |
 | 编译 | ✅ `pnpm build` 通过 |
-| 启动 | ✅ `pnpm dev` → `http://localhost:3000` | |
+| 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
+| 浏览器 Console | 0 error / 0 warning |
 
-**已完成**：平台框架、7 专题全部 41 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割。
+**已完成**：平台框架、7 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割、SSE 实时推送。
 
-**已完成（叠加式布局）**：3D 场景全屏绝对定位 (Layer 0)，UI 覆盖层 (Layer 1) 半透明叠加 + backdrop-filter 毛玻璃；ScreenLayout 移除 scene prop，仅管理 topbar/left/right/bottombar Grid；LeftPanel/RightPanel 合并为 SidePanel；侧栏宽度 240→260px，maxWidth 420→460px。
+**已完成（2026-06-21 第三轮 UI/UX 优化 — 22 项）**：全面布局重构、配色语义化、内容充实、视觉一致性优化。
 
-**已完成（2026-06-21 UI/UX 全面优化）**：七大专 UI/UX 审计 + 30+ 项优化完成：
-- **Panel 拆分**：智慧教学出勤/课表、综合态势教职工 各拆 2 panel（共 5 个 panel 拆分）
-- **Bug 修复**：LogisticsScene camera 复用 security 视角 bug / BarChart 暗色模式 tooltip 卡死 / AssetOverview 硬编码 RING_DATA / 校历日程 周X 缺失
-- **图表组件扩展**：BarChart 新增 `showLabel` + `labelFormat` (value/percent) + `tooltip` prop；PieChart 新增 `legendPosition` (right/bottom/none)；RingChart `centerLabelSize` 默认 14→20
-- **CSS 优化**：`--text-muted` 0.3→0.45 (暗) / 0.42 (亮)；`.panel-scroll` 加 scrollbar-gutter stable + hover 状态
-- **配色语义化**：教职工 ♂蓝/♀粉；借阅/归还 橙/蓝；NumberFlip trend up 改 warning 橙
-- **内容充实**：活跃度时段统计 3 NumberFlip；值班安排 本周值班排班；门禁管理 3 NumberFlip + 6 条记录；监控状态 3 NumberFlip；教师课题 课题状态分布 Ring；课题项目 status 进度条；学生请假 3 NumberFlip + 7日趋势；食堂安全 3 stat + 7 项检查；借阅统计 馆藏构成 Ring + 14日 trend；会议管理 3 stat + 房间 status dot；教职工结构 加学历分布
-- **DashboardPanel**：`showCollapse` 阈值从 flex-3 放宽到 flex-2，更多 panel 可折叠
+## 变更日志 (2026-06-21)
 
-**已完成（视觉一致性优化）**：新增 23 个 CSS 变量 (shadow/font/radius/transition/panel-padding)；全组件字号 rem 化 (`--font-size-xs~xl`)；Modal/VideoWindow/AlertPopup 颜色/阴影变量化；NumberFlip 重写为 CSS digit roll 动画；ScrollList 改为 rAF delta-time 平滑滚动；Modal/VideoWindow 增加入场/离场动效。
+### P0 — 布局严重问题修复
+| # | 变更 | 文件 |
+|---|------|------|
+| 1 | **collapsible 限制解除** — `showCollapse` 去除 `flexGrow >= 2` 要求 | `DashboardPanel.tsx` |
+| 2 | **切专题清空告警** — `clearAlerts()` + 监听 `currentTheme` | `useUIStore.ts`, `App.tsx` |
+| 3 | **智慧教学右侧 4→3 panel** — "出勤排名与趋势"+"空间使用率"合并为"出勤排名与空间使用" | `academics/index.tsx`, `AttendanceAndSpace.tsx` |
+| 4 | **智慧安防右侧补齐** — 新增"安防态势总览"(3 NumberFlip + 趋势 LineChart) | `security/index.tsx`, `SecurityOverview.tsx` |
+| 5 | **智慧后勤左侧补齐** — 新增"宿舍管理"(3 NumberFlip + 入住率 BarChart) + mock | `logistics/index.tsx`, `DormManagement.tsx` |
 
-**已完成（Day/Night 模式统一）**：Classic 和 Tron 两套场景已合并为统一 `CampusBase`，通过 `useTimeModeStore` 切换白天/夜间模式，所有视觉参数集中在 `src/config/dayNightTheme.ts`。
+### P1 — 各专题内容优化
+| # | 变更 |
+|---|------|
+| 1 | **智慧图书** — 左栏 2→3 panel："图书借阅排行"+"阅读之星"拆分 |
+| 2 | **行政办公** — 考勤默认展开、通知公告 flex-1/值班安排 flex-2 权重调整 |
+| 3 | **综合态势** — 功能室分布 flex-1→flex-2 |
+| 4 | **教学研究** — ResourceUpdates 新增 4 个统计卡片(资源总量/云资源/题库/更新) |
 
-**已完成（建筑模型重构）**：BuildingMesh 从单一 Box 重构为 4 层结构（主体+楼板带+外走廊+女儿墙）；校门改为崇智楼中央拱门式入口；钟楼独立矗立在拱门左前方（带金字塔顶 + 竖向校名 "镇远中学"）；教学三栋楼由连廊连接；周边城市背景错落有致。
+### P2 — 样式系统化
+| # | 变更 |
+|---|------|
+| 1 | **hex→CSS 变量** — ~25 处硬编码 hex 替换（FacultyPanorama/StudentInfo/TeacherTopics/...） |
+| 2 | **Panel 不透明度提升** — 暗 0.35→0.45，亮 0.7→0.82 |
+| 3 | **3D Fog** — FOG_NEAR 50→30 |
+| 4 | **浅色模式对比度** — text-muted 0.42→0.50, `--overlay-bg` 0.3→0.4 |
 
-**已完成（UI 主题与图表）**：深色/浅色 UI 主题切换（CSS 变量 + `useUIThemeStore`，TopBar 一键切换）；ECharts 亮色主题自动适配（`useChartTheme()` hook）；新增 4 种图表类型（Sankey/Sunburst/Funnel/Radar）并集成到业务面板。
+### R1-R10 — 精细化迭代
+| # | 变更 |
+|---|------|
+| 1 | LogisticsLeave LineChart 80→120px |
+| 2 | TeachingDevices PieChart 图例 `bottom`→`none` |
+| 3 | AssetOverview 各卡片加占比(%) + RingChart 150→180px |
+| 4 | AccessControl/MonitorStatus BarChart 140→180px |
+| 5 | StudentAttendance BarChart 按值着色(≥97绿/≥90蓝/≥85橙/<85红) |
+| 6 | AlertPopup 按时间降序排列 + bottom 20→48px 避免重叠 BottomBar |
+| 7 | GaugeChart detail color `#fff`→`t.label`（修复浅色模式白字不可读） |
+| 8 | RingChart `centerLabelColor` 默认 `#4a9eff`→`ringColors[0]`（主题自适应） |
+| 9 | 删除死文件 `BookBorrowRank.tsx`；清理未使用 import `acad-space-usage` |
 
-**已完成（SSE 实时推送）**：SSE 客户端（`src/api/sse.ts`，指数退避重连）+ `useSSE()` hook 自动注入 QueryClient；Dev 模式 Mock SSE 客户端（`src/api/sse.mock.ts`，`setInterval` 推送 6 种事件类型）；BottomBar SSE 连接状态指示灯。
+### 测试覆盖扩展
+| # | 变更 |
+|---|------|
+| 1 | 新增 14 个集成测试用例（SecurityOverview/DormManagement/AttendanceAndSpace/BookRank/ReadingStars） |
+| 2 | 更新 library-panels 测试（BookBorrowRank→BookRank+ReadingStars） |
+| 3 | 新增 Logistics E2E 测试（3 用例 × 2 viewport = 6 测试） |
+| 4 | 修复 3 个 E2E spec 适应布局变更 |
+| 5 | 更新 38 张截图基线 |
 
-**已完成（测试）**：Playwright E2E 测试（74 用例，6 专题 × 36 面板视觉回归截图 + 主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠）；Vitest 单元/集成测试 234 用例（stores/api-client/SSE/client/useSSEQuery/query-hooks/MSW-handlers/chartTheme/11-chart-components/4-layout-components/6-ui-components/ErrorBoundary/ScrollList/33-panel-integration）。
+### 工程化
+| # | 变更 |
+|---|------|
+| 1 | **manualChunks** — ECharts/Three.js/React 分拆 3 个 vendor chunk |
+| 2 | **API 文档** — `docs/API.md` 记录 44 REST 端点 + 6 SSE 事件 |
+| 3 | **E2E visual-utils** — collapsePanel `force: true` + `getByRole` |
 
-**已完成（UI 优化与审查修复）**：重构 DashboardPanel 毛玻璃科技风容器（backdrop-blur + 四角霓虹折角）；重写 ChartTheme 统一 ECharts 霓虹配色字典（`#1890ff`/`#52c41a`/`#faad14`/`#f5222d`/`#722ed1`）；ScrollList 新增 header 表头 + 行悬浮高亮；ScreenLayout 新增 topMetrics 插槽，6 专题各配备 TopMetrics 指标卡（数据驱动）；BarChart 支持 barWidth/gridLeft/gridBottom 参数化；RingChart 支持 legendPosition/centerLabelSize；LineChart 添加 xAxis rotate:30 + grid.right:6%；GaugeChart 指针高亮白色 + 放大；FunnelChart 改为同色系渐变；AlertPopup 改为 fixed 右下角绝对定位 z-index:9999；ErrorBoundary fallback 轻量化；三轮 Gemini 审查共修复约 30 项 UI/UX 缺陷（全局背景 opacity 0.35→0.85、告警 .map() 空值保护、3D 热区透明化、屋顶光照优化等）；`pnpm build` + 314/314 测试通过。
+## 新增文件
 
-**已完成（Dashboard 布局重构）**：全面重构面板布局与样式系统。PanelConfig 启用 `height:'flex-1'|'flex-2'|'flex-3'` 加权分配 + 新增 `collapsible` 折叠机制（9 个高密度面板支持折叠）；DashboardPanel 新增 `flexGrow`/`collapsible` props，SidePanel 增加滚动；11 个图表组件颜色统一来自 `chartTheme.colors`（8 色）、内置 `MIN_HEIGHT=120px` 保底、字号取自 CSS 变量 `getChartFontSizes()`；新增 3 个字号变量（`--font-size-3xs/2xs/3xl`），~45 处硬编码 fontSize 全部替换，浅色主题字号 +5%；6 主题 30 面板完成权重分配；`pnpm build` + 314/314 测试通过。
+| 文件 | 用途 |
+|------|------|
+| `panels/AttendanceAndSpace.tsx` | 智慧教学 — 合并出勤排名与空间使用 |
+| `panels/SecurityOverview.tsx` | 智慧安防 — 安防态势总览 |
+| `panels/DormManagement.tsx` | 智慧后勤 — 宿舍管理 |
+| `panels/BookRank.tsx` | 智慧图书 — 图书借阅排行 |
+| `panels/ReadingStars.tsx` | 智慧图书 — 阅读之星 |
+| `docs/API.md` | 44 REST 端点完整文档 |
+| `__tests__/integration/logistics-panels.test.tsx` | 后勤面板集成测试 |
+| `e2e/tests/topic-logistics.spec.ts` | 后勤 E2E 测试 |
 
-**已完成（第三轮优化）**：智慧安防拆分为智慧安防+智慧后勤两个独立专题（新增第7专题，各占左右面板不空）；所有面板 overflow 改为 auto（内容不再被截断）；新增 StatCard 统组件（AssetOverview/DutySchedule 重构）；NumberFlip 支持 trend 同比/环比箭头（告警↓40% 借阅↓37%）；TopMetrics 差异化（安防在线率/行政会议/图书馆借阅）；chart 高度增大填空间（StudentInfo 120→200, ExamManagement 120→200, BorrowStats 140→200, ActivityTimeStats 180→250, RoomDistribution 140→240）；~30处硬编码hex→CSS变量迁移（color-success/color-danger/accent）；安防panel权重交换(monitor flex-2, access/alerts flex-2)；ScheduleSpace 使用buildingUsage+typeDistribution未用数据；TeachingDevices 移除冗余ScrollList；ReadingActivities 全部8条展示；BookBorrowRank 推荐书籍区块；mock数据充实（告警3→12条, 值班4→8人, 考试5→12场）；3个稀疏面板新增图表填充；`pnpm build` + 243/243 测试通过。
+## Panel 布局现状
+
+| 专题 | 左 panel | 右 panel | 总计 |
+|------|---------|---------|------|
+| 综合态势 | 3 (flex-2×3) | 3 (flex-2×2+flex-1) | **6** |
+| 教学研究 | 3 (flex-1×3) | 3 (flex-1×2+flex-2) | **6** |
+| 行政办公 | 3 (flex-1+flex-2×2) | 2 (flex-2+flex-3) | **5** |
+| 智慧图书 | 3 (flex-1+flex-2×2) | 2 (flex-1+flex-2) | **5** |
+| 智慧教学 | 2 (flex-2×2) | 3 (flex-2×3) | **5** |
+| 智慧安防 | 2 (flex-2+flex-1) | 2 (flex-2+flex-1) | **4** |
+| 智慧后勤 | 2 (flex-2+flex-1) | 2 (flex-1×2) | **4** |
+| **总计** | **18** | **17** | **35** |
 
 **3D 场景特性**：
 - **Day/Night 模式**：白天（红砖暖光 + 绿地 + 米白窗户）、夜间（暗黑赛博 + 青色窗户发光 + 道路光流）
@@ -103,16 +159,16 @@ src/
 │   └── themes/               # 6 个专题 store (当前是空骨架，未被使用)
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
-│   ├── overview/                # 综合态势 (3 左 + 3 右 = 6 panel, 教职工拆 2)
+│   ├── overview/                # 综合态势 (3 左 + 3 右 = 6 panel)
 │   ├── teaching-research/       # 教学研究 (3 左 + 3 右 = 6 panel)
 │   ├── admin/                   # 行政办公 (3 左 + 2 右 = 5 panel)
-│   ├── library/                 # 智慧图书 (2 左 + 2 右 = 4 panel)
-│   ├── academics/               # 智慧教学 (2 左 + 4 右 = 6 panel, 出勤/课表各拆 2)
-│   ├── security/                # 智慧安防 (2 左 + 1 右 = 3 panel + 3D 设备/告警标注)
-│   └── logistics/               # 智慧后勤 (1 左 + 2 右 = 3 panel)
+│   ├── library/                 # 智慧图书 (3 左 + 2 右 = 5 panel, 借阅排行+阅读之星已拆分)
+│   ├── academics/               # 智慧教学 (2 左 + 3 右 = 5 panel, 出勤排名+空间使用已合并)
+│   ├── security/                # 智慧安防 (2 左 + 2 右 = 4 panel, 新增安防态势总览)
+│   └── logistics/               # 智慧后勤 (2 左 + 2 右 = 4 panel, 新增宿舍管理)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts
 └── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等)
-e2e/                 # Playwright E2E 测试 (74 用例: 加载/主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠/6 专题截图基线)
+e2e/                 # Playwright E2E 测试 (80 用例: 加载/主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠/7 专题截图基线)
 ```
 
 ## 关键架构约定

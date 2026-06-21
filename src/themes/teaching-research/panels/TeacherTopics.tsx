@@ -25,8 +25,8 @@ export default function TeacherTopics() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="课例数" value={t.lessonCases} unit="个" color="#4a9eff" />
-        <NumberFlip label="公开成果数" value={t.publicAchievements} unit="项" color="#00c853" />
+        <NumberFlip label="课例数" value={t.lessonCases} unit="个" color="var(--accent)" />
+        <NumberFlip label="公开成果数" value={t.publicAchievements} unit="项" color="var(--color-success)" />
         <NumberFlip label="在研课题" value={t.ongoingTopics} unit="项" color="var(--color-warning)" />
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>

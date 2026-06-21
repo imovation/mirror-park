@@ -27,7 +27,7 @@ export default function TeachingDevices() {
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">设备类型分布</ChartLabel>
-          <PieChart data={data.typeDistribution} height={120} legendPosition="bottom" />
+          <PieChart data={data.typeDistribution} height={120} legendPosition="none" />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>

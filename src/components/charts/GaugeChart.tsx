@@ -41,7 +41,7 @@ export default function GaugeChart({ value, max = 100, name = '', height = 150 }
         detail: {
           valueAnimation: true,
           formatter: '{value}%',
-          color: '#fff',
+          color: t.label,
           fontSize: f.titleFontSize + 8,
           offsetCenter: [0, '55%'],
         },

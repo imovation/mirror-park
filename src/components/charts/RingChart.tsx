@@ -14,10 +14,11 @@ interface RingChartProps {
 
 const MIN_HEIGHT = 120
 
-export default function RingChart({ data, height = 160, colors, centerLabel,   centerLabelSize = 20, centerLabelColor = '#4a9eff', legendPosition }: RingChartProps) {
+export default function RingChart({ data, height = 160, colors, centerLabel,   centerLabelSize = 20, centerLabelColor, legendPosition }: RingChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
   const ringColors = colors || t.colors.slice(0, data.length)
+  const labelColor = centerLabelColor || ringColors[0] || t.colors[0]
   const option: EChartsOption = {
     tooltip: { trigger: 'item' },
     color: ringColors,
@@ -60,7 +61,7 @@ export default function RingChart({ data, height = 160, colors, centerLabel,   c
             style: {
               text: centerLabel,
               align: 'center',
-              fill: centerLabelColor,
+              fill: labelColor,
               fontSize: centerLabelSize,
               fontWeight: 'bold',
             },

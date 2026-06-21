@@ -14,8 +14,8 @@ describe('Admin MSW Handlers', () => {
     const data = await res.json()
     expect(data).toHaveProperty('departmentCount', 10)
     expect(data).toHaveProperty('staffCount', 196)
-    expect(data).toHaveProperty('attendanceRate', 0.959)
-    expect(data).toHaveProperty('roomCount', 28)
+    expect(data).toHaveProperty('attendanceRate', 0.962)
+    expect(data).toHaveProperty('roomCount', 30)
   })
 
   it('GET /api/admin/notices returns 200 with notice array', async () => {
@@ -37,7 +37,7 @@ describe('Admin MSW Handlers', () => {
     const data = await res.json()
     expect(data).toHaveProperty('thisWeek')
     expect(Array.isArray(data.thisWeek)).toBe(true)
-    expect(data.thisWeek.length).toBe(5)
+    expect(data.thisWeek.length).toBe(7)
     expect(data.thisWeek[0]).toHaveProperty('date', '周一 6/16')
     expect(data).toHaveProperty('holidays')
     expect(data.holidays[0]).toHaveProperty('event', '暑假')

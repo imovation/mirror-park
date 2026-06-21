@@ -72,6 +72,12 @@ describe('Teaching Research Panel Integration', () => {
   describe('ResourceUpdates', () => {
     it('renders updates when loaded', async () => {
       const qc = createQC()
+      fillQueryCache(qc, ['tr', 'resourceStats'], {
+        totalResources: 6500,
+        cloudQuestions: 1840,
+        cloudResources: 3200,
+        recentUpdates: 48,
+      })
       fillQueryCache(qc, ['tr', 'updates'], {
         recentItems: [
           { id: '1', name: '二次函数教案', subject: '数学', teacher: '张老师', time: '2024-01-15' },
@@ -86,6 +92,12 @@ describe('Teaching Research Panel Integration', () => {
 
     it('shows empty state when data is null', async () => {
       const qc = createQC()
+      fillQueryCache(qc, ['tr', 'resourceStats'], {
+        totalResources: 6500,
+        cloudQuestions: 1840,
+        cloudResources: 3200,
+        recentUpdates: 48,
+      })
       fillQueryCache(qc, ['tr', 'updates'], null)
       renderWithProviders(<ResourceUpdates />, { queryClient: qc })
       await waitFor(() => {

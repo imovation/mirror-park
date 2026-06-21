@@ -20,6 +20,13 @@ export function AttendanceOverview() {
     ? Math.round(data.trend.values.reduce((a, b) => a + b, 0) / data.trend.values.length)
     : 0
 
+  const gradeColors = data.gradeRates.map((g) => {
+    if (g.value >= 97) return 'var(--color-success)'
+    if (g.value >= 90) return 'var(--accent)'
+    if (g.value >= 85) return 'var(--color-warning)'
+    return 'var(--color-danger)'
+  })
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
@@ -30,7 +37,7 @@ export function AttendanceOverview() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各年级出勤率</ChartLabel>
-          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={180} />
+          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={180} colors={gradeColors} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">实时仪表</ChartLabel>
@@ -55,7 +62,7 @@ export function AttendanceTrend() {
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">30日出勤趋势</ChartLabel>
-          <LineChart xData={data.trend.days} series={[{ name: '出勤率', data: data.trend.values, color: '#4a9eff' }]} height={220} smooth area />
+          <LineChart xData={data.trend.days} series={[{ name: '出勤率', data: data.trend.values, color: 'var(--accent)' }]} height={220} smooth area />
         </div>
       </div>
     </div>

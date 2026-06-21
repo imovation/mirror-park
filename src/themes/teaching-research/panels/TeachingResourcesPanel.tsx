@@ -36,8 +36,8 @@ export default function TeachingResourcesPanel() {
           >
             <div style={{ height: 4, background: r.color, opacity: 0.45 }} />
             <div style={{ padding: '8px 6px', textAlign: 'center' }}>
-              <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
-                {r.value}<span style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginLeft: 2, marginRight: 4, fontWeight: 400 }}>{UNITS[r.name] || ''}</span>
+              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
+                {r.value}<span style={{ fontSize: 12, color: 'var(--text-muted)', marginLeft: 2, marginRight: 4, fontWeight: 400 }}>{UNITS[r.name] || ''}</span>
               </div>
               <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)', marginTop: 2 }}>{r.name}</div>
             </div>

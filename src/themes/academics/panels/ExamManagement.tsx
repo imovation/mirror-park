@@ -28,8 +28,8 @@ export default function ExamManagement() {
             }))}
           />
         </div>
-        <div style={{ textAlign: 'center', background: 'rgba(74,158,255,0.06)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '8px 6px' }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: '#1890ff', fontFamily: "'Courier New', monospace", lineHeight: 1 }}>{data.semesterExamCount}</div>
+        <div style={{ textAlign: 'center', background: 'rgba(var(--accent-rgb), 0.06)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '8px 6px' }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--accent)', fontFamily: "'Courier New', monospace", lineHeight: 1 }}>{data.semesterExamCount}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>本学期考试{'\u00A0'}/ 场</div>
         </div>
       </div>
@@ -40,7 +40,7 @@ export default function ExamManagement() {
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">成绩分布</ChartLabel>
-          <FunnelChart data={data.scoreDistribution} height={200} color={['#f06a6a', '#f59e4b', '#f7d44a', '#6ab04c', '#3b82f6']} />
+          <FunnelChart data={data.scoreDistribution} height={200} color={['var(--color-danger)', 'var(--color-warning)', 'var(--color-pending)', 'var(--color-success)', 'var(--accent)']} />
         </div>
       </div>
     </div>

@@ -91,8 +91,8 @@ export default function BorrowStats() {
           <LineChart
             xData={data.trend.days.slice(-14)}
             series={[
-              { name: '借阅', data: borrowTrend.slice(-14), color: '#fa8c16' },
-              { name: '归还', data: returnTrend.slice(-14), color: '#4a9eff' },
+              { name: '借阅', data: borrowTrend.slice(-14), color: 'var(--color-warning)' },
+              { name: '归还', data: returnTrend.slice(-14), color: 'var(--accent)' },
             ]}
             height={150}
             area={false}

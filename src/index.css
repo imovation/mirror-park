@@ -4,7 +4,7 @@
 
 :root {
   --page-bg: #0a1628;
-  --panel-bg: rgba(0, 0, 0, 0.35);
+  --panel-bg: rgba(0, 0, 0, 0.45);
   --panel-bg-solid: rgba(10, 22, 40, 0.95);
   --topbar-bg: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
   --bottombar-bg: rgba(0, 0, 0, 0.4);
@@ -64,18 +64,18 @@
 
 [data-ui-theme="light"] {
   --page-bg: #eef1f5;
-  --panel-bg: rgba(255, 255, 255, 0.7);
+  --panel-bg: rgba(255, 255, 255, 0.82);
   --panel-bg-solid: rgba(255, 255, 255, 0.98);
   --topbar-bg: rgba(255, 255, 255, 0.9);
   --bottombar-bg: rgba(0, 0, 0, 0.05);
-  --overlay-bg: rgba(0, 0, 0, 0.3);
+  --overlay-bg: rgba(0, 0, 0, 0.4);
   --text-primary: rgba(0, 0, 0, 0.85);
   --text-secondary: rgba(0, 0, 0, 0.7);
   --text-tertiary: rgba(0, 0, 0, 0.5);
-  --text-muted: rgba(0, 0, 0, 0.42);
+  --text-muted: rgba(0, 0, 0, 0.50);
   --border: rgba(0, 0, 0, 0.08);
   --border-light: rgba(0, 0, 0, 0.04);
-  --border-strong: rgba(0, 0, 0, 0.15);
+  --border-strong: rgba(0, 0, 0, 0.2);
   --accent: #2563eb;
   --accent-rgb: 37, 99, 235;
   --color-success: #059669;

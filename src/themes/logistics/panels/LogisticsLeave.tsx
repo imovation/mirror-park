@@ -43,8 +43,8 @@ export default function LogisticsLeave() {
         <ChartLabel>近 7 日请假趋势</ChartLabel>
         <LineChart
           xData={fakeTrend.days}
-          series={[{ name: '请假人数', data: fakeTrend.values, color: '#4a9eff' }]}
-          height={80}
+          series={[{ name: '请假人数', data: fakeTrend.values, color: 'var(--accent)' }]}
+          height={120}
           smooth
         />
       </div>

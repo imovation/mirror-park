@@ -4,6 +4,7 @@ import { QueryClient } from '@tanstack/react-query'
 import MonitorStatus from '@/themes/security/panels/MonitorStatus'
 import AccessControl from '@/themes/security/panels/AccessControl'
 import AlertEvents from '@/themes/security/panels/AlertEvents'
+import SecurityOverview from '@/themes/security/panels/SecurityOverview'
 
 function fillQueryCache(qc: QueryClient, key: string[], data: unknown) {
   qc.setQueryData(key, data)
@@ -75,6 +76,7 @@ describe('Security Panel Integration', () => {
       const qc = createQC()
       fillQueryCache(qc, ['security', 'alerts'], {
         todayTotal: 8,
+        yesterdayTotal: 5,
         typeDistribution: [{ name: '入侵告警', value: 3 }, { name: '设备故障', value: 2 }],
         handledRatio: 0.75,
         unhandledRatio: 0.25,
@@ -92,6 +94,42 @@ describe('Security Panel Integration', () => {
       const qc = createQC()
       fillQueryCache(qc, ['security', 'alerts'], null)
       renderWithProviders(<AlertEvents />, { queryClient: qc })
+      await waitFor(() => {
+        expect(screen.getByText('暂无数据')).toBeInTheDocument()
+      })
+    })
+  })
+
+  describe('SecurityOverview', () => {
+    it('renders overview when loaded', async () => {
+      const qc = createQC()
+      fillQueryCache(qc, ['security', 'alerts'], {
+        todayTotal: 8,
+        yesterdayTotal: 5,
+        typeDistribution: [{ name: '入侵告警', value: 3 }, { name: '设备故障', value: 2 }],
+        handledRatio: 0.75,
+        unhandledRatio: 0.25,
+        records: [{ id: '1', time: '08:00', type: '入侵告警', location: '校门', status: '已处理' }],
+      })
+      fillQueryCache(qc, ['security', 'monitor'], {
+        total: 256, online: 240, offline: 10, faulty: 6,
+        regionDistribution: [{ name: '教学楼', value: 120 }],
+        coverage: 0.92,
+      })
+      renderWithProviders(<SecurityOverview />, { queryClient: qc })
+      await waitFor(() => {
+        expect(screen.getByText('已处理')).toBeInTheDocument()
+        expect(screen.getByText('待处理')).toBeInTheDocument()
+        expect(screen.getByText('设备在线率')).toBeInTheDocument()
+        expect(screen.getByText('近 7 日告警趋势')).toBeInTheDocument()
+      })
+    })
+
+    it('shows empty state when data is null', async () => {
+      const qc = createQC()
+      fillQueryCache(qc, ['security', 'alerts'], null)
+      fillQueryCache(qc, ['security', 'monitor'], { total: 256, online: 240, offline: 10, faulty: 6, regionDistribution: [], coverage: 0.92 })
+      renderWithProviders(<SecurityOverview />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('暂无数据')).toBeInTheDocument()
       })

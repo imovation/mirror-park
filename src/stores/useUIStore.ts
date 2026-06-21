@@ -15,6 +15,7 @@ interface UIState {
   clearModals: () => void
   addAlert: (alert: Omit<Alert, 'id' | 'timestamp'>) => void
   dismissAlert: (id: string) => void
+  clearAlerts: () => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -32,4 +33,5 @@ export const useUIStore = create<UIState>((set) => ({
     })),
   dismissAlert: (id) =>
     set((s) => ({ alertQueue: s.alertQueue.filter((a) => a.id !== id) })),
+  clearAlerts: () => set({ alertQueue: [] }),
 }))

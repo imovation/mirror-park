@@ -19,8 +19,8 @@ export const overviewPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   ],
   right: [
     { id: 'overview-activity-stats', title: '活跃度时段统计', height: 'flex-2' },
+    { id: 'overview-room-dist', title: '功能室分布', height: 'flex-2' },
     { id: 'overview-asset-overview', title: '资产概况', height: 'flex-1' },
-    { id: 'overview-room-dist', title: '功能室分布', height: 'flex-1' },
   ],
 }
 

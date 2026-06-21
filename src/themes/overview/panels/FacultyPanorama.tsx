@@ -24,16 +24,16 @@ export function FacultyComposition() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexShrink: 0 }}>
-        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'rgba(74,158,255,0.08)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
+        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
           <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'monospace' }}>{p.totalTeachers}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>教职工</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'rgba(74,158,255,0.08)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: '#4a9eff', fontFamily: 'monospace' }}>♂ {p.maleCount}</div>
+        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--accent)', fontFamily: 'monospace' }}>♂ {p.maleCount}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>男</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'rgba(236,72,153,0.08)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: '#ec4899', fontFamily: 'monospace' }}>♀ {p.femaleCount}</div>
+        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--color-chart-5)', fontFamily: 'monospace' }}>♀ {p.femaleCount}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>女</div>
         </div>
       </div>
@@ -42,8 +42,8 @@ export function FacultyComposition() {
           <ChartLabel align="center">性别比例</ChartLabel>
           <RingChart
             data={genderData}
-            colors={['#4a9eff', '#ec4899']}
-            height={180}
+            colors={['var(--accent)', 'var(--color-chart-5)']}
+            height={200}
             centerLabel={String(p.totalTeachers)}
             centerLabelSize={22}
             legendPosition="bottom"
@@ -51,7 +51,7 @@ export function FacultyComposition() {
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">年龄分布</ChartLabel>
-          <BarChart data={ageData} height={180} barWidth="60%" showLabel />
+          <BarChart data={ageData} height={200} barWidth="60%" showLabel />
         </div>
       </div>
     </div>

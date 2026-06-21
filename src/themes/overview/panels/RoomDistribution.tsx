@@ -12,7 +12,7 @@ export default function RoomDistribution() {
 
   const total = data.rooms.reduce((a, b) => a + b.count, 0)
   const sorted = [...data.rooms].sort((a, b) => b.count - a.count)
-  const topColors = ['#4a9eff', '#00c853', '#ff6d00', '#aa00ff', '#ffc107', '#00bcd4', '#ec407a', '#26a69a']
+  const topColors = ['var(--accent)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-chart-7)', 'var(--color-pending)', 'var(--color-chart-1)', 'var(--color-chart-5)', 'var(--color-chart-4)']
   const barColors = sorted.map((_, i) => topColors[i] || 'var(--accent)')
   const dataWithColors = data.rooms.map((r) => {
     const idx = sorted.findIndex((s) => s.name === r.name)

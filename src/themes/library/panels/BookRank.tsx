@@ -1,0 +1,43 @@
+import { useHotBooks, useClassRank } from '@/api/queries/library'
+import BarChart from '@/components/charts/BarChart'
+import StatusPanel from '@/components/ui/StatusPanel'
+import ChartLabel from '@/components/ui/ChartLabel'
+
+export default function BookRank() {
+  const hotQuery = useHotBooks()
+  const rankQuery = useClassRank()
+
+  if (hotQuery.isLoading || rankQuery.isLoading) return <StatusPanel type="loading" />
+  if (hotQuery.error || rankQuery.error) return <StatusPanel type="error" />
+  if (!hotQuery.data || !rankQuery.data) return <StatusPanel type="empty" />
+
+  const hot = hotQuery.data
+  const rank = rankQuery.data
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0 }}>
+        <ChartLabel align="center">借阅量 TOP10</ChartLabel>
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <BarChart
+            data={hot.top10.map(b => ({ name: b.name, value: b.count }))}
+            height={220}
+            gridLeft={70}
+            tooltip={false}
+          />
+        </div>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0 }}>
+        <ChartLabel align="center">班级借阅量排行</ChartLabel>
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <BarChart
+            data={rank.classRank.slice(0, 8)}
+            height={220}
+            gridLeft="20%"
+            tooltip={false}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}

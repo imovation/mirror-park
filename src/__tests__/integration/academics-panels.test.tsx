@@ -3,6 +3,7 @@ import { QueryClient } from '@tanstack/react-query'
 
 import ScheduleSpace from '@/themes/academics/panels/ScheduleSpace'
 import StudentAttendance from '@/themes/academics/panels/StudentAttendance'
+import AttendanceAndSpace from '@/themes/academics/panels/AttendanceAndSpace'
 import ExamManagement from '@/themes/academics/panels/ExamManagement'
 import TeachingDevices from '@/themes/academics/panels/TeachingDevices'
 
@@ -121,6 +122,41 @@ describe('Academics Panel Integration', () => {
       const qc = createQC()
       fillQueryCache(qc, ['academics', 'devices'], null)
       renderWithProviders(<TeachingDevices />, { queryClient: qc })
+      await waitFor(() => {
+        expect(screen.getByText('暂无数据')).toBeInTheDocument()
+      })
+    })
+  })
+
+  describe('AttendanceAndSpace', () => {
+    it('renders attendance and space when loaded', async () => {
+      const qc = createQC()
+      fillQueryCache(qc, ['academics', 'attendance'], {
+        todayRate: 0.97,
+        gradeRates: [{ name: '初一', value: 98 }, { name: '初二', value: 96 }],
+        classRank: [{ name: '初一(1)班', value: 99 }],
+        trend: { days: ['01', '02'], values: [97, 98] },
+      })
+      fillQueryCache(qc, ['academics', 'classroomUsage'], {
+        inUse: 42,
+        available: 18,
+        buildingUsage: [{ name: '教学楼A', value: 20 }],
+        typeDistribution: [{ name: '普通教室', value: 50 }],
+      })
+      renderWithProviders(<AttendanceAndSpace />, { queryClient: qc })
+      await waitFor(() => {
+        expect(screen.getByText('今日出勤率')).toBeInTheDocument()
+        expect(screen.getByText('教室总数')).toBeInTheDocument()
+        expect(screen.getByText('班级出勤排名')).toBeInTheDocument()
+        expect(screen.getByText('使用率')).toBeInTheDocument()
+      })
+    })
+
+    it('shows empty state when data is null', async () => {
+      const qc = createQC()
+      fillQueryCache(qc, ['academics', 'attendance'], null)
+      fillQueryCache(qc, ['academics', 'classroomUsage'], { inUse: 42, available: 18, buildingUsage: [], typeDistribution: [] })
+      renderWithProviders(<AttendanceAndSpace />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('暂无数据')).toBeInTheDocument()
       })

@@ -16,16 +16,16 @@ export default function MeetingManagement() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexShrink: 0 }}>
-        <div style={{ textAlign: 'center', background: 'rgba(24,144,255,0.08)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '6px 12px', flex: 1 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: '#4a9eff', fontFamily: "'Courier New', monospace", lineHeight: 1.1 }}>{data.todayCount}</div>
+        <div style={{ textAlign: 'center', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '6px 12px', flex: 1 }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--accent)', fontFamily: "'Courier New', monospace", lineHeight: 1.1 }}>{data.todayCount}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginTop: 2 }}>今日会议 / 场</div>
         </div>
-        <div style={{ textAlign: 'center', background: 'rgba(82,196,26,0.08)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '6px 12px', flex: 1 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: '#52c41a', fontFamily: "'Courier New', monospace", lineHeight: 1.1 }}>{data.weekCount}</div>
+        <div style={{ textAlign: 'center', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '6px 12px', flex: 1 }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--color-success)', fontFamily: "'Courier New', monospace", lineHeight: 1.1 }}>{data.weekCount}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginTop: 2 }}>本周会议 / 场</div>
         </div>
-        <div style={{ textAlign: 'center', background: 'rgba(250,140,22,0.08)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '6px 12px', flex: 1 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: '#fa8c16', fontFamily: "'Courier New', monospace", lineHeight: 1.1 }}>{usageRate}%</div>
+        <div style={{ textAlign: 'center', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 8, padding: '6px 12px', flex: 1 }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--color-warning)', fontFamily: "'Courier New', monospace", lineHeight: 1.1 }}>{usageRate}%</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginTop: 2 }}>使用率</div>
         </div>
       </div>

@@ -4,10 +4,10 @@ import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
 const STATS = [
-  { key: 'totalResources', label: '资源总量', unit: '份', color: '#1890ff' },
-  { key: 'cloudQuestions', label: '云试题数', unit: '道', color: '#52c41a' },
-  { key: 'cloudResources', label: '云资源数', unit: '份', color: '#faad14' },
-  { key: 'recentUpdates', label: '近期更新', unit: '次', color: '#722ed1' },
+  { key: 'totalResources', label: '资源总量', unit: '份', color: 'var(--accent)' },
+  { key: 'cloudQuestions', label: '云试题数', unit: '道', color: 'var(--color-success)' },
+  { key: 'cloudResources', label: '云资源数', unit: '份', color: 'var(--color-warning)' },
+  { key: 'recentUpdates', label: '近期更新', unit: '次', color: 'var(--color-chart-7)' },
 ] as const
 
 const RESOURCE_DATA = [

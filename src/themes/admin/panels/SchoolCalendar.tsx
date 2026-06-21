@@ -3,9 +3,9 @@ import ScrollList from '@/components/ui/ScrollList'
 import StatusPanel from '@/components/ui/StatusPanel'
 
 const TYPE_COLORS: Record<string, string> = {
-  '会议': '#1890ff',
-  '考试': '#f5222d',
-  '活动': '#fa8c16',
+  '会议': 'var(--accent)',
+  '考试': 'var(--color-danger)',
+  '活动': 'var(--color-warning)',
 }
 
 export default function SchoolCalendar() {
@@ -19,7 +19,7 @@ export default function SchoolCalendar() {
       id: `week-${e.date}`,
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: TYPE_COLORS[e.type] || '#1890ff', boxShadow: '0 0 8px rgba(24,144,255,0.5)', flexShrink: 0 }} />
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: TYPE_COLORS[e.type] || 'var(--accent)', boxShadow: '0 0 8px rgba(var(--accent-rgb), 0.5)', flexShrink: 0 }} />
           <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
           <span style={{ fontSize: 'var(--font-size-xs)', color: TYPE_COLORS[e.type] || 'var(--accent)', minWidth: 28, textAlign: 'center' }}>{e.type}</span>
           <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>{e.event}</span>
@@ -30,7 +30,7 @@ export default function SchoolCalendar() {
       id: `upcoming-${e.date}`,
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#52c41a', boxShadow: '0 0 8px rgba(82,196,26,0.5)', flexShrink: 0 }} />
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px rgba(82,196,26,0.5)', flexShrink: 0 }} />
           <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
           <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>{e.event}</span>
         </div>
@@ -40,7 +40,7 @@ export default function SchoolCalendar() {
       id: `holiday-${e.date}`,
       content: (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#faad14', boxShadow: '0 0 8px rgba(250,173,20,0.5)', flexShrink: 0 }} />
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-pending)', boxShadow: '0 0 8px rgba(250,173,20,0.5)', flexShrink: 0 }} />
           <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', minWidth: 56 }}>{e.date}</span>
           <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-pending)' }}>{e.event}</span>
         </div>
@@ -49,26 +49,36 @@ export default function SchoolCalendar() {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', gap: 12, flexShrink: 0 }}>
+        <div style={{ flex: 1, background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, padding: '6px 10px', textAlign: 'center' }}>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>本月事件</div>
+          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--accent)' }}>11<span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', fontWeight: 400, marginLeft: 2 }}>项</span></div>
+        </div>
+        <div style={{ flex: 1, background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, padding: '6px 10px', textAlign: 'center' }}>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>今日事件</div>
+          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--color-warning)' }}>1<span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', fontWeight: 400, marginLeft: 2 }}>项</span></div>
+        </div>
+      </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#1890ff', boxShadow: '0 0 4px rgba(24,144,255,0.6)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 4px rgba(var(--accent-rgb), 0.6)' }} />
           会议
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#f5222d', boxShadow: '0 0 4px rgba(245,34,45,0.6)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-danger)', boxShadow: '0 0 4px rgba(var(--color-danger-rgb), 0.6)' }} />
           考试
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#fa8c16', boxShadow: '0 0 4px rgba(250,140,22,0.6)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-warning)', boxShadow: '0 0 4px rgba(var(--color-warning-rgb), 0.6)' }} />
           活动
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#52c41a', boxShadow: '0 0 4px rgba(82,196,26,0.6)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 4px rgba(82,196,26,0.6)' }} />
           近期事件
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#faad14', boxShadow: '0 0 4px rgba(250,173,20,0.6)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-pending)', boxShadow: '0 0 4px rgba(250,173,20,0.6)' }} />
           假期
         </span>
       </div>

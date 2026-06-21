@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useSSE } from '@/api/useSSEQuery'
 import { useThemeStore } from '@/stores/useThemeStore'
+import { useUIStore } from '@/stores/useUIStore'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import ScreenLayout from '@/components/layout/ScreenLayout'
 import TopBar from '@/components/layout/TopBar'
@@ -36,6 +37,10 @@ function AppContent() {
   useEffect(() => {
     console.log(`[SSE] ${sseStatus}`)
   }, [sseStatus])
+
+  useEffect(() => {
+    useUIStore.getState().clearAlerts()
+  }, [currentTheme])
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>

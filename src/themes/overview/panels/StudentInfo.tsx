@@ -17,8 +17,8 @@ export default function StudentInfo() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>在校学生</div>
           <div style={{ display: 'flex', gap: 10, fontSize: 'var(--font-size-sm)' }}>
-            <span style={{ color: '#4a9eff', fontWeight: 600 }}>♂ {Math.round(data.maleRatio * 100)}%</span>
-            <span style={{ color: '#ec4899', fontWeight: 600 }}>♀ {Math.round(data.femaleRatio * 100)}%</span>
+            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>♂ {Math.round(data.maleRatio * 100)}%</span>
+            <span style={{ color: 'var(--color-chart-5)', fontWeight: 600 }}>♀ {Math.round(data.femaleRatio * 100)}%</span>
           </div>
         </div>
       </div>
@@ -38,8 +38,8 @@ export default function StudentInfo() {
             <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1 }}>{g.total}</div>
             <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', marginBottom: 4 }}>{g.name} · 总人数</div>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 12, fontSize: 'var(--font-size-md)' }}>
-              <span style={{ color: '#4a9eff', fontWeight: 700 }}>♂ {g.male}</span>
-              <span style={{ color: '#ec4899', fontWeight: 700 }}>♀ {g.female}</span>
+              <span style={{ color: 'var(--accent)', fontWeight: 700 }}>♂ {g.male}</span>
+              <span style={{ color: 'var(--color-chart-5)', fontWeight: 700 }}>♀ {g.female}</span>
             </div>
           </div>
         ))}
@@ -48,7 +48,7 @@ export default function StudentInfo() {
         <ChartLabel>年级人数对比</ChartLabel>
         <BarChart
           data={data.grades.map((g) => ({ name: g.name, value: g.total }))}
-          height={150}
+          height={180}
           horizontal={false}
           color="var(--accent)"
           gridTop={0}

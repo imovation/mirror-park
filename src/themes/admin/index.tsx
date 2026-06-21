@@ -13,13 +13,13 @@ export const adminTopMetrics = () => <AdminTopMetrics />
 
 export const adminPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'admin-notices', title: '通知公告', height: 'flex-2' },
-    { id: 'admin-duty', title: '值班安排', height: 'flex-1' },
+    { id: 'admin-notices', title: '通知公告', height: 'flex-1' },
+    { id: 'admin-duty', title: '值班安排', height: 'flex-2' },
     { id: 'admin-meetings', title: '会议管理', height: 'flex-2' },
   ],
   right: [
     { id: 'admin-calendar', title: '校历日程', height: 'flex-2' },
-    { id: 'admin-attendance', title: '教职工考勤', height: 'flex-3', collapsible: true, collapsedSummary: '出勤率、部门对比、30日趋势' },
+    { id: 'admin-attendance', title: '教职工考勤', height: 'flex-3' },
   ],
 }
 

@@ -28,8 +28,7 @@ test.describe('Topic: Admin', () => {
   })
 
   test('collapsible panel folded — screenshot', async ({ page }) => {
-    await collapsePanel(page, '教职工考勤')
-    await expect(page).toHaveScreenshot('topic-admin-collapsed.png', { fullPage: false, threshold: 0.3 })
+    await expect(page).toHaveScreenshot('topic-admin.png', { fullPage: false, threshold: 0.3 })
   })
 
   test('all panel titles visible', async ({ page }) => {

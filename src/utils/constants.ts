@@ -6,7 +6,7 @@ export const REFRESH_INTERVALS = {
 
 export const SCENE = {
   FOG_COLOR: '#0a1628',
-  FOG_NEAR: 50,
+  FOG_NEAR: 30,
   FOG_FAR: 500,
   DEFAULT_CAMERA: {
     position: [0, 60, 30] as [number, number, number],
