@@ -41,7 +41,13 @@ export default function LineChart({ xData, series, height = 160, smooth = false,
       data: s.data,
       smooth,
       lineStyle: { color: s.color || t.colors[i % t.colors.length], width: 2 },
-      areaStyle: area ? { color: (s.color || t.colors[i % t.colors.length]) + '20' } : undefined,
+      areaStyle: area
+        ? (() => {
+            const base = s.color || t.colors[i % t.colors.length] || '#22d3ee'
+            if (base.startsWith('var(')) return { color: base, opacity: 0.15 }
+            return { color: base + '30' }
+          })()
+        : undefined,
       itemStyle: { color: s.color || t.colors[i % t.colors.length] },
     })),
   }
