@@ -16,7 +16,23 @@ export default function LineChart({ xData, series, height = 160, smooth = false,
   const t = useChartTheme()
   const f = getChartFontSizes()
   const option: EChartsOption = {
-    tooltip: { trigger: 'axis' },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(10, 22, 40, 0.92)',
+      borderColor: 'rgba(74,158,255,0.12)',
+      borderWidth: 1,
+      textStyle: { color: '#fff', fontSize: 12 },
+      formatter: (params: any) => {
+        if (!Array.isArray(params)) return ''
+        return params.map((p: any) => `
+          <div style="display:flex;align-items:center;gap:6px;padding:1px 0">
+            <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${p.color || '#22d3ee'}"></span>
+            <span style="font-weight:600">${p.seriesName}</span>
+            <span style="margin-left:auto;font-weight:700;font-family:monospace">${p.value}</span>
+          </div>
+        `).join('') + `<div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:4px;padding-top:4px;font-size:11px;color:rgba(255,255,255,0.5)">${params[0]?.axisValue || ''}</div>`
+      },
+    },
     legend: {
       data: series.map((s) => s.name),
       bottom: 0,

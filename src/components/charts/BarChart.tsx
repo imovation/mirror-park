@@ -28,7 +28,25 @@ export default function BarChart({ data, height = 160, horizontal = true, color,
     tooltip === false
       ? { show: false }
       : tooltip === true
-        ? { trigger: 'axis' }
+        ? {
+            trigger: 'axis',
+            backgroundColor: 'rgba(10, 22, 40, 0.92)',
+            borderColor: 'rgba(74,158,255,0.12)',
+            borderWidth: 1,
+            textStyle: { color: '#fff', fontSize: 12 },
+            formatter: (params: any) => {
+              const p = Array.isArray(params) ? params[0] : params
+              if (!p) return ''
+              const color = p.color || '#22d3ee'
+              const name = p.name || ''
+              const value = p.value ?? ''
+              return `<div style="display:flex;align-items:center;gap:6px;padding:2px 0">
+          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color}"></span>
+          <span style="font-weight:600">${name}</span>
+          <span style="margin-left:auto;font-weight:700;font-family:monospace">${value}</span>
+        </div>`
+            },
+          }
         : (tooltip as EChartsOption['tooltip'])
   const option: EChartsOption = {
     tooltip: tooltipOption,

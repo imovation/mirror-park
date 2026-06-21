@@ -43,7 +43,25 @@ export default function PieChart({ data, height = 160, colors, radius, legendPos
     : undefined
 
   const option: EChartsOption = {
-    tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(10, 22, 40, 0.92)',
+      borderColor: 'rgba(74,158,255,0.12)',
+      borderWidth: 1,
+      textStyle: { color: '#fff', fontSize: 12 },
+      formatter: (params: any) => {
+        const p = params || {}
+        const color = p.color || '#22d3ee'
+        const name = p.name || ''
+        const value = p.value ?? ''
+        const pct = p.percent ?? 0
+        return `<div style="display:flex;align-items:center;gap:6px;padding:2px 0">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${color}"></span>
+          <span style="font-weight:600">${name}</span>
+          <span style="margin-left:auto;font-weight:700;font-family:monospace">${value} (${pct}%)</span>
+        </div>`
+      },
+    },
     color: pieColors,
     legend: legendConfig,
     series: [

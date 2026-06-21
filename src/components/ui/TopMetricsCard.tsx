@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import MetricIcon, { type IconType } from './MetricIcon'
 
 interface TopMetricsCardProps {
@@ -11,9 +12,12 @@ interface TopMetricsCardProps {
 
 export default function TopMetricsCard({ label, value, unit, icon, valueColor, title }: TopMetricsCardProps) {
   const finalValueColor = valueColor || 'var(--text-primary)'
+  const [hovered, setHovered] = useState(false)
   return (
     <div
       title={title}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
         position: 'relative',
         display: 'flex',
@@ -28,6 +32,8 @@ export default function TopMetricsCard({ label, value, unit, icon, valueColor, t
         minWidth: 88,
         cursor: title ? 'help' : 'default',
         overflow: 'hidden',
+        transition: 'all 0.25s ease',
+        transform: hovered ? 'scale(1.02)' : 'scale(1)',
       }}>
       <div
         style={{
@@ -37,7 +43,7 @@ export default function TopMetricsCard({ label, value, unit, icon, valueColor, t
           bottom: 4,
           width: 3,
           background: valueColor || 'var(--theme-primary)',
-          boxShadow: `0 0 6px ${valueColor || 'var(--theme-glow)'}`,
+          boxShadow: `0 0 ${hovered ? 12 : 6}px ${valueColor || 'var(--theme-glow)'}`,
           borderRadius: 2,
         }}
       />
@@ -61,7 +67,7 @@ export default function TopMetricsCard({ label, value, unit, icon, valueColor, t
             width: 26,
             height: 26,
             borderRadius: 5,
-            background: 'rgba(255,255,255,0.04)',
+            background: hovered ? 'rgba(var(--theme-primary-rgb), 0.2)' : 'rgba(255,255,255,0.04)',
             boxShadow: `inset 0 0 0 1px ${valueColor ? `${valueColor}55` : 'rgba(var(--theme-primary-rgb), 0.25)'}`,
             flexShrink: 0,
           }}

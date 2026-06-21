@@ -7,6 +7,7 @@ interface DashboardPanelProps {
   collapsible?: boolean
   collapsedSummary?: string
   className?: string
+  style?: React.CSSProperties
   children: ReactNode
 }
 
@@ -16,6 +17,7 @@ export default function DashboardPanel({
   collapsible = false,
   collapsedSummary,
   className = '',
+  style = {},
   children,
 }: DashboardPanelProps) {
   const [collapsed, setCollapsed] = useState(false)
@@ -31,7 +33,9 @@ export default function DashboardPanel({
         height: collapsed && showCollapse ? 48 : undefined,
         background: 'var(--panel-bg)',
         borderColor: 'var(--border-strong)',
-        transition: 'flex 0.3s ease, min-height 0.3s ease, height 0.3s ease',
+        transition: 'flex 0.3s ease, min-height 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease',
+        animationDelay: 'var(--stagger-delay, 0s)',
+        ...style,
       }}
     >
       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--theme-primary)' }} />

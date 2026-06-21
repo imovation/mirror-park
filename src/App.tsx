@@ -69,13 +69,14 @@ function AppContent() {
           leftPanel={
             <ErrorBoundary name="左侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
               <SidePanel>
-                {entry.panels.left.map((p) => (
+                {entry.panels.left.map((p, idx) => (
                   <DashboardPanel
                       key={p.id}
                       title={p.title}
                       flexGrow={p.height === 'flex-2' ? 2 : p.height === 'flex-3' ? 3 : 1}
                       collapsible={p.collapsible}
                       collapsedSummary={p.collapsedSummary}
+                      style={{ '--stagger-delay': `${idx * 0.08}s` } as React.CSSProperties}
                     >
                     <ErrorBoundary name={p.title}>
                       {entry.renderPanel(p.id)}
@@ -88,13 +89,14 @@ function AppContent() {
           rightPanel={
             <ErrorBoundary name="右侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>右侧面板异常</div>}>
               <SidePanel>
-                {entry.panels.right.map((p) => (
+                {entry.panels.right.map((p, idx) => (
                   <DashboardPanel
                       key={p.id}
                       title={p.title}
                       flexGrow={p.height === 'flex-2' ? 2 : p.height === 'flex-3' ? 3 : 1}
                       collapsible={p.collapsible}
                       collapsedSummary={p.collapsedSummary}
+                      style={{ '--stagger-delay': `${idx * 0.08}s` } as React.CSSProperties}
                     >
                     <ErrorBoundary name={p.title}>
                       {entry.renderPanel(p.id)}
