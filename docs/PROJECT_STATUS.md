@@ -1,16 +1,56 @@
 # PROJECT STATUS — 智慧校园可视化平台
 
-> 最后更新: 2026-06-20
+> 最后更新: 2026-06-21
 
 ## 项目统计
 
 | 指标 | 数值 |
 |------|------|
 | 源文件 | ~175 |
-| 测试 | 237/237 单元测试通过，76/76 E2E测试通过 |
-| Git 提交 | 258+ |
+| 测试 | 234/234 单元测试通过，74/74 E2E测试通过 |
+| Git 提交 | 261+ |
 | 构建 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → http://localhost:3000 |
+
+## 已完成 (新增/本轮)
+
+### UI/UX 全面优化 (本轮 2026-06-21)
+- [x] **七大专 UI/UX 审计**: 生成 30+ 项优化建议 (P0 5项 / P1 5项 / P2 4项 + 跨专题 ~25 项)
+- [x] **Panel 拆分**: 4-chart 过载 panel → 双 panel (智慧教学出勤/课表/综合态势教职工 共 6 panel 拆分)
+- [x] **Bug 修复**:
+  - LogisticsScene camera 复用 security 视角 bug (新增 logistics 镜头预设)
+  - BarChart 添加 tooltip prop 修复 BookBorrowRank 暗色模式 tooltip 卡死
+  - AssetOverview 硬编码 RING_DATA 改为实时数据
+  - admin.ts 校历日程 upcoming 周X 前缀补全
+- [x] **图表组件扩展**:
+  - BarChart 新增 showLabel/labelFormat (value/percent) + tooltip prop
+  - PieChart 新增 legendPosition (right/bottom/none)
+  - RingChart centerLabelSize 默认 14→20
+- [x] **跨专题 CSS 优化**:
+  - --text-muted 0.3→0.45 (暗) / 0.42 (亮) — 对比度提升
+  - .panel-scroll 加 scrollbar-gutter: stable + hover 状态
+  - TopMetricsCard 紧凑化, SidePanel 加宽, ScrollList paddingTop
+  - AlertPopup 滚动容器, TopBar 时间字号提升
+- [x] **配色与字号**:
+  - 教职工 4 stat 用 ♂蓝/♀粉 语义色
+  - 借阅统计借阅/归还 改 橙/蓝 高对比
+  - 面板标题去 drop-shadow (浅色 theme)
+  - DashboardPanel 允许 flex-2 折叠
+- [x] **内容充实** (按 P0 优先级):
+  - 活跃度时段统计: 3 NumberFlip + 累计
+  - 值班安排: 本周值班排班
+  - 门禁管理: 3 NumberFlip + 6 条记录
+  - 监控状态: 3 NumberFlip + 完整状态环
+  - 教师课题: 课题状态分布 Ring + 课题成员数
+  - 课题项目: status 进度条 + 进度可视化
+  - 学生请假: 3 NumberFlip + 7日趋势 LineChart
+  - 食堂安全: 3 stat + 7 项检查 grid
+  - 借阅统计: 馆藏构成 Ring + 14日 trend
+  - 会议管理: 3 stat + 房间 status dot
+  - 教职工结构: 加学历分布
+  - 综合态势: 教职工拆 2 panel
+- [x] **测试通过**: 234/234 unit + 74/74 E2E (更新所有截图基线)
+- [x] **Git 提交**: 3 个语义化 commit (refactor: 拆分+修复 / style: CSS / test: E2E 基线)
 
 ## 已完成
 
@@ -36,12 +76,12 @@
 - [x] 摄像头/门禁设备 3D 点位标注 (智慧安防专题)
 - [x] 告警位置红色闪烁标注 (智慧安防专题)
 
-### 数据面板 (7 专题 × 41 面板)
-- [x] **综合态势**: 教职工全景态势 / 学生基础信息 / 活跃度时段统计 / 资产概况 / 功能室分布 (5面板)
+### 数据面板 (7 专题 × 43 面板 — 本轮拆分后)
+- [x] **综合态势**: 教职工组成 / 教职工结构 / 学生基础信息 / 活跃度时段统计 / 资产概况 / 功能室分布 (6面板, 教职工由 1 拆 2)
 - [x] **教学研究**: 教学资源 / 资源统计 / 资源更新动态 / 教师课题 / 课题项目 / 名师工作室 (6面板)
 - [x] **行政办公**: 通知公告 / 值班安排 / 校历日程 / 教职工考勤 / 会议管理 (5面板)
 - [x] **智慧图书**: 借阅统计 / 图书借阅多维排行 / 阅读活动 / 入馆统计 (4面板)
-- [x] **智慧教学**: 课表与空间调度 / 教学设备 / 学生出勤 / 考试管理 (4面板)
+- [x] **智慧教学**: 课表分布 / 教学设备 / 学生出勤概况 / 出勤排名与趋势 / 空间使用率 / 考试管理 (6面板, 学生出勤/课表各拆 2)
 - [x] **智慧安防**: 监控状态 / 门禁管理 / 告警事件 (3面板)
 - [x] **智慧后勤**: 学生请假管理 / 访客管理 / 食堂安全 (3面板)
 
