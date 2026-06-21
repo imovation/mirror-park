@@ -8,16 +8,22 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 183 |
-| 测试 | 248/248 单元测试 + 80/80 E2E 测试 |
-| Git 提交 | 271 |
+| 源文件 | 198 |
+| 测试 | 249/249 单元测试 + 80/80 E2E 测试 |
+| Git 提交 | 283 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 | 浏览器 Console | 0 error / 0 warning |
 
 **已完成**：平台框架、7 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割、SSE 实时推送。
 
-**已完成（2026-06-21 第三轮 UI/UX 优化 — 22 项）**：全面布局重构、配色语义化、内容充实、视觉一致性优化。
+**已完成（2026-06-21 全面 UI/UX 优化 — 六轮 60+ 项）**：
+1. 审计报告 + 30+ 项核心问题修复（RingChart 裁剪/BarChart 自适应/NumberFlip 防抖）
+2. CSS 变量体系 + ~25 处 hex 清理 + TopMetrics 紧凑
+3. 7 专题独立配色 + TopMetrics 科技未来风 + 个性化图标 (30 SVG)
+4. TopMetrics space-between 分布 + 图表丰富 12 色调色板 (CHART_PALETTE)
+5. 纯黑色修复（LineChart areaStyle CSS 变量 + RingChart colors）
+6. UI 打磨：Tooltip 卡片式 + 面板序次动画 + BottomBar 运行时长 + 微交互 hover
 
 ## 变更日志 (2026-06-21)
 
@@ -27,8 +33,11 @@
 | 1 | **collapsible 限制解除** — `showCollapse` 去除 `flexGrow >= 2` 要求 | `DashboardPanel.tsx` |
 | 2 | **切专题清空告警** — `clearAlerts()` + 监听 `currentTheme` | `useUIStore.ts`, `App.tsx` |
 | 3 | **智慧教学右侧 4→3 panel** — "出勤排名与趋势"+"空间使用率"合并为"出勤排名与空间使用" | `academics/index.tsx`, `AttendanceAndSpace.tsx` |
-| 4 | **智慧安防右侧补齐** — 新增"安防态势总览"(3 NumberFlip + 趋势 LineChart) | `security/index.tsx`, `SecurityOverview.tsx` |
-| 5 | **智慧后勤左侧补齐** — 新增"宿舍管理"(3 NumberFlip + 入住率 BarChart) + mock | `logistics/index.tsx`, `DormManagement.tsx` |
+| 4 | **智慧安防右侧补齐** — 新增"安防态势总览" | `security/index.tsx`, `SecurityOverview.tsx` |
+| 5 | **智慧后勤左侧补齐** — 新增"宿舍管理" + mock | `logistics/index.tsx`, `DormManagement.tsx` |
+| 6 | **RingChart 中心文字裁剪** — "351/372"→"051/372" 修复 (半径 50%→38%, 长文本自动缩) | `RingChart.tsx` |
+| 7 | **LineChart areaStyle 纯黑色** — CSS 变量拼接 `'var(xx)30'` ECharts 无法解析 | `LineChart.tsx` |
+| 8 | **RingChart/LineChart CSS 变量→hex** — 7 面板纯黑色修复 | `BorrowStats/TeachingDevices/MonitorStatus/AlertEvents/SecurityOverview/StaffAttendance` |
 
 ### P1 — 各专题内容优化
 | # | 变更 |
@@ -36,15 +45,22 @@
 | 1 | **智慧图书** — 左栏 2→3 panel："图书借阅排行"+"阅读之星"拆分 |
 | 2 | **行政办公** — 考勤默认展开、通知公告 flex-1/值班安排 flex-2 权重调整 |
 | 3 | **综合态势** — 功能室分布 flex-1→flex-2 |
-| 4 | **教学研究** — ResourceUpdates 新增 4 个统计卡片(资源总量/云资源/题库/更新) |
+| 4 | **教学研究** — ResourceUpdates 新增 4 个统计卡片 |
+| 5 | **教职工考勤 Mock 扩展** — 4→8 部门 / **门禁 Mock 一致性** — total 用 reduce 合计 |
+| 6 | **考试管理** — FunnelChart→BarChart / **名师工作室** — 去除成员行降密度 |
 
 ### P2 — 样式系统化
 | # | 变更 |
 |---|------|
-| 1 | **hex→CSS 变量** — ~25 处硬编码 hex 替换（FacultyPanorama/StudentInfo/TeacherTopics/...） |
-| 2 | **Panel 不透明度提升** — 暗 0.35→0.45，亮 0.7→0.82 |
-| 3 | **3D Fog** — FOG_NEAR 50→30 |
-| 4 | **浅色模式对比度** — text-muted 0.42→0.50, `--overlay-bg` 0.3→0.4 |
+| 1 | **7 专题独立主色** — 青/紫/靛/金/青绿/橙/绿 (themeColors.ts) |
+| 2 | **TopMetrics 科技未来风** — 左竖条 + 顶部渐变 + 数字发光 + 个性化图标 (MetricIcon 30 SVG) |
+| 3 | **图表调色板 12 色** — CHART_PALETTE.dark/light + semantic 语义色 (male/female/success/danger...) |
+| 4 | **Panel 主题色联动** — 4 角装饰/标题色条/渐变背景全部跟随当前专题 |
+| 5 | **TopBar 激活态** — 底部主题色下划线 + 发光 |
+| 6 | **硬编码 hex→CSS 变量** — ~30 处替换 |
+| 7 | **Panel 不透明度提升** — 暗 0.35→0.45，亮 0.7→0.82 |
+| 8 | **3D Fog** — FOG_NEAR 50→30 |
+| 9 | **浅色模式对比度** — text-muted 0.42→0.50, --overlay-bg 0.3→0.4 |
 
 ### R1-R10 — 精细化迭代
 | # | 变更 |
@@ -55,9 +71,18 @@
 | 4 | AccessControl/MonitorStatus BarChart 140→180px |
 | 5 | StudentAttendance BarChart 按值着色(≥97绿/≥90蓝/≥85橙/<85红) |
 | 6 | AlertPopup 按时间降序排列 + bottom 20→48px 避免重叠 BottomBar |
-| 7 | GaugeChart detail color `#fff`→`t.label`（修复浅色模式白字不可读） |
-| 8 | RingChart `centerLabelColor` 默认 `#4a9eff`→`ringColors[0]`（主题自适应） |
-| 9 | 删除死文件 `BookBorrowRank.tsx`；清理未使用 import `acad-space-usage` |
+| 7 | GaugeChart detail color `#fff`→`t.label` |
+| 8 | RingChart `centerLabelColor` 默认 `#4a9eff`→`ringColors[0]` |
+| 9 | 删除死文件 `BookBorrowRank.tsx`；清理未使用 import |
+
+### UI 微交互 (新增)
+| # | 变更 |
+|---|------|
+| 1 | **面板序次动画** — fadeInUp + `--stagger-delay` 80ms 间隔 |
+| 2 | **Tooltip 卡片式** — 深色底 + 颜色圆点 + monospace 数值 (4 组件) |
+| 3 | **BottomBar 增强** — 运行时长计数 + 渐变背景 |
+| 4 | **TopMetricsCard hover** — scale(1.02) + glow 放大 |
+| 5 | **主题过渡** — background/border-color 0.3s ease |
 
 ### 测试覆盖扩展
 | # | 变更 |
@@ -65,15 +90,9 @@
 | 1 | 新增 14 个集成测试用例（SecurityOverview/DormManagement/AttendanceAndSpace/BookRank/ReadingStars） |
 | 2 | 更新 library-panels 测试（BookBorrowRank→BookRank+ReadingStars） |
 | 3 | 新增 Logistics E2E 测试（3 用例 × 2 viewport = 6 测试） |
-| 4 | 修复 3 个 E2E spec 适应布局变更 |
-| 5 | 更新 38 张截图基线 |
-
-### 工程化
-| # | 变更 |
-|---|------|
-| 1 | **manualChunks** — ECharts/Three.js/React 分拆 3 个 vendor chunk |
-| 2 | **API 文档** — `docs/API.md` 记录 44 REST 端点 + 6 SSE 事件 |
-| 3 | **E2E visual-utils** — collapsePanel `force: true` + `getByRole` |
+| 4 | chart-theme.test 扩展 3 用例（主题切换 / 派生调色板 / 12 色调板） |
+| 5 | 修复 top-metrics.test 适应布局变更 |
+| 6 | 更新 80 张截图基线 (7 专题 × 2 模式 × 2 viewport × ~2) |
 
 ## 新增文件
 
@@ -84,7 +103,12 @@
 | `panels/DormManagement.tsx` | 智慧后勤 — 宿舍管理 |
 | `panels/BookRank.tsx` | 智慧图书 — 图书借阅排行 |
 | `panels/ReadingStars.tsx` | 智慧图书 — 阅读之星 |
+| `config/themeColors.ts` | 7 专题调色板定义 |
+| `config/metricColors.ts` | TopMetrics 10 色数值色板 |
+| `components/ui/MetricIcon.tsx` | 30 个 SVG 线条图标库 |
 | `docs/API.md` | 44 REST 端点完整文档 |
+| `docs/UI_UX_AUDIT.md` | UI/UX 审计报告 |
+| `docs/superpowers/plans/2026-06-21-ui-ux-fixes.md` | 实施计划 |
 | `__tests__/integration/logistics-panels.test.tsx` | 后勤面板集成测试 |
 | `e2e/tests/topic-logistics.spec.ts` | 后勤 E2E 测试 |
 
