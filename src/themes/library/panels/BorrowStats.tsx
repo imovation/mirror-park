@@ -49,11 +49,11 @@ export default function BorrowStats() {
       <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexShrink: 0 }}>
         <div style={{ textAlign: 'center', padding: '4px 10px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, flex: 1 }}>
           <div style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--text-primary)' }}>{peakBorrow}</div>
-          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>峰值 (册/日)</div>
+           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>峰值 (14日)</div>
         </div>
         <div style={{ textAlign: 'center', padding: '4px 10px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, flex: 1 }}>
           <div style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--text-primary)' }}>{avgBorrow}</div>
-          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>日均 (册)</div>
+          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>日均 (14日)</div>
         </div>
       </div>
       {collectionData && (

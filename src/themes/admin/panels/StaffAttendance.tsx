@@ -19,7 +19,7 @@ export default function StaffAttendance() {
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各部门出勤率</ChartLabel>
-        <BarChart data={data.departmentRates} height={120} horizontal={false} />
+        <BarChart data={data.departmentRates} height={120} horizontal={false} barWidth="50%" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>近30日出勤趋势</ChartLabel>

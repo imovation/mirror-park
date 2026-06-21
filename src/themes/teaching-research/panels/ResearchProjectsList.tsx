@@ -62,13 +62,13 @@ export default function ResearchProjectsList() {
               background: 'var(--panel-bg)',
               border: '1px solid var(--border-light)',
               borderRadius: 6,
-              padding: '8px 10px',
+              padding: '10px 12px',
               borderLeft: `3px solid ${statusColors[p.status] || 'var(--accent)'}`,
             }}
           >
             <div
               style={{
-                fontSize: 'var(--font-size-sm)',
+                fontSize: 'var(--font-size-md)',
                 fontWeight: 600,
                 color: 'var(--text-primary)',
                 overflow: 'hidden',
@@ -79,9 +79,9 @@ export default function ResearchProjectsList() {
             >
               {p.name}
             </div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>负责人: {p.leader}</div>
+            <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>负责人: {p.leader}</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
-              <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>{p.members}人</span>
+              <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>{p.members}人</span>
               <span
                 style={{
                   fontSize: 'var(--font-size-xs)',

@@ -32,16 +32,17 @@ export const securityHandlers = [
 
   http.get(`${BASE}/security/access`, () => {
     const hours = Array.from({ length: 14 }, (_, i) => `${i + 6}:00`)
+    const accessPoints = [
+      { name: '南门', value: 1724 },
+      { name: '北门', value: 1256 },
+      { name: '西门', value: 815 },
+      { name: '崇德楼', value: 523 },
+      { name: '崇智楼', value: 578 },
+      { name: '崇文楼', value: 936 },
+    ]
     return HttpResponse.json({
-      todayTotal: 5832,
-      points: [
-        { name: '南门', value: 1724 },
-        { name: '北门', value: 1256 },
-        { name: '西门', value: 815 },
-        { name: '崇德楼', value: 523 },
-        { name: '崇智楼', value: 578 },
-        { name: '崇文楼', value: 936 },
-      ],
+      points: [...accessPoints].sort((a, b) => b.value - a.value),
+      todayTotal: accessPoints.reduce((s, d) => s + d.value, 0),
       hourlyDistribution: {
         hours,
         values: [382, 1172, 458, 196, 148, 212, 448, 506, 272, 254, 328, 446, 612, 318],
