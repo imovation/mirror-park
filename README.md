@@ -30,7 +30,7 @@
 pnpm install
 pnpm dev        # http://localhost:3000
 pnpm build      # 生产构建到 dist/
-pnpm test       # 运行所有测试 (238 单元 + 76 E2E)
+pnpm test       # 运行所有测试 (234 单元 + 74 E2E)
 ```
 
 ## 专题模块
@@ -40,9 +40,10 @@ pnpm test       # 运行所有测试 (238 单元 + 76 E2E)
 | 综合态势 | 6 | 校园全景鸟瞰 (白天/夜间模式) |
 | 教学研究 | 6 | 教学楼近景 |
 | 行政办公 | 5 | 行政区域 |
-| 智慧图书 | 5 | 崇文楼图书馆 |
+| 智慧图书 | 4 | 崇文楼图书馆 |
 | 智慧教学 | 6 | 教学楼 + 3D 教室热力图 |
-| 智慧安防 | 6 | 校园全景 + 设备/告警标注 |
+| 智慧安防 | 3 | 校园全景 + 设备/告警标注 |
+| 智慧后勤 | 3 | 校园近景 + 摄像头/门禁 3D 标注 |
 
 ## 项目结构
 
@@ -54,14 +55,14 @@ src/
 │   ├── charts/     # ECharts 封装 (11 种图表类型)
 │   ├── layout/     # ScreenLayout, TopBar, Panels, BottomBar, ErrorBoundary
 │   ├── scene/      # R3F 3D 场景 (CampusBase, Camera, Particles, Landscape, GroundDecorations)
-│   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, ChartLabel
+│   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, ChartLabel, StatCard, TopMetricsCard
 ├── hooks/          # useSceneClick
 ├── shaders/        # WebGL GLSL (buildingWindow 窗户发光, roadFlow 道路光流)
 ├── stores/         # Zustand (Theme, Scene, UI, UITheme, TimeMode)
-├── themes/         # 6 个专题 (panels + scene + registry)
+├── themes/         # 7 个专题 (panels + scene + registry)
 ├── types/          # TypeScript 类型定义
 └── utils/          # format, constants
-e2e/                # Playwright E2E 测试 (76 用例 + 44 截图 baseline)
+e2e/                # Playwright E2E 测试 (74 用例 + 36 截图 baseline)
 ```
 
 ## 功能亮点
@@ -72,7 +73,7 @@ e2e/                # Playwright E2E 测试 (76 用例 + 44 截图 baseline)
 - **主题切换**：UI 深色/浅色主题 (CSS 变量) + 3D 白天/夜间模式独立切换
 - **实时推送**：SSE 基础设施 (指数退避重连) + BottomBar 连接状态指示灯
 - **响应式**：1920px ~ 7680px 超宽屏自适应
-- **完整测试**：238 Vitest 单元/集成测试 + 76 Playwright E2E 测试 (含 6 专题视觉回归截图)
+- **完整测试**：234 Vitest 单元/集成测试 + 74 Playwright E2E 测试 (含 7 专题视觉回归截图)
 
 ## 设计文档
 

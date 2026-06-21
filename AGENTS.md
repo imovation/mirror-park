@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-东莞滨海湾镇远中学数字孪生大屏展示系统。7 个专题 (综合态势/教学研究/行政办公/智慧图书/智慧教学/智慧安防/智慧后勤)，41 个数据面板，142 项指标，Three.js (R3F) 三维场景。
+东莞滨海湾镇远中学数字孪生大屏展示系统。7 个专题 (综合态势/教学研究/行政办公/智慧图书/智慧教学/智慧安防/智慧后勤)，33 个数据面板（拆分后），Three.js (R3F) 三维场景。
 
 ## 当前状态
 
@@ -10,13 +10,22 @@
 |------|------|
 | 源文件 | 175 |
 | 测试 | 234/234 单元测试 + 74/74 E2E 测试 |
-| Git 提交 | 259 |
+| Git 提交 | 271 |
 | 编译 | ✅ `pnpm build` 通过 |
-| 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
+| 启动 | ✅ `pnpm dev` → `http://localhost:3000` | |
 
 **已完成**：平台框架、7 专题全部 41 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割。
 
-**已完成（叠加式布局）**：3D 场景全屏绝对定位 (Layer 0)，UI 覆盖层 (Layer 1) 半透明叠加 + backdrop-filter 毛玻璃；ScreenLayout 移除 scene prop，仅管理 topbar/left/right/bottombar Grid；LeftPanel/RightPanel 合并为 SidePanel。
+**已完成（叠加式布局）**：3D 场景全屏绝对定位 (Layer 0)，UI 覆盖层 (Layer 1) 半透明叠加 + backdrop-filter 毛玻璃；ScreenLayout 移除 scene prop，仅管理 topbar/left/right/bottombar Grid；LeftPanel/RightPanel 合并为 SidePanel；侧栏宽度 240→260px，maxWidth 420→460px。
+
+**已完成（2026-06-21 UI/UX 全面优化）**：七大专 UI/UX 审计 + 30+ 项优化完成：
+- **Panel 拆分**：智慧教学出勤/课表、综合态势教职工 各拆 2 panel（共 5 个 panel 拆分）
+- **Bug 修复**：LogisticsScene camera 复用 security 视角 bug / BarChart 暗色模式 tooltip 卡死 / AssetOverview 硬编码 RING_DATA / 校历日程 周X 缺失
+- **图表组件扩展**：BarChart 新增 `showLabel` + `labelFormat` (value/percent) + `tooltip` prop；PieChart 新增 `legendPosition` (right/bottom/none)；RingChart `centerLabelSize` 默认 14→20
+- **CSS 优化**：`--text-muted` 0.3→0.45 (暗) / 0.42 (亮)；`.panel-scroll` 加 scrollbar-gutter stable + hover 状态
+- **配色语义化**：教职工 ♂蓝/♀粉；借阅/归还 橙/蓝；NumberFlip trend up 改 warning 橙
+- **内容充实**：活跃度时段统计 3 NumberFlip；值班安排 本周值班排班；门禁管理 3 NumberFlip + 6 条记录；监控状态 3 NumberFlip；教师课题 课题状态分布 Ring；课题项目 status 进度条；学生请假 3 NumberFlip + 7日趋势；食堂安全 3 stat + 7 项检查；借阅统计 馆藏构成 Ring + 14日 trend；会议管理 3 stat + 房间 status dot；教职工结构 加学历分布
+- **DashboardPanel**：`showCollapse` 阈值从 flex-3 放宽到 flex-2，更多 panel 可折叠
 
 **已完成（视觉一致性优化）**：新增 23 个 CSS 变量 (shadow/font/radius/transition/panel-padding)；全组件字号 rem 化 (`--font-size-xs~xl`)；Modal/VideoWindow/AlertPopup 颜色/阴影变量化；NumberFlip 重写为 CSS digit roll 动画；ScrollList 改为 rAF delta-time 平滑滚动；Modal/VideoWindow 增加入场/离场动效。
 
@@ -28,7 +37,7 @@
 
 **已完成（SSE 实时推送）**：SSE 客户端（`src/api/sse.ts`，指数退避重连）+ `useSSE()` hook 自动注入 QueryClient；Dev 模式 Mock SSE 客户端（`src/api/sse.mock.ts`，`setInterval` 推送 6 种事件类型）；BottomBar SSE 连接状态指示灯。
 
-**已完成（测试）**：Playwright E2E 测试（76 用例，6 专题 × 38 面板视觉回归截图 + 主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠）；Vitest 单元/集成测试 242 用例（stores/api-client/SSE/client/useSSEQuery/SSE-panel-compatibility/query-hooks/MSW-handlers/chartTheme/11-chart-components/4-layout-components/6-ui-components/ErrorBoundary/ScrollList/38-panel-integration）。
+**已完成（测试）**：Playwright E2E 测试（74 用例，6 专题 × 36 面板视觉回归截图 + 主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠）；Vitest 单元/集成测试 234 用例（stores/api-client/SSE/client/useSSEQuery/query-hooks/MSW-handlers/chartTheme/11-chart-components/4-layout-components/6-ui-components/ErrorBoundary/ScrollList/33-panel-integration）。
 
 **已完成（UI 优化与审查修复）**：重构 DashboardPanel 毛玻璃科技风容器（backdrop-blur + 四角霓虹折角）；重写 ChartTheme 统一 ECharts 霓虹配色字典（`#1890ff`/`#52c41a`/`#faad14`/`#f5222d`/`#722ed1`）；ScrollList 新增 header 表头 + 行悬浮高亮；ScreenLayout 新增 topMetrics 插槽，6 专题各配备 TopMetrics 指标卡（数据驱动）；BarChart 支持 barWidth/gridLeft/gridBottom 参数化；RingChart 支持 legendPosition/centerLabelSize；LineChart 添加 xAxis rotate:30 + grid.right:6%；GaugeChart 指针高亮白色 + 放大；FunnelChart 改为同色系渐变；AlertPopup 改为 fixed 右下角绝对定位 z-index:9999；ErrorBoundary fallback 轻量化；三轮 Gemini 审查共修复约 30 项 UI/UX 缺陷（全局背景 opacity 0.35→0.85、告警 .map() 空值保护、3D 热区透明化、屋顶光照优化等）；`pnpm build` + 314/314 测试通过。
 
@@ -82,7 +91,7 @@ src/
 │   ├── charts/      # ECharts: Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap/Sankey/Sunburst/Funnel/Radar
 │   ├── layout/      # ScreenLayout(CSS Grid 覆盖层), TopBar, SidePanel, BottomBar, ErrorBoundary
 │   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, ParticleBg, SceneInfo
-│   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow, ChartLabel
+│   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow, ChartLabel, StatCard, TopMetricsCard
 ├── hooks/           # useSceneClick (目前很少使用)
 ├── shaders/         # WebGL GLSL: buildingWindow (建筑窗户发光), roadFlow (道路光流动画)
 ├── stores/
@@ -94,16 +103,16 @@ src/
 │   └── themes/               # 6 个专题 store (当前是空骨架，未被使用)
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
-│   ├── overview/                # 综合态势 (5 左面板 + 2 右面板)
-│   ├── teaching-research/       # 教学研究 (3 左 + 3 右)
-│   ├── admin/                   # 行政办公 (3 左 + 3 右)
-│   ├── library/                 # 智慧图书 (3 左 + 3 右)
-│   ├── academics/               # 智慧教学 (3 左 + 4 右 + 3D 热力图)
-│   └── security/                # 智慧安防 (2 左 + 1 右 + 3D 设备/告警标注)
-│   └── logistics/               # 智慧后勤 (1 左 + 2 右)
+│   ├── overview/                # 综合态势 (3 左 + 3 右 = 6 panel, 教职工拆 2)
+│   ├── teaching-research/       # 教学研究 (3 左 + 3 右 = 6 panel)
+│   ├── admin/                   # 行政办公 (3 左 + 2 右 = 5 panel)
+│   ├── library/                 # 智慧图书 (2 左 + 2 右 = 4 panel)
+│   ├── academics/               # 智慧教学 (2 左 + 4 右 = 6 panel, 出勤/课表各拆 2)
+│   ├── security/                # 智慧安防 (2 左 + 1 右 = 3 panel + 3D 设备/告警标注)
+│   └── logistics/               # 智慧后勤 (1 左 + 2 右 = 3 panel)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts
 └── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等)
-e2e/                 # Playwright E2E 测试 (8 用例: 加载/主题切换/专题导航/建筑交互)
+e2e/                 # Playwright E2E 测试 (74 用例: 加载/主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠/6 专题截图基线)
 ```
 
 ## 关键架构约定
