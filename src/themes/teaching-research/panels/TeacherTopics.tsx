@@ -33,7 +33,7 @@ export default function TeacherTopics() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">课题状态分布</ChartLabel>
-          <RingChart data={statusData} height={120} centerLabel={String(p.length)} centerLabelSize={16} legendPosition="bottom" />
+          <RingChart data={statusData} height={120} centerLabel={String(p.length)} centerLabelSize={16} legendPosition="right" />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">课题成员数</ChartLabel>

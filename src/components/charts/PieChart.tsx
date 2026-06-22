@@ -34,12 +34,14 @@ function PieChart({ data, height = 160, colors, radius, legendPosition = 'right'
           itemGap: 6,
         }
       : {
-          orient: 'vertical' as const,
-          right: 5,
+          orient: 'horizontal' as const,
+          right: 0,
           top: 'center',
           textStyle: { color: t.legendText, fontSize: f.legendFontSize },
           itemWidth: 8,
           itemHeight: 8,
+          itemGap: 4,
+          width: 70,
         }
     : undefined
 

@@ -50,7 +50,7 @@ export default function TeachingResourcesPanel() {
           data={data.resources.map((r) => ({ name: r.name, value: r.value }))}
           colors={HUE_ROTATION.r4}
           height={140}
-          legendPosition="bottom"
+          legendPosition="right"
         />
       </div>
     </div>
