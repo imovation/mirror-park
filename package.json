@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:e2e": "playwright test --config=e2e/playwright.config.ts",
+    "test:e2e": "playwright test --config=e2e/playwright.config.ts --project=Desktop --project=Tablet",
+    "test:e2e:full": "playwright test --config=e2e/playwright.config.ts",
     "test:watch": "vitest",
     "lint": "eslint src --ext .ts,.tsx"
   },
