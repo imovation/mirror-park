@@ -29,8 +29,19 @@ export default function CameraController() {
 
   useEffect(() => {
     const preset = SCENE.THEME_CAMERAS[currentTheme as keyof typeof SCENE.THEME_CAMERAS] || SCENE.THEME_CAMERAS.overview
-    targetPos.current.set(...preset.position)
-    targetLook.current.set(...preset.target)
+    const aspect = window.innerWidth / window.innerHeight
+    let distMul = 1
+    if (aspect > 2.5) distMul = 1.5
+    else if (aspect < 1.2) distMul = 0.8
+    const pos = new THREE.Vector3(...preset.position)
+    const target = new THREE.Vector3(...preset.target)
+    if (distMul !== 1) {
+      const dir = new THREE.Vector3().subVectors(pos, target)
+      dir.multiplyScalar(distMul)
+      pos.copy(target).add(dir)
+    }
+    targetPos.current.copy(pos)
+    targetLook.current.copy(target)
     isAnimating.current = true
     setControlsEnabled(controlsRef, false)
 

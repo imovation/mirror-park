@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
@@ -15,10 +16,10 @@ interface LineChartProps {
 
 const MIN_HEIGHT = 120
 
-export default function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine, yAxisMin, yAxisMax }: LineChartProps) {
+function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine, yAxisMin, yAxisMax }: LineChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
-  const option: EChartsOption = {
+  const option = useMemo<EChartsOption>(() => ({
     tooltip: {
       trigger: 'axis',
       backgroundColor: 'rgba(10, 22, 40, 0.92)',
@@ -76,7 +77,9 @@ export default function LineChart({ xData, series, height = 160, smooth = false,
         data: [{ yAxis: markLine, label: { show: false } }],
       } : undefined,
     })),
-  }
+  }), [area, height, markLine, series, smooth, xData, yAxisMax, yAxisMin, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
+
+export default memo(LineChart)

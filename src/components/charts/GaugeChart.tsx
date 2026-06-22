@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
@@ -11,17 +12,17 @@ interface GaugeChartProps {
 
 const MIN_HEIGHT = 120
 
-export default function GaugeChart({ value, max = 100, name = '', height = 150 }: GaugeChartProps) {
+function GaugeChart({ value, max = 100, name = '', height = 150 }: GaugeChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
-  const option: EChartsOption = {
+  const option = useMemo<EChartsOption>(() => ({
     series: [
       {
         type: 'gauge',
         startAngle: 210,
         endAngle: -30,
         center: ['50%', '55%'],
-        radius: '90%',
+        radius: Math.min(height * 0.7, 100) + '%',
         min: 0,
         max,
         axisLine: {
@@ -53,7 +54,9 @@ export default function GaugeChart({ value, max = 100, name = '', height = 150 }
         data: [{ value, name }],
       },
     ],
-  }
+  }), [value, max, name, height, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
+
+export default memo(GaugeChart)

@@ -136,19 +136,19 @@ html, body, #root {
   overflow: hidden;
   font-family: var(--font-family);
   background: var(--page-bg);
-  font-size: calc(12px + 0.25vw);
+  font-size: clamp(12px, calc(10px + 0.5vw), 28px);
   transition: background 0.3s ease, color 0.3s ease;
 }
 
 @media (min-width: 3840px) {
   html, body, #root {
-    font-size: calc(14px + 0.2vw);
+    font-size: clamp(14px, calc(12px + 0.4vw), 32px);
   }
 }
 
 @media (min-width: 5760px) {
   html, body, #root {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
 

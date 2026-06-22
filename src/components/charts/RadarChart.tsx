@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
@@ -22,10 +23,10 @@ interface RadarChartProps {
 
 const MIN_HEIGHT = 120
 
-export default function RadarChart({ indicator, series, height = 220, title }: RadarChartProps) {
+function RadarChart({ indicator, series, height = 220, title }: RadarChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
-  const option: EChartsOption = {
+  const option = useMemo<EChartsOption>(() => ({
     tooltip: {
       trigger: 'item',
       formatter: (params: any) => {
@@ -35,7 +36,7 @@ export default function RadarChart({ indicator, series, height = 220, title }: R
     },
     radar: {
       indicator,
-      radius: '65%',
+      radius: Math.min(height * 0.35, 75) + '%',
       splitNumber: 4,
       shape: 'polygon',
       axisName: {
@@ -69,16 +70,17 @@ export default function RadarChart({ indicator, series, height = 220, title }: R
         label: { show: false },
       },
     ],
-  }
-
-  if (title) {
-    option.title = {
-      text: title,
-      textStyle: { color: t.title, fontSize: f.titleFontSize, fontWeight: 'normal' },
-      left: 'center',
-      top: -5,
-    }
-  }
+    ...(title ? {
+      title: {
+        text: title,
+        textStyle: { color: t.title, fontSize: f.titleFontSize, fontWeight: 'normal' as const },
+        left: 'center' as const,
+        top: -5,
+      },
+    } : {}),
+  }), [indicator, series, height, title, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
+
+export default memo(RadarChart)

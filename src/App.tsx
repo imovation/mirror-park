@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useSSE } from '@/api/useSSEQuery'
 import { parseFlexGrow } from '@/types/panel'
+import { useWindowSize } from '@/hooks/useWindowSize'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { useUIStore } from '@/stores/useUIStore'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
@@ -29,6 +30,7 @@ function AppContent() {
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const uiTheme = useUIThemeStore((s) => s.uiTheme)
   const { status: sseStatus } = useSSE()
+  const { height: viewportHeight } = useWindowSize()
   const entry = getThemeEntry(currentTheme)
   const TopMetricsComponent = entry.topMetrics
 
@@ -74,7 +76,7 @@ function AppContent() {
                   <DashboardPanel
                       key={p.id}
                       title={p.title}
-                      flexGrow={parseFlexGrow(p.height)}
+                      flexGrow={parseFlexGrow(p.height, viewportHeight)}
                       collapsible={p.collapsible}
                       collapsedSummary={p.collapsedSummary}
                       style={{ '--stagger-delay': `${idx * 0.08}s` } as React.CSSProperties}
@@ -94,7 +96,7 @@ function AppContent() {
                   <DashboardPanel
                       key={p.id}
                       title={p.title}
-                      flexGrow={parseFlexGrow(p.height)}
+                      flexGrow={parseFlexGrow(p.height, viewportHeight)}
                       collapsible={p.collapsible}
                       collapsedSummary={p.collapsedSummary}
                       style={{ '--stagger-delay': `${idx * 0.08}s` } as React.CSSProperties}

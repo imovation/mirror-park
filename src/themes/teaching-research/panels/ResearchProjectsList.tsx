@@ -68,7 +68,7 @@ export default function ResearchProjectsList() {
           >
             <div
               style={{
-                fontSize: 12,
+                fontSize: '0.75rem',
                 fontWeight: 600,
                 color: 'var(--text-primary)',
                 marginBottom: 2,

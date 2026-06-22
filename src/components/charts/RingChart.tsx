@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
@@ -14,13 +15,13 @@ interface RingChartProps {
 
 const MIN_HEIGHT = 120
 
-export default function RingChart({ data, height = 160, colors, centerLabel,   centerLabelSize = 20, centerLabelColor, legendPosition }: RingChartProps) {
+function RingChart({ data, height = 160, colors, centerLabel,   centerLabelSize = 20, centerLabelColor, legendPosition }: RingChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
   const ringColors = colors || t.colors.slice(0, data.length)
   const labelColor = centerLabelColor || ringColors[0] || t.colors[0]
   const autoLabelSize = centerLabel && centerLabel.length > 5 ? Math.floor(centerLabelSize * 0.7) : centerLabelSize
-  const option: EChartsOption = {
+  const option = useMemo<EChartsOption>(() => ({
     tooltip: {
       trigger: 'item',
       backgroundColor: 'rgba(10, 22, 40, 0.92)',
@@ -87,7 +88,9 @@ export default function RingChart({ data, height = 160, colors, centerLabel,   c
           },
         ]
       : [],
-  }
+  }), [autoLabelSize, centerLabel, data, height, labelColor, legendPosition, ringColors, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
+
+export default memo(RingChart)

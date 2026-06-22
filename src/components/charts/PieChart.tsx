@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
@@ -14,7 +15,7 @@ interface PieChartProps {
 
 const MIN_HEIGHT = 120
 
-export default function PieChart({ data, height = 160, colors, radius, legendPosition = 'right' }: PieChartProps) {
+function PieChart({ data, height = 160, colors, radius, legendPosition = 'right' }: PieChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
   const r = radius || ['0', '55%']
@@ -42,7 +43,7 @@ export default function PieChart({ data, height = 160, colors, radius, legendPos
         }
     : undefined
 
-  const option: EChartsOption = {
+  const option = useMemo<EChartsOption>(() => ({
     tooltip: {
       trigger: 'item',
       backgroundColor: 'rgba(10, 22, 40, 0.92)',
@@ -75,7 +76,9 @@ export default function PieChart({ data, height = 160, colors, radius, legendPos
         emphasis: { itemStyle: { shadowBlur: 10, shadowColor: t.shadowColor } },
       },
     ],
-  }
+  }), [data, height, legendConfig, legendPosition, pieColors, r, t])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
+
+export default memo(PieChart)

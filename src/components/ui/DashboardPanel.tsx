@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
+import { useResponsive } from '@/hooks/useResponsive'
 
 interface DashboardPanelProps {
   title?: string
@@ -21,6 +22,7 @@ export default function DashboardPanel({
   children,
 }: DashboardPanelProps) {
   const [collapsed, setCollapsed] = useState(false)
+  const { isCompact, isShortHeight } = useResponsive()
   const showCollapse = collapsible
   const scrollMode = 'auto'
 
@@ -29,7 +31,7 @@ export default function DashboardPanel({
       className={`panel-enter relative flex flex-col backdrop-blur-md border rounded-md overflow-hidden ${className}`}
       style={{
         flex: collapsed && showCollapse ? '0 0 auto' : flexGrow,
-        minHeight: collapsed && showCollapse ? 0 : 0,
+        minHeight: collapsed && showCollapse ? 'auto' : isShortHeight ? 'clamp(60px, 12vh, 150px)' : 'clamp(80px, 15vh, 200px)',
         height: collapsed && showCollapse ? 48 : undefined,
         background: 'var(--panel-bg)',
         borderColor: 'var(--border-strong)',
@@ -89,7 +91,7 @@ export default function DashboardPanel({
         <div
           className={`flex-1 relative ${scrollMode === 'auto' ? 'panel-scroll' : ''}`}
           style={{
-            padding: 'var(--panel-padding)',
+            padding: isCompact ? '0.5rem' : 'var(--panel-padding)',
             overflowY: scrollMode,
             overflowX: 'hidden',
           }}

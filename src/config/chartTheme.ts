@@ -88,7 +88,7 @@ const BASE_LIGHT = {
   shadowColor: 'rgba(0,0,0,0.15)',
 }
 
-export function useChartTheme(): ChartTheme {
+export function useChartTheme(containerWidth?: number): ChartTheme {
   const uiTheme = useUIThemeStore((s) => s.uiTheme)
   const colors = uiTheme === 'dark' ? DARK_PALETTE : LIGHT_PALETTE
   const heatmap = uiTheme === 'dark' ? HEATMAP_DARK : HEATMAP_LIGHT
@@ -102,12 +102,19 @@ export function useChartTheme(): ChartTheme {
   }
 }
 
-export function getChartFontSizes() {
+export function getChartFontSizes(containerWidth?: number) {
   const rootStyle = getComputedStyle(document.documentElement)
+  const base = parseInt(rootStyle.getPropertyValue('--font-size-xs').trim()) || 10
+  
+  const scale = containerWidth 
+    ? containerWidth < 300 ? 0.85
+      : containerWidth > 500 ? 1.15 : 1
+    : 1
+    
   return {
-    axisFontSize: parseInt(rootStyle.getPropertyValue('--font-size-xs').trim()) || 10,
-    legendFontSize: parseInt(rootStyle.getPropertyValue('--font-size-sm').trim()) || 11,
-    titleFontSize: parseInt(rootStyle.getPropertyValue('--font-size-md').trim()) || 12,
+    axisFontSize: Math.round(base * scale),
+    legendFontSize: Math.round((parseInt(rootStyle.getPropertyValue('--font-size-sm').trim()) || 11) * scale),
+    titleFontSize: Math.round((parseInt(rootStyle.getPropertyValue('--font-size-md').trim()) || 12) * scale),
   }
 }
 

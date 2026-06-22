@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
@@ -16,15 +17,19 @@ interface BarChartProps {
   showLabel?: boolean
   labelFormat?: 'value' | 'percent'
   hideAxis?: boolean
+  width?: number
 }
 
 const MIN_HEIGHT = 120
 
-export default function BarChart({ data, height = 160, horizontal = true, color, colors, barWidth, gridLeft, gridBottom, gridTop, tooltip = true, showLabel = false, labelFormat = 'value', hideAxis = false }: BarChartProps) {
+function BarChart({ data, height = 160, horizontal = true, color, colors, barWidth, gridLeft, gridBottom, gridTop, tooltip = true, showLabel = false, labelFormat = 'value', hideAxis = false, width }: BarChartProps) {
   const t = useChartTheme()
-  const f = getChartFontSizes()
+  const f = getChartFontSizes(width)
   const seriesColor = color || colors?.[0] || t.colors[0]
   const total = data.reduce((a, b) => a + b.value, 0)
+  const isCompact = height < 140
+  const shouldRotateLabel = !!(width && width < 300 && data.length > 6)
+  const adjustedBarWidth = barWidth || (isCompact ? '35%' : (height < 150 && data.length > 6 ? '40%' : '50%'))
   const tooltipOption: EChartsOption['tooltip'] =
     tooltip === false
       ? { show: false }
@@ -49,13 +54,13 @@ export default function BarChart({ data, height = 160, horizontal = true, color,
             },
           }
         : (tooltip as EChartsOption['tooltip'])
-  const option: EChartsOption = {
+  const option = useMemo<EChartsOption>(() => ({
     tooltip: tooltipOption,
-    grid: { left: gridLeft ?? 10, right: 20, top: gridTop ?? 5, bottom: gridBottom ?? 5, containLabel: true },
+    grid: { left: gridLeft ?? 10, right: 20, top: gridTop ?? 5, bottom: gridBottom ?? (shouldRotateLabel ? 30 : 5), containLabel: true },
     [horizontal ? 'yAxis' : 'xAxis']: {
       type: 'category',
       data: data.map((d) => d.name),
-      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize, verticalAlign: 'middle' },
+      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize, verticalAlign: 'middle', ...(shouldRotateLabel && !horizontal ? { rotate: 45 } : {}) },
       axisLine: { show: false },
       axisTick: { show: false },
     },
@@ -75,7 +80,7 @@ export default function BarChart({ data, height = 160, horizontal = true, color,
             opacity: 0.85,
           },
         })),
-        barWidth: barWidth || (height < 150 && data.length > 6 ? '40%' : '50%'),
+        barWidth: adjustedBarWidth,
         label: showLabel
           ? {
               show: true,
@@ -94,7 +99,9 @@ export default function BarChart({ data, height = 160, horizontal = true, color,
           : undefined,
       },
     ],
-  }
+  }), [adjustedBarWidth, data, gridBottom, gridLeft, gridTop, height, hideAxis, horizontal, labelFormat, shouldRotateLabel, showLabel, tooltipOption, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
+
+export default memo(BarChart)

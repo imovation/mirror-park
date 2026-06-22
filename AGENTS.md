@@ -8,7 +8,7 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 202 |
+| 源文件 | 203 |
 | 测试 | 248/248 单元测试 + 76/76 E2E 测试 |
 | Git 提交 | 284 |
 | 编译 | ✅ `pnpm build` 通过 |
@@ -17,7 +17,7 @@
 
 **已完成**：平台框架、7 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割、SSE 实时推送。
 
-**已完成（2026-06-21 全面 UI/UX 优化 — 六轮 60+ 项）**：
+**已完成（2026-06-21 全面 UI/UX 优化 — 六轮 60+ 项 + 2026-06-22 自适应优化 P0~P3 17 项）**：
 1. 审计报告 + 30+ 项核心问题修复（RingChart 裁剪/BarChart 自适应/NumberFlip 防抖）
 2. CSS 变量体系 + ~25 处 hex 清理 + TopMetrics 紧凑
 3. 7 专题独立配色 + TopMetrics 科技未来风 + 个性化图标 (30 SVG)
@@ -74,6 +74,22 @@
 | 智慧教学 | 布局重组(空间使用移左3/考试 flex-2→3)；全部横条 CHART_PALETTE 区分色；高度全部降至最低 | `academics/` 多文件 |
 | 智慧安防 | flex 重组(监控 1.6→1.33/门禁 1.33→1.6)；RingChart CSS var→hex；NumberFlip 统一 lg | `security/` 多文件 |
 | 智慧后勤 | 请假记录 maxHeight 144；宿舍 Bar 180→140；访客登记 flex 填充 | `logistics/` 多文件 |
+
+## 变更日志 (2026-06-22 第 10 轮) — 自适应优化方案 P0~P3 全部实现
+
+| 类别 | 改动 | 文件 |
+|------|------|------|
+| P0-1 | **DashboardPanel minHeight clamp** — 防止 1366 底部被裁；紧凑 padding 0.5rem | `DashboardPanel.tsx` |
+| P0-2 | **3D 相机自适应 FOV** — `getAdaptiveFov()` 30°–75°；超宽/窄屏距离 ×1.5/0.8 | `SceneCanvas.tsx`, `CameraController.tsx` |
+| P0-3 | **侧栏 maxWidth 响应式** — 320–600px 随视口变化；TopMetrics 超宽 ×2 | `ScreenLayout.tsx` |
+| P1-1 | **parseFlexGrow 短视口缩放** — 接受 viewportHeight，<800px ×0.85 | `types/panel.ts` |
+| P1-2 | **useResponsive 全局 hook** — 7 状态：isCompact/Standard/Large/XLarge/UltraWide/ShortHeight/Portrait | `useResponsive.ts`(新) |
+| P1-3 | **图表响应式** — GaugeChart radius 自适应；BarChart compact label 旋转 45°；RadarChart radius 动态 | `GaugeChart.tsx`, `BarChart.tsx`, `RadarChart.tsx` |
+| P1-4 | **字体 clamp 非线性缩放** — `clamp(12px, 10px+0.5vw, 28px)`；4K/5760 同步调整 | `index.css` |
+| P1-4 | **chartTheme 容器宽度感知** — `getChartFontSizes(containerWidth?)` 按 <300/>500 缩放 | `chartTheme.ts` |
+| P2-3 | **ECharts memo 性能** — 5 种 chart 加 useMemo + React.memo 避免 resize 重绘 | `Bar/Line/Pie/Ring/Gauge/RadarChart.tsx` |
+| P3-2 | **Panel px→rem** — 3 文件硬编码 font 值→rem（其余已用 CSS var） | 3 panel 文件 |
+| — | 共 1 新文件 + 17 修改；构建通过；248/248 测试通过 | — |
 
 ## 变更日志 (2026-06-21)
 
@@ -158,6 +174,7 @@
 | `panels/ClassAttendanceRank.tsx` | 智慧教学 — 班级出勤排名 |
 | `panels/ClassroomSpaceUsage.tsx` | 智慧教学 — 教室空间使用 |
 | `hooks/useWindowSize.ts` | useWindowSize + useIsCompactViewport hook |
+| `hooks/useResponsive.ts` | 全局响应式 hook (isCompact/Standard/Large/XLarge/UltraWide/ShortHeight/Portrait) |
 | `config/themeColors.ts` | 7 专题调色板定义 |
 | `config/metricColors.ts` | TopMetrics 10 色数值色板 |
 | `components/ui/MetricIcon.tsx` | 30 个 SVG 线条图标库 |

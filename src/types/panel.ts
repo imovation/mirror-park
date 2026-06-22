@@ -9,10 +9,12 @@ export interface PanelConfig {
   autoCollapseBelow?: number
 }
 
-export function parseFlexGrow(height?: string): number {
+export function parseFlexGrow(height?: string, viewportHeight?: number): number {
   if (!height || height === 'auto') return 1
   const m = height.match(/^flex-([\d.]+)$/)
-  return m ? parseFloat(m[1]) : 1
+  const flex = m ? parseFloat(m[1]) : 1
+  if (viewportHeight && viewportHeight < 800) return flex * 0.85
+  return flex
 }
 
 export interface PanelGroup {
