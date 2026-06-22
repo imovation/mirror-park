@@ -21,6 +21,7 @@ function DigitColumn({ char, animate }: { char: string; animate: boolean }) {
         height: '1em',
         verticalAlign: 'top',
         whiteSpace: 'pre',
+        lineHeight: 1,
       }}
     >
       {isDigit ? (
@@ -37,7 +38,7 @@ function DigitColumn({ char, animate }: { char: string; animate: boolean }) {
           ))}
         </span>
       ) : (
-        <span>{char}</span>
+        <span style={{ display: 'inline-block', height: '1em', lineHeight: 1 }}>{char}</span>
       )}
     </span>
   )

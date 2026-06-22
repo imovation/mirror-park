@@ -19,6 +19,7 @@ const MIN_HEIGHT = 80
 function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine, yAxisMin, yAxisMax }: LineChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
+  const isCompact = height < 100
   const option = useMemo<EChartsOption>(() => ({
     tooltip: {
       trigger: 'axis',
@@ -42,12 +43,17 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
       bottom: 0,
       textStyle: { color: t.legendText, fontSize: f.legendFontSize },
     },
-    grid: { left: 10, right: '6%', top: 5, bottom: 32, containLabel: true },
+    grid: isCompact
+      ? { left: 10, right: 8, top: 18, bottom: 24, containLabel: true }
+      : { left: 10, right: '6%', top: 5, bottom: 32, containLabel: true },
     xAxis: {
       type: 'category',
       data: xData,
-      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize, rotate: 30 },
+      axisLabel: isCompact
+        ? { show: false }
+        : { color: t.axisLabel, fontSize: f.axisFontSize, rotate: 30 },
       axisLine: { lineStyle: { color: t.axisLine } },
+      axisTick: isCompact ? { show: false } : undefined,
     },
     yAxis: {
       type: 'value',
@@ -61,7 +67,9 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
       name: s.name,
       data: s.data,
       smooth,
-      lineStyle: { color: s.color || t.colors[i % t.colors.length], width: 2, type: s.dashed ? 'dashed' : 'solid' },
+      symbol: isCompact ? 'none' : 'circle',
+      symbolSize: isCompact ? 0 : 6,
+      lineStyle: { color: s.color || t.colors[i % t.colors.length], width: isCompact ? 1.5 : 2, type: s.dashed ? 'dashed' : 'solid' },
       areaStyle: area
         ? (() => {
             const base = s.color || t.colors[i % t.colors.length] || '#22d3ee'
@@ -77,7 +85,7 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
         data: [{ yAxis: markLine, label: { show: false } }],
       } : undefined,
     })),
-  }), [area, height, markLine, series, smooth, xData, yAxisMax, yAxisMin, t, f])
+  }), [area, height, isCompact, markLine, series, smooth, xData, yAxisMax, yAxisMin, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
