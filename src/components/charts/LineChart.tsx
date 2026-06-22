@@ -45,7 +45,10 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
       },
     },
     legend: {
-      data: series.map((s) => s.name),
+      data: series.map((s, i) => ({
+        name: s.name,
+        itemStyle: { color: s.color || t.colors[i % t.colors.length] },
+      })),
       bottom: 0,
       textStyle: { color: t.legendText, fontSize: f.legendFontSize },
     },
