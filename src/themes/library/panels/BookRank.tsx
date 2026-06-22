@@ -16,27 +16,27 @@ export default function BookRank() {
   const rank = rankQuery.data
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0, overflow: 'hidden' }}>
         <ChartLabel align="center">借阅量 TOP10</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
-            data={hot.top10.map(b => ({ name: b.name, value: b.count }))}
-            color={HUE_ROTATION.r2[0]}
-            height={160}
-            gridLeft={70}
+            data={hot.top10.slice(0, 8).map(b => ({ name: b.name, value: b.count }))}
+            colors={HUE_ROTATION.r3}
+            height={200}
+            gridLeft={65}
             tooltip={false}
             barWidth="50%"
           />
         </div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minHeight: 0, overflow: 'hidden' }}>
         <ChartLabel align="center">班级借阅量排行</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={rank.classRank.slice(0, 8)}
-            color={HUE_ROTATION.r2[1]}
-            height={160}
+            colors={rank.classRank.slice(0, 8).map((_, i) => HUE_ROTATION.r3[i % 3])}
+            height={200}
             gridLeft="20%"
             tooltip={false}
             barWidth="50%"

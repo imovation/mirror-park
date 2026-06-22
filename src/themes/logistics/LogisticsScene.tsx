@@ -1,4 +1,5 @@
-import SecurityScene from '../security/SecurityScene'
+import CampusBase from '@/components/scene/CampusBase'
+
 export default function LogisticsScene() {
-  return <SecurityScene />
+  return <CampusBase />
 }

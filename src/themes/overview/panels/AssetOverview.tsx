@@ -27,23 +27,24 @@ export default function AssetOverview() {
   }))
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0, overflow: 'hidden' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0, overflow: 'auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0, overflow: 'hidden' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 4, flexShrink: 0, overflow: 'auto' }}>
         {ASSETS.map((asset) => {
           const pct = total > 0 ? Math.round((data[asset.key] / total) * 100) : 0
           return (
-            <div key={asset.key} style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, padding: '8px 8px', textAlign: 'center' }}>
-              <div style={{ height: 3, background: asset.color, borderRadius: 2, marginBottom: 4, opacity: 0.6 }} />
-              <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)' }}>{String(data[asset.key])}</div>
-              <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>{asset.label}</div>
-              <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', opacity: 0.7 }}>{pct}%</div>
+            <div key={asset.key} style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 4, padding: '5px 4px', textAlign: 'center' }}>
+              <div style={{ height: 2, background: asset.color, borderRadius: 1, marginBottom: 3, opacity: 0.6 }} />
+              <div style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.1 }}>{String(data[asset.key])}</div>
+              <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', lineHeight: 1.2 }}>{asset.label} · {pct}%</div>
             </div>
           )
         })}
       </div>
-      <div style={{ flexShrink: 0, marginTop: 4 }}>
+      <div style={{ flexShrink: 0, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>设备类型占比</ChartLabel>
-        <RingChart data={ringData} height={180} />
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <RingChart data={ringData} height={140} />
+        </div>
       </div>
     </div>
   )

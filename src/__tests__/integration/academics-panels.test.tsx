@@ -3,7 +3,8 @@ import { QueryClient } from '@tanstack/react-query'
 
 import ScheduleSpace from '@/themes/academics/panels/ScheduleSpace'
 import StudentAttendance from '@/themes/academics/panels/StudentAttendance'
-import AttendanceAndSpace from '@/themes/academics/panels/AttendanceAndSpace'
+import ClassAttendanceRank from '@/themes/academics/panels/ClassAttendanceRank'
+import ClassroomSpaceUsage from '@/themes/academics/panels/ClassroomSpaceUsage'
 import ExamManagement from '@/themes/academics/panels/ExamManagement'
 import TeachingDevices from '@/themes/academics/panels/TeachingDevices'
 
@@ -128,8 +129,8 @@ describe('Academics Panel Integration', () => {
     })
   })
 
-  describe('AttendanceAndSpace', () => {
-    it('renders attendance and space when loaded', async () => {
+  describe('ClassAttendanceRank', () => {
+    it('renders attendance rank when loaded', async () => {
       const qc = createQC()
       fillQueryCache(qc, ['academics', 'attendance'], {
         todayRate: 0.97,
@@ -137,28 +138,39 @@ describe('Academics Panel Integration', () => {
         classRank: [{ name: '初一(1)班', value: 99 }],
         trend: { days: ['01', '02'], values: [97, 98] },
       })
-      fillQueryCache(qc, ['academics', 'classroomUsage'], {
-        inUse: 42,
-        available: 18,
-        buildingUsage: [{ name: '教学楼A', value: 20 }],
-        typeDistribution: [{ name: '普通教室', value: 50 }],
-      })
-      renderWithProviders(<AttendanceAndSpace />, { queryClient: qc })
+      renderWithProviders(<ClassAttendanceRank />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('今日出勤率')).toBeInTheDocument()
-        expect(screen.getByText('教室总数')).toBeInTheDocument()
+        expect(screen.getByText('年级均分')).toBeInTheDocument()
         expect(screen.getByText('班级出勤排名')).toBeInTheDocument()
-        expect(screen.getByText('使用率')).toBeInTheDocument()
+        expect(screen.getByText('30 日出勤趋势')).toBeInTheDocument()
       })
     })
 
     it('shows empty state when data is null', async () => {
       const qc = createQC()
       fillQueryCache(qc, ['academics', 'attendance'], null)
-      fillQueryCache(qc, ['academics', 'classroomUsage'], { inUse: 42, available: 18, buildingUsage: [], typeDistribution: [] })
-      renderWithProviders(<AttendanceAndSpace />, { queryClient: qc })
+      renderWithProviders(<ClassAttendanceRank />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('暂无数据')).toBeInTheDocument()
+      })
+    })
+  })
+
+  describe('ClassroomSpaceUsage', () => {
+    it('renders classroom usage when loaded', async () => {
+      const qc = createQC()
+      fillQueryCache(qc, ['academics', 'classroomUsage'], {
+        inUse: 42,
+        available: 18,
+        buildingUsage: [{ name: '教学楼A', value: 20 }],
+        typeDistribution: [{ name: '普通教室', value: 50 }],
+      })
+      renderWithProviders(<ClassroomSpaceUsage />, { queryClient: qc })
+      await waitFor(() => {
+        expect(screen.getByText('使用中')).toBeInTheDocument()
+        expect(screen.getByText('空闲')).toBeInTheDocument()
+        expect(screen.getByText('各楼宇使用率')).toBeInTheDocument()
       })
     })
   })

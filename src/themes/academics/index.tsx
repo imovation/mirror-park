@@ -3,7 +3,8 @@ import AcademicsScene from './AcademicsScene'
 import AcademicsTopMetrics from './panels/AcademicsTopMetrics'
 import { ScheduleDistribution } from './panels/ScheduleSpace'
 import { AttendanceOverview } from './panels/StudentAttendance'
-import AttendanceAndSpace from './panels/AttendanceAndSpace'
+import ClassAttendanceRank from './panels/ClassAttendanceRank'
+import ClassroomSpaceUsage from './panels/ClassroomSpaceUsage'
 import ExamManagement from './panels/ExamManagement'
 import TeachingDevices from './panels/TeachingDevices'
 
@@ -18,7 +19,8 @@ export const academicsPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   ],
   right: [
     { id: 'acad-attendance-overview', title: '学生出勤概况', height: 'flex-2' },
-    { id: 'acad-attendance-space', title: '出勤排名与空间使用', height: 'flex-2', collapsible: true, collapsedSummary: '班级出勤排名、30日趋势、教室使用率' },
+    { id: 'acad-attendance-rank', title: '出勤排名与趋势', height: 'flex-2', collapsible: true, collapsedSummary: '班级出勤排名、30日趋势' },
+    { id: 'acad-space-usage', title: '教室空间使用', height: 'flex-1', collapsible: true, collapsedSummary: '使用率环形图、各楼宇对比' },
     { id: 'acad-exams', title: '考试管理', height: 'flex-2', collapsible: true, collapsedSummary: '近期考试、各科均分、成绩分布' },
   ],
 }
@@ -27,7 +29,8 @@ export function renderAcademicsPanel(panelId: string) {
   switch (panelId) {
     case 'acad-schedule-dist': return <ScheduleDistribution />
     case 'acad-attendance-overview': return <AttendanceOverview />
-    case 'acad-attendance-space': return <AttendanceAndSpace />
+    case 'acad-attendance-rank': return <ClassAttendanceRank />
+    case 'acad-space-usage': return <ClassroomSpaceUsage />
     case 'acad-exams': return <ExamManagement />
     case 'acad-devices': return <TeachingDevices />
     default: return <span style={{ color: 'var(--text-tertiary)', fontSize: 'var(--font-size-xs)' }}>待实现</span>

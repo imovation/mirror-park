@@ -26,27 +26,32 @@ export default function ResourceStatistics() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, flexShrink: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, flexShrink: 0 }}>
         {STATS.map((s) => (
           <div
             key={s.key}
             style={{
               background: 'var(--panel-bg)',
               border: '1px solid var(--border-light)',
-              borderRadius: 6,
-              padding: '10px 12px',
+              borderRadius: 4,
+              padding: '6px 8px',
               textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden',
             }}
           >
-            <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: s.color }}>{data[s.key].toLocaleString()}</div>
-            <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>{s.label} <span style={{ fontSize: 'var(--font-size-xs)' }}>{s.unit}</span></div>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: s.color, opacity: 0.5 }} />
+            <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: s.color, fontFamily: 'monospace', lineHeight: 1.1 }}>{data[s.key].toLocaleString()}</div>
+            <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginTop: 1 }}>{s.label} · {s.unit}</div>
           </div>
         ))}
       </div>
-      <div style={{ flexShrink: 0 }}>
+      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>资源类型分布</ChartLabel>
-        <BarChart data={RESOURCE_DATA} colors={CHART_PALETTE.dark} height={140} />
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <BarChart data={RESOURCE_DATA} colors={CHART_PALETTE.dark} height={120} barWidth="55%" />
+        </div>
       </div>
     </div>
   )

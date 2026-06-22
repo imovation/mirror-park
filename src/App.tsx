@@ -59,7 +59,7 @@ function AppContent() {
             3D 场景不可用
           </div>
         }>
-          <SceneCanvas>{entry.scene()}</SceneCanvas>
+          <SceneCanvas key={currentTheme}>{entry.scene()}</SceneCanvas>
         </ErrorBoundary>
       </div>
       <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%', pointerEvents: 'none' }}>

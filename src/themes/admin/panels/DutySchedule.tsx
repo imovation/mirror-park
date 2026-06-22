@@ -8,8 +8,6 @@ const ROLE_COLORS: Record<string, string> = {
   '教师值班': 'var(--color-success)',
   '安保值班': 'var(--color-pending)',
   '医务值班': 'var(--color-chart-5)',
-  '行政副值班': 'var(--accent)',
-  '教师副值班': 'var(--color-success)',
   '巡逻安保': 'var(--color-pending)',
   '值班组长': 'var(--color-chart-5)',
 }
@@ -19,8 +17,6 @@ const ROLE_ICONS: Record<string, string> = {
   '教师值班': '👨‍🏫',
   '安保值班': '🛡️',
   '医务值班': '⚕️',
-  '行政副值班': '👔',
-  '教师副值班': '👨‍🏫',
   '巡逻安保': '🚶',
   '值班组长': '⭐',
 }

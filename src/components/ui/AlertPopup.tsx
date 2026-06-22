@@ -20,16 +20,17 @@ export default function AlertPopup() {
     <div className="panel-scroll" style={{
       position: 'fixed',
       bottom: 56,
-      right: 24,
-      left: 'auto',
+      left: '50%',
+      transform: 'translateX(-50%)',
       zIndex: 9999,
       display: 'flex',
       flexDirection: 'column',
       gap: 8,
-      maxWidth: 520,
+      width: 520,
+      maxWidth: 'calc(100vw - 48px)',
       maxHeight: '28vh',
       overflowY: 'auto',
-      paddingRight: 4,
+      pointerEvents: 'none',
     }}>
       {visibleAlerts.map((alert) => (
         <div
@@ -41,12 +42,13 @@ export default function AlertPopup() {
             color: 'var(--text-primary)',
             fontSize: 13,
             boxShadow: 'var(--shadow-toast)',
-            animation: 'slideInRight 0.4s ease-out',
+            animation: 'slideInUp 0.4s ease-out',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
             gap: 8,
             cursor: 'pointer',
+            pointerEvents: 'auto',
           }}
           onClick={() => {
             selectObject(alert.id)

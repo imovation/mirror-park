@@ -27,7 +27,8 @@ test.describe('Topic: Academics', () => {
   })
 
   test('collapsible panels folded — screenshot', async ({ page }) => {
-    await collapsePanel(page, '出勤排名与空间使用')
+    await collapsePanel(page, '出勤排名与趋势')
+    await collapsePanel(page, '教室空间使用')
     await collapsePanel(page, '考试管理')
     await expect(page).toHaveScreenshot('topic-academics-collapsed.png', { fullPage: false, threshold: 0.3 })
   })
@@ -36,7 +37,8 @@ test.describe('Topic: Academics', () => {
     await expect(page.getByText('课表分布').first()).toBeVisible()
     await expect(page.getByText('教学设备').first()).toBeVisible()
     await expect(page.getByText('学生出勤概况').first()).toBeVisible()
-    await expect(page.getByText('出勤排名与空间使用').first()).toBeVisible()
+    await expect(page.getByText('出勤排名与趋势').first()).toBeVisible()
+    await expect(page.getByText('教室空间使用').first()).toBeVisible()
     await expect(page.getByText('考试管理').first()).toBeVisible()
   })
 })

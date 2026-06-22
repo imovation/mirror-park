@@ -6,6 +6,7 @@ import BookRank from './panels/BookRank'
 import ReadingStars from './panels/ReadingStars'
 import ReadingActivities from './panels/ReadingActivities'
 import VisitorStats from './panels/VisitorStats'
+import NewArrivals from './panels/NewArrivals'
 
 export const libraryScene = () => <LibraryScene />
 
@@ -19,6 +20,7 @@ export const libraryPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   ],
   right: [
     { id: 'lib-activities', title: '阅读活动', height: 'flex-1' },
+    { id: 'lib-new-arrivals', title: '新书速递', height: 'flex-1' },
     { id: 'lib-visitors', title: '入馆统计', height: 'flex-2' },
   ],
 }
@@ -30,6 +32,7 @@ export function renderLibraryPanel(panelId: string) {
     case 'lib-reading-stars': return <ReadingStars />
     case 'lib-activities': return <ReadingActivities />
     case 'lib-visitors': return <VisitorStats />
+    case 'lib-new-arrivals': return <NewArrivals />
     default: return <span style={{ color: 'var(--text-tertiary)', fontSize: 'var(--font-size-xs)' }}>待实现</span>
   }
 }

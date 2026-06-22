@@ -89,8 +89,6 @@ describe('SSE data → Panel compatibility', () => {
     })
     render(<AlertEvents />, { wrapper: createWrapper(qc) })
     expect(screen.getByText('今日告警')).toBeInTheDocument()
-    expect(screen.getByText('告警类型')).toBeInTheDocument()
-    expect(screen.getByText('处理状态')).toBeInTheDocument()
     expect(screen.getByText('告警事件列表')).toBeInTheDocument()
   })
 

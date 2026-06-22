@@ -8,8 +8,8 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 198 |
-| 测试 | 249/249 单元测试 + 80/80 E2E 测试 |
+| 源文件 | 203 |
+| 测试 | 250/250 单元测试 + 76/76 E2E 测试 |
 | Git 提交 | 283 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
@@ -25,28 +25,33 @@
 5. 纯黑色修复（LineChart areaStyle CSS 变量 + RingChart colors）
 6. UI 打磨：Tooltip 卡片式 + 面板序次动画 + BottomBar 运行时长 + 微交互 hover
 
-## 变更日志 (2026-06-22) — 7 轮 UI/UX 优化
+## 变更日志 (2026-06-22) — 第 8 轮 UI/UX 优化（15 项）
 
 | 类别 | 改动 | 文件 |
 |------|------|------|
-| P0-1 | **TopMetrics 移到中间列** (gridArea: 'topmetrics') | `ScreenLayout.tsx` |
-| P0-2 | **TopMetrics 缩短背景** (max-width 880px, 圆角卡片式) | `ScreenLayout.tsx` |
-| P0-3 | **TopMetrics 4 色循环** (青/紫/橙/绿) | `metricColors.ts` + 7 主题 TopMetrics |
-| P0-4 | **AlertPopup 位置修复** (top 64→bottom 56, 居中底部, max-width 520) | `AlertPopup.tsx` |
-| P0-5 | **LogisticsLeave 请假记录区加间距+边框** | `LogisticsLeave.tsx` |
-| P1-1 | **HUE_ROTATION 工具** (r2/r3/r4 色相轮转) | `chartTheme.ts` |
-| P1-2 | **12 个 panel 应用色相轮转** | 12 源文件 |
-| P1-3 | **教学研究文字溢出修复** (2 行 clamp + 字号缩小) | `ResearchProjectsList.tsx` + `TeacherStudiosPanel.tsx` |
-| P2-1 | **教学资源 6 卡片 4 色循环** | `TeachingResourcesPanel.tsx` |
-| P2-2 | **3D POI 标签对比度增强** (深底亮字 + 边框 + 阴影 + 模糊) | `SecurityScene.tsx` |
-| 文档 | **UI_UX_AUDIT_2026-06-21.md** (新) | `docs/` |
-| 测试 | **8 张截图基线更新** | `e2e/screenshots/` |
+| P0 | **AlertPopup 居中底部** (position: fixed → 水平居中) | `AlertPopup.tsx` |
+| P1-1 | **行政办公值班安排 6→4** (去掉副值班角色) | `DutySchedule.tsx`, `admin.ts` mock |
+| P1-2 | **行政办公会议管理拆分** (拆出"近期会议"独立 panel) | `RecentMeetings.tsx`(新), `MeetingManagement.tsx` |
+| P1-3 | **智慧图书右侧新增"新书速递"** (填补右列空白) | `NewArrivals.tsx`(新), `library.ts` mock |
+| P1-4 | **智慧教学出勤排名/空间使用拆分** (2 panel) | `ClassAttendanceRank.tsx`(新), `ClassroomSpaceUsage.tsx`(新) |
+| P1-5 | **3D POI 标签默认隐藏** (hover 显示) | `CampusBase.tsx`, `SecurityScene.tsx` |
+| P1-6 | **1920 视口自动折叠次要 panel** (扩展 collapsible) | `DashboardPanel.tsx`, `useWindowSize.ts`(新) |
+| P2-1 | **综合态势面板样式优化** (资产概况紧凑/教职工组成字号) | `AssetOverview.tsx`, `FacultyPanorama.tsx` |
+| P2-2 | **教学研究资源统计紧凑** (2×2 紧凑) | `ResourceStatistics.tsx` |
+| P2-3 | **行政教职工考勤优化** (按值着色+markLine 基准线) | `StaffAttendance.tsx`, `LineChart.tsx` |
+| P2-4 | **智慧图书借阅排行改 2×1 grid** + 3 色循环 | `BookRank.tsx` |
+| P2-5 | **智慧教学实时冲突改 badge** + 楼宇 ID 替换 | `ClassroomSpaceUsage.tsx`(新) |
+| P2-6 | **智慧安警告警事件优化** (双 pie→1 ring + 类型 chips) | `AlertEvents.tsx` |
+| P2-7 | **智慧后勤食堂安全精简** (9→6 items + h-bar) | `LogisticsCanteen.tsx`, `logistics.ts` mock |
+| 修复 | **LogisticsScene 误引用 SecurityScene** 导致设备图标泄漏 | `LogisticsScene.tsx` |
+| 修复 | **3D Canvas 切换专题残留** (key=currentTheme 强制重建) | `App.tsx` |
+| 测试 | **150 测试更新** (适配 panel 拆分/名称变更/样式变更) | 15 测试源文件 |
+| — | 本次共 | 5 新建 + 30 修改 + 1 删除 = 5 源文件净增 |
 
 ### 关键设计决策
-- **TopMetrics 4 色循环**: 用 `HUE_ROTATION.r4 = ['#22d3ee', '#a78bfa', '#fb923c', '#34d399']` 替代原 6 色混乱
-- **多图表色相轮转**: 同 panel 内 2 图用 r2 (青/橙), 3 图用 r3 (青/橙/紫)
-- **保留语义色**: 状态类 RingChart (在线/离线/故障) 仍用绿/橙/红
-- **TopMetrics 圆角卡片**: `borderRadius: 8` + 边框 + blur + shadow，不贯穿整个屏幕
+- **面板默认展开**: 移除 autoCollapseBelow 机制，collapsible panel 始终展开，用户手动折叠
+- **3D 场景重建**: 切换专题时用 `key={currentTheme}` 强制 Canvas 重建，避免场景元素泄漏
+- **设备 Sprite 图标**: Canvas 绘制摄像头/门禁图标替代小球，始终面向镜头
 
 ## 变更日志 (2026-06-21)
 
@@ -121,11 +126,16 @@
 
 | 文件 | 用途 |
 |------|------|
-| `panels/AttendanceAndSpace.tsx` | 智慧教学 — 合并出勤排名与空间使用 |
+| `panels/AttendanceAndSpace.tsx` | ~~智慧教学 — 合并出勤排名与空间使用~~（已删除，被拆分替代） |
 | `panels/SecurityOverview.tsx` | 智慧安防 — 安防态势总览 |
 | `panels/DormManagement.tsx` | 智慧后勤 — 宿舍管理 |
 | `panels/BookRank.tsx` | 智慧图书 — 图书借阅排行 |
 | `panels/ReadingStars.tsx` | 智慧图书 — 阅读之星 |
+| `panels/RecentMeetings.tsx` | 行政办公 — 近期会议 |
+| `panels/NewArrivals.tsx` | 智慧图书 — 新书速递 |
+| `panels/ClassAttendanceRank.tsx` | 智慧教学 — 班级出勤排名 |
+| `panels/ClassroomSpaceUsage.tsx` | 智慧教学 — 教室空间使用 |
+| `hooks/useWindowSize.ts` | useWindowSize + useIsCompactViewport hook |
 | `config/themeColors.ts` | 7 专题调色板定义 |
 | `config/metricColors.ts` | TopMetrics 10 色数值色板 |
 | `components/ui/MetricIcon.tsx` | 30 个 SVG 线条图标库 |
@@ -139,14 +149,14 @@
 
 | 专题 | 左 panel | 右 panel | 总计 |
 |------|---------|---------|------|
-| 综合态势 | 3 (flex-2×3) | 3 (flex-2×2+flex-1) | **6** |
+| 综合态势 | 3 (flex-1+flex-2×2) | 3 (flex-2×2+flex-1) | **6** |
 | 教学研究 | 3 (flex-1×3) | 3 (flex-1×2+flex-2) | **6** |
-| 行政办公 | 3 (flex-1+flex-2×2) | 2 (flex-2+flex-3) | **5** |
-| 智慧图书 | 3 (flex-1+flex-2×2) | 2 (flex-1+flex-2) | **5** |
-| 智慧教学 | 2 (flex-2×2) | 3 (flex-2×3) | **5** |
+| 行政办公 | 3 (flex-1+flex-2×2) | 3 (flex-2+flex-1+flex-3) | **6** |
+| 智慧图书 | 3 (flex-1+flex-2×2) | 3 (flex-1×2+flex-2) | **6** |
+| 智慧教学 | 2 (flex-2×2) | 4 (flex-2×3+flex-1) | **6** |
 | 智慧安防 | 2 (flex-2+flex-1) | 2 (flex-2+flex-1) | **4** |
 | 智慧后勤 | 2 (flex-2+flex-1) | 2 (flex-1×2) | **4** |
-| **总计** | **18** | **17** | **35** |
+| **总计** | **18** | **20** | **38** |
 
 **3D 场景特性**：
 - **Day/Night 模式**：白天（红砖暖光 + 绿地 + 米白窗户）、夜间（暗黑赛博 + 青色窗户发光 + 道路光流）
@@ -208,9 +218,9 @@ src/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
 │   ├── overview/                # 综合态势 (3 左 + 3 右 = 6 panel)
 │   ├── teaching-research/       # 教学研究 (3 左 + 3 右 = 6 panel)
-│   ├── admin/                   # 行政办公 (3 左 + 2 右 = 5 panel)
-│   ├── library/                 # 智慧图书 (3 左 + 2 右 = 5 panel, 借阅排行+阅读之星已拆分)
-│   ├── academics/               # 智慧教学 (2 左 + 3 右 = 5 panel, 出勤排名+空间使用已合并)
+│   ├── admin/                   # 行政办公 (3 左 + 3 右 = 6 panel)
+│   ├── library/                 # 智慧图书 (3 左 + 3 右 = 6 panel, 新增新书速递)
+│   ├── academics/               # 智慧教学 (2 左 + 4 右 = 6 panel, 出勤排名+空间使用已拆分)
 │   ├── security/                # 智慧安防 (2 左 + 2 右 = 4 panel, 新增安防态势总览)
 │   └── logistics/               # 智慧后勤 (2 左 + 2 右 = 4 panel, 新增宿舍管理)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts

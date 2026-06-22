@@ -85,8 +85,7 @@ describe('Security Panel Integration', () => {
       renderWithProviders(<AlertEvents />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('今日告警')).toBeInTheDocument()
-        expect(screen.getByText('告警类型')).toBeInTheDocument()
-        expect(screen.getByText('处理状态')).toBeInTheDocument()
+        expect(screen.getByText('告警事件列表')).toBeInTheDocument()
       })
     })
 

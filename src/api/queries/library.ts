@@ -61,3 +61,12 @@ export const useLibraryActivities = () =>
 
 export const useLibraryVisitors = () =>
   useQuery<LibraryVisitors>({ queryKey: ['library', 'visitors'], queryFn: () => fetchApi('/library/visitors'), refetchInterval: REFRESH_INTERVALS.NEAR_REALTIME })
+
+export interface NewArrivals {
+  weeklyCount: number
+  categories: { name: string; value: number }[]
+  books: { id: string; title: string; author: string; category: string; date: string }[]
+}
+
+export const useNewArrivals = () =>
+  useQuery<NewArrivals>({ queryKey: ['library', 'newArrivals'], queryFn: () => fetchApi('/library/new-arrivals') })

@@ -35,8 +35,8 @@ describe('Panel Integration', () => {
       renderWithProviders(<AssetOverview />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('680')).toBeInTheDocument()
-        expect(screen.getByText('电脑')).toBeInTheDocument()
-        expect(screen.getByText('投影仪')).toBeInTheDocument()
+        expect(screen.getByText(/电脑/)).toBeInTheDocument()
+        expect(screen.getByText(/投影仪/)).toBeInTheDocument()
       })
     })
 

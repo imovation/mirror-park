@@ -69,10 +69,7 @@ export const logisticsHandlers = [
         { id: 'sf-3', date: '2026/6/14', item: '留样检测', result: '合格' },
         { id: 'sf-4', date: '2026/6/14', item: '农药残留', result: '待复检' },
         { id: 'sf-5', date: '2026/6/13', item: '食用油检测', result: '合格' },
-        { id: 'sf-6', date: '2026/6/13', item: '操作规范', result: '合格' },
-        { id: 'sf-7', date: '2026/6/12', item: '食材抽检', result: '合格' },
-        { id: 'sf-8', date: '2026/6/16', item: '饮用水检测', result: '合格' },
-        { id: 'sf-9', date: '2026/6/11', item: '防鼠防虫', result: '合格' },
+        { id: 'sf-6', date: '2026/6/13', item: '饮用水检测', result: '合格' },
       ],
     })
   }),

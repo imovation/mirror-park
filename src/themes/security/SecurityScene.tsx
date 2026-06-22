@@ -1,8 +1,67 @@
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Sphere, Html } from '@react-three/drei'
+import * as THREE from 'three'
 import CampusBase from '@/components/scene/CampusBase'
 import { useUIStore } from '@/stores/useUIStore'
+
+function createIconTexture(type: 'camera' | 'access'): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas')
+  canvas.width = 64
+  canvas.height = 64
+  const ctx = canvas.getContext('2d')!
+  ctx.clearRect(0, 0, 64, 64)
+  ctx.strokeStyle = type === 'camera' ? '#7dd3fc' : '#86efac'
+  ctx.fillStyle = type === 'camera' ? 'rgba(8, 24, 48, 0.9)' : 'rgba(4, 28, 16, 0.9)'
+  ctx.lineWidth = 3
+
+  if (type === 'camera') {
+    ctx.beginPath()
+    ctx.moveTo(10, 18)
+    ctx.lineTo(54, 18)
+    ctx.lineTo(54, 46)
+    ctx.lineTo(10, 46)
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(32, 32, 9, 0, Math.PI * 2)
+    ctx.fillStyle = '#7dd3fc'
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(32, 32, 5, 0, Math.PI * 2)
+    ctx.fillStyle = 'rgba(8, 24, 48, 0.9)'
+    ctx.fill()
+    ctx.fillStyle = type === 'camera' ? '#7dd3fc' : '#86efac'
+    ctx.beginPath()
+    ctx.moveTo(55, 20)
+    ctx.lineTo(60, 18)
+    ctx.lineTo(60, 46)
+    ctx.lineTo(55, 44)
+    ctx.closePath()
+    ctx.fill()
+  } else {
+    ctx.beginPath()
+    ctx.moveTo(14, 12)
+    ctx.lineTo(50, 12)
+    ctx.lineTo(50, 52)
+    ctx.lineTo(14, 52)
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+    ctx.fillStyle = '#86efac'
+    ctx.fillRect(20, 18, 24, 3)
+    ctx.fillRect(20, 30, 24, 3)
+    ctx.fillRect(20, 42, 24, 3)
+  }
+
+  const texture = new THREE.CanvasTexture(canvas)
+  texture.needsUpdate = true
+  return texture
+}
+
+const cameraIconTex = /*#__PURE__*/ createIconTexture('camera')
+const accessIconTex = /*#__PURE__*/ createIconTexture('access')
 
 const DEVICES: { id: string; type: 'camera' | 'access'; position: [number, number, number]; label: string }[] = [
   { id: 'cam-1', type: 'camera' as const, position: [-18, 8, 7.5], label: '崇德楼摄像头' },
@@ -47,34 +106,56 @@ function DeviceMarkers() {
   return (
     <group>
       {DEVICES.map((d) => (
-        <group key={d.id}>
-          <Sphere args={[0.3, 8, 8]} position={d.position}>
-            <meshStandardMaterial
-              color={d.type === 'camera' ? '#4a9eff' : '#00c853'}
-              emissive={d.type === 'camera' ? '#4a9eff' : '#00c853'}
-              emissiveIntensity={0.5}
-            />
-          </Sphere>
-          <Html position={[d.position[0], d.position[1] + 0.6, d.position[2]]} center distanceFactor={40} style={{ pointerEvents: 'none' }}>
-            <div style={{
-              background: d.type === 'camera' ? 'rgba(8, 24, 48, 0.85)' : 'rgba(4, 28, 16, 0.85)',
-              color: d.type === 'camera' ? '#7dd3fc' : '#86efac',
-              padding: '2px 8px',
-              borderRadius: 4,
-              fontSize: 'var(--font-size-2xs)',
-              fontWeight: 600,
-              whiteSpace: 'nowrap',
-              border: d.type === 'camera' ? '1px solid rgba(125, 211, 252, 0.5)' : '1px solid rgba(134, 239, 172, 0.5)',
-              backdropFilter: 'blur(4px)',
-              WebkitBackdropFilter: 'blur(4px)',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
-              textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-            }}>
-              {d.type === 'camera' ? '📹' : '🚪'} {d.label}
-            </div>
-          </Html>
-        </group>
+        <DeviceMarker key={d.id} d={d} />
       ))}
+    </group>
+  )
+}
+
+function DeviceMarker({ d }: { d: typeof DEVICES[number] }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <group
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer' }}
+      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); document.body.style.cursor = 'default' }}
+    >
+      <sprite
+        position={d.position}
+        scale={hovered ? [1.8, 1.8, 1] : [1.2, 1.2, 1]}
+      >
+        <spriteMaterial
+          map={d.type === 'camera' ? cameraIconTex : accessIconTex}
+          transparent
+          depthTest={false}
+        />
+      </sprite>
+      <Html
+        position={[d.position[0], d.position[1] + 0.6, d.position[2]]}
+        center
+        distanceFactor={40}
+        style={{
+          pointerEvents: 'none',
+          opacity: hovered ? 1 : 0,
+          transition: 'opacity 0.2s ease',
+        }}
+      >
+        <div style={{
+          background: d.type === 'camera' ? 'rgba(8, 24, 48, 0.92)' : 'rgba(4, 28, 16, 0.92)',
+          color: d.type === 'camera' ? '#7dd3fc' : '#86efac',
+          padding: '2px 8px',
+          borderRadius: 4,
+          fontSize: 'var(--font-size-2xs)',
+          fontWeight: 600,
+          whiteSpace: 'nowrap',
+          border: d.type === 'camera' ? '1px solid rgba(125, 211, 252, 0.6)' : '1px solid rgba(134, 239, 172, 0.6)',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
+          textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+        }}>
+          {d.type === 'camera' ? '📹' : '🚪'} {d.label}
+        </div>
+      </Html>
     </group>
   )
 }

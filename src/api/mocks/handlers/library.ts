@@ -117,4 +117,28 @@ export const libraryHandlers = [
       },
     })
   }),
+
+  http.get(`${BASE}/library/new-arrivals`, () => {
+    return HttpResponse.json({
+      weeklyCount: 86,
+      categories: [
+        { name: '文学', value: 28 },
+        { name: '科技', value: 18 },
+        { name: '教辅', value: 16 },
+        { name: '历史', value: 12 },
+        { name: '艺术', value: 8 },
+        { name: '其他', value: 4 },
+      ],
+      books: [
+        { id: 'nb-1', title: '人工智能简史', author: '尼克', category: '科技', date: '6/20' },
+        { id: 'nb-2', title: '三体', author: '刘慈欣', category: '科技', date: '6/19' },
+        { id: 'nb-3', title: '活着', author: '余华', category: '文学', date: '6/19' },
+        { id: 'nb-4', title: '红楼梦', author: '曹雪芹', category: '文学', date: '6/18' },
+        { id: 'nb-5', title: '中国历史十五讲', author: '张岂之', category: '历史', date: '6/18' },
+        { id: 'nb-6', title: '时间简史', author: '史蒂芬·霍金', category: '科技', date: '6/17' },
+        { id: 'nb-7', title: '艺术的故事', author: '贡布里希', category: '艺术', date: '6/16' },
+        { id: 'nb-8', title: '万历十五年', author: '黄仁宇', category: '历史', date: '6/15' },
+      ],
+    })
+  }),
 ]

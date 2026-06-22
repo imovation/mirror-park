@@ -1,4 +1,4 @@
-import { CHART_PALETTE } from '@/config/chartTheme'
+import { HUE_ROTATION } from '@/config/chartTheme'
 import { useDormData } from '@/api/queries/logistics'
 import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
@@ -12,16 +12,24 @@ export default function DormManagement() {
   if (!data) return <StatusPanel type="empty" />
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <div style={{ whiteSpace: 'nowrap', overflow: 'visible' }}><NumberFlip label="在住人数" value={data.occupied} unit="人" color="var(--accent)" /></div>
-        <div style={{ whiteSpace: 'nowrap', overflow: 'visible' }}><NumberFlip label="空床位数" value={data.available} unit="床" color="var(--color-success)" /></div>
-        <div style={{ whiteSpace: 'nowrap', overflow: 'visible' }}><NumberFlip label="维修中" value={data.maintenance} unit="间" color="var(--color-warning)" /></div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexShrink: 0 }}>
+        <div style={{ whiteSpace: 'nowrap', overflow: 'visible', flex: 1 }}><NumberFlip label="在住人数" value={data.occupied} unit="人" color="var(--accent)" /></div>
+        <div style={{ whiteSpace: 'nowrap', overflow: 'visible', flex: 1 }}><NumberFlip label="空床位数" value={data.available} unit="床" color="var(--color-success)" /></div>
+        <div style={{ whiteSpace: 'nowrap', overflow: 'visible', flex: 1 }}><NumberFlip label="维修中" value={data.maintenance} unit="间" color="var(--color-warning)" /></div>
       </div>
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel align="center">各楼栋入住率</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={data.buildingOccupancy} colors={CHART_PALETTE.dark} height={200} />
+          <BarChart
+            data={data.buildingOccupancy}
+            colors={data.buildingOccupancy.map((_, i) => HUE_ROTATION.r3[i % 3])}
+            height={180}
+            horizontal
+            gridLeft={50}
+            barWidth="55%"
+            showLabel
+          />
         </div>
       </div>
     </div>

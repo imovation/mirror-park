@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { navigateWithBlock3D } from '../helpers/visual-utils'
+import { navigateWithBlock3D, navigateToTopic, waitForAllPanels } from '../helpers/visual-utils'
 
 const topicPanel: Record<string, string> = {
   '综合态势': '教职工组成',
@@ -37,16 +37,18 @@ test.describe('Topic Navigation', () => {
 
   test('should collapse and expand a collapsible panel', async ({ page }) => {
     await navigateWithBlock3D(page)
-    await page.waitForTimeout(2000)
-    const facultyStructurePanel = page.getByText('教职工结构').first()
-    await expect(facultyStructurePanel).toBeVisible({ timeout: 5000 })
+    await waitForAllPanels(page)
+    await navigateToTopic(page, 'library')
+    await waitForAllPanels(page)
+    const bookRankPanel = page.getByText('图书借阅排行').first()
+    await expect(bookRankPanel).toBeVisible({ timeout: 5000 })
 
-    const collapseBtn = page.locator('h3', { hasText: '教职工结构' }).locator('..').locator('button')
+    const collapseBtn = page.locator('h3', { hasText: '图书借阅排行' }).locator('..').locator('button')
     const btnText = await collapseBtn.textContent()
     if (btnText?.includes('▼')) {
       await collapseBtn.click()
       await page.waitForTimeout(300)
-      await expect(page.getByText('职称分布、学科分布')).toBeVisible()
+      await expect(page.getByText('热门图书、班级排行')).toBeVisible()
       await collapseBtn.click()
       await page.waitForTimeout(300)
     }

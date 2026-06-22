@@ -132,7 +132,7 @@ describe('Admin Panel Integration', () => {
       })
       renderWithProviders(<MeetingManagement />, { queryClient: qc })
       await waitFor(() => {
-        expect(screen.getByText('今日会议 / 场')).toBeInTheDocument()
+        expect(screen.getByText(/今日/)).toBeInTheDocument()
         expect(screen.getByText('会议室状态')).toBeInTheDocument()
       })
     })

@@ -4,15 +4,16 @@ import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
 
 interface LineChartProps {
   xData: string[]
-  series: { name: string; data: number[]; color?: string }[]
+  series: { name: string; data: number[]; color?: string; dashed?: boolean }[]
   height?: number
   smooth?: boolean
   area?: boolean
+  markLine?: number
 }
 
 const MIN_HEIGHT = 120
 
-export default function LineChart({ xData, series, height = 160, smooth = false, area = false }: LineChartProps) {
+export default function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine }: LineChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
   const option: EChartsOption = {
@@ -56,7 +57,7 @@ export default function LineChart({ xData, series, height = 160, smooth = false,
       name: s.name,
       data: s.data,
       smooth,
-      lineStyle: { color: s.color || t.colors[i % t.colors.length], width: 2 },
+      lineStyle: { color: s.color || t.colors[i % t.colors.length], width: 2, type: s.dashed ? 'dashed' : 'solid' },
       areaStyle: area
         ? (() => {
             const base = s.color || t.colors[i % t.colors.length] || '#22d3ee'
@@ -65,6 +66,12 @@ export default function LineChart({ xData, series, height = 160, smooth = false,
           })()
         : undefined,
       itemStyle: { color: s.color || t.colors[i % t.colors.length] },
+      markLine: markLine ? {
+        silent: true,
+        symbol: 'none',
+        lineStyle: { color: 'var(--color-warning)', type: 'dashed', width: 1, opacity: 0.6 },
+        data: [{ yAxis: markLine, label: { show: false } }],
+      } : undefined,
     })),
   }
 

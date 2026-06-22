@@ -6,6 +6,7 @@ export interface PanelConfig {
   height?: 'auto' | 'flex-1' | 'flex-2' | 'flex-3'
   collapsible?: boolean
   collapsedSummary?: string
+  autoCollapseBelow?: number
 }
 
 export interface PanelGroup {

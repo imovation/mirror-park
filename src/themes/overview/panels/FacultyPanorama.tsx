@@ -23,13 +23,7 @@ export function FacultyComposition() {
   const ageData = t.ageDistribution
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexShrink: 0 }}>
-        <div style={{ textAlign: 'center', padding: '4px 12px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 6, minWidth: 80 }}>
-          <div style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'monospace' }}>{p.totalTeachers}</div>
-          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>教职工</div>
-        </div>
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">性别比例</ChartLabel>

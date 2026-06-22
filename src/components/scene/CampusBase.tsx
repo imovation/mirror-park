@@ -276,7 +276,13 @@ function BuildingMesh({ building }: { building: BuildingData }) {
 
       <Html
         position={[0, building.size[1] / 2 + (isSelected ? 3 : 2), 0]}
-        center distanceFactor={40} style={{ pointerEvents: 'none', zIndex: isSelected ? 10 : 1 }}
+        center distanceFactor={40}
+        style={{
+          pointerEvents: 'none',
+          zIndex: isSelected ? 10 : 1,
+          opacity: (isSelected || hovered) ? 1 : 0,
+          transition: 'opacity 0.25s ease',
+        }}
       >
         <div style={{
           position: 'relative',
