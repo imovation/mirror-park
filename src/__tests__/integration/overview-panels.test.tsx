@@ -25,10 +25,10 @@ describe('Overview Panel Integration', () => {
         ],
         totalStudents: 2800, maleRatio: 0.5, femaleRatio: 0.5,
       })
-      renderWithProviders(<StudentInfo />, { queryClient: qc })
+      const { container } = renderWithProviders(<StudentInfo />, { queryClient: qc })
       await waitFor(() => {
-        expect(screen.getByText(/初一/)).toBeInTheDocument()
-        expect(screen.getByText('年级人数对比')).toBeInTheDocument()
+        expect(container.textContent).toContain('初一')
+        expect(container.textContent).toContain('930')
       })
     })
 

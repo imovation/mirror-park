@@ -61,6 +61,8 @@ export const useStudentInfo = () =>
   useQuery<StudentInfo>({
     queryKey: ['overview', 'studentInfo'],
     queryFn: () => fetchApi<StudentInfo>('/overview/student-info'),
+    staleTime: 30000,
+    gcTime: 60000,
   })
 
 export const useActivity = () =>

@@ -110,6 +110,7 @@ describe('SSE data → Panel compatibility', () => {
       ],
     })
     render(<StudentInfo />, { wrapper: createWrapper(qc) })
-    expect(screen.getByText('年级人数对比')).toBeInTheDocument()
+    expect(screen.getByText('初一')).toBeInTheDocument()
+    expect(screen.getByText('930')).toBeInTheDocument()
   })
 })
