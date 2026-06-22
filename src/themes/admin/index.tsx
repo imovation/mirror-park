@@ -19,8 +19,8 @@ export const adminPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
     { id: 'admin-meetings', title: '会议管理', height: 'flex-1.4' },
   ],
   right: [
-    { id: 'admin-calendar', title: '校历日程', height: 'flex-2' },
-    { id: 'admin-recent-meetings', title: '近期会议', height: 'flex-1' },
+    { id: 'admin-calendar', title: '校历日程', height: 'flex-1.8' },
+    { id: 'admin-recent-meetings', title: '近期会议', height: 'flex-1.2' },
     { id: 'admin-attendance', title: '教职工考勤', height: 'flex-2.5' },
   ],
 }
