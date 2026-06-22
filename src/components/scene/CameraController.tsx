@@ -31,7 +31,8 @@ export default function CameraController() {
     const preset = SCENE.THEME_CAMERAS[currentTheme as keyof typeof SCENE.THEME_CAMERAS] || SCENE.THEME_CAMERAS.overview
     const aspect = window.innerWidth / window.innerHeight
     let distMul = 1
-    if (aspect > 2.5) distMul = 1.5
+    if (aspect > 4.0) distMul = 2.2
+    else if (aspect > 2.5) distMul = 1.5
     else if (aspect < 1.2) distMul = 0.8
     const pos = new THREE.Vector3(...preset.position)
     const target = new THREE.Vector3(...preset.target)

@@ -13,7 +13,7 @@ export function parseFlexGrow(height?: string, viewportHeight?: number): number 
   if (!height || height === 'auto') return 1
   const m = height.match(/^flex-([\d.]+)$/)
   const flex = m ? parseFloat(m[1]) : 1
-  if (viewportHeight && viewportHeight < 800) return flex * 0.85
+  if (viewportHeight && viewportHeight < 800) return Math.max(flex, 1)
   return flex
 }
 

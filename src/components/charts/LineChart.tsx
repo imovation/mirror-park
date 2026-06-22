@@ -14,7 +14,7 @@ interface LineChartProps {
   yAxisMax?: number
 }
 
-const MIN_HEIGHT = 120
+const MIN_HEIGHT = 80
 
 function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine, yAxisMin, yAxisMax }: LineChartProps) {
   const t = useChartTheme()

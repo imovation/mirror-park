@@ -9,7 +9,7 @@ export function useResponsive() {
     isXLarge: width >= 2560 && width < 3840,
     isUltraWide: width >= 3840,
     isShortHeight: height < 800,
-    panelMaxWidth: width < 1366 ? 320 : width < 1920 ? 380 : width < 2560 ? 420 : width < 3840 ? 520 : 600,
+    panelMaxWidth: width < 1366 ? 320 : width < 1920 ? 380 : width < 2560 ? 420 : width < 3840 ? 520 : width < 5000 ? 750 : 960,
     isPortrait: width < height,
   }
 }

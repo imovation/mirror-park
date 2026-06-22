@@ -20,7 +20,7 @@ interface BarChartProps {
   width?: number
 }
 
-const MIN_HEIGHT = 120
+const MIN_HEIGHT = 80
 
 function BarChart({ data, height = 160, horizontal = true, color, colors, barWidth, gridLeft, gridBottom, gridTop, tooltip = true, showLabel = false, labelFormat = 'value', hideAxis = false, width }: BarChartProps) {
   const t = useChartTheme()

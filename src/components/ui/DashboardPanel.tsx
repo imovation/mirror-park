@@ -31,7 +31,7 @@ export default function DashboardPanel({
       className={`panel-enter relative flex flex-col backdrop-blur-md border rounded-md overflow-hidden ${className}`}
       style={{
         flex: collapsed && showCollapse ? '0 0 auto' : flexGrow,
-        minHeight: collapsed && showCollapse ? 'auto' : isShortHeight ? 'clamp(60px, 12vh, 150px)' : 'clamp(80px, 15vh, 200px)',
+        minHeight: collapsed && showCollapse ? 'auto' : isShortHeight ? 'clamp(100px, 16vh, 180px)' : 'clamp(80px, 15vh, 200px)',
         height: collapsed && showCollapse ? 48 : undefined,
         background: 'var(--panel-bg)',
         borderColor: 'var(--border-strong)',
