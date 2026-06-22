@@ -20,6 +20,12 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
   const t = useChartTheme()
   const f = getChartFontSizes()
   const isCompact = height < 100
+  const allValues = series.flatMap((s) => s.data).filter((v) => typeof v === 'number')
+  const dataMin = allValues.length ? Math.min(...allValues) : 0
+  const dataMax = allValues.length ? Math.max(...allValues) : 100
+  const dataRange = dataMax - dataMin
+  const autoMin = yAxisMin ?? (dataRange > 0 && dataRange < 20 ? Math.max(0, dataMin - 5) : undefined)
+  const autoMax = yAxisMax ?? (dataRange > 0 && dataRange < 20 ? Math.min(100, dataMax + 5) : undefined)
   const option = useMemo<EChartsOption>(() => ({
     tooltip: {
       trigger: 'axis',
@@ -57,10 +63,12 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
     },
     yAxis: {
       type: 'value',
-      min: yAxisMin,
-      max: yAxisMax,
+      min: autoMin,
+      max: autoMax,
       splitLine: { lineStyle: { color: t.splitLine } },
-      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize },
+      axisLabel: isCompact
+        ? { color: t.axisLabel, fontSize: Math.max(8, f.axisFontSize - 2) }
+        : { color: t.axisLabel, fontSize: f.axisFontSize },
     },
     series: series.map((s, i) => ({
       type: 'line',
@@ -85,7 +93,7 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
         data: [{ yAxis: markLine, label: { show: false } }],
       } : undefined,
     })),
-  }), [area, height, isCompact, markLine, series, smooth, xData, yAxisMax, yAxisMin, t, f])
+  }), [area, autoMax, autoMin, height, isCompact, markLine, series, smooth, xData, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
