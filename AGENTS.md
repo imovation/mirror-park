@@ -9,8 +9,8 @@
 | 指标 | 数值 |
 |------|------|
 | 源文件 | 203 |
-| 测试 | 248/248 单元测试 + 76/76 E2E 测试 |
-| Git 提交 | 284 |
+| 测试 | 248/248 单元测试 + 84/84 E2E 测试 (快捷) / 252/252 (完整 6 视口) |
+| Git 提交 | 293 |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 | 浏览器 Console | 0 error / 0 warning |
@@ -219,8 +219,10 @@ React 18 + TypeScript, Vite 5, pnpm, Three.js (@react-three/fiber + drei), EChar
 ```bash
 pnpm dev          # 开发服务器 (含 HMR)
 pnpm build        # 生产构建 → dist/
-pnpm test         # 运行所有测试
+pnpm test         # 运行所有单元测试
 pnpm test -- -t "test name"  # 运行特定测试
+pnpm test:e2e           # E2E 快捷 (Desktop+Tablet 2视口, ~2min)
+pnpm test:e2e:full      # E2E 完整 (6视口, ~8min), 发布前用
 ```
 
 ## 项目结构
@@ -264,7 +266,7 @@ src/
 │   └── logistics/               # 智慧后勤 (2 左 + 2 右 = 4 panel, 新增宿舍管理)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts
 └── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等)
-e2e/                 # Playwright E2E 测试 (80 用例: 加载/主题切换/专题导航/建筑交互/告警弹窗/响应式/错误状态/折叠/7 专题截图基线)
+e2e/                 # Playwright E2E 测试 (252 用例 6 视口: Desktop/Tablet/1366/1600/2560/3840)
 ```
 
 ## 关键架构约定
