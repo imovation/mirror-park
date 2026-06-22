@@ -22,11 +22,11 @@ export default function ActivityTimeStats() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0, alignItems: 'center' }}>
-        <NumberFlip label="峰值人数" value={peakValue} unit="人" color={CHART_PALETTE.semantic.info} />
-        <NumberFlip label="平均活跃" value={avgValue} unit="人" color={CHART_PALETTE.semantic.success} />
+        <NumberFlip label="峰值人数" value={peakValue} unit="人" color={CHART_PALETTE.semantic.info} fontSize="var(--font-size-lg)" />
+        <NumberFlip label="平均活跃" value={avgValue} unit="人" color={CHART_PALETTE.semantic.success} fontSize="var(--font-size-lg)" />
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', marginBottom: 4 }}>峰值时段</div>
-          <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: CHART_PALETTE.semantic.warning, fontFamily: 'monospace' }}>{peakHour}</div>
+          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: CHART_PALETTE.semantic.warning, fontFamily: 'monospace' }}>{peakHour}</div>
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
@@ -40,7 +40,7 @@ export default function ActivityTimeStats() {
           <BarChart
             data={chartData}
             colors={chartData.map((d, i) => (i === peakIndex ? CHART_PALETTE.semantic.warning : CHART_PALETTE.semantic.info))}
-            height={200}
+            height={140}
             horizontal={false}
             barWidth="30%"
           />

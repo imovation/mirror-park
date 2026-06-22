@@ -3,6 +3,15 @@ import StatCard from '@/components/ui/StatCard'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
 
+const ROLE_BG: Record<string, string> = {
+  '行政值班': 'rgba(var(--accent-rgb), 0.1)',
+  '教师值班': 'rgba(var(--color-success-rgb), 0.1)',
+  '安保值班': 'rgba(var(--color-warning-rgb), 0.1)',
+  '医务值班': 'rgba(244, 114, 182, 0.1)',
+  '巡逻安保': 'rgba(var(--color-warning-rgb), 0.1)',
+  '值班组长': 'rgba(244, 114, 182, 0.1)',
+}
+
 const ROLE_COLORS: Record<string, string> = {
   '行政值班': 'var(--accent)',
   '教师值班': 'var(--color-success)',
@@ -58,7 +67,7 @@ export default function DutySchedule() {
         <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>今日值班</span>
         <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-tertiary)' }}>{todayStr()}</span>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, flexShrink: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, flexShrink: 0 }}>
         {data.staffs.map(s => (
           <StatCard
             key={s.role}
@@ -68,6 +77,8 @@ export default function DutySchedule() {
             label={s.role}
             sublabel={s.phone}
             sublabelColor="var(--text-tertiary)"
+            compact
+            style={{ background: ROLE_BG[s.role] || 'rgba(var(--accent-rgb), 0.1)' }}
           />
         ))}
       </div>

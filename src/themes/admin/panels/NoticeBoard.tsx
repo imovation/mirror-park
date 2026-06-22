@@ -17,7 +17,7 @@ export default function NoticeBoard() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0, paddingTop: 2 }}>
       <ScrollList
-        maxHeight={400}
+        maxHeight={260}
         items={data.notices.map(n => ({
           id: n.id,
           content: (

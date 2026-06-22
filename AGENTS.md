@@ -50,8 +50,30 @@
 
 ### 关键设计决策
 - **面板默认展开**: 移除 autoCollapseBelow 机制，collapsible panel 始终展开，用户手动折叠
-- **3D 场景重建**: 切换专题时用 `key={currentTheme}` 强制 Canvas 重建，避免场景元素泄漏
+- **3D 场景切换**: 切换专题时仅替换 Canvas 内部场景组件（`entry.scene()`），Canvas 保持挂载，R3F 自动清理旧元素
 - **设备 Sprite 图标**: Canvas 绘制摄像头/门禁图标替代小球，始终面向镜头
+
+## 变更日志 (2026-06-22 后续) — 第 9 轮全专题精细化调整
+
+| 类别 | 改动 | 文件 |
+|------|------|------|
+| 系统 | **AlertPopup 移右下角** + 宽度 520→320 | `AlertPopup.tsx` |
+| 系统 | **TopBar 新增全屏按钮** (Fullscreen API) | `TopBar.tsx` |
+| 系统 | **TopMetrics 亮色背景修复** (硬编码→CSS 变量) | `ScreenLayout.tsx`, `index.css` |
+| 系统 | **ScrollBar gutter 移除** (右侧多余间隙) | `index.css` |
+| 系统 | **3D 场景切换不重载** (移除 key=currentTheme) | `App.tsx` |
+| 系统 | **Panel 高度支持小数** (parseFlexGrow) | `types/panel.ts`, `App.tsx` |
+| 系统 | **BarChart hideAxis prop** + **LineChart yAxisMin/Max** | `BarChart.tsx`, `LineChart.tsx` |
+| 系统 | **NumberFlip fontSize prop** (移除逗号分隔符) | `NumberFlip.tsx` |
+| 系统 | **StatCard compact + style prop** | `StatCard.tsx` |
+| 系统 | **侧栏面板加 12px 对称边距** | `ScreenLayout.tsx` |
+| 综合态势 | 右一面板 flex-2→1.8；功能室分布 色相轮转→CHART_PALETTE；资产概况 flex-1→2 + Ring 160 | `overview/` 多文件 |
+| 教学研究 | 面板高度重调(1.25/0.7/1.25/2/1.2)；压缩卡片/字号；删除 8→4 部门 | `teaching-research/` 多文件 |
+| 行政办公 | 通知 maxHeight 400→260；考勤 flex-3→2.5 + 8→4 部门；值班卡片 compact + 背景色；会议管理压缩 | `admin/` 多文件 |
+| 智慧图书 | 阅读之星删除；借阅 flex-1→4；新书 flex-1→2；入馆 flex-2→1.2；BookRank 居中+ hideAxis | `library/` 多文件 |
+| 智慧教学 | 布局重组(空间使用移左3/考试 flex-2→3)；全部横条 CHART_PALETTE 区分色；高度全部降至最低 | `academics/` 多文件 |
+| 智慧安防 | flex 重组(监控 1.6→1.33/门禁 1.33→1.6)；RingChart CSS var→hex；NumberFlip 统一 lg | `security/` 多文件 |
+| 智慧后勤 | 请假记录 maxHeight 144；宿舍 Bar 180→140；访客登记 flex 填充 | `logistics/` 多文件 |
 
 ## 变更日志 (2026-06-21)
 

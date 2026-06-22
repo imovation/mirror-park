@@ -79,12 +79,8 @@ export const adminHandlers = [
       todayAbsent: 2,
       departmentRates: [
         { name: '办公室', value: 98 },
-        { name: '学生处', value: 95 },
-        { name: '科研处', value: 93 },
-        { name: '体卫处', value: 97 },
         { name: '教务处', value: 96 },
         { name: '总务处', value: 94 },
-        { name: '德育处', value: 92 },
         { name: '信息中心', value: 91 },
       ],
       monthlyTrend: {

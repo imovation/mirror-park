@@ -16,11 +16,11 @@ export default function LogisticsVisitors() {
         <NumberFlip label="今日访客" value={data.todayVisitors} unit="人" color="var(--accent)" />
         <NumberFlip label="当前在校" value={data.currentVisitors} unit="人" color="var(--color-success)" />
       </div>
-      <div style={{ flex: 1, minHeight: 0 }}>
+      <div style={{ flexShrink: 0 }}>
         <ChartLabel align="center">来访目的分布</ChartLabel>
-        <RingChart data={data.purposeDistribution} height={120} legendPosition="bottom" centerLabel={`${data.todayVisitors} 总`} />
+        <RingChart data={data.purposeDistribution} height={100} legendPosition="bottom" centerLabel={`${data.todayVisitors} 总`} />
       </div>
-      <div>
+      <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>访客登记</ChartLabel>
         <ScrollList items={data.records.map(r => ({ id: r.id, content: <div style={{display:'flex',justifyContent:'space-between'}}><span>{r.name}</span><span style={{display:'flex',gap:8}}><span style={{fontSize:'var(--font-size-xs)',color:'var(--text-muted)'}}>{r.purpose}</span><span style={{fontSize:'var(--font-size-xs)',color:'var(--text-muted)'}}>{r.time}</span></span></div> }))} />
       </div>

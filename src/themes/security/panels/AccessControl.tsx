@@ -20,9 +20,9 @@ export default function AccessControl() {
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="今日通行" value={data.todayTotal} unit="人次" color="var(--color-success)" />
-        <NumberFlip label="已处理" value={handledCount} unit="条" color="var(--accent)" />
-        <NumberFlip label="处理率" value={handledRate} unit="%" color="var(--color-warning)" />
+        <NumberFlip label="今日通行" value={data.todayTotal} unit="人次" color="var(--color-success)" fontSize="var(--font-size-lg)" />
+        <NumberFlip label="已处理" value={handledCount} unit="条" color="var(--accent)" fontSize="var(--font-size-lg)" />
+        <NumberFlip label="处理率" value={handledRate} unit="%" color="var(--color-warning)" fontSize="var(--font-size-lg)" />
       </div>
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>各门禁点通行统计</ChartLabel>

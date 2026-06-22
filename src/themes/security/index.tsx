@@ -12,12 +12,12 @@ export const securityTopMetrics = () => <SecurityTopMetrics />
 
 export const securityPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'sec-monitor', title: '监控状态', height: 'flex-2' },
-    { id: 'sec-access', title: '门禁管理', height: 'flex-1', collapsible: true, collapsedSummary: '今日通行、异常记录、各门禁点统计' },
+    { id: 'sec-monitor', title: '监控状态', height: 'flex-1.33' },
+    { id: 'sec-access', title: '门禁管理', height: 'flex-1.5', collapsible: true, collapsedSummary: '今日通行、异常记录、各门禁点统计' },
   ],
   right: [
-    { id: 'sec-overview', title: '安防态势总览', height: 'flex-2' },
-    { id: 'sec-alerts', title: '告警事件', height: 'flex-1', collapsible: true, collapsedSummary: '今日告警、告警类型、处理状态、告警列表' },
+    { id: 'sec-overview', title: '安防态势总览', height: 'flex-1' },
+    { id: 'sec-alerts', title: '告警事件', height: 'flex-1.9', collapsible: true, collapsedSummary: '今日告警、告警类型、处理状态、告警列表' },
   ],
 }
 

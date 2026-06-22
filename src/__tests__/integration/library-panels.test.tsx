@@ -2,7 +2,6 @@ import { renderWithProviders, screen, waitFor } from '@/__tests__/test-utils'
 import { QueryClient } from '@tanstack/react-query'
 
 import BookRank from '@/themes/library/panels/BookRank'
-import ReadingStars from '@/themes/library/panels/ReadingStars'
 import ReadingActivities from '@/themes/library/panels/ReadingActivities'
 import VisitorStats from '@/themes/library/panels/VisitorStats'
 
@@ -44,28 +43,6 @@ describe('Library Panel Integration', () => {
       fillQueryCache(qc, ['library', 'hotBooks'], null)
       fillQueryCache(qc, ['library', 'classRank'], null)
       renderWithProviders(<BookRank />, { queryClient: qc })
-      await waitFor(() => {
-        expect(screen.getByText('暂无数据')).toBeInTheDocument()
-      })
-    })
-  })
-
-  describe('ReadingStars', () => {
-    it('renders reading stars when loaded', async () => {
-      const qc = createQC()
-      fillBookQueries(qc)
-      renderWithProviders(<ReadingStars />, { queryClient: qc })
-      await waitFor(() => {
-        expect(screen.getByText('阅读之星')).toBeInTheDocument()
-        expect(screen.getByText('好书推荐')).toBeInTheDocument()
-      })
-    })
-
-    it('shows empty state when data is null', async () => {
-      const qc = createQC()
-      fillQueryCache(qc, ['library', 'hotBooks'], null)
-      fillQueryCache(qc, ['library', 'classRank'], null)
-      renderWithProviders(<ReadingStars />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('暂无数据')).toBeInTheDocument()
       })

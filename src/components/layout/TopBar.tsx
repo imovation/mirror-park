@@ -15,6 +15,21 @@ export default function TopBar() {
   const [time, setTime] = useState(new Date())
   const [playing, setPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  useEffect(() => {
+    const handler = () => setIsFullscreen(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', handler)
+    return () => document.removeEventListener('fullscreenchange', handler)
+  }, [])
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+    } else {
+      document.documentElement.requestFullscreen()
+    }
+  }
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000)
@@ -153,6 +168,27 @@ export default function TopBar() {
           }}
         >
           {playing ? '🔊' : '🔇'}
+        </button>
+        <button
+          onClick={toggleFullscreen}
+          style={{
+            width: 36,
+            height: 36,
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '1px solid ' + (isFullscreen ? 'var(--accent)' : 'rgba(255,255,255,0.2)'),
+            background: isFullscreen ? 'rgba(var(--accent-rgb), 0.2)' : 'rgba(255,255,255,0.08)',
+            color: isFullscreen ? 'var(--accent)' : '#ffffff',
+            cursor: 'pointer',
+            transition: 'var(--transition-fast)',
+            fontSize: 16,
+            fontFamily: 'inherit',
+          }}
+          title={isFullscreen ? '退出全屏' : '全屏'}
+        >
+          {isFullscreen ? '⛶' : '⛶'}
         </button>
         <span style={{ fontSize: 'var(--font-size-sm)', color: isDark ? '#ffffff' : undefined }}>{dateStr}</span>
         <span style={{ fontSize: 'var(--font-size-xl)', color: isDark ? '#ffffff' : 'var(--accent)', fontFamily: 'monospace', fontWeight: 600, letterSpacing: 1 }}>{timeStr}</span>

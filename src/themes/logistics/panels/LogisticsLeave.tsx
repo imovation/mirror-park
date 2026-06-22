@@ -49,11 +49,11 @@ export default function LogisticsLeave() {
           smooth
         />
       </div>
-      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', marginTop: 4 }}>
+      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>请假离校记录 ({data.records.length})</ChartLabel>
         <div style={{ flex: 1, minHeight: 0, overflow: 'auto', borderRadius: 6, background: 'var(--panel-bg)', border: '1px solid var(--border)', paddingTop: 4 }}>
           <ScrollList
-            maxHeight={120}
+            maxHeight={144}
             items={data.records.slice(0, 6).map(r => ({
               id: r.id,
               content: (

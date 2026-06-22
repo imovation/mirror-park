@@ -24,7 +24,7 @@ export default function DormManagement() {
           <BarChart
             data={data.buildingOccupancy}
             colors={data.buildingOccupancy.map((_, i) => HUE_ROTATION.r3[i % 3])}
-            height={180}
+            height={140}
             horizontal
             gridLeft={50}
             barWidth="55%"

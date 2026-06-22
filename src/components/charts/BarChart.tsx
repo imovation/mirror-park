@@ -15,11 +15,12 @@ interface BarChartProps {
   tooltip?: boolean | object
   showLabel?: boolean
   labelFormat?: 'value' | 'percent'
+  hideAxis?: boolean
 }
 
 const MIN_HEIGHT = 120
 
-export default function BarChart({ data, height = 160, horizontal = true, color, colors, barWidth, gridLeft, gridBottom, gridTop, tooltip = true, showLabel = false, labelFormat = 'value' }: BarChartProps) {
+export default function BarChart({ data, height = 160, horizontal = true, color, colors, barWidth, gridLeft, gridBottom, gridTop, tooltip = true, showLabel = false, labelFormat = 'value', hideAxis = false }: BarChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
   const seriesColor = color || colors?.[0] || t.colors[0]
@@ -61,7 +62,7 @@ export default function BarChart({ data, height = 160, horizontal = true, color,
     [horizontal ? 'xAxis' : 'yAxis']: {
       type: 'value',
       splitLine: { lineStyle: { color: t.splitLine } },
-      axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize },
+      axisLabel: hideAxis ? { show: false } : { color: t.axisLabel, fontSize: f.axisFontSize },
     },
     series: [
       {

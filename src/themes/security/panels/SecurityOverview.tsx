@@ -23,16 +23,16 @@ export default function SecurityOverview() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="已处理" value={handled} unit="件" color={CHART_PALETTE.semantic.success} />
-        <NumberFlip label="待处理" value={unhandled} unit="件" color={CHART_PALETTE.semantic.danger} />
-        <NumberFlip label="设备在线率" value={onlineRate} unit="%" color={CHART_PALETTE.semantic.info} />
+        <NumberFlip label="已处理" value={handled} unit="件" color={CHART_PALETTE.semantic.success} fontSize="var(--font-size-lg)" />
+        <NumberFlip label="待处理" value={unhandled} unit="件" color={CHART_PALETTE.semantic.danger} fontSize="var(--font-size-lg)" />
+        <NumberFlip label="设备在线率" value={onlineRate} unit="%" color={CHART_PALETTE.semantic.info} fontSize="var(--font-size-lg)" />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel align="center">近 7 日告警趋势</ChartLabel>
         <LineChart
           xData={trendDays}
           series={[{ name: '告警数', data: trendValues, color: CHART_PALETTE.semantic.danger }]}
-          height={180}
+          height={160}
           smooth
           area
         />

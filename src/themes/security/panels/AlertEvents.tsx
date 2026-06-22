@@ -84,10 +84,11 @@ export default function AlertEvents() {
           )
         })}
       </div>
-      <div style={{ flex: 1, minHeight: 0 }}>
+      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>告警事件列表</ChartLabel>
         <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
           <ScrollList
+            maxHeight={500}
             items={data.records.map(r => ({
               id: r.id,
               content: (

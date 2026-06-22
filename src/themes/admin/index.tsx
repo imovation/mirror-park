@@ -14,14 +14,14 @@ export const adminTopMetrics = () => <AdminTopMetrics />
 
 export const adminPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'admin-notices', title: '通知公告', height: 'flex-1' },
-    { id: 'admin-duty', title: '值班安排', height: 'flex-2' },
-    { id: 'admin-meetings', title: '会议管理', height: 'flex-2' },
+    { id: 'admin-notices', title: '通知公告', height: 'flex-1.5' },
+    { id: 'admin-duty', title: '值班安排', height: 'flex-1.8' },
+    { id: 'admin-meetings', title: '会议管理', height: 'flex-1.4' },
   ],
   right: [
     { id: 'admin-calendar', title: '校历日程', height: 'flex-2' },
     { id: 'admin-recent-meetings', title: '近期会议', height: 'flex-1' },
-    { id: 'admin-attendance', title: '教职工考勤', height: 'flex-3' },
+    { id: 'admin-attendance', title: '教职工考勤', height: 'flex-2.5' },
   ],
 }
 

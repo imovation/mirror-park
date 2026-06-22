@@ -1,4 +1,5 @@
 import { useRoomDistribution } from '@/api/queries/overview'
+import { CHART_PALETTE } from '@/config/chartTheme'
 import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
@@ -11,13 +12,6 @@ export default function RoomDistribution() {
   if (!data) return <StatusPanel type="empty" />
 
   const total = data.rooms.reduce((a, b) => a + b.count, 0)
-  const sorted = [...data.rooms].sort((a, b) => b.count - a.count)
-  const topColors = ['var(--accent)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-chart-7)', 'var(--color-pending)', 'var(--color-chart-1)', 'var(--color-chart-5)', 'var(--color-chart-4)']
-  const barColors = sorted.map((_, i) => topColors[i] || 'var(--accent)')
-  const dataWithColors = data.rooms.map((r) => {
-    const idx = sorted.findIndex((s) => s.name === r.name)
-    return { ...r, color: barColors[idx] }
-  })
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
@@ -29,9 +23,9 @@ export default function RoomDistribution() {
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <BarChart
-          data={dataWithColors.map((r) => ({ name: r.name, value: r.count }))}
-          colors={dataWithColors.map((r) => r.color)}
-          height={220}
+          data={data.rooms.map((r) => ({ name: r.name, value: r.count }))}
+          colors={CHART_PALETTE.dark}
+            height={165}
           gridLeft="22%"
           gridBottom="10%"
           showLabel

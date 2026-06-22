@@ -11,8 +11,8 @@ export default function TeachingDevices() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', gap: 4, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">设备状态</ChartLabel>
           <RingChart
@@ -23,24 +23,24 @@ export default function TeachingDevices() {
             ]}
             colors={[CHART_PALETTE.semantic.success, CHART_PALETTE.semantic.warning, CHART_PALETTE.semantic.danger]}
             centerLabel={`${data.online}/${data.total}`}
-            height={120}
+            height={80}
           />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">设备类型分布</ChartLabel>
-          <PieChart data={data.typeDistribution} height={120} legendPosition="none" />
+          <PieChart data={data.typeDistribution} height={80} legendPosition="none" />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>设备状态概览</ChartLabel>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, padding: '0 4px' }}>
-          <div style={{ textAlign: 'center', background: 'var(--panel-bg)', borderRadius: 6, padding: 8 }}>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>总设备</div>
-            <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: 'var(--text-primary)' }}>{data.total}</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, padding: '0 2px' }}>
+          <div style={{ textAlign: 'center', background: 'var(--panel-bg)', borderRadius: 4, padding: 4 }}>
+            <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>总设备</div>
+            <div style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--text-primary)' }}>{data.total}</div>
           </div>
-          <div style={{ textAlign: 'center', background: 'var(--panel-bg)', borderRadius: 6, padding: 8 }}>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>在线率</div>
-            <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: 'var(--color-success)' }}>{Math.round((data.online / data.total) * 100)}%</div>
+          <div style={{ textAlign: 'center', background: 'var(--panel-bg)', borderRadius: 4, padding: 4 }}>
+            <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>在线率</div>
+            <div style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--color-success)' }}>{Math.round((data.online / data.total) * 100)}%</div>
           </div>
         </div>
       </div>

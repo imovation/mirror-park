@@ -82,7 +82,7 @@ export default function SchoolCalendar() {
           假期
         </span>
       </div>
-      <ScrollList items={allItems} maxHeight={220} />
+      <ScrollList items={allItems} maxHeight={180} />
     </div>
   )
 }

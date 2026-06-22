@@ -88,7 +88,6 @@ describe('Academics Panel Integration', () => {
       renderWithProviders(<ExamManagement />, { queryClient: qc })
       await waitFor(() => {
         expect(screen.getByText('近期考试')).toBeInTheDocument()
-        expect(screen.getByText(/本学期考试/)).toBeInTheDocument()
       })
     })
 

@@ -9,11 +9,13 @@ interface LineChartProps {
   smooth?: boolean
   area?: boolean
   markLine?: number
+  yAxisMin?: number
+  yAxisMax?: number
 }
 
 const MIN_HEIGHT = 120
 
-export default function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine }: LineChartProps) {
+export default function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine, yAxisMin, yAxisMax }: LineChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
   const option: EChartsOption = {
@@ -48,7 +50,8 @@ export default function LineChart({ xData, series, height = 160, smooth = false,
     },
     yAxis: {
       type: 'value',
-      scale: true,
+      min: yAxisMin,
+      max: yAxisMax,
       splitLine: { lineStyle: { color: t.splitLine } },
       axisLabel: { color: t.axisLabel, fontSize: f.axisFontSize },
     },

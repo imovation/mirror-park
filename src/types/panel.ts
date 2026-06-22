@@ -3,10 +3,16 @@ import type { ReactNode } from 'react'
 export interface PanelConfig {
   id: string
   title: string
-  height?: 'auto' | 'flex-1' | 'flex-2' | 'flex-3'
+  height?: string
   collapsible?: boolean
   collapsedSummary?: string
   autoCollapseBelow?: number
+}
+
+export function parseFlexGrow(height?: string): number {
+  if (!height || height === 'auto') return 1
+  const m = height.match(/^flex-([\d.]+)$/)
+  return m ? parseFloat(m[1]) : 1
 }
 
 export interface PanelGroup {

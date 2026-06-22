@@ -7,6 +7,7 @@
   --panel-bg: rgba(0, 0, 0, 0.45);
   --panel-bg-solid: rgba(10, 22, 40, 0.95);
   --topbar-bg: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+  --topmetrics-bg: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 100%);
   --bottombar-bg: rgba(0, 0, 0, 0.4);
   --overlay-bg: rgba(0, 0, 0, 0.6);
   --text-primary: rgba(255, 255, 255, 0.85);
@@ -73,6 +74,7 @@
   --panel-bg: rgba(255, 255, 255, 0.82);
   --panel-bg-solid: rgba(255, 255, 255, 0.98);
   --topbar-bg: rgba(255, 255, 255, 0.9);
+  --topmetrics-bg: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.6) 100%);
   --bottombar-bg: rgba(255, 255, 255, 0.85);
   --overlay-bg: rgba(0, 0, 0, 0.4);
   --text-primary: rgba(0, 0, 0, 0.85);
@@ -222,7 +224,6 @@ html, body, #root {
 .panel-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
-  scrollbar-gutter: stable;
 }
 
 .panel-scroll::-webkit-scrollbar {

@@ -54,46 +54,45 @@ export default function ResearchProjectsList() {
           ) : null
         })}
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, overflow: 'auto', flex: 1 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, overflow: 'auto', flex: 1, alignContent: 'start' }}>
         {data.projects.map((p) => (
           <div
             key={p.id}
             style={{
               background: 'var(--panel-bg)',
               border: '1px solid var(--border-light)',
-              borderRadius: 6,
-              padding: '10px 12px',
+              borderRadius: 4,
+              padding: '6px 8px',
               borderLeft: `3px solid ${statusColors[p.status] || 'var(--accent)'}`,
             }}
           >
             <div
               style={{
-                fontSize: 13,
+                fontSize: 12,
                 fontWeight: 600,
                 color: 'var(--text-primary)',
-                marginBottom: 4,
+                marginBottom: 2,
                 lineHeight: 1.3,
                 display: '-webkit-box',
-                WebkitLineClamp: 2,
+                WebkitLineClamp: 1,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
-                minHeight: 34,
               }}
               title={p.name}
             >
               {p.name}
             </div>
-            <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>负责人: {p.leader}</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
-              <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>{p.members}人</span>
+            <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>负责人: {p.leader}</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 }}>
+              <span style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>{p.members}人</span>
               <span
                 style={{
-                  fontSize: 'var(--font-size-xs)',
+                  fontSize: 'var(--font-size-2xs)',
                   color: statusColors[p.status] || 'var(--accent)',
                   fontWeight: 600,
                   background: `${statusColors[p.status] || 'var(--accent)'}20`,
-                  padding: '1px 6px',
-                  borderRadius: 3,
+                  padding: '1px 4px',
+                  borderRadius: 2,
                 }}
               >
                 {p.status}

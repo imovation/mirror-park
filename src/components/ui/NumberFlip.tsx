@@ -1,11 +1,11 @@
 import { useRef } from 'react'
-import { formatNumber } from '@/utils/format'
 
 interface NumberFlipProps {
   value: number
   unit?: string
   label?: string
   color?: string
+  fontSize?: string
   trend?: { direction: 'up' | 'down' | 'same'; percent: number }
 }
 
@@ -43,12 +43,12 @@ function DigitColumn({ char, animate }: { char: string; animate: boolean }) {
   )
 }
 
-export default function NumberFlip({ value, unit, label, color = 'var(--accent)', trend }: NumberFlipProps) {
+export default function NumberFlip({ value, unit, label, color = 'var(--accent)', fontSize, trend }: NumberFlipProps) {
   const prevValue = useRef(value)
   const animate = value !== prevValue.current
   prevValue.current = value
 
-  const formatted = formatNumber(value)
+  const formatted = String(value)
 
   const trendColor = trend?.direction === 'up' ? 'var(--color-warning)' : trend?.direction === 'down' ? 'var(--color-success)' : 'var(--text-tertiary)'
   const trendArrow = trend?.direction === 'up' ? '↑' : trend?.direction === 'down' ? '↓' : '→'
@@ -61,7 +61,7 @@ export default function NumberFlip({ value, unit, label, color = 'var(--accent)'
         </div>
       )}
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4 }}>
-        <span style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 'bold', color, fontFamily: 'monospace' }}>
+        <span style={{ fontSize: fontSize || 'var(--font-size-xxl)', fontWeight: 'bold', color, fontFamily: 'monospace' }}>
           {formatted.split('').map((char, i) => (
             <DigitColumn key={i} char={char} animate={animate} />
           ))}

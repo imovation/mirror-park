@@ -12,26 +12,24 @@ export default function StaffAttendance() {
   if (error) return <StatusPanel type="error" />
   if (!data) return <StatusPanel type="empty" />
 
-  const colorByRate = (v: number) =>
-    v >= 97 ? 'var(--color-success)' : v >= 92 ? 'var(--accent)' : v >= 85 ? 'var(--color-warning)' : 'var(--color-danger)'
-
   const trendValues = data.monthlyTrend.values
   const abnormalCount = trendValues.filter((v) => v < 90).length
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="今日出勤" value={data.todayPresent} unit="人" color="var(--color-success)" />
-        <NumberFlip label="请假" value={data.todayLeave} unit="人" color="var(--color-warning)" />
-        <NumberFlip label="缺勤" value={data.todayAbsent} unit="人" color="var(--color-danger)" />
+      <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+        <div style={{ flex: 1 }}><NumberFlip label="今日出勤" value={data.todayPresent} unit="人" color="var(--color-success)" fontSize="var(--font-size-lg)" /></div>
+        <div style={{ flex: 1 }}><NumberFlip label="请假" value={data.todayLeave} unit="人" color="var(--color-warning)" fontSize="var(--font-size-lg)" /></div>
+        <div style={{ flex: 1 }}><NumberFlip label="缺勤" value={data.todayAbsent} unit="人" color="var(--color-danger)" fontSize="var(--font-size-lg)" /></div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各部门出勤率</ChartLabel>
         <BarChart
           data={data.departmentRates}
-          colors={data.departmentRates.map(d => colorByRate(d.value))}
+          colors={CHART_PALETTE.dark}
           height={120}
-          barWidth="50%"
+          gridLeft="22%"
+          barWidth="60%"
         />
       </div>
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
@@ -50,7 +48,9 @@ export default function StaffAttendance() {
               { name: '出勤率', data: trendValues, color: HUE_ROTATION.r2[0] },
             ]}
             markLine={95}
-            height={120}
+            height={140}
+            yAxisMin={90}
+            yAxisMax={100}
           />
         </div>
       </div>

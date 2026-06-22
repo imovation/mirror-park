@@ -36,23 +36,23 @@ export default function MeetingManagement() {
             <span style={{ marginLeft: 8, color: 'var(--color-success)' }}>● {availableCount} 闲</span>
           </span>
         </div>
-        <div style={{ flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, alignContent: 'start' }}>
+        <div style={{ flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, alignContent: 'start' }}>
           {data.rooms.map((room) => (
             <div
               key={room.name}
               style={{
                 background: 'var(--panel-bg)',
                 border: room.status === '使用中' ? '1px solid var(--color-warning)' : '1px solid var(--color-success)',
-                borderRadius: 6,
-                padding: '8px 10px',
+                borderRadius: 4,
+                padding: '5px 8px',
                 textAlign: 'center',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 6,
+                gap: 4,
               }}
             >
-              <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-primary)', fontWeight: 500 }}>{room.name}</span>
+              <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-primary)', fontWeight: 500 }}>{room.name}</span>
               <span
                 style={{
                   fontSize: 'var(--font-size-2xs)',

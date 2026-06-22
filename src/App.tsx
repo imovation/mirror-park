@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useSSE } from '@/api/useSSEQuery'
+import { parseFlexGrow } from '@/types/panel'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { useUIStore } from '@/stores/useUIStore'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
@@ -59,7 +60,7 @@ function AppContent() {
             3D 场景不可用
           </div>
         }>
-          <SceneCanvas key={currentTheme}>{entry.scene()}</SceneCanvas>
+          <SceneCanvas>{entry.scene()}</SceneCanvas>
         </ErrorBoundary>
       </div>
       <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%', pointerEvents: 'none' }}>
@@ -73,7 +74,7 @@ function AppContent() {
                   <DashboardPanel
                       key={p.id}
                       title={p.title}
-                      flexGrow={p.height === 'flex-2' ? 2 : p.height === 'flex-3' ? 3 : 1}
+                      flexGrow={parseFlexGrow(p.height)}
                       collapsible={p.collapsible}
                       collapsedSummary={p.collapsedSummary}
                       style={{ '--stagger-delay': `${idx * 0.08}s` } as React.CSSProperties}
@@ -93,7 +94,7 @@ function AppContent() {
                   <DashboardPanel
                       key={p.id}
                       title={p.title}
-                      flexGrow={p.height === 'flex-2' ? 2 : p.height === 'flex-3' ? 3 : 1}
+                      flexGrow={parseFlexGrow(p.height)}
                       collapsible={p.collapsible}
                       collapsedSummary={p.collapsedSummary}
                       style={{ '--stagger-delay': `${idx * 0.08}s` } as React.CSSProperties}

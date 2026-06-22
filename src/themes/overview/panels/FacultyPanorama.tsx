@@ -3,7 +3,7 @@ import RingChart from '@/components/charts/RingChart'
 import BarChart from '@/components/charts/BarChart'
 import StatusPanel from '@/components/ui/StatusPanel'
 import ChartLabel from '@/components/ui/ChartLabel'
-import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
+import { CHART_PALETTE } from '@/config/chartTheme'
 
 export function FacultyComposition() {
   const personnel = usePersonnelComposition()
@@ -23,28 +23,30 @@ export function FacultyComposition() {
   const ageData = t.ageDistribution
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
-        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <ChartLabel align="center">性别比例</ChartLabel>
-          <RingChart
-            data={genderData}
-            colors={[CHART_PALETTE.semantic.male, CHART_PALETTE.semantic.female]}
-            height={200}
-            centerLabel={String(p.totalTeachers)}
-            centerLabelSize={22}
-            legendPosition="bottom"
-          />
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <RingChart
+              data={genderData}
+              colors={[CHART_PALETTE.semantic.male, CHART_PALETTE.semantic.female]}
+              centerLabel={String(p.totalTeachers)}
+              centerLabelSize={22}
+              legendPosition="bottom"
+            />
+          </div>
         </div>
-        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <ChartLabel align="center">年龄分布</ChartLabel>
-          <BarChart
-            data={ageData}
-            colors={CHART_PALETTE.dark}
-            height={200}
-            barWidth="60%"
-            showLabel
-          />
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <BarChart
+              data={ageData}
+              colors={CHART_PALETTE.dark}
+              barWidth="60%"
+              showLabel
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -61,44 +63,47 @@ export function FacultyStructure() {
   const t = teacher.data
   const p = personnel.data
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
-        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <ChartLabel align="center">职称分布</ChartLabel>
-          <BarChart
-            data={t.titles}
-            color={HUE_ROTATION.r3[0]}
-            height={150}
-            gridLeft="20%"
-            gridBottom="15%"
-            barWidth="60%"
-            showLabel
-          />
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <BarChart
+              data={t.titles}
+              colors={CHART_PALETTE.dark}
+              gridLeft="20%"
+              gridBottom="15%"
+              barWidth="60%"
+              showLabel
+            />
+          </div>
         </div>
-        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <ChartLabel align="center">学历分布</ChartLabel>
-          <BarChart
-            data={p.education}
-            color={HUE_ROTATION.r3[1]}
-            height={150}
-            gridLeft="15%"
-            gridBottom="15%"
-            barWidth="60%"
-            showLabel
-          />
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <BarChart
+              data={p.education}
+              colors={CHART_PALETTE.dark}
+              gridLeft="15%"
+              gridBottom="15%"
+              barWidth="60%"
+              showLabel
+            />
+          </div>
         </div>
       </div>
-      <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+      <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <ChartLabel align="center">学科分布</ChartLabel>
-        <BarChart
-          data={t.subjects}
-          color={HUE_ROTATION.r3[2]}
-          height={140}
-          gridLeft="14%"
-          gridBottom="15%"
-          barWidth="55%"
-          showLabel
-        />
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <BarChart
+            data={t.subjects}
+            colors={CHART_PALETTE.dark}
+            gridLeft="14%"
+            gridBottom="15%"
+            barWidth="80%"
+            showLabel
+          />
+        </div>
       </div>
     </div>
   )

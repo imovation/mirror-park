@@ -17,9 +17,9 @@ export default function MonitorStatus() {
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="设备总数" value={data.total} unit="台" color="var(--accent)" />
-        <NumberFlip label="在线设备" value={data.online} unit="台" color="var(--color-success)" />
-        <NumberFlip label="在线率" value={onlineRate} unit="%" color="var(--color-warning)" />
+        <NumberFlip label="设备总数" value={data.total} unit="台" color="var(--accent)" fontSize="var(--font-size-lg)" />
+        <NumberFlip label="在线设备" value={data.online} unit="台" color="var(--color-success)" fontSize="var(--font-size-lg)" />
+        <NumberFlip label="在线率" value={onlineRate} unit="%" color="var(--color-warning)" fontSize="var(--font-size-lg)" />
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0 }}>
@@ -32,19 +32,19 @@ export default function MonitorStatus() {
             ]}
             colors={[CHART_PALETTE.semantic.success, CHART_PALETTE.semantic.warning, CHART_PALETTE.semantic.danger]}
             centerLabel={`${data.online}/${data.total}`}
-            height={160}
+            height={120}
             legendPosition="bottom"
           />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">监控覆盖率</ChartLabel>
-          <GaugeChart value={Math.round(data.coverage * 100)} name="覆盖率" height={160} />
+          <GaugeChart value={Math.round(data.coverage * 100)} name="覆盖率" height={120} />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各区域摄像头分布</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={data.regionDistribution} color={HUE_ROTATION.r3[2]} height={180} barWidth="50%" />
+          <BarChart data={data.regionDistribution} color={HUE_ROTATION.r3[2]} height={140} barWidth="50%" />
         </div>
       </div>
     </div>

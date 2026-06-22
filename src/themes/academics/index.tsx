@@ -14,14 +14,14 @@ export const academicsTopMetrics = () => <AcademicsTopMetrics />
 
 export const academicsPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'acad-schedule-dist', title: '课表分布', height: 'flex-2' },
-    { id: 'acad-devices', title: '教学设备', height: 'flex-2' },
+    { id: 'acad-schedule-dist', title: '课表分布', height: 'flex-0.85' },
+    { id: 'acad-devices', title: '教学设备', height: 'flex-0.85' },
+    { id: 'acad-space-usage', title: '教室空间使用', height: 'flex-1', collapsible: true, collapsedSummary: '使用率环形图、各楼宇对比' },
   ],
   right: [
     { id: 'acad-attendance-overview', title: '学生出勤概况', height: 'flex-2' },
     { id: 'acad-attendance-rank', title: '出勤排名与趋势', height: 'flex-2', collapsible: true, collapsedSummary: '班级出勤排名、30日趋势' },
-    { id: 'acad-space-usage', title: '教室空间使用', height: 'flex-1', collapsible: true, collapsedSummary: '使用率环形图、各楼宇对比' },
-    { id: 'acad-exams', title: '考试管理', height: 'flex-2', collapsible: true, collapsedSummary: '近期考试、各科均分、成绩分布' },
+    { id: 'acad-exams', title: '考试管理', height: 'flex-2.8', collapsible: true, collapsedSummary: '近期考试、各科均分、成绩分布' },
   ],
 }
 

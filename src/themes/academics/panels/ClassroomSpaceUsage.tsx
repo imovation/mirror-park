@@ -1,4 +1,4 @@
-import { HUE_ROTATION } from '@/config/chartTheme'
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useClassroomUsage } from '@/api/queries/academics'
 import BarChart from '@/components/charts/BarChart'
 import RingChart from '@/components/charts/RingChart'
@@ -15,9 +15,6 @@ export default function ClassroomSpaceUsage() {
   const usageRate = total > 0 ? Math.round((data.inUse / total) * 100) : 0
   const conflictCount = Math.max(0, data.inUse - data.available)
 
-  const typeData = data.typeDistribution
-  const typeColors = HUE_ROTATION.r3
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 6, alignItems: 'stretch', flexShrink: 0 }}>
@@ -27,26 +24,26 @@ export default function ClassroomSpaceUsage() {
               { name: '使用中', value: data.inUse },
               { name: '空闲', value: data.available },
             ]}
-            colors={['var(--color-warning)', 'var(--color-success)']}
-            height={110}
+            colors={[CHART_PALETTE.semantic.warning, CHART_PALETTE.semantic.success]}
+            height={90}
             centerLabel={`${usageRate}%`}
-            centerLabelSize={18}
+            centerLabelSize={16}
             legendPosition="bottom"
           />
         </div>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6 }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '4px 8px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 4 }}>
-            <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>使用中</span>
-            <span style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--color-warning)', fontFamily: 'monospace' }}>{data.inUse}</span>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 3 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '3px 6px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 3 }}>
+            <span style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>使用中</span>
+            <span style={{ fontSize: 'var(--font-size-sm)', fontWeight: 700, color: 'var(--color-warning)', fontFamily: 'monospace' }}>{data.inUse}</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '4px 8px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 4 }}>
-            <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)' }}>空闲</span>
-            <span style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--color-success)', fontFamily: 'monospace' }}>{data.available}</span>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '3px 6px', background: 'var(--panel-bg)', border: '1px solid var(--border-light)', borderRadius: 3 }}>
+            <span style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>空闲</span>
+            <span style={{ fontSize: 'var(--font-size-sm)', fontWeight: 700, color: 'var(--color-success)', fontFamily: 'monospace' }}>{data.available}</span>
           </div>
           {conflictCount > 0 && (
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(var(--color-warning-rgb), 0.15)', border: '1px solid var(--color-warning)', borderRadius: 4 }}>
-              <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-warning)' }}>⚠ 冲突</span>
-              <span style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, color: 'var(--color-warning)', fontFamily: 'monospace' }}>{conflictCount}</span>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '3px 6px', background: 'rgba(var(--color-warning-rgb), 0.15)', border: '1px solid var(--color-warning)', borderRadius: 3 }}>
+              <span style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--color-warning)' }}>⚠ 冲突</span>
+              <span style={{ fontSize: 'var(--font-size-sm)', fontWeight: 700, color: 'var(--color-warning)', fontFamily: 'monospace' }}>{conflictCount}</span>
             </div>
           )}
         </div>
@@ -56,8 +53,8 @@ export default function ClassroomSpaceUsage() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={data.buildingUsage}
-            colors={typeColors}
-            height={140}
+            colors={CHART_PALETTE.dark}
+            height={120}
             barWidth="55%"
             showLabel
           />

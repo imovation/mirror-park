@@ -18,19 +18,19 @@ export function ScheduleDistribution() {
   const c = classroom.data
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
-        <NumberFlip label="使用中" value={c.inUse} unit="间" color={CHART_PALETTE.semantic.success} />
-        <NumberFlip label="空闲" value={c.available} unit="间" color={CHART_PALETTE.semantic.warning} />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+        <div style={{ flex: 1 }}><NumberFlip label="使用中" value={c.inUse} unit="间" color={CHART_PALETTE.semantic.success} /></div>
+        <div style={{ flex: 1 }}><NumberFlip label="空闲" value={c.available} unit="间" color={CHART_PALETTE.semantic.warning} /></div>
       </div>
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">年级排课分布</ChartLabel>
-          <BarChart data={s.gradeDistribution} color={HUE_ROTATION.r2[0]} height={180} barWidth="55%" />
+          <BarChart data={s.gradeDistribution} colors={CHART_PALETTE.dark} height={120} barWidth="55%" />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各楼宇使用率</ChartLabel>
-          <BarChart data={c.buildingUsage} color={HUE_ROTATION.r2[1]} height={180} barWidth="55%" />
+          <BarChart data={c.buildingUsage} colors={CHART_PALETTE.dark} height={120} barWidth="55%" />
         </div>
       </div>
     </div>

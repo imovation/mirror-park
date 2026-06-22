@@ -21,13 +21,6 @@ export function AttendanceOverview() {
     ? Math.round(data.trend.values.reduce((a, b) => a + b, 0) / data.trend.values.length)
     : 0
 
-  const gradeColors = data.gradeRates.map((g) => {
-    if (g.value >= 97) return 'var(--color-success)'
-    if (g.value >= 90) return 'var(--accent)'
-    if (g.value >= 85) return 'var(--color-warning)'
-    return 'var(--color-danger)'
-  })
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexShrink: 0 }}>
@@ -38,11 +31,11 @@ export function AttendanceOverview() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各年级出勤率</ChartLabel>
-          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={180} colors={gradeColors} />
+          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={120} colors={CHART_PALETTE.dark} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">实时仪表</ChartLabel>
-          <GaugeChart value={rate} name="出勤率" height={180} />
+          <GaugeChart value={rate} name="出勤率" height={120} />
         </div>
       </div>
     </div>
@@ -59,7 +52,7 @@ export function AttendanceTrend() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">班级出勤排名</ChartLabel>
-          <BarChart data={data.classRank.map(r => ({ name: r.name, value: r.value }))} color={HUE_ROTATION.r2[0]} height={220} />
+          <BarChart data={data.classRank.map(r => ({ name: r.name, value: r.value }))} colors={CHART_PALETTE.dark} height={220} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">30日出勤趋势</ChartLabel>
