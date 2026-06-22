@@ -16,6 +16,13 @@ interface LineChartProps {
 
 const MIN_HEIGHT = 80
 
+function resolveColor(color?: string): string | undefined {
+  if (!color || !color.startsWith('var(')) return color
+  const m = color.match(/var\(--([^)]+)\)/)
+  if (!m) return color
+  return getComputedStyle(document.documentElement).getPropertyValue(`--${m[1]}`).trim() || color
+}
+
 function LineChart({ xData, series, height = 160, smooth = false, area = false, markLine, yAxisMin, yAxisMax }: LineChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes()
@@ -47,7 +54,7 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
     legend: {
       data: series.map((s, i) => ({
         name: s.name,
-        itemStyle: { color: s.color || t.colors[i % t.colors.length] },
+        itemStyle: { color: resolveColor(s.color) || t.colors[i % t.colors.length] },
       })),
       bottom: 0,
       textStyle: { color: t.legendText, fontSize: f.legendFontSize },
@@ -73,29 +80,31 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
         ? { color: t.axisLabel, fontSize: Math.max(8, f.axisFontSize - 2) }
         : { color: t.axisLabel, fontSize: f.axisFontSize },
     },
-    series: series.map((s, i) => ({
+    series: series.map((s, i) => {
+      const c = resolveColor(s.color) || t.colors[i % t.colors.length]
+      return {
       type: 'line',
       name: s.name,
       data: s.data,
       smooth,
       symbol: isCompact ? 'none' : 'circle',
       symbolSize: isCompact ? 0 : 6,
-      lineStyle: { color: s.color || t.colors[i % t.colors.length], width: isCompact ? 1.5 : 2, type: s.dashed ? 'dashed' : 'solid' },
+      lineStyle: { color: c, width: isCompact ? 1.5 : 2, type: s.dashed ? 'dashed' : 'solid' },
       areaStyle: area
         ? (() => {
-            const base = s.color || t.colors[i % t.colors.length] || '#22d3ee'
+            const base = c || t.colors[i % t.colors.length] || '#22d3ee'
             if (base.startsWith('var(')) return { color: base, opacity: 0.15 }
             return { color: base + '30' }
           })()
         : undefined,
-      itemStyle: { color: s.color || t.colors[i % t.colors.length] },
+      itemStyle: { color: c },
       markLine: markLine ? {
         silent: true,
         symbol: 'none',
-        lineStyle: { color: 'var(--color-warning)', type: 'dashed', width: 1, opacity: 0.6 },
+        lineStyle: { color: resolveColor('var(--color-warning)') || '#ff6d00', type: 'dashed', width: 1, opacity: 0.6 },
         data: [{ yAxis: markLine, label: { show: false } }],
       } : undefined,
-    })),
+    }}),
   }), [area, autoMax, autoMin, height, isCompact, markLine, series, smooth, xData, t, f])
 
   return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
