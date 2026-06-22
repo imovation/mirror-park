@@ -47,14 +47,14 @@ export default function DashboardPanel({
 
       {title && (
         <div
-          className="flex items-center px-4 py-2 border-b flex-shrink-0"
+          className="flex items-center px-3 py-1 border-b flex-shrink-0"
           style={{
             borderBottomColor: 'var(--border-light)',
             background: 'linear-gradient(90deg, rgba(var(--theme-primary-rgb), 0.15), transparent)',
           }}
         >
           <div
-            className="w-1 h-4 mr-2"
+            className="w-1 h-3 mr-1"
             style={{
               background: 'var(--theme-primary)',
               boxShadow: '0 0 8px var(--theme-glow)',
