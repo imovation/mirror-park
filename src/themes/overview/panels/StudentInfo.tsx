@@ -12,15 +12,15 @@ export default function StudentInfo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, minHeight: 0 }}>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 16, flexShrink: 0, padding: '4px 8px', background: 'var(--panel-bg)', borderRadius: 6 }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 'var(--font-size-xxl)', fontWeight: 700, color: 'var(--accent)' }}>{data.totalStudents}</div>
+          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--accent)' }}>{data.totalStudents}</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>在校学生</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 600, color: 'var(--text-primary)' }}>♂ {Math.round(data.maleRatio * 100)}%</div>
+          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 600, color: 'var(--accent)' }}>♂ {Math.round(data.maleRatio * 100)}%</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>男生</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 600, color: 'var(--text-primary)' }}>♀ {Math.round(data.femaleRatio * 100)}%</div>
+          <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 600, color: 'var(--color-chart-5)' }}>♀ {Math.round(data.femaleRatio * 100)}%</div>
           <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)' }}>女生</div>
         </div>
       </div>
