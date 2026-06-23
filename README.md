@@ -2,11 +2,11 @@
 
 东莞滨海湾镇远中学数字孪生大屏展示系统。采用 Three.js (R3F) + React + ECharts 构建，将校园物理空间与业务数据融合，在大屏端集中呈现校园运行状态。
 
-支持 **白天/夜间** 两种 3D 视觉模式 + **深色/浅色** UI 主题，TopBar 一键切换。
+支持 **白天/夜间** 两种 3D 视觉模式 + **深色/浅色** UI 主题，Header 一键切换。
 
 建筑模型采用学校风格重构：红砖主体 + 白色楼板带/外走廊/女儿墙，教学三栋楼由连廊连接，崇智楼中央拱门式校门，独立钟楼展示校名。
 
-数据面板采用科技感 UI 设计：毛玻璃面板容器 + 霓虹折角修饰 + 统一 ECharts 配色字典；7 专题均配备数据驱动的 TopMetrics 核心指标条。
+数据面板采用 IOC 数字孪生科技感 UI 设计：毛玻璃斜切角面板 + 发光描边 + 统一 ECharts 配色字典；7 专题均配备数据驱动的 TopMetrics 核心指标条。
 
 ## 技术栈
 
@@ -30,7 +30,7 @@
 pnpm install
 pnpm dev        # http://localhost:3000
 pnpm build      # 生产构建到 dist/
-pnpm test       # 运行所有测试 (234 单元 + 74 E2E)
+pnpm test       # 运行所有测试 (252 单元 + 84 E2E)
 ```
 
 ## 专题模块
@@ -39,11 +39,11 @@ pnpm test       # 运行所有测试 (234 单元 + 74 E2E)
 |------|--------|---------:|
 | 综合态势 | 6 | 校园全景鸟瞰 (白天/夜间模式) |
 | 教学研究 | 6 | 教学楼近景 |
-| 行政办公 | 5 | 行政区域 |
-| 智慧图书 | 4 | 崇文楼图书馆 |
+| 行政办公 | 6 | 行政区域 |
+| 智慧图书 | 6 | 崇文楼图书馆 |
 | 智慧教学 | 6 | 教学楼 + 3D 教室热力图 |
-| 智慧安防 | 3 | 校园全景 + 设备/告警标注 |
-| 智慧后勤 | 3 | 校园近景 + 摄像头/门禁 3D 标注 |
+| 智慧安防 | 4 | 校园全景 + 设备/告警标注 |
+| 智慧后勤 | 4 | 校园近景 + 摄像头/门禁 3D 标注 |
 
 ## 项目结构
 
@@ -53,16 +53,16 @@ src/
 ├── config/         # chartTheme (ECharts 深色/浅色), dayNightTheme (3D 日/夜)
 ├── components/
 │   ├── charts/     # ECharts 封装 (11 种图表类型)
-│   ├── layout/     # ScreenLayout, TopBar, Panels, BottomBar, ErrorBoundary
+│   ├── layout/     # ScreenLayout, Header/, Footer/, SidePanel, ErrorBoundary
 │   ├── scene/      # R3F 3D 场景 (CampusBase, Camera, Particles, Landscape, GroundDecorations)
 │   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, ChartLabel, StatCard, TopMetricsCard
 ├── hooks/          # useSceneClick
 ├── shaders/        # WebGL GLSL (buildingWindow 窗户发光, roadFlow 道路光流)
-├── stores/         # Zustand (Theme, Scene, UI, UITheme, TimeMode)
+├── stores/         # Zustand (Theme, Scene, UI, UITheme, TimeMode, Layout)
 ├── themes/         # 7 个专题 (panels + scene + registry)
 ├── types/          # TypeScript 类型定义
 └── utils/          # format, constants
-e2e/                # Playwright E2E 测试 (74 用例 + 36 截图 baseline)
+e2e/                # Playwright E2E 测试 (84 用例 + 42 截图 baseline)
 ```
 
 ## 功能亮点
@@ -71,9 +71,9 @@ e2e/                # Playwright E2E 测试 (74 用例 + 36 截图 baseline)
 - **双向联动**：点击 3D 建筑 → 数据面板联动；面板"飞向"按钮 → 镜头飞向建筑
 - **丰富图表**：11 种 ECharts 图表类型，含 Sankey/Sunburst/Funnel/Radar 等高级图表
 - **主题切换**：UI 深色/浅色主题 (CSS 变量) + 3D 白天/夜间模式独立切换
-- **实时推送**：SSE 基础设施 (指数退避重连) + BottomBar 连接状态指示灯
+- **实时推送**：SSE 基础设施 (指数退避重连) + Footer 状态栏连接指示灯
 - **响应式**：1920px ~ 7680px 超宽屏自适应
-- **完整测试**：234 Vitest 单元/集成测试 + 74 Playwright E2E 测试 (含 7 专题视觉回归截图)
+- **完整测试**：252 Vitest 单元/集成测试 + 84 Playwright E2E 测试 (含 7 专题视觉回归截图)
 
 ## 设计文档
 

@@ -8,9 +8,9 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 203 |
-| 测试 | 248/248 单元测试 + 84/84 E2E 测试 (快捷) / 252/252 (完整 6 视口) |
-| Git 提交 | 293 |
+| 源文件 | 210+ |
+| 测试 | 252/252 单元测试 + 84/84 E2E 测试 (快捷 2 视口) / 252/252 (完整 6 视口) |
+| Git 提交 | 296+ |
 | 编译 | ✅ `pnpm build` 通过 |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 | 浏览器 Console | 0 error / 0 warning |
@@ -91,7 +91,37 @@
 | P3-2 | **Panel px→rem** — 3 文件硬编码 font 值→rem（其余已用 CSS var） | 3 panel 文件 |
 | — | 共 1 新文件 + 17 修改；构建通过；248/248 测试通过 | — |
 
-## 变更日志 (2026-06-21)
+## 变更日志 (2026-06-23) — 第 11 轮 Header/Footer IOC 重构 + 面板审计修复
+
+| 类别 | 改动 | 文件 |
+|------|------|------|
+| Header | **IOC 数字孪生风格重构** — 120→90px，盾形斜切角标题 + 流光 + scanline | `Header/Header.tsx`(新), `HeaderTitle.tsx`(新) |
+| Header | **左天气状态 + 右数字时钟** + 亮暗/昼夜/音乐/全屏控件 | `HeaderStatus.tsx`(新), `HeaderClock.tsx`(新) |
+| Footer | **IOC 风格导航** — 110→90px，7 专题 Heroicons + 呼吸激活态 + 科技线 | `Footer/Footer.tsx`(新), `FooterNav.tsx`(新), `FooterNavItem.tsx`(新) |
+| Footer | **状态栏** — v0.2.0 + 数据更新时间 + 运行时长 + SSE 连接状态 | `Footer.tsx` |
+| 全局 | **Header/Footer 发光色跟随专题联动** — 硬编码 `#00D8FF` → `var(--theme-primary)` | `Header.tsx`, `HeaderTitle.tsx`, `Footer.tsx`, `FooterNavItem.tsx` |
+| 3D | **7 专题相机均拉远 1.5~2x** + 综合态势居中 | `constants.ts` |
+| 面板 | **标题区压缩** — py-1→py-0.5 + fontSize var(--font-size-sm) + h-3→h-2.5 | `DashboardPanel.tsx` |
+| 面板 | **顶部 `var(--theme-primary)` 细发光线** | `DashboardPanel.tsx` |
+| 面板 | **圆角 border→clip-path 全面板审计** (P0→P2 全部修复) | 28 panel 文件 |
+| P0 | **图表高度不足** — 11 处低于 MIN_HEIGHT 提升至阈值 | `ClassAttendanceRank`, `TeachingDevices` 等 |
+| P1 | **硬编码字号 7 处** — rem→CSS 变量 | `TeachingResourcesPanel`, `TeacherStudiosPanel`, `ResearchProjectsList` |
+| P2 | **CHART_PALETTE.dark 17 处** — 移除，改由 BarChart 自动适配 | 11 panel 文件 |
+| BarChart | **默认多色循环** — `seriesColor` 逻辑改为自动 `t.colors[i%n]` | `BarChart.tsx` |
+| TopMetrics | **getMetricShades hex→CSS 变量** — 亮暗自动适配 | `metricColors.ts`, `TopMetricsCard.tsx` |
+| 滚动条 | **隐藏面板滚动条** (保留滚动) — `scrollbar-width: none` + `display: none` | `index.css` |
+| E2E | **亮暗切换选择器修复** — `getByText`→`getByTitle` + 截图基线更新 | `visual-utils.ts`, `theme-switch.spec.ts`, 2 截图 |
+| 系统 | **新增 `@heroicons/react` 依赖** | `package.json` |
+| — | 本次共 | 7 新建 + 35 修改 + 21 净增文件 |
+
+### 关键设计决策
+- **Header 布局**: `[天气 + 控件]` | `[盾形标题]` | `[控件 + 时钟]`，左侧亮暗/昼夜切换，右侧音乐/全屏
+- **Footer 布局**: 左科技线 | 7 导航 | 右科技线，导航居中，底部状态栏
+- **Default active module**: `ThemeId.OVERVIEW` (综合态势) via `useLayoutStore`
+- **3D 场景切换**: 切换专题时仅替换 Canvas 内部场景组件（`entry.scene()`），Canvas 保持挂载，R3F 自动清理旧元素
+- **BarChart 多色**: 无 `color`/`colors` prop 时自动循环 `t.colors[i % t.colors.length]`
+
+
 
 ### P0 — 布局严重问题修复
 | # | 变更 | 文件 |
@@ -178,6 +208,14 @@
 | `config/themeColors.ts` | 7 专题调色板定义 |
 | `config/metricColors.ts` | TopMetrics 10 色数值色板 |
 | `components/ui/MetricIcon.tsx` | 30 个 SVG 线条图标库 |
+| `components/layout/Header/Header.tsx` | IOC 风格 Header 容器 |
+| `components/layout/Header/HeaderTitle.tsx` | 盾形斜切角标题 + 能量线 + 点阵 + 流光 |
+| `components/layout/Header/HeaderStatus.tsx` | 天气/空气质量左侧状态 |
+| `components/layout/Header/HeaderClock.tsx` | 数字时钟 + 日期 + 星期 |
+| `components/layout/Footer/Footer.tsx` | IOC 风格 Footer 容器 + 科技线 + 状态栏 |
+| `components/layout/Footer/FooterNav.tsx` | 7 专题 Flex 均分导航 |
+| `components/layout/Footer/FooterNavItem.tsx` | 单导航项 (icon + 中英双语) |
+| `stores/useLayoutStore.ts` | activeModule 状态管理 (Footer 导航联动) |
 | `docs/API.md` | 44 REST 端点完整文档 |
 | `docs/UI_UX_AUDIT.md` | UI/UX 审计报告 |
 | `docs/superpowers/plans/2026-06-21-ui-ux-fixes.md` | 实施计划 |
@@ -243,7 +281,7 @@ src/
 │   └── dayNightTheme.ts           # 3D 场景 Day/Night 视觉参数
 ├── components/
 │   ├── charts/      # ECharts: Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap/Sankey/Sunburst/Funnel/Radar
-│   ├── layout/      # ScreenLayout(CSS Grid 覆盖层), TopBar, SidePanel, BottomBar, ErrorBoundary
+│   ├── layout/      # ScreenLayout(CSS Grid 覆盖层), Header/, Footer/, SidePanel, ErrorBoundary
 │   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, ParticleBg, SceneInfo
 │   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow, ChartLabel, StatCard, TopMetricsCard
 ├── hooks/           # useSceneClick (目前很少使用)
@@ -254,6 +292,7 @@ src/
 │   ├── useUIStore.ts         # alertQueue, addAlert(), dismissAlert(), modalStack
 │   ├── useUIThemeStore.ts    # uiTheme (dark/light), toggleUITheme()
 │   ├── useTimeModeStore.ts   # timeMode (day/night), toggleMode()
+│   ├── useLayoutStore.ts     # activeModule, setActiveModule() (Footer 导航联动)
 │   └── themes/               # 6 个专题 store (当前是空骨架，未被使用)
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
@@ -266,7 +305,7 @@ src/
 │   └── logistics/               # 智慧后勤 (2 左 + 2 右 = 4 panel, 新增宿舍管理)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts
 └── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等)
-e2e/                 # Playwright E2E 测试 (252 用例 6 视口: Desktop/Tablet/1366/1600/2560/3840)
+e2e/                 # Playwright E2E 测试 (252 用例 6 视口: Desktop/Tablet/1366/1600/2560/3840)，实际运行 84 用例 2 视口
 ```
 
 ## 关键架构约定
@@ -282,9 +321,9 @@ App.tsx
       │           └── children = entry.scene()  ← 主题专属 3D 内容
       └── Layer 1: <div position:relative z-index:1>  ← UI 覆盖层
           └── ScreenLayout (CSS Grid 4区, 无 scene)
-              ├── TopBar
+              ├── Header
               ├── SidePanel (左) + . (空) + SidePanel (右)
-              └── BottomBar
+              └── Footer
 ```
 
 **严禁**将 R3F 元素 (Box/Sphere/Plane/Html 等) 放在 `<Canvas>` 之外。SceneCanvas 是唯一的 Canvas 包装器，主题 scene 函数返回 Canvas 内部的内容。
@@ -357,11 +396,12 @@ import ChartLabel from '@/components/ui/ChartLabel'
 
 | Store | 关键字段 | 谁在用 |
 |-------|---------|--------|
-| useThemeStore | currentTheme, switchTheme, finishTransition | TopBar, CameraController, CampusBase |
+| useThemeStore | currentTheme, switchTheme, finishTransition | Footer, CameraController, CampusBase |
 | useSceneStore | selectedObjectId, selectObject, requestFlyTo, flyToRequest | CampusBase, CameraController, BuildingDetail, AlertPopup |
 | useUIStore | alertQueue, addAlert, dismissAlert | AlertPopup, AlertEvents(安防面板), SecurityScene |
-| useUIThemeStore | uiTheme (dark/light), toggleUITheme | TopBar, App.tsx, 各图表组件(通过 useChartTheme) |
-| useTimeModeStore | timeMode (day/night), toggleMode | TopBar, CampusBase, dayNightTheme |
+| useUIThemeStore | uiTheme (dark/light), toggleUITheme | Header, App.tsx, 各图表组件(通过 useChartTheme) |
+| useTimeModeStore | timeMode (day/night), toggleMode | Header, CampusBase, dayNightTheme |
+| useLayoutStore | activeModule, setActiveModule | Footer, FooterNav |
 
 ## 常见问题
 
