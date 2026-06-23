@@ -14,7 +14,7 @@ export const teachingResearchTopMetrics = () => <TeachingResearchTopMetrics />
 
 export const teachingResearchPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
-    { id: 'tr-resources', title: '教学资源', height: 'flex-1.15' },
+    { id: 'tr-resources', title: '教学资源', height: 'flex-1.1' },
     { id: 'tr-resource-stats', title: '资源统计', height: 'flex-1.05' },
     { id: 'tr-updates', title: '资源更新动态', height: 'flex-0.7' },
   ],

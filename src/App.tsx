@@ -7,9 +7,9 @@ import { useThemeStore } from '@/stores/useThemeStore'
 import { useUIStore } from '@/stores/useUIStore'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import ScreenLayout from '@/components/layout/ScreenLayout'
-import TopBar from '@/components/layout/TopBar'
+import Header from '@/components/layout/Header/Header'
 import SidePanel from '@/components/layout/SidePanel'
-import BottomBar from '@/components/layout/BottomBar'
+import Footer from '@/components/layout/Footer/Footer'
 import DashboardPanel from '@/components/ui/DashboardPanel'
 import AlertPopup from '@/components/ui/AlertPopup'
 import ErrorBoundary from '@/components/layout/ErrorBoundary'
@@ -67,7 +67,7 @@ function AppContent() {
       </div>
       <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%', pointerEvents: 'none' }}>
         <ScreenLayout
-          topBar={<ErrorBoundary name="顶部导航"><TopBar /></ErrorBoundary>}
+          topBar={<ErrorBoundary name="顶部导航"><Header /></ErrorBoundary>}
           topMetrics={TopMetricsComponent ? <TopMetricsComponent /> : undefined}
           leftPanel={
             <ErrorBoundary name="左侧面板" fallback={<div style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 16 }}>左侧面板异常</div>}>
@@ -109,7 +109,7 @@ function AppContent() {
               </SidePanel>
             </ErrorBoundary>
           }
-          bottomBar={<BottomBar status={sseStatus} />}
+          bottomBar={<Footer status={sseStatus} />}
         />
       </div>
     </div>

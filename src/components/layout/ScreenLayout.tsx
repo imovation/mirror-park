@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useResponsive } from '@/hooks/useResponsive'
+import { useUIThemeStore } from '@/stores/useUIThemeStore'
 
 interface ScreenLayoutProps {
   topBar: ReactNode
@@ -17,6 +18,7 @@ export default function ScreenLayout({
   bottomBar,
 }: ScreenLayoutProps) {
   const { panelMaxWidth, isCompact, isUltraWide } = useResponsive()
+  const isDark = useUIThemeStore((s) => s.uiTheme) === 'dark'
 
   return (
     <div
@@ -26,10 +28,10 @@ export default function ScreenLayout({
           "topbar       topbar       topbar"
           "left         topmetrics   right"
           "left         .            right"
-          "left         .            right"
+          "left         hint         right"
           "bottombar    bottombar    bottombar"
         `,
-        gridTemplateRows: 'minmax(48px, 4vh) auto 1fr 1fr minmax(28px, 2.5vh)',
+        gridTemplateRows: '90px auto 1fr 1fr 90px',
         gridTemplateColumns: 'minmax(260px, 20vw) 1fr minmax(260px, 20vw)',
         width: '100%',
         height: '100%',
@@ -45,8 +47,22 @@ export default function ScreenLayout({
           </div>
         </div>
       )}
-      <div style={{ gridArea: 'left', overflow: 'hidden', maxWidth: panelMaxWidth, pointerEvents: 'auto', height: '100%', paddingLeft: isCompact ? 6 : 12 }}>{leftPanel}</div>
-      <div style={{ gridArea: 'right', overflow: 'hidden', maxWidth: panelMaxWidth, pointerEvents: 'auto', height: '100%', paddingRight: isCompact ? 6 : 12 }}>{rightPanel}</div>
+      <div style={{ gridArea: 'left', overflow: 'hidden', maxWidth: panelMaxWidth, pointerEvents: 'auto', height: '100%', paddingLeft: 0 }}>{leftPanel}</div>
+      <div style={{ gridArea: 'right', overflow: 'hidden', maxWidth: panelMaxWidth, pointerEvents: 'auto', height: '100%', paddingRight: 0 }}>{rightPanel}</div>
+      <div
+        style={{
+          gridArea: 'hint',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'flex-start',
+          padding: '0 0 12px 16px',
+          fontSize: 11,
+          color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.3)',
+          pointerEvents: 'none',
+        }}
+      >
+        🖱 左键旋转 · 滚轮缩放 · 右键平移
+      </div>
       <div style={{ gridArea: 'bottombar', pointerEvents: 'auto' }}>{bottomBar}</div>
     </div>
   )

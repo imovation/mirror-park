@@ -40,10 +40,21 @@ export default function DashboardPanel({
         ...style,
       }}
     >
-      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--theme-primary)' }} />
-      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2" style={{ borderColor: 'var(--theme-primary)' }} />
-      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2" style={{ borderColor: 'var(--theme-primary)' }} />
-      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2" style={{ borderColor: 'var(--theme-primary)' }} />
+      {/* Top glow bar */}
+      <div
+        className="absolute top-0 left-8 right-8"
+        style={{
+          height: 1,
+          background: 'linear-gradient(90deg, transparent, var(--theme-primary), transparent)',
+          boxShadow: '0 0 6px var(--theme-glow), 0 0 12px var(--theme-glow)',
+        }}
+      />
+
+      {/* Corner decorations */}
+      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2" style={{ borderColor: 'var(--theme-primary)', zIndex: 1 }} />
+      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2" style={{ borderColor: 'var(--theme-primary)', zIndex: 1 }} />
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2" style={{ borderColor: 'var(--theme-primary)', zIndex: 1 }} />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2" style={{ borderColor: 'var(--theme-primary)', zIndex: 1 }} />
 
       {title && (
         <div
