@@ -7,9 +7,9 @@ const ROLE_BG: Record<string, string> = {
   '行政值班': 'rgba(var(--accent-rgb), 0.1)',
   '教师值班': 'rgba(var(--color-success-rgb), 0.1)',
   '安保值班': 'rgba(var(--color-warning-rgb), 0.1)',
-  '医务值班': 'rgba(244, 114, 182, 0.1)',
+  '医务值班': 'rgba(var(--color-chart-5-rgb), 0.1)',
   '巡逻安保': 'rgba(var(--color-warning-rgb), 0.1)',
-  '值班组长': 'rgba(244, 114, 182, 0.1)',
+  '值班组长': 'rgba(var(--color-chart-5-rgb), 0.1)',
 }
 
 const ROLE_COLORS: Record<string, string> = {

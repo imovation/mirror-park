@@ -6,10 +6,10 @@ test.describe('UI Theme Switch', () => {
     await navigateWithBlock3D(page)
     await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'dark')
 
-    await page.getByText('☀️ 亮色').click()
+    await page.getByTitle('切换亮色').click()
     await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'light')
 
-    await page.getByText('🌙 暗色').click()
+    await page.getByTitle('切换暗色').click()
     await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'dark')
   })
 
@@ -17,7 +17,7 @@ test.describe('UI Theme Switch', () => {
     await navigateWithBlock3D(page)
     await page.waitForTimeout(2000)
 
-    await page.getByText('☀️ 亮色').click()
+    await page.getByTitle('切换亮色').click()
     await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'light')
 
     const topics = ['教学研究', '智慧图书', '智慧安防']
@@ -27,7 +27,7 @@ test.describe('UI Theme Switch', () => {
       await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'light')
     }
 
-    await page.getByText('🌙 暗色').click()
+    await page.getByTitle('切换暗色').click()
     await expect(page.locator('html')).toHaveAttribute('data-ui-theme', 'dark')
   })
 })

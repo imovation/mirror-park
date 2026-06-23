@@ -13,11 +13,11 @@ export const TOP_METRIC_PALETTE = {
 
 export function getMetricShades(): string[] {
   return [
-    '#22d3ee',
-    '#a78bfa',
-    '#fb923c',
-    '#34d399',
-    '#22d3ee',
-    '#a78bfa',
+    'var(--color-chart-1)',
+    'var(--color-chart-2)',
+    'var(--color-chart-3)',
+    'var(--color-chart-4)',
+    'var(--color-chart-5)',
+    'var(--color-chart-6)',
   ]
 }

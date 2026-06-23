@@ -13,6 +13,8 @@ interface TopMetricsCardProps {
 export default function TopMetricsCard({ label, value, unit, icon, valueColor, title }: TopMetricsCardProps) {
   const finalValueColor = valueColor || 'var(--text-primary)'
   const [hovered, setHovered] = useState(false)
+  const iconBorder = valueColor ? (valueColor.startsWith('var(') ? valueColor : `${valueColor}55`) : 'rgba(var(--theme-primary-rgb), 0.25)'
+  const glowColor = valueColor ? (valueColor.startsWith('var(') ? valueColor : `${valueColor}66`) : 'var(--theme-glow)'
   return (
     <div
       title={title}
@@ -68,7 +70,7 @@ export default function TopMetricsCard({ label, value, unit, icon, valueColor, t
             height: 26,
             borderRadius: 5,
             background: hovered ? 'rgba(var(--theme-primary-rgb), 0.2)' : 'rgba(255,255,255,0.04)',
-            boxShadow: `inset 0 0 0 1px ${valueColor ? `${valueColor}55` : 'rgba(var(--theme-primary-rgb), 0.25)'}`,
+            boxShadow: `inset 0 0 0 1px ${iconBorder}`,
             flexShrink: 0,
           }}
         >
@@ -88,7 +90,7 @@ export default function TopMetricsCard({ label, value, unit, icon, valueColor, t
               fontSize: 'var(--font-size-xl)',
               fontWeight: 700,
               color: finalValueColor,
-              textShadow: `0 0 8px ${valueColor ? `${valueColor}66` : 'var(--theme-glow)'}`,
+              textShadow: `0 0 8px ${glowColor}`,
               fontFamily: 'monospace',
             }}>
             {value}

@@ -72,9 +72,9 @@ export async function toggleUITheme(page: Page, target: 'dark' | 'light') {
   const currentTheme = await page.locator('html').getAttribute('data-ui-theme')
   if (currentTheme === target) return
   if (target === 'light') {
-    await page.getByText('☀️ 亮色').click()
+    await page.getByTitle('切换亮色').click()
   } else {
-    await page.getByText('🌙 暗色').click()
+    await page.getByTitle('切换暗色').click()
   }
   await page.waitForTimeout(300)
   await expect(page.locator('html')).toHaveAttribute('data-ui-theme', target)
