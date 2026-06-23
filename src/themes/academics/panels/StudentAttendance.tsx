@@ -31,11 +31,11 @@ export function AttendanceOverview() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各年级出勤率</ChartLabel>
-          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={120} colors={CHART_PALETTE.dark} />
+          <BarChart data={data.gradeRates.map(r => ({ name: r.name, value: r.value }))} height={120} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">实时仪表</ChartLabel>
-          <GaugeChart value={rate} name="出勤率" height={120} />
+          <GaugeChart value={rate} name="出勤率" height={150} />
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@ export function AttendanceTrend() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">班级出勤排名</ChartLabel>
-          <BarChart data={data.classRank.map(r => ({ name: r.name, value: r.value }))} colors={CHART_PALETTE.dark} height={220} />
+          <BarChart data={data.classRank.map(r => ({ name: r.name, value: r.value }))} height={220} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">30日出勤趋势</ChartLabel>

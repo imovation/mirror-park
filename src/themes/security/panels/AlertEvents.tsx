@@ -55,7 +55,7 @@ export default function AlertEvents() {
             colors={[CHART_PALETTE.semantic.success, CHART_PALETTE.semantic.danger]}
             centerLabel={`${handled}%`}
             centerLabelSize={16}
-            height={100}
+            height={120}
           />
         </div>
       </div>

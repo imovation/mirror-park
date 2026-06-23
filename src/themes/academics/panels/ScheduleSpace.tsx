@@ -26,11 +26,11 @@ export function ScheduleDistribution() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">年级排课分布</ChartLabel>
-          <BarChart data={s.gradeDistribution} colors={CHART_PALETTE.dark} height={120} barWidth="55%" />
+          <BarChart data={s.gradeDistribution} height={120} barWidth="55%" />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各楼宇使用率</ChartLabel>
-          <BarChart data={c.buildingUsage} colors={CHART_PALETTE.dark} height={120} barWidth="55%" />
+          <BarChart data={c.buildingUsage} height={120} barWidth="55%" />
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@ export function SpaceUsage() {
       <div style={{ display: 'flex', gap: 6, flex: 1, minHeight: 0 }}>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">教室类型分布</ChartLabel>
-          <BarChart data={c.typeDistribution} color={HUE_ROTATION.r2[0]} height={180} />
+          <BarChart data={c.typeDistribution} height={180} />
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">使用率</ChartLabel>

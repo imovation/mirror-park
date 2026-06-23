@@ -50,7 +50,7 @@ export default function ResourceStatistics() {
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>资源类型分布</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={RESOURCE_DATA} colors={CHART_PALETTE.dark} height={120} barWidth="55%" />
+          <BarChart data={RESOURCE_DATA} height={120} barWidth="55%" />
         </div>
       </div>
     </div>

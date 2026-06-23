@@ -37,7 +37,7 @@ export default function TeacherTopics() {
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">课题成员数</ChartLabel>
-          <BarChart data={memberCount} color={HUE_ROTATION.r2[1]} height={120} gridLeft="20%" />
+          <BarChart data={memberCount} height={120} gridLeft="20%" />
         </div>
       </div>
     </div>

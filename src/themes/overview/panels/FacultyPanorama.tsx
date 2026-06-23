@@ -42,7 +42,7 @@ export function FacultyComposition() {
           <div style={{ flex: 1, minHeight: 0 }}>
             <BarChart
               data={ageData}
-              colors={CHART_PALETTE.dark}
+             
               barWidth="60%"
               showLabel
             />
@@ -70,7 +70,7 @@ export function FacultyStructure() {
           <div style={{ flex: 1, minHeight: 0 }}>
             <BarChart
               data={t.titles}
-              colors={CHART_PALETTE.dark}
+             
               gridLeft="20%"
               gridBottom="15%"
               barWidth="60%"
@@ -83,7 +83,7 @@ export function FacultyStructure() {
           <div style={{ flex: 1, minHeight: 0 }}>
             <BarChart
               data={p.education}
-              colors={CHART_PALETTE.dark}
+             
               gridLeft="15%"
               gridBottom="15%"
               barWidth="60%"
@@ -97,7 +97,7 @@ export function FacultyStructure() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={t.subjects}
-            colors={CHART_PALETTE.dark}
+           
             gridLeft="14%"
             gridBottom="15%"
             barWidth="80%"

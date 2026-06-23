@@ -1,4 +1,4 @@
-import { CHART_PALETTE, HUE_ROTATION } from '@/config/chartTheme'
+import { CHART_PALETTE } from '@/config/chartTheme'
 import { useMonitorStatus } from '@/api/queries/security'
 import RingChart from '@/components/charts/RingChart'
 import BarChart from '@/components/charts/BarChart'
@@ -38,13 +38,13 @@ export default function MonitorStatus() {
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">监控覆盖率</ChartLabel>
-          <GaugeChart value={Math.round(data.coverage * 100)} name="覆盖率" height={120} />
+          <GaugeChart value={Math.round(data.coverage * 100)} name="覆盖率" height={150} />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>各区域摄像头分布</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={data.regionDistribution} color={HUE_ROTATION.r3[2]} height={140} barWidth="50%" />
+          <BarChart data={data.regionDistribution} height={140} barWidth="50%" />
         </div>
       </div>
     </div>

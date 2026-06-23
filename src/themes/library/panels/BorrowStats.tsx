@@ -63,7 +63,7 @@ export default function BorrowStats() {
             <ChartLabel>馆藏构成</ChartLabel>
             <RingChart
               data={collectionData}
-              height={110}
+              height={120}
               colors={[CHART_PALETTE.semantic.male, CHART_PALETTE.semantic.info, CHART_PALETTE.semantic.secondary]}
               centerLabel={String(collectionData.reduce((a, b) => a + b.value, 0).toLocaleString())}
               centerLabelSize={12}

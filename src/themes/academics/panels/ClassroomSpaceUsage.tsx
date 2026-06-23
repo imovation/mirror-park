@@ -25,7 +25,7 @@ export default function ClassroomSpaceUsage() {
               { name: '空闲', value: data.available },
             ]}
             colors={[CHART_PALETTE.semantic.warning, CHART_PALETTE.semantic.success]}
-            height={90}
+            height={120}
             centerLabel={`${usageRate}%`}
             centerLabelSize={16}
             legendPosition="bottom"
@@ -53,7 +53,7 @@ export default function ClassroomSpaceUsage() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <BarChart
             data={data.buildingUsage}
-            colors={CHART_PALETTE.dark}
+           
             height={120}
             barWidth="55%"
             showLabel

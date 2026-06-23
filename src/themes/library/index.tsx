@@ -14,12 +14,12 @@ export const libraryTopMetrics = () => <LibraryTopMetrics />
 export const libraryPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   left: [
     { id: 'lib-borrow', title: '借阅统计', height: 'flex-4.1' },
-    { id: 'lib-book-rank', title: '图书借阅排行', height: 'flex-2', collapsible: true, collapsedSummary: '热门图书、班级排行' },
+    { id: 'lib-book-rank', title: '图书借阅排行', height: 'flex-1.9', collapsible: true, collapsedSummary: '热门图书、班级排行' },
   ],
   right: [
     { id: 'lib-activities', title: '阅读活动', height: 'flex-1' },
     { id: 'lib-new-arrivals', title: '新书速递', height: 'flex-1.4' },
-    { id: 'lib-visitors', title: '入馆统计', height: 'flex-1.2' },
+    { id: 'lib-visitors', title: '入馆统计', height: 'flex-1' },
   ],
 }
 

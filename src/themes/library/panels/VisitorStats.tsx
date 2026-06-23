@@ -32,7 +32,6 @@ export default function VisitorStats() {
             data={data.hourlyDistribution.hours.map((h, i) => ({ name: h, value: data.hourlyDistribution.values[i] }))}
             height={120}
             horizontal={false}
-            color={HUE_ROTATION.r2[1]}
           />
         </div>
       </div>

@@ -37,8 +37,8 @@ export default function TeachingResourcesPanel() {
           >
             <div style={{ height: 3, background: HUE_ROTATION.r4[i % 4], opacity: 0.7 }} />
             <div style={{ padding: '5px 4px', textAlign: 'center' }}>
-              <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
-                {r.value}<span style={{ fontSize: '0.625rem', color: 'var(--text-muted)', marginLeft: 2, marginRight: 2, fontWeight: 400 }}>{UNITS[r.name] || ''}</span>
+              <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
+                {r.value}<span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--text-muted)', marginLeft: 2, marginRight: 2, fontWeight: 400 }}>{UNITS[r.name] || ''}</span>
               </div>
               <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', marginTop: 1 }}>{r.name}</div>
             </div>

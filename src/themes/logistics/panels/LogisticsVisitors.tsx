@@ -18,7 +18,7 @@ export default function LogisticsVisitors() {
       </div>
       <div style={{ flexShrink: 0 }}>
         <ChartLabel align="center">来访目的分布</ChartLabel>
-        <RingChart data={data.purposeDistribution} height={100} legendPosition="bottom" centerLabel={`${data.todayVisitors} 总`} />
+        <RingChart data={data.purposeDistribution} height={120} legendPosition="bottom" centerLabel={`${data.todayVisitors} 总`} />
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>
         <ChartLabel>访客登记</ChartLabel>

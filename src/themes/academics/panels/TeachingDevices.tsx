@@ -23,12 +23,12 @@ export default function TeachingDevices() {
             ]}
             colors={[CHART_PALETTE.semantic.success, CHART_PALETTE.semantic.warning, CHART_PALETTE.semantic.danger]}
             centerLabel={`${data.online}/${data.total}`}
-            height={80}
+            height={120}
           />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <ChartLabel align="center">设备类型分布</ChartLabel>
-          <PieChart data={data.typeDistribution} height={80} legendPosition="none" />
+          <PieChart data={data.typeDistribution} height={120} legendPosition="none" />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0 }}>

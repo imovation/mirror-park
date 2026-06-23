@@ -27,7 +27,7 @@ export default function TeacherStudiosPanel() {
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 4, marginBottom: 2 }}>
             <span style={{
-              fontSize: '0.688rem',
+              fontSize: 'var(--font-size-xs)',
               fontWeight: 600,
               color: 'var(--text-primary)',
               overflow: 'hidden',
@@ -41,7 +41,7 @@ export default function TeacherStudiosPanel() {
               {s.name}
             </span>
             <span style={{
-              fontSize: '0.563rem',
+              fontSize: 'var(--font-size-2xs)',
               color: SUBJECT_COLORS[s.subject] || 'var(--accent)',
               background: `${SUBJECT_COLORS[s.subject] || 'var(--accent)'}20`,
               padding: '1px 4px',
@@ -51,10 +51,10 @@ export default function TeacherStudiosPanel() {
               {s.subject}
             </span>
           </div>
-          <div style={{ fontSize: '0.625rem', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
              主持人: {s.host}
           </div>
-          <div style={{ fontSize: '0.625rem', color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: 'var(--font-size-2xs)', color: 'var(--text-secondary)' }}>
             成果 <b style={{ color: 'var(--text-primary)' }}>{s.achievementCount}</b> 项
           </div>
         </div>

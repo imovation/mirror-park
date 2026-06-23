@@ -27,7 +27,7 @@ export default function ClassAttendanceRank() {
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
           <ChartLabel align="center">班级出勤排名</ChartLabel>
           <div style={{ flex: 1, minHeight: 0 }}>
-            <BarChart data={data.classRank} colors={CHART_PALETTE.dark} height={80} barWidth="60%" />
+            <BarChart data={data.classRank} height={100} barWidth="60%" />
           </div>
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
@@ -36,7 +36,7 @@ export default function ClassAttendanceRank() {
             <LineChart
               xData={data.trend.days}
               series={[{ name: '出勤率', data: data.trend.values, color: HUE_ROTATION.r3[1] }]}
-              height={80}
+              height={100}
               smooth
               area
             />

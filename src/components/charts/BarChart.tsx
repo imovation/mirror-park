@@ -25,7 +25,7 @@ const MIN_HEIGHT = 80
 function BarChart({ data, height = 160, horizontal = true, color, colors, barWidth, gridLeft, gridBottom, gridTop, tooltip = true, showLabel = false, labelFormat = 'value', hideAxis = false, width }: BarChartProps) {
   const t = useChartTheme()
   const f = getChartFontSizes(width)
-  const seriesColor = color || colors?.[0] || t.colors[0]
+  const seriesColor = color
   const total = data.reduce((a, b) => a + b.value, 0)
   const isCompact = height < 140
   const shouldRotateLabel = !!(width && width < 300 && data.length > 6)
@@ -75,7 +75,7 @@ function BarChart({ data, height = 160, horizontal = true, color, colors, barWid
         data: data.map((d, i) => ({
           value: d.value,
           itemStyle: {
-            color: colors?.[i] || seriesColor || t.colors[i % t.colors.length],
+            color: colors?.[i] ?? seriesColor ?? t.colors[i % t.colors.length],
             borderRadius: horizontal ? [0, 3, 3, 0] : [3, 3, 0, 0],
             opacity: 0.85,
           },

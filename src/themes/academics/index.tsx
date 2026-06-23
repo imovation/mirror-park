@@ -20,8 +20,8 @@ export const academicsPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   ],
   right: [
     { id: 'acad-attendance-overview', title: '学生出勤概况', height: 'flex-2' },
-    { id: 'acad-attendance-rank', title: '出勤排名与趋势', height: 'flex-2', collapsible: true, collapsedSummary: '班级出勤排名、30日趋势' },
-    { id: 'acad-exams', title: '考试管理', height: 'flex-2.8', collapsible: true, collapsedSummary: '近期考试、各科均分、成绩分布' },
+    { id: 'acad-attendance-rank', title: '出勤排名与趋势', height: 'flex-1.9', collapsible: true, collapsedSummary: '班级出勤排名、30日趋势' },
+    { id: 'acad-exams', title: '考试管理', height: 'flex-2.6', collapsible: true, collapsedSummary: '近期考试、各科均分、成绩分布' },
   ],
 }
 

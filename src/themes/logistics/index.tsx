@@ -17,7 +17,7 @@ export const logisticsPanels: { left: PanelConfig[]; right: PanelConfig[] } = {
   ],
   right: [
     { id: 'log-visitors', title: '访客管理', height: 'flex-1', collapsible: true, collapsedSummary: '今日访客、当前在校、来访目的分布' },
-    { id: 'log-canteen', title: '食堂安全', height: 'flex-1' },
+    { id: 'log-canteen', title: '食堂安全', height: 'flex-0.9' },
   ],
 }
 

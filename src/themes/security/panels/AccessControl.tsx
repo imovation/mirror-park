@@ -1,4 +1,3 @@
-import { CHART_PALETTE } from '@/config/chartTheme'
 import { useAccessData } from '@/api/queries/security'
 import NumberFlip from '@/components/ui/NumberFlip'
 import BarChart from '@/components/charts/BarChart'
@@ -27,7 +26,7 @@ export default function AccessControl() {
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <ChartLabel>各门禁点通行统计</ChartLabel>
         <div style={{ flex: 1, minHeight: 0 }}>
-          <BarChart data={data.points} colors={CHART_PALETTE.dark} height={180} barWidth="50%" />
+          <BarChart data={data.points} height={140} barWidth="50%" />
         </div>
       </div>
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>

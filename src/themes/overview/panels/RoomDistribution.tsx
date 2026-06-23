@@ -24,7 +24,7 @@ export default function RoomDistribution() {
       <div style={{ flex: 1, minHeight: 0 }}>
         <BarChart
           data={data.rooms.map((r) => ({ name: r.name, value: r.count }))}
-          colors={CHART_PALETTE.dark}
+         
             height={165}
           gridLeft="22%"
           gridBottom="10%"

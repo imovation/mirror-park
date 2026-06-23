@@ -37,7 +37,7 @@ export default function LogisticsLeave() {
         </div>
         <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <ChartLabel align="center">各年级请假</ChartLabel>
-          <BarChart data={data.gradeDistribution} color={HUE_ROTATION.r3[1]} height={130} />
+          <BarChart data={data.gradeDistribution} height={130} />
         </div>
       </div>
       <div style={{ flexShrink: 0 }}>

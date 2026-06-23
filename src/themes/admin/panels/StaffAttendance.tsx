@@ -26,7 +26,7 @@ export default function StaffAttendance() {
         <ChartLabel>各部门出勤率</ChartLabel>
         <BarChart
           data={data.departmentRates}
-          colors={CHART_PALETTE.dark}
+         
           height={120}
           gridLeft="22%"
           barWidth="60%"
