@@ -104,6 +104,16 @@ export default function CameraController() {
       maxDistance={120}
       maxPolarAngle={Math.PI / 2.2}
       target={SCENE.DEFAULT_CAMERA.target}
+      onStart={() => {
+        if (controlsRef.current) controlsRef.current.autoRotate = false
+      }}
+      onEnd={() => {
+        if (controlsRef.current) {
+          setTimeout(() => {
+            if (controlsRef.current) controlsRef.current.autoRotate = true
+          }, 3000)
+        }
+      }}
     />
   )
 }

@@ -159,7 +159,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
     }
   }
 
-  const edgeColor = timeMode === 'night' ? '#00e5ff' : '#8B7355'
+  const edgeColor = hovered ? (timeMode === 'night' ? '#4a9eff' : '#ffb83c') : timeMode === 'night' ? '#00e5ff' : '#8B7355'
   const [w, h, d] = building.size
 
   const floorBandCount = h >= 14 ? 7 : h >= 8 ? 5 : h >= 5 ? 3 : 1
@@ -272,6 +272,19 @@ function BuildingMesh({ building }: { building: BuildingData }) {
             <meshStandardMaterial color={cfg.building.facadeColor} />
           </Box>
         </group>
+      )}
+
+      {/* Hover glow ring at base */}
+      {(isSelected || hovered) && (
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -h / 2 + 0.1, 0]}>
+          <ringGeometry args={[Math.max(w, d) * 0.5, Math.max(w, d) * 0.5 + 1.2, 48]} />
+          <meshBasicMaterial
+            color={timeMode === 'night' ? '#4a9eff' : '#ffb83c'}
+            transparent
+            opacity={isSelected ? 0.5 : 0.3}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
       )}
 
       <Html
@@ -681,6 +694,22 @@ function CityContext() {
 function GroundDecorations() {
   const timeMode = useTimeModeStore((s) => s.timeMode)
   const cfg = DAY_NIGHT[timeMode]
+  const connRef = useRef<THREE.Group>(null)
+  const pulseTime = useRef(0)
+
+  useFrame((_, delta) => {
+    pulseTime.current += delta
+    if (!connRef.current) return
+    const pulse = 0.3 + 0.3 * Math.sin(pulseTime.current * 1.5)
+    connRef.current.children.forEach((child) => {
+      const mesh = child as THREE.Mesh
+      if (mesh.material && Array.isArray(mesh.material)) {
+        mesh.material.forEach((m) => { if (m.transparent) m.opacity = pulse })
+      } else if (mesh.material && (mesh.material as THREE.MeshBasicMaterial).transparent) {
+        ;(mesh.material as THREE.MeshBasicMaterial).opacity = pulse
+      }
+    })
+  })
 
   const poiPoints: [number, number, number][] = [
     [0, 0.5, 20],
@@ -720,24 +749,26 @@ function GroundDecorations() {
         </group>
       ))}
 
-      {connections.map(([start, end], i) => {
-        const dx = end[0] - start[0]
-        const dy = end[1] - start[1]
-        const dz = end[2] - start[2]
-        const length = Math.sqrt(dx * dx + dy * dy + dz * dz)
-        const midX = (start[0] + end[0]) / 2
-        const midY = (start[1] + end[1]) / 2
-        const midZ = (start[2] + end[2]) / 2
+      <group ref={connRef}>
+        {connections.map(([start, end], i) => {
+          const dx = end[0] - start[0]
+          const dy = end[1] - start[1]
+          const dz = end[2] - start[2]
+          const length = Math.sqrt(dx * dx + dy * dy + dz * dz)
+          const midX = (start[0] + end[0]) / 2
+          const midY = (start[1] + end[1]) / 2
+          const midZ = (start[2] + end[2]) / 2
 
-        return (
-          <group key={`conn-${i}`} position={[midX, midY, midZ]}>
-            <mesh rotation={[0, Math.atan2(dx, dz), 0]}>
-              <boxGeometry args={[0.08, 0.08, length]} />
-              <meshBasicMaterial color={cfg.poi.lineColor} transparent opacity={0.5} />
-            </mesh>
-          </group>
-        )
-      })}
+          return (
+            <group key={`conn-${i}`} position={[midX, midY, midZ]}>
+              <mesh rotation={[0, Math.atan2(dx, dz), 0]}>
+                <boxGeometry args={[0.08, 0.08, length]} />
+                <meshBasicMaterial color={cfg.poi.lineColor} transparent opacity={0.5} />
+              </mesh>
+            </group>
+          )
+        })}
+      </group>
     </group>
   )
 }
