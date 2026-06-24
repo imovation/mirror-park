@@ -12,6 +12,7 @@ import SidePanel from '@/components/layout/SidePanel'
 import Footer from '@/components/layout/Footer/Footer'
 import DashboardPanel from '@/components/ui/DashboardPanel'
 import AlertPopup from '@/components/ui/AlertPopup'
+import FpsMonitor from '@/components/ui/FpsMonitor'
 import ErrorBoundary from '@/components/layout/ErrorBoundary'
 import SceneCanvas from '@/components/scene/SceneCanvas'
 import { getThemeEntry } from '@/themes/registry'
@@ -121,6 +122,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AppContent />
       <AlertPopup />
+      <FpsMonitor />
     </QueryClientProvider>
   )
 }
