@@ -14,11 +14,13 @@ export default defineConfig({
     host: '0.0.0.0',
   },
   build: {
+    chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
         manualChunks: {
           'vendor-echarts': ['echarts', 'echarts-for-react'],
-          'vendor-three': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
+          'vendor-three-core': ['three'],
+          'vendor-three-r3f': ['@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
           'vendor-react': ['react', 'react-dom', '@tanstack/react-query', 'zustand'],
         },
       },
