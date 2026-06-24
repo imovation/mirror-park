@@ -126,7 +126,8 @@ function DeviceMarker({ d }: { d: typeof DEVICES[number] }) {
         <spriteMaterial
           map={d.type === 'camera' ? cameraIconTex : accessIconTex}
           transparent
-          depthTest={false}
+          depthTest
+          depthWrite={false}
         />
       </sprite>
       <Html

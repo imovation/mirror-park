@@ -25,22 +25,22 @@ describe('useThemeStore', () => {
 
 describe('useTimeModeStore', () => {
   beforeEach(() => {
-    useTimeModeStore.setState({ timeMode: 'day' })
+    useTimeModeStore.setState({ timeMode: 'night' })
   })
 
-  it('starts with day mode', () => {
-    expect(useTimeModeStore.getState().timeMode).toBe('day')
-  })
-
-  it('toggleMode flips day to night', () => {
-    useTimeModeStore.getState().toggleMode()
+  it('starts with night mode', () => {
     expect(useTimeModeStore.getState().timeMode).toBe('night')
   })
 
   it('toggleMode flips night to day', () => {
-    useTimeModeStore.setState({ timeMode: 'night' })
     useTimeModeStore.getState().toggleMode()
     expect(useTimeModeStore.getState().timeMode).toBe('day')
+  })
+
+  it('toggleMode flips day to night', () => {
+    useTimeModeStore.setState({ timeMode: 'day' })
+    useTimeModeStore.getState().toggleMode()
+    expect(useTimeModeStore.getState().timeMode).toBe('night')
   })
 
   it('setMode sets explicitly', () => {

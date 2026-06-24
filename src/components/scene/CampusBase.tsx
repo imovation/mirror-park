@@ -128,7 +128,10 @@ function getWindowDensity(buildingId: string): number {
   return WINDOW_DENSITY.tower
 }
 
-function BuildingMesh({ building }: { building: BuildingData }) {
+function BuildingMesh({ building, occludeRefs }: {
+  building: BuildingData
+  occludeRefs: React.MutableRefObject<{ current: THREE.Object3D }[]>
+}) {
   const [hovered, setHovered] = useState(false)
   const bodyRef = useRef<THREE.Mesh>(null!)
   const selectedId = useSceneStore((s) => s.selectedObjectId)
@@ -237,7 +240,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
             <meshStandardMaterial color={timeMode === 'day' ? '#b84c30' : '#0c1a28'} />
           </mesh>
           <Html
-            occlude={[bodyRef]} position={[0, 2.0, d / 2 + 0.15]}
+            occlude={occludeRefs.current as any} position={[0, 2.0, d / 2 + 0.15]}
             center distanceFactor={40} style={{ pointerEvents: 'none' }}
           >
             <div style={{
@@ -288,6 +291,7 @@ function BuildingMesh({ building }: { building: BuildingData }) {
       )}
 
       <Html
+        occlude={occludeRefs.current as any}
         position={[0, building.size[1] / 2 + (isSelected ? 3 : 2), 0]}
         center distanceFactor={40}
         style={{
@@ -776,9 +780,24 @@ function GroundDecorations() {
 export default function CampusBase() {
   const timeMode = useTimeModeStore((s) => s.timeMode)
   const cfg = DAY_NIGHT[timeMode]
+  const occludeRefs = useRef<{ current: THREE.Object3D }[]>([])
+  const sceneRef = useRef<THREE.Group>(null!)
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (sceneRef.current) {
+        sceneRef.current.traverse((child) => {
+          if ((child as THREE.Mesh).isMesh) {
+            occludeRefs.current.push({ current: child })
+          }
+        })
+      }
+    }, 0)
+    return () => clearTimeout(id)
+  }, [])
 
   return (
-    <group>
+    <group ref={sceneRef}>
       <Plane args={[400, 400]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]} receiveShadow>
         <meshStandardMaterial color={cfg.ground.color} polygonOffset polygonOffsetFactor={1} polygonOffsetUnits={1} />
       </Plane>
@@ -796,7 +815,7 @@ export default function CampusBase() {
       <ConnectingCorridors />
 
       {BUILDINGS.map((b) => (
-        <BuildingMesh key={b.id} building={b} />
+        <BuildingMesh key={b.id} building={b} occludeRefs={occludeRefs} />
       ))}
 
       <Environment files={cfg.environment.file} path={cfg.environment.path} />

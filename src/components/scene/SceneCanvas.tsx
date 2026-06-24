@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import ParticleBg from './ParticleBg'
 import CameraController from './CameraController'
+import CameraStateSync from './CameraStateSync'
 import SceneInfo from './SceneInfo'
 import { useTimeModeStore } from '@/stores/useTimeModeStore'
 import { DAY_NIGHT } from '@/config/dayNightTheme'
@@ -21,6 +22,7 @@ function SceneContent() {
       <fog attach="fog" args={[cfg.fog.color, SCENE.FOG_NEAR, SCENE.FOG_FAR]} />
       <ParticleBg />
       <CameraController />
+      {import.meta.env.DEV && <CameraStateSync />}
       <EffectComposer>
         <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} mipmapBlur intensity={cfg.bloom.intensity} />
       </EffectComposer>

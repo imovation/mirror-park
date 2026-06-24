@@ -13,12 +13,12 @@ export const SCENE = {
     target: [0, 0, 0] as [number, number, number],
   },
   THEME_CAMERAS: {
-    overview: { position: [-7, 18, 70] as [number, number, number], target: [-7, 8, 13.5] as [number, number, number] },
-    'teaching-research': { position: [-10, 51, 40] as [number, number, number], target: [-10, 5, 4] as [number, number, number] },
-    admin: { position: [-29, 40, 42] as [number, number, number], target: [-5, 5, -8] as [number, number, number] },
+    overview: { position: [23.9, 15.9, 53.1] as [number, number, number], target: [-1.0, 8.5, 8.1] as [number, number, number] },
+    'teaching-research': { position: [-17.3, 15.7, -60.6] as [number, number, number], target: [-9.0, 6.5, 2.9] as [number, number, number] },
+    admin: { position: [-43.5, 17.9, 49.1] as [number, number, number], target: [-5.2, 6.1, -7.1] as [number, number, number] },
     library: { position: [4, 34, 23] as [number, number, number], target: [-10, 4, -10] as [number, number, number] },
     academics: { position: [-6, 25, 52] as [number, number, number], target: [-6, 8, 4] as [number, number, number] },
-    security: { position: [-59, 35, -24] as [number, number, number], target: [-12, 4, -3] as [number, number, number] },
-    logistics: { position: [29, 32, 46] as [number, number, number], target: [-2, 3, 0] as [number, number, number] },
+    security: { position: [23.1, 34.3, 48.0] as [number, number, number], target: [-6.2, 5.3, 1.4] as [number, number, number] },
+    logistics: { position: [-59, 35, -24] as [number, number, number], target: [-12, 4, -3] as [number, number, number] },
   } as Record<string, { position: [number, number, number]; target: [number, number, number] }>,
 } as const

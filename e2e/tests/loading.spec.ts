@@ -1,6 +1,11 @@
 import { test, expect } from '@playwright/test'
+import { dismissOverlay } from '../helpers/visual-utils'
 
 test.describe('Page Load', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => { (window as any).__E2E__ = true })
+  })
+
   test('should display title and bottom bar', async ({ page }) => {
     await page.goto('/')
     await expect(page.getByText('智慧校园可视化平台').first()).toBeVisible()

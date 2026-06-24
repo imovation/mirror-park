@@ -41,6 +41,7 @@ export async function waitForAllPanels(page: Page) {
 
 export async function navigateWithBlock3D(page: Page) {
   await page.addInitScript(() => {
+    ;(window as any).__E2E__ = true
     const orig = HTMLCanvasElement.prototype.getContext
     HTMLCanvasElement.prototype.getContext = function (
       this: HTMLCanvasElement,
@@ -52,6 +53,10 @@ export async function navigateWithBlock3D(page: Page) {
     }
   })
   await page.goto('/')
+}
+
+export async function dismissOverlay(page: Page) {
+  // no-op: handled via __E2E__ flag now
 }
 
 export async function hide3DCanvas(page: Page) {

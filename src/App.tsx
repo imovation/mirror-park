@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useSSE } from '@/api/useSSEQuery'
 import { parseFlexGrow } from '@/types/panel'
@@ -26,7 +26,73 @@ const queryClient = new QueryClient({
   },
 })
 
+function FullscreenOverlay({ onEnter }: { onEnter: () => void }) {
+  const [leaving, setLeaving] = useState(false)
+  const isDark = useUIThemeStore((s) => s.uiTheme) === 'dark'
+  if ((window as any).__E2E__) return null
+
+  const handleClick = () => {
+    setLeaving(true)
+    document.documentElement.requestFullscreen().catch(() => {})
+    setTimeout(() => onEnter(), 400)
+  }
+
+  return (
+    <div
+      onClick={handleClick}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 99999,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        background: leaving ? 'transparent' : isDark
+          ? 'rgba(0,0,0,0.55)'
+          : 'rgba(255,255,255,0.55)',
+        backdropFilter: leaving ? 'none' : 'blur(4px)',
+        WebkitBackdropFilter: leaving ? 'none' : 'blur(4px)',
+        transition: 'all 0.4s ease',
+        userSelect: 'none',
+      }}
+    >
+      <div style={{
+        textAlign: 'center',
+        opacity: leaving ? 0 : 1,
+        transform: leaving ? 'scale(0.9)' : 'scale(1)',
+        transition: 'all 0.4s ease',
+      }}>
+        <div style={{
+          fontSize: 28,
+          fontWeight: 300,
+          color: 'var(--text-primary, #fff)',
+          marginBottom: 12,
+          letterSpacing: 4,
+        }}>
+          智慧校园可视化系统
+        </div>
+        <div style={{
+          width: 40,
+          height: 1,
+          background: 'var(--theme-primary, #00d8ff)',
+          margin: '0 auto 16px',
+        }} />
+        <div style={{
+          fontSize: 14,
+          color: 'var(--text-secondary, rgba(255,255,255,0.6))',
+          letterSpacing: 2,
+        }}>
+          点击任意处进入全屏
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function AppContent() {
+  const [showOverlay, setShowOverlay] = useState(true)
   const currentTheme = useThemeStore((s) => s.currentTheme)
   const uiTheme = useUIThemeStore((s) => s.uiTheme)
   const { status: sseStatus } = useSSE()
@@ -112,6 +178,7 @@ function AppContent() {
           bottomBar={<Footer status={sseStatus} />}
         />
       </div>
+      {showOverlay && <FullscreenOverlay onEnter={() => setShowOverlay(false)} />}
     </div>
   )
 }

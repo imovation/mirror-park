@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { useResponsive } from '@/hooks/useResponsive'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
+import CameraCapturePanel from '@/components/ui/CameraCapturePanel'
 
 interface ScreenLayoutProps {
   topBar: ReactNode
@@ -62,6 +63,7 @@ export default function ScreenLayout({
         }}
       >
         🖱 左键旋转 · 滚轮缩放 · 右键平移
+        <CameraCapturePanel inline />
       </div>
       <div style={{ gridArea: 'bottombar', pointerEvents: 'auto' }}>{bottomBar}</div>
     </div>

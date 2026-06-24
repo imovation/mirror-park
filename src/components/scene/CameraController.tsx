@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { SCENE } from '@/utils/constants'
+import { setOrbitControls } from '@/utils/cameraRef'
 
 function setControlsEnabled(ref: React.MutableRefObject<any>, enabled: boolean) {
   if (ref.current) {
@@ -26,6 +27,12 @@ export default function CameraController() {
     camera.position.set(...SCENE.DEFAULT_CAMERA.position)
     camera.lookAt(...SCENE.DEFAULT_CAMERA.target)
   }, [camera])
+
+  useEffect(() => {
+    if (controlsRef.current) {
+      setOrbitControls(controlsRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     const preset = SCENE.THEME_CAMERAS[currentTheme as keyof typeof SCENE.THEME_CAMERAS] || SCENE.THEME_CAMERAS.overview

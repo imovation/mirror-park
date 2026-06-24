@@ -8,7 +8,7 @@ interface TimeModeState {
 }
 
 export const useTimeModeStore = create<TimeModeState>((set) => ({
-  timeMode: 'day',
+  timeMode: 'night',
   toggleMode: () =>
     set((s) => ({ timeMode: s.timeMode === 'day' ? 'night' : 'day' })),
   setMode: (mode) => set({ timeMode: mode }),
