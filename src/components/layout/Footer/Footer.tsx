@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useUIThemeStore } from '@/stores/useUIThemeStore'
 import FooterNav from './FooterNav'
+import FpsMonitor from '@/components/ui/FpsMonitor'
 
 interface FooterProps {
   status?: 'connecting' | 'connected' | 'disconnected'
@@ -84,6 +85,7 @@ export default function Footer({ status = 'disconnected' }: FooterProps) {
           运行中 {elapsed}
         </span>
         <div className="flex items-center gap-1.5" style={{ color: currentStatus.color }}>
+          <FpsMonitor inline />
           <span style={{ fontSize: 10, filter: `drop-shadow(0 0 3px ${currentStatus.color})` }}>{currentStatus.icon}</span>
           <span>{currentStatus.text}</span>
         </div>

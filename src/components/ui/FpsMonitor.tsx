@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const MAX_SAMPLES = 60
 
-function FpsMonitorInner() {
+function useFpsCounter() {
   const [fps, setFps] = useState(0)
   const [min, setMin] = useState(60)
   const [max, setMax] = useState(0)
@@ -45,6 +45,12 @@ function FpsMonitorInner() {
       cancelAnimationFrame(rafRef.current)
     }
   }, [])
+
+  return { fps, min, max, history }
+}
+
+function FpsMonitorInner() {
+  const { fps, min, max, history } = useFpsCounter()
 
   const sparklineWidth = 80
   const sparklineHeight = 24
@@ -90,9 +96,20 @@ function FpsMonitorInner() {
   )
 }
 
-export default function FpsMonitor() {
+function FpsMonitorInline() {
+  const { fps } = useFpsCounter()
+  const fpsColor = fps >= 55 ? 'var(--color-success, #22c55e)' : fps >= 30 ? 'var(--color-warning, #ff6d00)' : 'var(--color-danger, #ef4444)'
+
+  return (
+    <span style={{ fontFamily: 'monospace', fontSize: 11, color: fpsColor, marginRight: 8 }}>
+      {fps} FPS
+    </span>
+  )
+}
+
+export default function FpsMonitor({ inline }: { inline?: boolean }) {
   if (import.meta.env.DEV) {
-    return <FpsMonitorInner />
+    return inline ? <FpsMonitorInline /> : <FpsMonitorInner />
   }
   return null
 }
