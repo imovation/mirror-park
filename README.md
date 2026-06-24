@@ -16,7 +16,7 @@
 | 构建 | Vite 5 + pnpm |
 | 3D 引擎 | Three.js via @react-three/fiber (R3F) + @react-three/drei |
 | 后处理 | @react-three/postprocessing (Bloom 辉光) |
-| 数据可视化 | ECharts 5 (Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap/Sankey/Sunburst/Funnel/Radar) |
+| 数据可视化 | ECharts 5 树摇 (core + 按需注册 Bar/Line/Pie/Ring/Gauge/Radar) |
 | 状态管理 | Zustand |
 | 数据请求 | TanStack Query v5 |
 | 实时推送 | SSE (Server-Sent Events)，Dev 模式自动 Mock |
@@ -30,7 +30,7 @@
 pnpm install
 pnpm dev        # http://localhost:3000
 pnpm build      # 生产构建到 dist/
-pnpm test       # 运行所有测试 (252 单元 + 84 E2E)
+pnpm test       # 运行所有测试 (253 单元 + 84 E2E)
 ```
 
 ## 专题模块
@@ -73,7 +73,7 @@ e2e/                # Playwright E2E 测试 (84 用例 + 42 截图 baseline)
 - **主题切换**：UI 深色/浅色主题 (CSS 变量) + 3D 白天/夜间模式独立切换
 - **实时推送**：SSE 基础设施 (指数退避重连) + Footer 状态栏连接指示灯
 - **响应式**：1920px ~ 7680px 超宽屏自适应
-- **完整测试**：252 Vitest 单元/集成测试 + 84 Playwright E2E 测试 (含 7 专题视觉回归截图)
+- **完整测试**：253 Vitest 单元/集成测试 + 84 Playwright E2E 测试 (含 7 专题视觉回归截图)
 
 ## 设计文档
 
@@ -87,4 +87,6 @@ e2e/                # Playwright E2E 测试 (84 用例 + 42 截图 baseline)
 - 数据面板审查设计：[docs/superpowers/specs/2026-06-18-panel-review-design.md](docs/superpowers/specs/2026-06-18-panel-review-design.md)
 - 数据面板审查实现：[docs/superpowers/plans/2026-06-18-panel-review.md](docs/superpowers/plans/2026-06-18-panel-review.md)
 - 数据面板审查报告：[docs/superpowers/specs/panel-review-report.md](docs/superpowers/specs/panel-review-report.md)
+- 绩效优化设计：[docs/superpowers/specs/2026-06-24-performance-optimization-design.md](docs/superpowers/specs/2026-06-24-performance-optimization-design.md)
+- 绩效优化实现：[docs/superpowers/plans/2026-06-24-performance-optimization.md](docs/superpowers/plans/2026-06-24-performance-optimization.md)
 - 项目状态：[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)

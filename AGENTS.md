@@ -9,13 +9,20 @@
 | 指标 | 数值 |
 |------|------|
 | 源文件 | 210+ |
-| 测试 | 252/252 单元测试 + 84/84 E2E 测试 (快捷 2 视口) / 252/252 (完整 6 视口) |
-| Git 提交 | 296+ |
-| 编译 | ✅ `pnpm build` 通过 |
+| 测试 | 253/253 单元测试 + 84/84 E2E 测试 (快捷 2 视口) / 252/252 (完整 6 视口) |
+| Git 提交 | 318+ |
+| 编译 | ✅ `pnpm build` 通过（0 警告） |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 | 浏览器 Console | 0 error / 0 warning |
 
 **已完成**：平台框架、7 专题全部 38 个数据面板（Mock 数据）、3D 校园场景（按真实镇远中学布局）、建筑点击联动 + 自动飞向、告警弹窗（`crypto.randomUUID` 兼容修复）、卡片轮播、镜头动画、响应式布局（含超宽屏 5760px+ 适配）、代码分割、SSE 实时推送。
+
+**已完成（2026-06-24）— 第 12 轮（3 项待完成全部实现）**：
+1. **性能优化** — ECharts 树摇（`echarts/core` + 按需注册，1,052 kB→577 kB）、Three.js chunk 拆分（`vendor-three-core` + `vendor-three-r3f`，消除 500 kB 警告）、Chunk 警告阈值 800 kB
+2. **FPS 监控** — Dev-only 右下角浮层（数字 + sparkline + min/max），后移入 Footer 状态栏（inline 模式）
+3. **E2E 测试补充** — 补"新书速递"/"近期会议"panel 标题、logistics collapsed 截图、新增 Header/Footer 截图+交互测试
+4. **3D 场景增强** — 建筑 hover 发光环 + Edges 变色、数据连线脉冲动画、OrbitControls 交互后暂停自动旋转、粒子垂直浮动
+5. **共 8 commit**，253/253 测试通过，构建 0 警告
 
 **已完成（2026-06-21 全面 UI/UX 优化 — 六轮 60+ 项 + 2026-06-22 自适应优化 P0~P3 17 项）**：
 1. 审计报告 + 30+ 项核心问题修复（RingChart 裁剪/BarChart 自适应/NumberFlip 防抖）
