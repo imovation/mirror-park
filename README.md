@@ -30,7 +30,7 @@
 pnpm install
 pnpm dev        # http://localhost:3000
 pnpm build      # 生产构建到 dist/
-pnpm test       # 运行所有测试 (253 单元 + 84 E2E)
+pnpm test       # 运行所有测试 (253 单元 + 92 E2E)
 ```
 
 ## 专题模块
@@ -55,14 +55,14 @@ src/
 │   ├── charts/     # ECharts 封装 (11 种图表类型)
 │   ├── layout/     # ScreenLayout, Header/, Footer/, SidePanel, ErrorBoundary
 │   ├── scene/      # R3F 3D 场景 (CampusBase, Camera, Particles, Landscape, GroundDecorations)
-│   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, ChartLabel, StatCard, TopMetricsCard
+│   └── ui/         # NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, CameraCapturePanel, StatusPanel, ChartLabel, StatCard, TopMetricsCard
 ├── hooks/          # useSceneClick
 ├── shaders/        # WebGL GLSL (buildingWindow 窗户发光, roadFlow 道路光流)
-├── stores/         # Zustand (Theme, Scene, UI, UITheme, TimeMode, Layout)
+├── stores/         # Zustand (Theme, Scene, UI, UITheme, TimeMode, Layout, CameraCapture)
 ├── themes/         # 7 个专题 (panels + scene + registry)
 ├── types/          # TypeScript 类型定义
 └── utils/          # format, constants
-e2e/                # Playwright E2E 测试 (84 用例 + 42 截图 baseline)
+e2e/                # Playwright E2E 测试 (92 用例 + 截图基线)
 ```
 
 ## 功能亮点
@@ -73,7 +73,7 @@ e2e/                # Playwright E2E 测试 (84 用例 + 42 截图 baseline)
 - **主题切换**：UI 深色/浅色主题 (CSS 变量) + 3D 白天/夜间模式独立切换
 - **实时推送**：SSE 基础设施 (指数退避重连) + Footer 状态栏连接指示灯
 - **响应式**：1920px ~ 7680px 超宽屏自适应
-- **完整测试**：253 Vitest 单元/集成测试 + 84 Playwright E2E 测试 (含 7 专题视觉回归截图)
+- **完整测试**：253 Vitest 单元/集成测试 + 92 Playwright E2E 测试 (含 7 专题视觉回归截图)
 
 ## 设计文档
 

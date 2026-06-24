@@ -8,9 +8,9 @@
 
 | 指标 | 数值 |
 |------|------|
-| 源文件 | 210+ |
-| 测试 | 253/253 单元测试 + 84/84 E2E 测试 (快捷 2 视口) / 252/252 (完整 6 视口) |
-| Git 提交 | 318+ |
+| 源文件 | 214+ |
+| 测试 | 253/253 单元测试 + 92/92 E2E 测试 (快捷 2 视口) / 252/252 (完整 6 视口) |
+| Git 提交 | 319+ |
 | 编译 | ✅ `pnpm build` 通过（0 警告） |
 | 启动 | ✅ `pnpm dev` → `http://localhost:3000` |
 | 浏览器 Console | 0 error / 0 warning |
@@ -23,6 +23,14 @@
 3. **E2E 测试补充** — 补"新书速递"/"近期会议"panel 标题、logistics collapsed 截图、新增 Header/Footer 截图+交互测试
 4. **3D 场景增强** — 建筑 hover 发光环 + Edges 变色、数据连线脉冲动画、OrbitControls 交互后暂停自动旋转、粒子垂直浮动
 5. **共 8 commit**，253/253 测试通过，构建 0 警告
+
+**已完成（2026-06-24）— 第 13 轮（5 项）**：
+1. **CameraCapture Dev 工具** — 全景相机捕获工具，Shift+X 显隐，Shift+C 捕获 position/target 至剪贴板，默认隐藏
+2. **默认夜间模式** — `useTimeModeStore.timeMode` 默认 `'night'`，启动即暗黑赛博风 + Bloom 0.6 + 道路光流
+3. **启动全屏引导** — 页面加载后显示"智慧校园可视化系统 · 点击任意处进入全屏"浮动引导层，点击后自动全屏
+4. **3D 标签/设备遮挡** — 校名、建筑名称标签、设备图标被 3D 场景中所有几何体正确遮挡（html occlude + sprite depthTest）
+5. **默认镜头更新** — overview/teaching-research/admin 更新镜头配置，security/logistics 对调
+6. **共 1 commit**，253/253 单元测试 + 92/92 E2E 测试通过，构建 0 警告
 
 **已完成（2026-06-21 全面 UI/UX 优化 — 六轮 60+ 项 + 2026-06-22 自适应优化 P0~P3 17 项）**：
 1. 审计报告 + 30+ 项核心问题修复（RingChart 裁剪/BarChart 自适应/NumberFlip 防抖）
@@ -228,6 +236,10 @@
 | `docs/superpowers/plans/2026-06-21-ui-ux-fixes.md` | 实施计划 |
 | `__tests__/integration/logistics-panels.test.tsx` | 后勤面板集成测试 |
 | `e2e/tests/topic-logistics.spec.ts` | 后勤 E2E 测试 |
+| `stores/useCameraCaptureStore.ts` | 相机状态 capture store (position + target) |
+| `components/scene/CameraStateSync.tsx` | Canvas 内部：useFrame 同步 camera + controls 状态 |
+| `components/ui/CameraCapturePanel.tsx` | Dev-only 相机捕获面板（Shift+X 显隐, Shift+C 捕获） |
+| `utils/cameraRef.ts` | 模块级共享 OrbitControls 引用 |
 
 ## Panel 布局现状
 
@@ -270,6 +282,14 @@ pnpm test:e2e           # E2E 快捷 (Desktop+Tablet 2视口, ~2min)
 pnpm test:e2e:full      # E2E 完整 (6视口, ~8min), 发布前用
 ```
 
+## 开发工具 (Dev-only)
+
+| 工具 | 快捷键/操作 | 说明 |
+|------|-----------|------|
+| **CameraCapture** | `Shift+X` 显隐, `Shift+C` 捕获 | 右下角（操作提示后方），实时显示相机 position + target，点击 CAP 或 Shift+C 复制配置至剪贴板，可直接粘贴到 `constants.ts`。默认隐藏，不影响演示 |
+| **FPS 监控** | Footer 内联显示 | `import.meta.env.DEV` 下 Footer 状态栏实时显示 FPS |
+| **全屏引导浮层** | 点击任意处 | 启动时显示"智慧校园可视化系统 · 点击任意处进入全屏"，点击后自动全屏。E2E 中通过 `window.__E2E__` 跳过 |
+
 ## 项目结构
 
 ```
@@ -289,8 +309,8 @@ src/
 ├── components/
 │   ├── charts/      # ECharts: Bar/Line/Pie/Ring/Gauge/Heatmap/Treemap/Sankey/Sunburst/Funnel/Radar
 │   ├── layout/      # ScreenLayout(CSS Grid 覆盖层), Header/, Footer/, SidePanel, ErrorBoundary
-│   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, ParticleBg, SceneInfo
-│   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, StatusPanel, VideoWindow, ChartLabel, StatCard, TopMetricsCard
+│   ├── scene/       # R3F: SceneCanvas, CampusBase, CameraController, CameraStateSync, ParticleBg, SceneInfo
+│   └── ui/          # DashboardPanel, NumberFlip, ScrollList, Modal, CardCarousel, AlertPopup, CameraCapturePanel, StatusPanel, VideoWindow, ChartLabel, StatCard, TopMetricsCard
 ├── hooks/           # useSceneClick (目前很少使用)
 ├── shaders/         # WebGL GLSL: buildingWindow (建筑窗户发光), roadFlow (道路光流动画)
 ├── stores/
@@ -300,6 +320,7 @@ src/
 │   ├── useUIThemeStore.ts    # uiTheme (dark/light), toggleUITheme()
 │   ├── useTimeModeStore.ts   # timeMode (day/night), toggleMode()
 │   ├── useLayoutStore.ts     # activeModule, setActiveModule() (Footer 导航联动)
+│   ├── useCameraCaptureStore.ts  # 相机实时 position + target，capture() 剪贴板复制
 │   └── themes/               # 6 个专题 store (当前是空骨架，未被使用)
 ├── themes/
 │   ├── registry.tsx             # getThemeEntry(themeId) → { scene, panels, renderPanel }
@@ -311,7 +332,7 @@ src/
 │   ├── security/                # 智慧安防 (2 左 + 2 右 = 4 panel, 新增安防态势总览)
 │   └── logistics/               # 智慧后勤 (2 左 + 2 右 = 4 panel, 新增宿舍管理)
 ├── types/           # theme.ts (ThemeId enum, THEMES 常量), panel.ts, api.ts
-└── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等)
+└── utils/           # format.ts (formatNumber 等), constants.ts (SCENE 镜头预设等), cameraRef.ts (模块级 OrbitControls 引用)
 e2e/                 # Playwright E2E 测试 (252 用例 6 视口: Desktop/Tablet/1366/1600/2560/3840)，实际运行 84 用例 2 视口
 ```
 
@@ -409,6 +430,7 @@ import ChartLabel from '@/components/ui/ChartLabel'
 | useUIThemeStore | uiTheme (dark/light), toggleUITheme | Header, App.tsx, 各图表组件(通过 useChartTheme) |
 | useTimeModeStore | timeMode (day/night), toggleMode | Header, CampusBase, dayNightTheme |
 | useLayoutStore | activeModule, setActiveModule | Footer, FooterNav |
+| useCameraCaptureStore | current (position+target), capture | CameraCapturePanel, CameraStateSync |
 
 ## 常见问题
 
