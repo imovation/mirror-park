@@ -35,6 +35,7 @@ test.describe('Topic: Library', () => {
     await expect(page.getByText('借阅统计').first()).toBeVisible()
     await expect(page.getByText('图书借阅排行').first()).toBeVisible()
     await expect(page.getByText('阅读活动').first()).toBeVisible()
+    await expect(page.getByText('新书速递').first()).toBeVisible()
     await expect(page.getByText('入馆统计').first()).toBeVisible()
   })
 })

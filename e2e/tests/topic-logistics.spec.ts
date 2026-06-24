@@ -5,6 +5,7 @@ import {
   waitForAllPanels,
   hide3DCanvas,
   toggleUITheme,
+  collapsePanel,
 } from '../helpers/visual-utils'
 
 test.describe('Topic: Logistics', () => {
@@ -23,6 +24,12 @@ test.describe('Topic: Logistics', () => {
   test('light theme — full page screenshot', async ({ page }) => {
     await toggleUITheme(page, 'light')
     await expect(page).toHaveScreenshot('topic-logistics-light.png', { fullPage: false, threshold: 0.3 })
+  })
+
+  test('collapsible panels folded — screenshot', async ({ page }) => {
+    await collapsePanel(page, '学生请假管理')
+    await collapsePanel(page, '访客管理')
+    await expect(page).toHaveScreenshot('topic-logistics-collapsed.png', { fullPage: false, threshold: 0.3 })
   })
 
   test('all panel titles visible', async ({ page }) => {
