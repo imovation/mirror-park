@@ -1,7 +1,8 @@
 import { memo, useMemo } from 'react'
-import ReactECharts from 'echarts-for-react'
+import EChartsReactCore from 'echarts-for-react/lib/core'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
+import echarts from '@/config/echartsSetup'
 
 interface RadarIndicator {
   name: string
@@ -80,7 +81,7 @@ function RadarChart({ indicator, series, height = 220, title }: RadarChartProps)
     } : {}),
   }), [indicator, series, height, title, t, f])
 
-  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
+  return <EChartsReactCore echarts={echarts} option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
 
 export default memo(RadarChart)

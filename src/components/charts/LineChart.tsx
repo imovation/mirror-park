@@ -1,7 +1,8 @@
 import { memo, useMemo } from 'react'
-import ReactECharts from 'echarts-for-react'
+import EChartsReactCore from 'echarts-for-react/lib/core'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
+import echarts from '@/config/echartsSetup'
 
 interface LineChartProps {
   xData: string[]
@@ -107,7 +108,7 @@ function LineChart({ xData, series, height = 160, smooth = false, area = false, 
     }}),
   }), [area, autoMax, autoMin, height, isCompact, markLine, series, smooth, xData, t, f])
 
-  return <ReactECharts option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
+  return <EChartsReactCore echarts={echarts} option={option} style={{ height: Math.max(height, MIN_HEIGHT), width: '100%' }} notMerge />
 }
 
 export default memo(LineChart)

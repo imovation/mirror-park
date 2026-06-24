@@ -1,7 +1,8 @@
 import { memo, useMemo } from 'react'
-import ReactECharts from 'echarts-for-react'
+import EChartsReactCore from 'echarts-for-react/lib/core'
 import type { EChartsOption } from 'echarts'
 import { useChartTheme, getChartFontSizes } from '@/config/chartTheme'
+import echarts from '@/config/echartsSetup'
 
 interface GaugeChartProps {
   value: number
@@ -64,7 +65,7 @@ function GaugeChart({ value, max = 100, name = '', height = 150 }: GaugeChartPro
     ],
   }), [value, max, name, t, f])
 
-  return <ReactECharts option={option} style={{ height: renderHeight, width: '100%' }} notMerge />
+  return <EChartsReactCore echarts={echarts} option={option} style={{ height: renderHeight, width: '100%' }} notMerge />
 }
 
 export default memo(GaugeChart)
